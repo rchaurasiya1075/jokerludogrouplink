@@ -23,31 +23,35 @@
       background: #2d2e52;
       color: #fff;
       padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      text-align: center;
     }
 
     .logo {
-      font-size: 26px;
+      font-size: 28px;
       font-weight: 700;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
 
     .nav-links {
       list-style: none;
       display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
       justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .nav-links li {
+      display: inline-block;
     }
 
     .nav-links a {
       color: #fff;
       text-decoration: none;
       font-weight: 500;
-      padding: 8px 12px;
+      padding: 8px 16px;
       border-radius: 6px;
+      background: #3a3c69;
+      display: inline-block;
       transition: background 0.3s;
     }
 
@@ -118,11 +122,25 @@
       font-size: 14px;
     }
 
+    /* Mobile Responsive Styling */
     @media (max-width: 768px) {
       .nav-links {
         flex-direction: column;
-        gap: 10px;
+        align-items: center;
         margin-top: 10px;
+      }
+
+      .nav-links li {
+        width: 100%;
+        text-align: center;
+      }
+
+      .nav-links a {
+        width: 90%;
+        display: block;
+        margin: 5px auto;
+        padding: 10px;
+        font-size: 16px;
       }
 
       .hero h1 {
@@ -141,12 +159,12 @@
   <nav class="navbar">
     <div class="logo">🎲 JokerLudo</div>
     <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="rules.html">Rules</a></li>
-      <li><a href="join.html">Join</a></li>
-      <li><a href="addgroup.html">Add Group</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="privacy.html">Privacy</a></li>
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="rules.html">📜 Rules</a></li>
+      <li><a href="join.html">🔗 Join</a></li>
+      <li><a href="addgroup.html">➕ Add Group</a></li>
+      <li><a href="contact.html">📞 Contact</a></li>
+      <li><a href="privacy.html">🔒 Privacy</a></li>
     </ul>
   </nav>
 
