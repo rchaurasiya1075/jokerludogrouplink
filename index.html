@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>JokerLudo Group</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
   <style>
     * {
       margin: 0;
@@ -15,56 +14,57 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      background: #f3f3ff;
+      background: #f4f5ff;
       color: #333;
       line-height: 1.6;
     }
 
-    /* Navbar */
     .navbar {
       background: #2d2e52;
       color: #fff;
-      padding: 15px 30px;
+      padding: 20px;
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: center;
-      flex-wrap: wrap;
     }
 
     .logo {
-      font-size: 24px;
-      font-weight: 600;
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 10px;
     }
 
     .nav-links {
       list-style: none;
       display: flex;
-      gap: 20px;
+      gap: 15px;
       flex-wrap: wrap;
+      justify-content: center;
     }
 
     .nav-links a {
       color: #fff;
       text-decoration: none;
       font-weight: 500;
-      transition: color 0.3s ease;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: background 0.3s;
     }
 
     .nav-links a:hover {
-      color: #ffde59;
+      background: #ffde59;
+      color: #2d2e52;
     }
 
-    /* Hero Section */
     .hero {
       text-align: center;
-      padding: 60px 20px;
-      background: linear-gradient(to right, #fceabb, #f8b500);
-      animation: slideIn 1s ease-out;
+      padding: 50px 20px;
+      background: linear-gradient(to right, #ffe57f, #ffc107);
     }
 
     .hero h1 {
-      font-size: 36px;
-      margin-bottom: 10px;
+      font-size: 32px;
+      margin-bottom: 15px;
     }
 
     .hero p {
@@ -84,82 +84,40 @@
     }
 
     .join-btn:hover {
-      background: #1b1c3a;
+      background: #1a1a3a;
       transform: scale(1.05);
     }
 
-    /* Add Group Button */
-    .add-group {
-      background: #ff5722;
-      margin-top: 15px;
-    }
-
-    /* Features Section */
     .features {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
       gap: 20px;
       padding: 50px 20px;
-      animation: fadeIn 2s ease-in;
     }
 
     .card {
       background: #fff;
       padding: 20px;
-      border-radius: 15px;
+      border-radius: 12px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
       width: 280px;
-      transition: transform 0.3s ease;
       text-align: center;
+      transition: 0.3s;
     }
 
     .card:hover {
       transform: translateY(-10px);
     }
 
-    /* Footer */
-    .footer {
+    footer {
       background: #2d2e52;
       color: #fff;
+      padding: 20px;
       text-align: center;
-      padding: 25px 15px;
-      margin-top: 40px;
+      font-size: 14px;
     }
 
-    .footer p {
-      margin-bottom: 5px;
-    }
-
-    .footer small {
-      font-size: 13px;
-      color: #ccc;
-    }
-
-    /* Animations */
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Responsive */
     @media (max-width: 768px) {
       .nav-links {
         flex-direction: column;
@@ -167,24 +125,19 @@
         margin-top: 10px;
       }
 
+      .hero h1 {
+        font-size: 24px;
+      }
+
       .features {
         flex-direction: column;
         align-items: center;
-      }
-
-      .hero h1 {
-        font-size: 28px;
-      }
-
-      .hero p {
-        font-size: 16px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navbar -->
   <nav class="navbar">
     <div class="logo">🎲 JokerLudo</div>
     <ul class="nav-links">
@@ -197,15 +150,13 @@
     </ul>
   </nav>
 
-  <!-- Hero Section -->
   <section class="hero">
     <h1>Welcome to JokerLudo Group! 🎉</h1>
     <p>Make Your Luck with JokerLudo – India’s Trusted Ludo Earning Platform!</p>
-    <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p?mode=ac_c" class="join-btn">Join Now</a>
-    <a href="addgroup.html" class="join-btn add-group">➕ Add Group</a>
+    <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p?mode=ac_c" class="join-btn">Join Now</a> <br><br>
+    <a href="addgroup.html" class="join-btn" style="background: #ff5722;">Add Group</a>
   </section>
 
-  <!-- Features -->
   <section class="features">
     <div class="card">
       <h3>✅ 24x7 Support</h3>
@@ -221,10 +172,8 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="footer">
+  <footer>
     <p>© 2025 JokerLudo Group. All Rights Reserved.</p>
-    <small>Made with ❤️ for Ludo Lovers</small>
   </footer>
 
 </body>
