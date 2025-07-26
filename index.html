@@ -26,7 +26,7 @@
     }
 
     .logo {
-      font-size: 32px;
+      font-size: 34px;
       font-weight: 700;
       color: #fff;
       margin-bottom: 15px;
@@ -34,17 +34,15 @@
       text-decoration: none;
     }
 
-    .nav-box {
+    .nav-links {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 12px;
-      padding: 10px;
-      border-radius: 8px;
-      background-color: #1f1f3e;
+      gap: 15px;
+      margin-bottom: 10px;
     }
 
-    .nav-box a {
+    .nav-links a {
       color: #fff;
       text-decoration: none;
       font-weight: 500;
@@ -53,7 +51,7 @@
       transition: background 0.3s;
     }
 
-    .nav-box a:hover {
+    .nav-links a:hover {
       background: #ffde59;
       color: #2d2e52;
     }
@@ -95,7 +93,7 @@
       justify-content: center;
       flex-wrap: wrap;
       gap: 20px;
-      padding: 50px 20px;
+      padding: 40px 20px;
     }
 
     .card {
@@ -115,9 +113,9 @@
     footer {
       background: #2d2e52;
       color: #fff;
-      padding: 14px 10px;
-      font-size: 14px;
+      padding: 15px 10px;
       text-align: center;
+      font-size: 14px;
     }
 
     .footer-links {
@@ -125,21 +123,25 @@
       justify-content: center;
       flex-wrap: wrap;
       gap: 15px;
-      margin-top: 10px;
+      margin-bottom: 8px;
     }
 
     .footer-links a {
-      color: #ffde59;
+      color: #fff;
       text-decoration: none;
       font-weight: 500;
       transition: color 0.3s;
     }
 
     .footer-links a:hover {
-      color: #fff;
+      color: #ffde59;
     }
 
     @media (max-width: 768px) {
+      .nav-links {
+        gap: 10px;
+      }
+
       .hero h1 {
         font-size: 24px;
       }
@@ -148,6 +150,10 @@
         flex-direction: column;
         align-items: center;
       }
+
+      .footer-links {
+        gap: 10px;
+      }
     }
   </style>
 </head>
@@ -155,7 +161,7 @@
 
   <nav class="navbar">
     <a href="index.html" class="logo">🎲 JokerLudo Group</a>
-    <div class="nav-box">
+    <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="rules.html">Rules</a>
       <a href="join.html">Join</a>
@@ -168,26 +174,9 @@
   <section class="hero">
     <h1>Welcome to JokerLudo Group! 🎉</h1>
     <p>Make Your Luck with JokerLudo – India’s Trusted Ludo Earning Platform!</p>
-    <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p?mode=ac_c" class="join-btn">Join Now</a> <br><br>
-    <a href="addgroup.html" class="join-btn" style="background: #ff5722;">Add Group</a>
+    <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p" class="join-btn">Join Now</a> <br><br>
+    <a href="addgroup.html" class="join-btn" style="background: #ff5722;">Add Your Group</a>
   </section>
-  <section class="features">
-  <h2 style="text-align:center; width: 100%; margin-bottom: 20px;">🔥 Approved Groups</h2>
-
-  <div class="card">
-    <h3>Group Name 1</h3>
-    <p>Join now and win!</p>
-    <a href="https://chat.whatsapp.com/XXXX" class="join-btn">Join Group</a>
-  </div>
-
-  <div class="card">
-    <h3>Group Name 2</h3>
-    <p>Earn daily with fun</p>
-    <a href="https://chat.whatsapp.com/YYYY" class="join-btn">Join Group</a>
-  </div>
-
-  <!-- More groups here... -->
-</section>
 
   <section class="features">
     <div class="card">
@@ -203,24 +192,35 @@
       <p>Official Deposit No: <strong>9670814522</strong></p>
     </div>
   </section>
+
   <section class="features">
-  <div class="card">
-    <h3>🎲 JokerLudo Official Group</h3>
-    <p>Join our official trusted group</p>
-    <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p" class="join-btn">Join Now</a>
-  </div>
-</section>
+    <h2 style="text-align:center; width:100%; margin-bottom:20px;">🔥 Approved Groups</h2>
+
+    <div class="card">
+      <h3>🔥 LudoStar Group</h3>
+      <p>Join now & win real cash!</p>
+      <a href="https://chat.whatsapp.com/your-group-link-1" class="join-btn">Join Group</a>
+    </div>
+
+    <div class="card">
+      <h3>🔥 FastWin Ludo</h3>
+      <p>Guaranteed fast payments!</p>
+      <a href="https://chat.whatsapp.com/your-group-link-2" class="join-btn">Join Group</a>
+    </div>
+
+    <!-- You can add more cards manually here -->
+  </section>
 
   <footer>
-    <div>© 2025 JokerLudo Group. All Rights Reserved.</div>
     <div class="footer-links">
       <a href="index.html">Home</a>
       <a href="rules.html">Rules</a>
       <a href="join.html">Join</a>
       <a href="addgroup.html">Add Group</a>
-      <a href="contact.html">Contact</a>
       <a href="privacy.html">Privacy</a>
+      <a href="contact.html">Contact</a>
     </div>
+    <p>© 2025 JokerLudo Group. All Rights Reserved.</p>
   </footer>
 
 </body>
