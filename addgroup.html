@@ -34,6 +34,14 @@
       color: #2d2e52;
     }
 
+    .info-text {
+      font-weight: bold;
+      font-size: 16px;
+      color: red;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
     label {
       display: block;
       margin-bottom: 5px;
@@ -50,7 +58,7 @@
     }
 
     .submit-btn {
-      background: #2d2e52;
+      background: #25d366;
       color: #fff;
       padding: 12px;
       border: none;
@@ -63,7 +71,7 @@
     }
 
     .submit-btn:hover {
-      background: #1b1c3a;
+      background: #1ebf56;
     }
 
     .footer {
@@ -78,7 +86,14 @@
 
   <div class="container">
     <h2>Submit Your Ludo Group</h2>
-    <form action="#" method="POST">
+
+    <div class="info-text">
+      GROUP LINK ADD KARNE KA KOI CHARGE NAHI HAI.<br>
+      BAS ADMIN APPROVE KAREGA TABHI ADD HOGA.<br>
+      APPROVAL KE LIYE WHATSAPP PAR MESSAGE KAREIN. 👇
+    </div>
+
+    <form id="groupForm">
       <label for="group-type">Group Type</label>
       <select id="group-type" name="group-type" required>
         <option value="">-- Select Type --</option>
@@ -102,13 +117,31 @@
       <label for="group-link">Group Link</label>
       <input type="url" id="group-link" name="group-link" placeholder="https://chat.whatsapp.com/..." required />
 
-      <button type="submit" class="submit-btn">Submit Group</button>
+      <button type="submit" class="submit-btn">Send for Approval on WhatsApp</button>
     </form>
   </div>
 
   <div class="footer">
     © 2025 JokerLudo Group
   </div>
+
+  <script>
+    document.getElementById('groupForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const type = document.getElementById('group-type').value;
+      const name = document.getElementById('group-name').value;
+      const link = document.getElementById('group-link').value;
+
+      const message = `I want approve group link%0AGroup Type: ${type}%0AGroup Name: ${name}%0AGroup Link: ${link}`;
+
+      // Replace below number with your WhatsApp number (with country code)
+      const whatsappNumber = '919473746020';
+      const whatsappURL = `https://wa.me/${whatsappNumber}?text=${message}`;
+
+      window.open(whatsappURL, '_blank');
+    });
+  </script>
 
 </body>
 </html>
