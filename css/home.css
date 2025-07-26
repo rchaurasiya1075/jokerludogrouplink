@@ -1,118 +1,146 @@
-/* Base layout */
-body {
+/* Global Reset */
+* {
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to bottom, #101010, #202040);
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f9f9ff;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Navbar */
+.navbar {
+  background: #2d2e52;
   color: #fff;
-  min-height: 100vh;
+  padding: 15px 30px;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.container {
-  flex: 1;
-  padding: 40px 20px;
-  animation: fadeInUp 1s ease;
-}
-
-/* Titles */
-h1.animated-title {
-  font-size: 2.5rem;
-  color: #ffeb3b;
-  text-align: center;
-  animation: glow 2s ease-in-out infinite alternate;
-}
-
-.subtext {
-  text-align: center;
-  font-size: 1.2rem;
-  margin-bottom: 30px;
-  color: #ccc;
-}
-
-/* Section headers */
-h2 {
-  color: #00e5ff;
-  margin-top: 40px;
-  border-bottom: 2px solid #00e5ff;
-  padding-bottom: 5px;
-}
-
-/* Features */
-.features ul {
+.nav-links {
   list-style: none;
-  padding: 0;
+  display: flex;
+  gap: 20px;
 }
 
-.features li {
-  margin: 10px 0;
-  font-size: 1rem;
-  padding-left: 20px;
-  position: relative;
+.nav-links li a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-.features li::before {
-  content: "🎯";
-  position: absolute;
-  left: 0;
+.nav-links li a:hover {
+  color: #ffde59;
 }
 
-/* Join Button */
+.logo {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(to right, #fceabb, #f8b500);
+  color: #222;
+  animation: slideIn 1s ease-out;
+}
+
+.hero h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.subheading {
+  font-size: 18px;
+  margin-bottom: 30px;
+  color: #444;
+}
+
 .join-btn {
-  display: inline-block;
-  padding: 12px 20px;
-  margin: 15px 0;
-  background-color: #00e676;
-  color: #000;
+  background: #2d2e52;
+  color: #fff;
+  padding: 12px 25px;
+  border-radius: 8px;
   text-decoration: none;
   font-weight: bold;
-  border-radius: 8px;
-  transition: transform 0.3s ease;
+  transition: 0.3s ease;
 }
 
 .join-btn:hover {
+  background: #1b1c3a;
   transform: scale(1.05);
 }
 
-/* Contact Section */
-.contact a {
-  color: #ffeb3b;
-  text-decoration: underline;
+/* Features Section */
+.features {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 50px 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  width: 280px;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
 }
 
 /* Footer */
 .footer {
-  background-color: #000000cc;
-  color: #ccc;
+  background: #2d2e52;
+  color: #fff;
   text-align: center;
-  padding: 20px 10px;
-  font-size: 0.95rem;
-  border-top: 1px solid #333;
-  animation: fadeInUp 1s ease-in-out;
-}
-
-.footer p {
-  margin: 5px 0;
+  padding: 20px 0;
+  margin-top: 40px;
 }
 
 /* Animations */
-@keyframes fadeInUp {
-  0% {
-    transform: translateY(30px);
+.fade-in {
+  animation: fadeIn 1.5s ease-in forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
     opacity: 0;
   }
-  100% {
+  to {
     transform: translateY(0);
     opacity: 1;
   }
 }
 
-@keyframes glow {
-  from {
-    text-shadow: 0 0 10px #ffeb3b, 0 0 20px #ffeb3b;
+/* Responsive */
+@media (max-width: 768px) {
+  .features {
+    flex-direction: column;
+    align-items: center;
   }
-  to {
-    text-shadow: 0 0 20px #ffc107, 0 0 30px #ffc107;
+
+  .nav-links {
+    flex-direction: column;
+    gap: 10px;
   }
 }
