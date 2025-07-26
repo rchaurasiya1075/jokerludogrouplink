@@ -3,9 +3,113 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>JokerLudo | Join</title>
-  <link rel="stylesheet" href="css/join.css">
+  <title>Join Group - JokerLudo</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f3f4ff;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .navbar {
+      background: #2d2e52;
+      color: #fff;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+
+    .nav-links a:hover {
+      background: #ffde59;
+      color: #2d2e52;
+    }
+
+    .content {
+      max-width: 800px;
+      margin: auto;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .content h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .join-button {
+      background-color: #25D366;
+      color: white;
+      padding: 15px 25px;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+      display: inline-block;
+      margin-top: 20px;
+    }
+
+    .join-button:hover {
+      background-color: #128C7E;
+      transform: scale(1.05);
+    }
+
+    footer {
+      background: #2d2e52;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      font-size: 14px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .content h1 {
+        font-size: 22px;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -15,19 +119,20 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="rules.html">Rules</a></li>
       <li><a href="join.html">Join</a></li>
+      <li><a href="addgroup.html">Add Group</a></li>
       <li><a href="contact.html">Contact</a></li>
-       <li><a href="privacy.html">Privacy</a></li>
+      <li><a href="privacy.html">Privacy</a></li>
     </ul>
   </nav>
 
-  <section class="join-section">
-    <h2>How to Join JokerLudo?</h2>
-    <p>🎯 Step 1: WhatsApp pe contact kare – <strong>919670814522</strong></p>
-    <p>🎯 Step 2: Deposit kare entry fee.</p>
-    <p>🎯 Step 3: Game code milega – khelna shuru karo!</p>
+  <section class="content">
+    <h1>📲 Join Our Official JokerLudo Group</h1>
+    <p>Click the button below to join the WhatsApp group and start playing & earning!</p>
+    
+    <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p?mode=ac_c" class="join-button">Join WhatsApp Group</a>
   </section>
 
-  <footer class="footer">
+  <footer>
     <p>© 2025 JokerLudo Group. All Rights Reserved.</p>
   </footer>
 
