@@ -1,78 +1,81 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', Tahoma, sans-serif;
-  background: linear-gradient(to right, #fceabb, #f8b500);
-  color: #222;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  color: #ffffff;
 }
 
 .container {
   max-width: 800px;
-  margin: 40px auto;
-  padding: 30px;
+  margin: 60px auto;
+  padding: 40px;
+  text-align: center;
 }
 
 h1 {
-  text-align: center;
-  color: #c06000;
-  font-size: 2.4rem;
-  margin-bottom: 20px;
+  font-size: 2.8rem;
+  margin-bottom: 25px;
 }
 
-.card {
-  background: #fff;
-  padding: 30px;
-  border-radius: 18px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-}
-
-.card p {
-  font-size: 1.1rem;
-  margin-bottom: 20px;
-}
-
-ul {
-  list-style: none;
-  padding-left: 0;
+.intro {
+  font-size: 1.3rem;
   margin-bottom: 30px;
 }
 
-ul li {
-  font-size: 1rem;
-  margin: 10px 0;
-  padding-left: 20px;
-  position: relative;
+.join-box {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 18px;
+  margin-bottom: 40px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
 }
 
-ul li::before {
-  content: "✔️";
-  position: absolute;
-  left: 0;
+.join-btn {
+  background: #25D366;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.join-btn:hover {
+  background: #1ebe5d;
+  transform: scale(1.05);
+}
+
+.note {
+  font-size: 1rem;
+  color: #ddd;
+  margin-bottom: 30px;
+}
+
+.note a {
+  color: #4fc3f7;
+  text-decoration: none;
 }
 
 .btn-group {
-  text-align: center;
+  margin-top: 30px;
 }
 
 .btn {
   display: inline-block;
-  background: #c06000;
-  color: #fff;
-  padding: 12px 25px;
-  border-radius: 25px;
+  background: #ffffff;
+  color: #000000;
+  padding: 10px 24px;
+  border-radius: 24px;
   text-decoration: none;
-  margin: 5px 10px;
-  transition: background 0.3s;
+  font-weight: bold;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .btn:hover {
-  background: #9e4f00;
-}
-
-.btn.back {
-  background: #555;
-}
-
-.btn.back:hover {
-  background: #333;
+  background: #f2f2f2;
+  color: #007bff;
 }
