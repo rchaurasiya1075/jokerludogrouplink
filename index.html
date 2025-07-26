@@ -6,82 +6,57 @@
   <title>JokerLudo Group</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Poppins', sans-serif;
       background: #f4f5ff;
       color: #333;
       line-height: 1.6;
     }
-
-    /* Navbar */
     .navbar {
       background: #2d2e52;
-      padding: 20px 10px;
-      text-align: center;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
     }
-
-    .logo-container {
-      margin-bottom: 15px;
-    }
-
     .logo {
-      font-size: 32px;
-      font-weight: 800;
-      color: #ffde59;
+      font-size: 26px;
+      font-weight: 700;
+      color: #fff;
       text-decoration: none;
-      display: inline-block;
-      transition: transform 0.3s ease;
     }
-
-    .logo:hover {
-      transform: scale(1.05);
-    }
-
     .nav-links {
       display: flex;
-      justify-content: center;
+      gap: 15px;
       flex-wrap: wrap;
-      gap: 10px;
     }
-
     .nav-links a {
       color: #fff;
       text-decoration: none;
-      padding: 8px 16px;
-      border-radius: 5px;
       font-weight: 500;
-      background: #3a3c69;
-      transition: 0.3s ease;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: background 0.3s;
     }
-
     .nav-links a:hover {
       background: #ffde59;
       color: #2d2e52;
     }
-
-    /* Hero */
     .hero {
       text-align: center;
       padding: 50px 20px;
       background: linear-gradient(to right, #ffe57f, #ffc107);
     }
-
     .hero h1 {
       font-size: 32px;
       margin-bottom: 15px;
     }
-
     .hero p {
       font-size: 18px;
       margin-bottom: 30px;
     }
-
     .join-btn {
       background: #2d2e52;
       color: #fff;
@@ -92,13 +67,10 @@
       transition: 0.3s ease;
       display: inline-block;
     }
-
     .join-btn:hover {
       background: #1a1a3a;
       transform: scale(1.05);
     }
-
-    /* Features */
     .features {
       display: flex;
       justify-content: center;
@@ -106,7 +78,6 @@
       gap: 20px;
       padding: 50px 20px;
     }
-
     .card {
       background: #fff;
       padding: 20px;
@@ -116,12 +87,9 @@
       text-align: center;
       transition: 0.3s;
     }
-
     .card:hover {
       transform: translateY(-10px);
     }
-
-    /* Footer */
     footer {
       background: #2d2e52;
       color: #fff;
@@ -129,19 +97,12 @@
       text-align: center;
       font-size: 14px;
     }
-
-    /* Responsive */
     @media (max-width: 768px) {
       .nav-links {
-        flex-direction: row;
-        flex-wrap: wrap;
         justify-content: center;
+        width: 100%;
+        margin-top: 10px;
       }
-
-      .hero h1 {
-        font-size: 24px;
-      }
-
       .features {
         flex-direction: column;
         align-items: center;
@@ -151,11 +112,8 @@
 </head>
 <body>
 
-  <!-- Navbar -->
   <nav class="navbar">
-    <div class="logo-container">
-      <a href="index.html" class="logo">🎲 JokerLudo</a>
-    </div>
+    <a href="index.html" class="logo">🎲 JokerLudo</a>
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="rules.html">Rules</a>
@@ -166,15 +124,13 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
   <section class="hero">
     <h1>Welcome to JokerLudo Group! 🎉</h1>
     <p>Make Your Luck with JokerLudo – India’s Trusted Ludo Earning Platform!</p>
-    <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p?mode=ac_c" class="join-btn">Join Now</a> <br><br>
+    <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p?mode=ac_c" class="join-btn">Join Now</a><br><br>
     <a href="addgroup.html" class="join-btn" style="background: #ff5722;">Add Group</a>
   </section>
 
-  <!-- Features -->
   <section class="features">
     <div class="card">
       <h3>✅ 24x7 Support</h3>
@@ -190,10 +146,5 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer>
-    <p>© 2025 JokerLudo Group. All Rights Reserved.</p>
-  </footer>
-
-</body>
-</html>
+    <p>© 2025 JokerLudo Grou
