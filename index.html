@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>JokerLudo Group</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
     * {
       margin: 0;
@@ -22,37 +23,38 @@
     .navbar {
       background: #2d2e52;
       color: #fff;
-      padding: 20px;
-      text-align: center;
+      padding: 20px 10px;
+    }
+
+    .navbar-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
     }
 
     .logo {
       font-size: 28px;
       font-weight: 700;
-      margin-bottom: 15px;
     }
 
     .nav-links {
-      list-style: none;
       display: flex;
-      justify-content: center;
       flex-wrap: wrap;
+      justify-content: center;
       gap: 10px;
-    }
-
-    .nav-links li {
-      display: inline-block;
+      margin-top: 10px;
     }
 
     .nav-links a {
       color: #fff;
       text-decoration: none;
-      font-weight: 500;
-      padding: 8px 16px;
-      border-radius: 6px;
       background: #3a3c69;
-      display: inline-block;
-      transition: background 0.3s;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-weight: 500;
+      transition: background 0.3s ease;
+      font-size: 15px;
     }
 
     .nav-links a:hover {
@@ -122,25 +124,10 @@
       font-size: 14px;
     }
 
-    /* Mobile Responsive Styling */
-    @media (max-width: 768px) {
-      .nav-links {
-        flex-direction: column;
-        align-items: center;
-        margin-top: 10px;
-      }
-
-      .nav-links li {
-        width: 100%;
-        text-align: center;
-      }
-
+    @media (max-width: 600px) {
       .nav-links a {
-        width: 90%;
-        display: block;
-        margin: 5px auto;
-        padding: 10px;
-        font-size: 16px;
+        font-size: 13px;
+        padding: 6px 10px;
       }
 
       .hero h1 {
@@ -157,15 +144,17 @@
 <body>
 
   <nav class="navbar">
-    <div class="logo">🎲 JokerLudo</div>
-    <ul class="nav-links">
-      <li><a href="index.html">🏠 Home</a></li>
-      <li><a href="rules.html">📜 Rules</a></li>
-      <li><a href="join.html">🔗 Join</a></li>
-      <li><a href="addgroup.html">➕ Add Group</a></li>
-      <li><a href="contact.html">📞 Contact</a></li>
-      <li><a href="privacy.html">🔒 Privacy</a></li>
-    </ul>
+    <div class="navbar-container">
+      <div class="logo">🎲 JokerLudo</div>
+      <div class="nav-links">
+        <a href="index.html">🏠 Home</a>
+        <a href="rules.html">📜 Rules</a>
+        <a href="join.html">🔗 Join</a>
+        <a href="addgroup.html">➕ Add</a>
+        <a href="contact.html">📞 Contact</a>
+        <a href="privacy.html">🔒 Privacy</a>
+      </div>
+    </div>
   </nav>
 
   <section class="hero">
