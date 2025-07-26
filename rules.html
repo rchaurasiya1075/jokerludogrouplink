@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>JokerLudo Rules</title>
+  <title>Rules - JokerLudo</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     * {
@@ -14,129 +14,91 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      background: #f3f3ff;
+      background: #f4f5ff;
       color: #333;
       line-height: 1.6;
     }
 
-    /* Navbar */
     .navbar {
       background: #2d2e52;
       color: #fff;
-      padding: 15px 30px;
+      padding: 20px;
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: center;
-      flex-wrap: wrap;
     }
 
     .logo {
-      font-size: 24px;
-      font-weight: 600;
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 10px;
     }
 
     .nav-links {
       list-style: none;
       display: flex;
-      gap: 20px;
+      flex-direction: row;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     .nav-links a {
       color: #fff;
       text-decoration: none;
       font-weight: 500;
-      transition: color 0.3s ease;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: background 0.3s;
     }
 
     .nav-links a:hover {
-      color: #ffde59;
+      background: #ffde59;
+      color: #2d2e52;
     }
 
-    /* Hero Section (Title for Rules) */
-    .hero {
-      text-align: center;
-      padding: 60px 20px 40px;
-      background: linear-gradient(to right, #fceabb, #f8b500);
-      animation: slideIn 1s ease-out;
-    }
-
-    .hero h1 {
-      font-size: 36px;
-      margin-bottom: 10px;
-    }
-
-    .hero p {
-      font-size: 18px;
-      margin-bottom: 20px;
-    }
-
-    /* Rules Section */
-    .rules-section {
-      max-width: 900px;
-      margin: 0 auto;
+    .content {
+      max-width: 800px;
+      margin: auto;
       padding: 40px 20px;
-      animation: fadeIn 1.5s ease-in;
     }
 
-    .rules-section h2 {
+    .content h1 {
       font-size: 28px;
       margin-bottom: 20px;
-      color: #2d2e52;
       text-align: center;
     }
 
-    .rules-section ul {
-      list-style-type: decimal;
+    .content ul {
+      list-style-type: disc;
       padding-left: 20px;
     }
 
-    .rules-section li {
-      margin-bottom: 15px;
+    .content li {
+      margin-bottom: 12px;
       font-size: 16px;
     }
 
-    /* Footer */
-    .footer {
+    footer {
       background: #2d2e52;
       color: #fff;
+      padding: 20px;
       text-align: center;
-      padding: 20px 0;
+      font-size: 14px;
       margin-top: 40px;
     }
 
-    /* Animations */
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Responsive */
+    /* Responsive: Mobile screen par nav vertical ho jaye */
     @media (max-width: 768px) {
       .nav-links {
         flex-direction: column;
+        align-items: center;
         gap: 10px;
         margin-top: 10px;
       }
 
-      .rules-section {
-        padding: 30px 15px;
+      .content h1 {
+        font-size: 22px;
       }
     }
   </style>
@@ -149,30 +111,25 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="rules.html">Rules</a></li>
       <li><a href="join.html">Join</a></li>
+      <li><a href="addgroup.html">Add Group</a></li>
       <li><a href="contact.html">Contact</a></li>
-       <li><a href="privacy.html">Privacy</a></li>
+      <li><a href="privacy.html">Privacy</a></li>
     </ul>
   </nav>
 
-  <section class="hero">
-    <h1>JokerLudo Rules 📜</h1>
-    <p>Game fair ho, sabke liye clear ho – yahi hai hamara motto!</p>
-  </section>
-
-  <section class="rules-section">
-    <h2>Rules & Guidelines</h2>
+  <section class="content">
+    <h1>📜 JokerLudo Group Rules</h1>
     <ul>
-      <li>Game ke dauraan koi bhi third-party app ka use strictly mana hai.</li>
-      <li>Only real players allowed – multiple IDs detect hone par account ban ho sakta hai.</li>
-      <li>Match ke baad screenshot within 5 mins bhejna zaroori hai.</li>
-      <li>Game ka decision admin ke final word par depend karega.</li>
-      <li>Kisi bhi prakaar ki cheating ya misbehavior par strict action liya jayega.</li>
-      <li>Withdrawals sirf verified UPI number par hi diye jaayenge.</li>
-      <li>Jitna deposit – utni hi game limit; over gaming ke liye responsible khud honge.</li>
+      <li>Game ka result final hoga, dispute allowed nahi hai.</li>
+      <li>Only screenshot ke through payment proof submit karein.</li>
+      <li>Fake screenshot ya cheating par ban ho sakta hai.</li>
+      <li>Group me abusive language bilkul allowed nahi hai.</li>
+      <li>Official deposit number sirf: <strong>9670814522</strong> hai.</li>
+      <li>Admin ka decision final rahega in any dispute.</li>
     </ul>
   </section>
 
-  <footer class="footer">
+  <footer>
     <p>© 2025 JokerLudo Group. All Rights Reserved.</p>
   </footer>
 
