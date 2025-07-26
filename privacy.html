@@ -4,49 +4,156 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Privacy Policy - JokerLudo</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f9f9ff;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .navbar {
+      background: #2d2e52;
+      color: #fff;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #ffde59;
+    }
+
+    .page-header {
+      background: linear-gradient(to right, #fceabb, #f8b500);
+      padding: 40px 20px;
+      text-align: center;
+      color: #2d2e52;
+    }
+
+    .page-header h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .content {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .content h3 {
+      margin-top: 25px;
+      color: #2d2e52;
+      font-size: 20px;
+    }
+
+    .content p {
+      margin-top: 10px;
+      font-size: 16px;
+    }
+
+    .content a {
+      color: #2d2e52;
+      text-decoration: underline;
+    }
+
+    .footer {
+      background: #2d2e52;
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <nav>
-    <a href="index.html">Home</a> |
-    <a href="rules.html">Rules</a> |
-    <a href="join.html">Join Group</a> |
-    <a href="contact.html">Contact</a> |
-    <a href="privacy.html">Privacy</a>
+
+  <nav class="navbar">
+    <div class="logo">🎲 JokerLudo</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="rules.html">Rules</a></li>
+      <li><a href="join.html">Join Group</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="privacy.html">Privacy</a></li>
+    </ul>
   </nav>
 
-  <header>
-    <h1>🔒 Privacy Policy - JokerLudo Group</h1>
-    <hr>
-  </header>
+  <section class="page-header">
+    <h1>🔒 Privacy Policy</h1>
+    <p>Your Trust, Our Priority.</p>
+  </section>
 
-  <section>
+  <section class="content">
     <h3>🔐 User Data</h3>
     <p>
-      Hum kisi bhi user ka personal data (name, number, wallet details, etc.) kisi third party ke sath share nahi karte. Saari information sirf group ke andar ke use ke liye hoti hai.
+      JokerLudo kisi bhi user ka personal data (name, number, wallet details, etc.) kisi third-party ke sath share nahi karta. Saari information sirf group ke andar ke use ke liye hoti hai.
     </p>
 
     <h3>📲 Payment Security</h3>
     <p>
-      Sirf ek official deposit number hai: <strong>9670814522</strong>. Iske alawa kisi aur number par paisa bhejna aapki zimmedari hai.
+      Sirf ek hi official deposit number hai: <strong>9670814522</strong>. Iske alawa kisi aur number par paisa bhejna aapki zimmedari hogi.
     </p>
 
     <h3>📸 Media Sharing</h3>
     <p>
-      Jo bhi screenshots aap group me share karte hain (winning, payment proof, etc.) wo group activity ke liye store kiye jaate hain, kisi aur jagah use nahi hote.
+      Jo bhi screenshots aap group me share karte hain (winning, payment proof, etc.) woh sirf group activity ke liye store kiye jaate hain. Yeh data kisi aur jagah use nahi hota.
     </p>
 
     <h3>🚫 Fake Activities</h3>
     <p>
-      Agar koi user fake screenshot, fraud attempt ya abuse karta hai, to uska data ban kar diya jaayega aur necessary action liya jaayega.
+      Agar koi user fake screenshot, fraud attempt, ya abuse karta hai to uska data block kiya jaayega aur zarurat padne par action liya jaayega.
     </p>
 
-    <h3>📩 Contact for Privacy Concerns</h3>
-    <p>Email: <a href="mailto:jokerludo01@gmail.com">jokerludo01@gmail.com</a></p>
+    <h3>📩 Privacy Concerns?</h3>
+    <p>
+      Agar aapko kisi bhi privacy concern ya data handling se sambandhit baat karni ho to humse contact karein:<br>
+      Email: <a href="mailto:jokerludo01@gmail.com">jokerludo01@gmail.com</a>
+    </p>
   </section>
 
-  <footer>
+  <footer class="footer">
     <p>© 2025 JokerLudo Group | Privacy First, Trust Always.</p>
   </footer>
+
 </body>
 </html>
