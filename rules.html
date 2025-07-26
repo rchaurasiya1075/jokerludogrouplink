@@ -3,104 +3,109 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Rules - JokerLudo</title>
+  <title>JokerLudo Rules</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Poppins', sans-serif;
-      background: #f9f9fc;
+      background: #fdfdfd;
       color: #333;
       line-height: 1.6;
-      padding-bottom: 60px;
     }
-
     .navbar {
+      background: #2d2e52;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .logo {
+      font-size: 26px;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+    .nav-links a:hover {
+      background: #ffde59;
+      color: #2d2e52;
+    }
+    .rules-container {
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .rules-container h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      text-align: center;
+      color: #2d2e52;
+    }
+    .rules-container ul {
+      list-style-type: decimal;
+      padding-left: 20px;
+    }
+    .rules-container li {
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+    footer {
       background: #2d2e52;
       color: #fff;
       padding: 20px;
       text-align: center;
+      font-size: 14px;
     }
-
-    .navbar h1 {
-      font-size: 24px;
-    }
-
-    .content {
-      max-width: 800px;
-      margin: 30px auto;
-      background: #fff;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.05);
-    }
-
-    .content h2 {
-      text-align: center;
-      margin-bottom: 25px;
-      font-size: 26px;
-      color: #2d2e52;
-    }
-
-    ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    ul li {
-      background: #eef2ff;
-      margin-bottom: 15px;
-      padding: 15px;
-      border-radius: 10px;
-      border-left: 5px solid #2d2e52;
-    }
-
-    footer {
-      background: #2d2e52;
-      color: #fff;
-      text-align: center;
-      padding: 15px 0;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-    }
-
-    @media (max-width: 600px) {
-      .content {
-        margin: 20px 15px;
-        padding: 20px;
+    @media (max-width: 768px) {
+      .nav-links {
+        justify-content: center;
+        width: 100%;
+        margin-top: 10px;
       }
     }
   </style>
 </head>
 <body>
 
-  <div class="navbar">
-    <h1>🎯 JokerLudo - Group Rules</h1>
-  </div>
+  <nav class="navbar">
+    <a href="index.html" class="logo">🎲 JokerLudo</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="rules.html">Rules</a>
+      <a href="join.html">Join</a>
+      <a href="addgroup.html">Add Group</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+    </div>
+  </nav>
 
-  <div class="content">
-    <h2>📝 Group Rules</h2>
+  <div class="rules-container">
+    <h1>JokerLudo Group Rules</h1>
     <ul>
-      <li>✅ Sirf winning screenshots & payment proof share karein.</li>
-      <li>❌ Koi bhi abusive language allowed nahi hai.</li>
-      <li>✅ Withdrawal ke liye correct UPI details dena zaroori hai.</li>
-      <li>❌ Fake screenshots ya fraud karne wale users ko turant block kiya jayega.</li>
-      <li>✅ Admin se kisi bhi samasya ke liye WhatsApp par contact karein.</li>
-      <li>✅ Har match ka result transparent aur fair hota hai.</li>
-      <li>❌ Do not share promotional or referral links bina permission ke.</li>
-      <li>✅ Respect all players and admins.</li>
-      <li>✅ Game rules time-to-time update ho sakte hain. Har update group me share kiya jayega.</li>
+      <li>Sabhi members ko group me respect dena zaroori hai.</li>
+      <li>Jitne wale ko 15 min ke andar payment karna hoga.</li>
+      <li>No cheating, fake screenshots, ya delay allowed.</li>
+      <li>Official payment number sirf <strong>9670814522</strong> hai.</li>
+      <li>Agar kisi ne rule break kiya to group se nikal diya jayega.</li>
     </ul>
   </div>
 
   <footer>
-    © 2025 JokerLudo Group
+    <p>© 2025 JokerLudo Group. All Rights Reserved.</p>
   </footer>
 
 </body>
