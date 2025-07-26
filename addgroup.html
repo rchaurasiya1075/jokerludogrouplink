@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Add Your Group - JokerLudo</title>
+  <title>Add Group - JokerLudo</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css" />
   <style>
     * {
       margin: 0;
@@ -15,132 +14,169 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      background: #f9f9ff;
+      background: #eef2ff;
       color: #333;
+      padding-bottom: 50px;
+    }
+
+    .navbar {
+      background: #2d2e52;
+      color: #fff;
       padding: 20px;
+      text-align: center;
     }
 
-    .container {
+    .navbar h1 {
+      font-size: 24px;
+    }
+
+    .form-container {
       max-width: 500px;
-      margin: 50px auto;
+      margin: 30px auto;
       background: #fff;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
     }
 
-    h2 {
+    .form-container h2 {
       text-align: center;
-      margin-bottom: 25px;
-      color: #2d2e52;
-    }
-
-    .info-text {
-      font-weight: bold;
-      font-size: 16px;
-      color: red;
       margin-bottom: 20px;
-      text-align: center;
+      font-size: 22px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
     }
 
     label {
       display: block;
-      margin-bottom: 5px;
-      font-weight: 500;
+      margin-bottom: 8px;
+      font-weight: 600;
     }
 
-    select, input[type="text"], input[type="url"] {
+    select, input[type="text"] {
       width: 100%;
-      padding: 10px;
-      margin-bottom: 20px;
-      border-radius: 8px;
+      padding: 12px;
       border: 1px solid #ccc;
+      border-radius: 8px;
       font-size: 16px;
+    }
+
+    .form-note {
+      margin-top: 20px;
+      font-size: 16px;
+      color: #d32f2f;
+      font-weight: bold;
+      text-align: center;
     }
 
     .submit-btn {
-      background: #25d366;
-      color: #fff;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
+      display: block;
       width: 100%;
-      font-size: 16px;
-      font-weight: bold;
+      background: #25D366;
+      color: white;
+      border: none;
+      padding: 14px;
+      font-size: 18px;
+      border-radius: 8px;
+      margin-top: 20px;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: 0.3s;
+      text-align: center;
+      text-decoration: none;
     }
 
     .submit-btn:hover {
-      background: #1ebf56;
+      background: #128C7E;
+      transform: scale(1.02);
     }
 
-    .footer {
+    footer {
+      background: #2d2e52;
+      color: #fff;
       text-align: center;
-      margin-top: 40px;
-      font-size: 14px;
-      color: #888;
+      padding: 15px 0;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    @media (max-width: 600px) {
+      .form-container {
+        margin: 20px 15px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <h2>Submit Your Ludo Group</h2>
+  <div class="navbar">
+    <h1>🎲 JokerLudo - Add Group</h1>
+  </div>
 
-    <div class="info-text">
-      GROUP LINK ADD KARNE KA KOI CHARGE NAHI HAI.<br>
-      BAS ADMIN APPROVE KAREGA TABHI ADD HOGA.<br>
-      APPROVAL KE LIYE WHATSAPP PAR MESSAGE KAREIN. 👇
-    </div>
-
+  <div class="form-container">
+    <h2>Submit Your WhatsApp Group</h2>
     <form id="groupForm">
-      <label for="group-type">Group Type</label>
-      <select id="group-type" name="group-type" required>
-        <option value="">-- Select Type --</option>
-        <option value="Classic Ludo">Classic Ludo</option>
-        <option value="Joker Ludo">Joker Ludo</option>
-        <option value="King Ludo">King Ludo</option>
-        <option value="Speed Ludo">Speed Ludo</option>
-        <option value="Color Ludo">Color Ludo</option>
-        <option value="Fun Ludo">Fun Ludo</option>
-        <option value="Earning Ludo">Earning Ludo</option>
-        <option value="VIP Ludo">VIP Ludo</option>
-        <option value="Champion Ludo">Champion Ludo</option>
-        <option value="Tournament Ludo">Tournament Ludo</option>
-        <option value="Custom Bet Ludo">Custom Bet Ludo</option>
-        <option value="Daily Match Ludo">Daily Match Ludo</option>
-      </select>
+      <div class="form-group">
+        <label for="groupType">Group Type</label>
+        <select id="groupType" required>
+          <option value="">-- Select Type --</option>
+          <option value="Ludo">Ludo</option>
+          <option value="Teen Patti">Teen Patti</option>
+          <option value="Rummy">Rummy</option>
+          <option value="Fantasy">Fantasy</option>
+          <option value="Earning">Earning</option>
+          <option value="Gaming">Gaming</option>
+          <option value="News">News</option>
+          <option value="Offer">Offer</option>
+          <option value="Telegram">Telegram</option>
+          <option value="Crypto">Crypto</option>
+          <option value="Tech">Tech</option>
+          <option value="Others">Others</option>
+        </select>
+      </div>
 
-      <label for="group-name">Group Name</label>
-      <input type="text" id="group-name" name="group-name" placeholder="Enter your group name" required />
+      <div class="form-group">
+        <label for="groupName">Group Name</label>
+        <input type="text" id="groupName" placeholder="Enter Group Name" required>
+      </div>
 
-      <label for="group-link">Group Link</label>
-      <input type="url" id="group-link" name="group-link" placeholder="https://chat.whatsapp.com/..." required />
+      <div class="form-group">
+        <label for="groupLink">Group Link</label>
+        <input type="text" id="groupLink" placeholder="Paste WhatsApp Group Link" required>
+      </div>
 
-      <button type="submit" class="submit-btn">Send for Approval on WhatsApp</button>
+      <div class="form-note">
+        Group link add karne ka koi charge nahi hai.<br>
+        Bas admin approve karega tabhi add hoga.
+      </div>
+
+      <a id="submitBtn" class="submit-btn" href="#" target="_blank">Send to Admin on WhatsApp</a>
     </form>
   </div>
 
-  <div class="footer">
+  <footer>
     © 2025 JokerLudo Group
-  </div>
+  </footer>
 
   <script>
-    document.getElementById('groupForm').addEventListener('submit', function(e) {
-      e.preventDefault();
+    document.getElementById("submitBtn").addEventListener("click", function (e) {
+      const type = document.getElementById("groupType").value;
+      const name = document.getElementById("groupName").value;
+      const link = document.getElementById("groupLink").value;
 
-      const type = document.getElementById('group-type').value;
-      const name = document.getElementById('group-name').value;
-      const link = document.getElementById('group-link').value;
+      if (!type || !name || !link) {
+        alert("Please fill all the fields!");
+        e.preventDefault();
+        return;
+      }
 
-      const message = `I want approve group link%0AGroup Type: ${type}%0AGroup Name: ${name}%0AGroup Link: ${link}`;
+      const message = `I want approve group link:\n\nType: ${type}\nName: ${name}\nLink: ${link}`;
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappNumber = "919670814522"; // Add country code
 
-      // Replace below number with your WhatsApp number (with country code)
-      const whatsappNumber = '919473746020';
-      const whatsappURL = `https://wa.me/${whatsappNumber}?text=${message}`;
-
-      window.open(whatsappURL, '_blank');
+      this.href = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
     });
   </script>
 
