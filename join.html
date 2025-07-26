@@ -14,126 +14,89 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      background: #f3f4ff;
+      background: #f5f5f5;
       color: #333;
       line-height: 1.6;
+      padding-bottom: 60px;
     }
 
     .navbar {
       background: #2d2e52;
       color: #fff;
       padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .logo {
-      font-size: 26px;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .nav-links {
-      list-style: none;
-      display: flex;
-      flex-direction: row;
-      gap: 15px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .nav-links a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 500;
-      padding: 8px 12px;
-      border-radius: 6px;
-      transition: background 0.3s;
-    }
-
-    .nav-links a:hover {
-      background: #ffde59;
-      color: #2d2e52;
-    }
-
-    .content {
-      max-width: 800px;
-      margin: auto;
-      padding: 40px 20px;
       text-align: center;
     }
 
-    .content h1 {
-      font-size: 28px;
+    .navbar h1 {
+      font-size: 24px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 30px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+      text-align: center;
+    }
+
+    .container h2 {
+      color: #2d2e52;
       margin-bottom: 20px;
     }
 
-    .join-button {
-      background-color: #25D366;
-      color: white;
-      padding: 15px 25px;
-      border: none;
-      border-radius: 8px;
-      font-size: 18px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
-      display: inline-block;
-      margin-top: 20px;
+    .container p {
+      margin-bottom: 25px;
     }
 
-    .join-button:hover {
-      background-color: #128C7E;
-      transform: scale(1.05);
+    .join-btn {
+      background: #25d366;
+      color: #fff;
+      padding: 12px 25px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      transition: background 0.3s ease;
+    }
+
+    .join-btn:hover {
+      background: #1ebd5b;
     }
 
     footer {
       background: #2d2e52;
       color: #fff;
-      padding: 20px;
       text-align: center;
-      font-size: 14px;
-      margin-top: 40px;
+      padding: 15px 0;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
     }
 
-    @media (max-width: 768px) {
-      .nav-links {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-        margin-top: 10px;
-      }
-
-      .content h1 {
-        font-size: 22px;
+    @media (max-width: 600px) {
+      .container {
+        margin: 20px 15px;
+        padding: 20px;
       }
     }
   </style>
 </head>
 <body>
 
-  <nav class="navbar">
-    <div class="logo">🎲 JokerLudo</div>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="rules.html">Rules</a></li>
-      <li><a href="join.html">Join</a></li>
-      <li><a href="addgroup.html">Add Group</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="privacy.html">Privacy</a></li>
-    </ul>
-  </nav>
+  <div class="navbar">
+    <h1>🔗 Join JokerLudo Group</h1>
+  </div>
 
-  <section class="content">
-    <h1>📲 Join Our Official JokerLudo Group</h1>
-    <p>Click the button below to join the WhatsApp group and start playing & earning!</p>
-    
-    <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p?mode=ac_c" class="join-button">Join WhatsApp Group</a>
-  </section>
+  <div class="container">
+    <h2>Join Our Official WhatsApp Group 🎯</h2>
+    <p>Daily Ludo Matches | Instant Withdrawal | 24x7 Support</p>
+    <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p?mode=ac_c" class="join-btn" target="_blank">Join WhatsApp Group</a>
+  </div>
 
   <footer>
-    <p>© 2025 JokerLudo Group. All Rights Reserved.</p>
+    © 2025 JokerLudo Group
   </footer>
 
 </body>
