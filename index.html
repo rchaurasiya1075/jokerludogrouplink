@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>JokerLudo Group</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
   <style>
     * {
       margin: 0;
@@ -23,41 +22,42 @@
     /* Navbar */
     .navbar {
       background: #2d2e52;
-      color: #fff;
-      padding: 15px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
+      padding: 20px 10px;
+      text-align: center;
     }
 
-    .logo a {
-      color: #fff;
-      text-decoration: none;
-      font-size: 26px;
-      font-weight: 700;
-      transition: color 0.3s;
+    .logo-container {
+      margin-bottom: 15px;
     }
 
-    .logo a:hover {
+    .logo {
+      font-size: 32px;
+      font-weight: 800;
       color: #ffde59;
+      text-decoration: none;
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
     }
 
     .nav-links {
       display: flex;
-      gap: 12px;
+      justify-content: center;
       flex-wrap: wrap;
+      gap: 10px;
     }
 
     .nav-links a {
       color: #fff;
       text-decoration: none;
-      background: #3a3c69;
-      padding: 8px 14px;
-      border-radius: 6px;
+      padding: 8px 16px;
+      border-radius: 5px;
       font-weight: 500;
-      font-size: 15px;
-      transition: background 0.3s ease;
+      background: #3a3c69;
+      transition: 0.3s ease;
     }
 
     .nav-links a:hover {
@@ -132,23 +132,14 @@
 
     /* Responsive */
     @media (max-width: 768px) {
-      .navbar {
-        flex-direction: column;
-        align-items: center;
-      }
-
       .nav-links {
+        flex-direction: row;
+        flex-wrap: wrap;
         justify-content: center;
-        margin-top: 10px;
       }
 
       .hero h1 {
         font-size: 24px;
-      }
-
-      .nav-links a {
-        font-size: 14px;
-        padding: 6px 10px;
       }
 
       .features {
@@ -160,9 +151,10 @@
 </head>
 <body>
 
+  <!-- Navbar -->
   <nav class="navbar">
-    <div class="logo">
-      <a href="index.html">🎲 JokerLudo</a>
+    <div class="logo-container">
+      <a href="index.html" class="logo">🎲 JokerLudo</a>
     </div>
     <div class="nav-links">
       <a href="index.html">Home</a>
@@ -174,6 +166,7 @@
     </div>
   </nav>
 
+  <!-- Hero Section -->
   <section class="hero">
     <h1>Welcome to JokerLudo Group! 🎉</h1>
     <p>Make Your Luck with JokerLudo – India’s Trusted Ludo Earning Platform!</p>
@@ -181,6 +174,7 @@
     <a href="addgroup.html" class="join-btn" style="background: #ff5722;">Add Group</a>
   </section>
 
+  <!-- Features -->
   <section class="features">
     <div class="card">
       <h3>✅ 24x7 Support</h3>
@@ -196,6 +190,7 @@
     </div>
   </section>
 
+  <!-- Footer -->
   <footer>
     <p>© 2025 JokerLudo Group. All Rights Reserved.</p>
   </footer>
