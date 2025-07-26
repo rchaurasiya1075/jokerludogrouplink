@@ -20,30 +20,33 @@
       line-height: 1.6;
     }
 
+    /* Navbar */
     .navbar {
       background: #2d2e52;
       color: #fff;
-      padding: 20px 10px;
-    }
-
-    .navbar-container {
+      padding: 15px 20px;
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
       align-items: center;
-      gap: 10px;
+      flex-wrap: wrap;
     }
 
-    .logo {
-      font-size: 28px;
+    .logo a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 26px;
       font-weight: 700;
+      transition: color 0.3s;
+    }
+
+    .logo a:hover {
+      color: #ffde59;
     }
 
     .nav-links {
       display: flex;
+      gap: 12px;
       flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 10px;
     }
 
     .nav-links a {
@@ -53,8 +56,8 @@
       padding: 8px 14px;
       border-radius: 6px;
       font-weight: 500;
-      transition: background 0.3s ease;
       font-size: 15px;
+      transition: background 0.3s ease;
     }
 
     .nav-links a:hover {
@@ -62,6 +65,7 @@
       color: #2d2e52;
     }
 
+    /* Hero */
     .hero {
       text-align: center;
       padding: 50px 20px;
@@ -94,6 +98,7 @@
       transform: scale(1.05);
     }
 
+    /* Features */
     .features {
       display: flex;
       justify-content: center;
@@ -116,6 +121,7 @@
       transform: translateY(-10px);
     }
 
+    /* Footer */
     footer {
       background: #2d2e52;
       color: #fff;
@@ -124,14 +130,25 @@
       font-size: 14px;
     }
 
-    @media (max-width: 600px) {
-      .nav-links a {
-        font-size: 13px;
-        padding: 6px 10px;
+    /* Responsive */
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .nav-links {
+        justify-content: center;
+        margin-top: 10px;
       }
 
       .hero h1 {
         font-size: 24px;
+      }
+
+      .nav-links a {
+        font-size: 14px;
+        padding: 6px 10px;
       }
 
       .features {
@@ -144,16 +161,16 @@
 <body>
 
   <nav class="navbar">
-    <div class="navbar-container">
-      <div class="logo">🎲 JokerLudo</div>
-      <div class="nav-links">
-        <a href="index.html">🏠 Home</a>
-        <a href="rules.html">📜 Rules</a>
-        <a href="join.html">🔗 Join</a>
-        <a href="addgroup.html">➕ Add</a>
-        <a href="contact.html">📞 Contact</a>
-        <a href="privacy.html">🔒 Privacy</a>
-      </div>
+    <div class="logo">
+      <a href="index.html">🎲 JokerLudo</a>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="rules.html">Rules</a>
+      <a href="join.html">Join</a>
+      <a href="addgroup.html">Add Group</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
     </div>
   </nav>
 
