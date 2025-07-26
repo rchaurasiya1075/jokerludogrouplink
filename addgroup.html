@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add Your Group - JokerLudo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f9f9ff;
+      color: #333;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #2d2e52;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+
+    select, input[type="text"], input[type="url"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    .submit-btn {
+      background: #2d2e52;
+      color: #fff;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      width: 100%;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background: #1b1c3a;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 14px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Submit Your Ludo Group</h2>
+    <form action="#" method="POST">
+      <label for="group-type">Group Type</label>
+      <select id="group-type" name="group-type" required>
+        <option value="">-- Select Type --</option>
+        <option value="Classic Ludo">Classic Ludo</option>
+        <option value="Joker Ludo">Joker Ludo</option>
+        <option value="King Ludo">King Ludo</option>
+        <option value="Speed Ludo">Speed Ludo</option>
+        <option value="Color Ludo">Color Ludo</option>
+        <option value="Fun Ludo">Fun Ludo</option>
+        <option value="Earning Ludo">Earning Ludo</option>
+        <option value="VIP Ludo">VIP Ludo</option>
+        <option value="Champion Ludo">Champion Ludo</option>
+        <option value="Tournament Ludo">Tournament Ludo</option>
+        <option value="Custom Bet Ludo">Custom Bet Ludo</option>
+        <option value="Daily Match Ludo">Daily Match Ludo</option>
+      </select>
+
+      <label for="group-name">Group Name</label>
+      <input type="text" id="group-name" name="group-name" placeholder="Enter your group name" required />
+
+      <label for="group-link">Group Link</label>
+      <input type="url" id="group-link" name="group-link" placeholder="https://chat.whatsapp.com/..." required />
+
+      <button type="submit" class="submit-btn">Submit Group</button>
+    </form>
+  </div>
+
+  <div class="footer">
+    © 2025 JokerLudo Group
+  </div>
+
+</body>
+</html>
