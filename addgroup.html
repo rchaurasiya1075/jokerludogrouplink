@@ -1,184 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Add Group - JokerLudo</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  <meta name="description" content="Submit your JokerLudo WhatsApp group to get listed on our platform.">
+  <meta name="keywords" content="add ludo group, submit whatsapp group, jokerludo group form">
+  <meta name="author" content="JokerLudo Group">
 
+  <meta property="og:title" content="Add Group – JokerLudo" />
+  <meta property="og:description" content="Submit your Ludo WhatsApp group and get featured on JokerLudo." />
+  <meta property="og:url" content="https://ludogrouplink.com/addgroup.html" />
+  <meta property="og:type" content="website" />
+
+  <title>Add Your Ludo Group – JokerLudo</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EZF7SRX6EJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-EZF7SRX6EJ');
+  </script>
+
+  <!-- Styles -->
+  <style>
     body {
       font-family: 'Poppins', sans-serif;
-      background: #eef2ff;
-      color: #333;
-      padding-bottom: 50px;
+      margin: 0;
+      padding: 0;
+      background-color: #f1f3f6;
     }
 
     .navbar {
       background: #2d2e52;
+      padding: 25px 20px 10px;
+      text-align: center;
+    }
+
+    .logo {
+      font-size: 34px;
+      font-weight: 700;
       color: #fff;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .navbar h1 {
-      font-size: 24px;
-    }
-
-    .form-container {
-      max-width: 500px;
-      margin: 30px auto;
-      background: #fff;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-    }
-
-    .form-container h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      font-size: 22px;
-    }
-
-    .form-group {
       margin-bottom: 15px;
+      display: block;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    .nav-links a:hover {
+      background: #ffde59;
+      color: #2d2e52;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #2d2e52;
+    }
+
+    form {
+      margin-top: 20px;
     }
 
     label {
       display: block;
-      margin-bottom: 8px;
-      font-weight: 600;
+      margin-bottom: 6px;
+      font-weight: 500;
     }
 
-    select, input[type="text"] {
+    input, textarea {
       width: 100%;
-      padding: 12px;
+      padding: 10px;
+      margin-bottom: 20px;
       border: 1px solid #ccc;
       border-radius: 8px;
       font-size: 16px;
     }
 
-    .form-note {
-      margin-top: 20px;
-      font-size: 16px;
-      color: #d32f2f;
-      font-weight: bold;
-      text-align: center;
-    }
-
-    .submit-btn {
-      display: block;
-      width: 100%;
-      background: #25D366;
+    button {
+      background: #2d2e52;
       color: white;
+      padding: 12px 20px;
+      font-size: 16px;
       border: none;
-      padding: 14px;
-      font-size: 18px;
       border-radius: 8px;
-      margin-top: 20px;
       cursor: pointer;
-      transition: 0.3s;
-      text-align: center;
-      text-decoration: none;
+      width: 100%;
+      transition: background 0.3s;
     }
 
-    .submit-btn:hover {
-      background: #128C7E;
-      transform: scale(1.02);
+    button:hover {
+      background: #ffde59;
+      color: #2d2e52;
+    }
+
+    .note {
+      font-size: 14px;
+      color: #666;
+      text-align: center;
+      margin-top: -10px;
+      margin-bottom: 20px;
     }
 
     footer {
       background: #2d2e52;
       color: #fff;
+      padding: 15px 10px;
       text-align: center;
-      padding: 15px 0;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
+      font-size: 14px;
+      margin-top: 40px;
     }
 
-    @media (max-width: 600px) {
-      .form-container {
-        margin: 20px 15px;
-      }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 8px;
+    }
+
+    .footer-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: #ffde59;
     }
   </style>
 </head>
 <body>
 
-  <div class="navbar">
-    <h1>🎲 JokerLudo - Add Group</h1>
-  </div>
+  <nav class="navbar">
+    <a href="index.html" class="logo">🎲 JokerLudo Group</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="rules.html">Rules</a>
+      <a href="join.html">Join</a>
+      <a href="addgroup.html">Add Group</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+    </div>
+  </nav>
 
-  <div class="form-container">
-    <h2>Submit Your WhatsApp Group</h2>
-    <form id="groupForm">
-      <div class="form-group">
-        <label for="groupType">Group Type</label>
-        <select id="groupType" required>
-          <option value="">-- Select Type --</option>
-          <option value="Ludo">Ludo</option>
-          <option value="Teen Patti">Teen Patti</option>
-          <option value="Rummy">Rummy</option>
-          <option value="Fantasy">Fantasy</option>
-          <option value="Earning">Earning</option>
-          <option value="Gaming">Gaming</option>
-          <option value="News">News</option>
-          <option value="Offer">Offer</option>
-          <option value="Telegram">Telegram</option>
-          <option value="Crypto">Crypto</option>
-          <option value="Tech">Tech</option>
-          <option value="Others">Others</option>
-        </select>
-      </div>
+  <div class="container">
+    <h2>📨 Submit Your Ludo Group</h2>
+    <p class="note">We’ll review your group and list it within 24 hours if approved.</p>
 
-      <div class="form-group">
-        <label for="groupName">Group Name</label>
-        <input type="text" id="groupName" placeholder="Enter Group Name" required>
-      </div>
+    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <label for="name">Your Name</label>
+      <input type="text" name="name" id="name" required>
 
-      <div class="form-group">
-        <label for="groupLink">Group Link</label>
-        <input type="text" id="groupLink" placeholder="Paste WhatsApp Group Link" required>
-      </div>
+      <label for="groupname">Group Name</label>
+      <input type="text" name="groupname" id="groupname" required>
 
-      <div class="form-note">
-        Group link add karne ka koi charge nahi hai.<br>
-        Bas admin approve karega tabhi add hoga.
-      </div>
+      <label for="link">WhatsApp Group Link</label>
+      <input type="url" name="link" id="link" placeholder="https://chat.whatsapp.com/..." required>
 
-      <a id="submitBtn" class="submit-btn" href="#" target="_blank">Send to Admin on WhatsApp</a>
+      <label for="type">Group Type</label>
+      <input type="text" name="type" id="type" placeholder="e.g., Paid Matches, Casual, Tournaments" required>
+
+      <label for="message">Additional Info</label>
+      <textarea name="message" id="message" rows="4"></textarea>
+
+      <button type="submit">Submit Group</button>
     </form>
   </div>
 
   <footer>
-    © 2025 JokerLudo Group
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="rules.html">Rules</a>
+      <a href="join.html">Join</a>
+      <a href="addgroup.html">Add Group</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <p>© 2025 JokerLudo Group. All Rights Reserved.</p>
   </footer>
-
-  <script>
-    document.getElementById("submitBtn").addEventListener("click", function (e) {
-      const type = document.getElementById("groupType").value;
-      const name = document.getElementById("groupName").value;
-      const link = document.getElementById("groupLink").value;
-
-      if (!type || !name || !link) {
-        alert("Please fill all the fields!");
-        e.preventDefault();
-        return;
-      }
-
-      const message = `I want approve group link:\n\nType: ${type}\nName: ${name}\nLink: ${link}`;
-      const encodedMessage = encodeURIComponent(message);
-      const whatsappNumber = "919670814522"; // Add country code
-
-      this.href = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-    });
-  </script>
 
 </body>
 </html>
