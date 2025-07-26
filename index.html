@@ -37,12 +37,11 @@
     .nav-box {
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
       gap: 12px;
       padding: 10px;
       border-radius: 8px;
       background-color: #1f1f3e;
-      flex-wrap: nowrap;
-      overflow-x: auto;
     }
 
     .nav-box a {
@@ -52,7 +51,6 @@
       padding: 8px 14px;
       border-radius: 5px;
       transition: background 0.3s;
-      white-space: nowrap;
     }
 
     .nav-box a:hover {
@@ -125,11 +123,9 @@
     .footer-links {
       display: flex;
       justify-content: center;
-      align-items: center;
-      flex-wrap: nowrap;
-      overflow-x: auto;
+      flex-wrap: wrap;
       gap: 15px;
-      white-space: nowrap;
+      margin-top: 10px;
     }
 
     .footer-links a {
@@ -192,8 +188,8 @@
   </section>
 
   <footer>
+    <div>© 2025 JokerLudo Group. All Rights Reserved.</div>
     <div class="footer-links">
-      <span>© 2025 JokerLudo</span>
       <a href="index.html">Home</a>
       <a href="rules.html">Rules</a>
       <a href="join.html">Join</a>
