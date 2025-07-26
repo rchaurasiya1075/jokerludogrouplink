@@ -4,59 +4,77 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>JokerLudo Group</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Poppins', sans-serif;
       background: #f4f5ff;
       color: #333;
       line-height: 1.6;
     }
+
     .navbar {
       background: #2d2e52;
-      padding: 15px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
+      padding: 25px 20px 10px;
+      text-align: center;
     }
+
     .logo {
-      font-size: 26px;
+      font-size: 32px;
       font-weight: 700;
       color: #fff;
+      margin-bottom: 15px;
+      display: block;
       text-decoration: none;
     }
-    .nav-links {
+
+    .nav-box {
+      border: 2px solid #ffde59;
       display: flex;
-      gap: 15px;
       flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      padding: 10px;
+      border-radius: 8px;
+      background-color: #1f1f3e;
     }
-    .nav-links a {
+
+    .nav-box a {
       color: #fff;
       text-decoration: none;
       font-weight: 500;
-      padding: 8px 12px;
-      border-radius: 6px;
+      padding: 8px 14px;
+      border-radius: 5px;
       transition: background 0.3s;
     }
-    .nav-links a:hover {
+
+    .nav-box a:hover {
       background: #ffde59;
       color: #2d2e52;
     }
+
     .hero {
       text-align: center;
       padding: 50px 20px;
       background: linear-gradient(to right, #ffe57f, #ffc107);
     }
+
     .hero h1 {
       font-size: 32px;
       margin-bottom: 15px;
     }
+
     .hero p {
       font-size: 18px;
       margin-bottom: 30px;
     }
+
     .join-btn {
       background: #2d2e52;
       color: #fff;
@@ -67,10 +85,12 @@
       transition: 0.3s ease;
       display: inline-block;
     }
+
     .join-btn:hover {
       background: #1a1a3a;
       transform: scale(1.05);
     }
+
     .features {
       display: flex;
       justify-content: center;
@@ -78,6 +98,7 @@
       gap: 20px;
       padding: 50px 20px;
     }
+
     .card {
       background: #fff;
       padding: 20px;
@@ -87,9 +108,11 @@
       text-align: center;
       transition: 0.3s;
     }
+
     .card:hover {
       transform: translateY(-10px);
     }
+
     footer {
       background: #2d2e52;
       color: #fff;
@@ -97,12 +120,17 @@
       text-align: center;
       font-size: 14px;
     }
+
     @media (max-width: 768px) {
-      .nav-links {
-        justify-content: center;
-        width: 100%;
-        margin-top: 10px;
+      .nav-box {
+        flex-direction: row;
+        gap: 10px;
       }
+
+      .hero h1 {
+        font-size: 24px;
+      }
+
       .features {
         flex-direction: column;
         align-items: center;
@@ -113,8 +141,8 @@
 <body>
 
   <nav class="navbar">
-    <a href="index.html" class="logo">🎲 JokerLudo</a>
-    <div class="nav-links">
+    <a href="index.html" class="logo">🎲 JokerLudo Group</a>
+    <div class="nav-box">
       <a href="index.html">Home</a>
       <a href="rules.html">Rules</a>
       <a href="join.html">Join</a>
@@ -127,7 +155,7 @@
   <section class="hero">
     <h1>Welcome to JokerLudo Group! 🎉</h1>
     <p>Make Your Luck with JokerLudo – India’s Trusted Ludo Earning Platform!</p>
-    <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p?mode=ac_c" class="join-btn">Join Now</a><br><br>
+    <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p?mode=ac_c" class="join-btn">Join Now</a> <br><br>
     <a href="addgroup.html" class="join-btn" style="background: #ff5722;">Add Group</a>
   </section>
 
@@ -147,4 +175,8 @@
   </section>
 
   <footer>
-    <p>© 2025 JokerLudo Grou
+    <p>© 2025 JokerLudo Group. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>
