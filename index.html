@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>JokerLudo Group</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css" />
 
   <style>
     * {
@@ -41,6 +40,7 @@
       list-style: none;
       display: flex;
       gap: 20px;
+      flex-wrap: wrap;
     }
 
     .nav-links a {
@@ -80,11 +80,18 @@
       text-decoration: none;
       font-weight: bold;
       transition: 0.3s ease;
+      display: inline-block;
     }
 
     .join-btn:hover {
       background: #1b1c3a;
       transform: scale(1.05);
+    }
+
+    /* Add Group Button */
+    .add-group {
+      background: #ff5722;
+      margin-top: 15px;
     }
 
     /* Features Section */
@@ -116,8 +123,17 @@
       background: #2d2e52;
       color: #fff;
       text-align: center;
-      padding: 20px 0;
+      padding: 25px 15px;
       margin-top: 40px;
+    }
+
+    .footer p {
+      margin-bottom: 5px;
+    }
+
+    .footer small {
+      font-size: 13px;
+      color: #ccc;
     }
 
     /* Animations */
@@ -155,33 +171,41 @@
         flex-direction: column;
         align-items: center;
       }
+
+      .hero h1 {
+        font-size: 28px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
     }
   </style>
 </head>
 <body>
 
+  <!-- Navbar -->
   <nav class="navbar">
     <div class="logo">🎲 JokerLudo</div>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="rules.html">Rules</a></li>
       <li><a href="join.html">Join</a></li>
+      <li><a href="addgroup.html">Add Group</a></li>
       <li><a href="contact.html">Contact</a></li>
-       <li><a href="privacy.html">Privacy</a></li>
+      <li><a href="privacy.html">Privacy</a></li>
     </ul>
   </nav>
 
+  <!-- Hero Section -->
   <section class="hero">
     <h1>Welcome to JokerLudo Group! 🎉</h1>
     <p>Make Your Luck with JokerLudo – India’s Trusted Ludo Earning Platform!</p>
     <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p?mode=ac_c" class="join-btn">Join Now</a>
-    <div style="display: flex; flex-direction: column; align-items: center; gap: 15px;"> <br>
- <a href="addgroup.html" class="join-btn" style="background: #ff5722;">Add Group</a>
-
-</div>
-
+    <a href="addgroup.html" class="join-btn add-group">➕ Add Group</a>
   </section>
 
+  <!-- Features -->
   <section class="features">
     <div class="card">
       <h3>✅ 24x7 Support</h3>
@@ -197,8 +221,10 @@
     </div>
   </section>
 
+  <!-- Footer -->
   <footer class="footer">
     <p>© 2025 JokerLudo Group. All Rights Reserved.</p>
+    <small>Made with ❤️ for Ludo Lovers</small>
   </footer>
 
 </body>
