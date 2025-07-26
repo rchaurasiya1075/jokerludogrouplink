@@ -51,6 +51,7 @@ body {
   text-align: center;
   padding: 60px 20px;
   background: linear-gradient(to right, #fceabb, #f8b500);
+  color: #222;
   animation: slideIn 1s ease-out;
 }
 
@@ -62,23 +63,20 @@ body {
 .hero p {
   font-size: 18px;
   margin-bottom: 30px;
+  color: #444;
 }
 
-.join-btn,
-.add-btn {
-  display: inline-block;
+.join-btn {
   background: #2d2e52;
   color: #fff;
   padding: 12px 25px;
   border-radius: 8px;
   text-decoration: none;
   font-weight: bold;
-  margin: 10px;
   transition: 0.3s ease;
 }
 
-.join-btn:hover,
-.add-btn:hover {
+.join-btn:hover {
   background: #1b1c3a;
   transform: scale(1.05);
 }
@@ -87,9 +85,9 @@ body {
 .features {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
   gap: 20px;
   padding: 50px 20px;
+  flex-wrap: wrap;
   animation: fadeIn 2s ease-in;
 }
 
@@ -107,65 +105,140 @@ body {
   transform: translateY(-10px);
 }
 
-/* Form Section (for add-group) */
-form {
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 20px;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-}
-
-input, select, textarea {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  font-size: 16px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-}
-
-form button {
-  background: #2d2e52;
-  color: #fff;
-  padding: 12px 25px;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-form button:hover {
-  background: #1b1c3a;
-}
-
 /* Footer */
 .footer {
   background: #2d2e52;
   color: #fff;
   text-align: center;
-  padding: 20px 0;
+  padding: 30px 20px;
   margin-top: 40px;
+  border-top: 5px solid #f8b500;
+}
+
+.footer h2 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #ffde59;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.footer-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 8px 14px;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+.footer-links a:hover {
+  background: #1b1c3a;
+}
+
+.footer p {
+  font-size: 14px;
+  color: #ccc;
+  margin-top: 10px;
+}
+
+/* Forms (Add Group page) */
+.form-container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.form-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2d2e52;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  font-weight: 500;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.form-group select,
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.submit-btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background: #2d2e52;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.submit-btn:hover {
+  background: #1b1c3a;
+}
+
+.note {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 20px;
+  color: red;
+  font-weight: bold;
 }
 
 /* Animations */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes slideIn {
-  from { opacity: 0; transform: translateY(-30px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Responsive */
+/* Responsive Design */
 @media (max-width: 768px) {
   .nav-links {
     flex-direction: column;
-    align-items: center;
     gap: 10px;
+    margin-top: 10px;
+    text-align: center;
   }
 
   .features {
@@ -173,15 +246,16 @@ form button:hover {
     align-items: center;
   }
 
+  .footer-links {
+    flex-direction: column;
+    gap: 10px;
+  }
+
   .hero h1 {
-    font-size: 26px;
+    font-size: 28px;
   }
 
   .hero p {
     font-size: 16px;
-  }
-
-  .card {
-    width: 90%;
   }
 }
