@@ -3,100 +3,112 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Join Group - JokerLudo</title>
+  <title>Join JokerLudo Group</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Poppins', sans-serif;
-      background: #f5f5f5;
+      background: #fdfdfd;
       color: #333;
       line-height: 1.6;
-      padding-bottom: 60px;
     }
-
     .navbar {
       background: #2d2e52;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .logo {
+      font-size: 26px;
+      font-weight: 700;
       color: #fff;
-      padding: 20px;
-      text-align: center;
+      text-decoration: none;
     }
-
-    .navbar h1 {
-      font-size: 24px;
+    .nav-links {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
     }
-
-    .container {
-      max-width: 600px;
-      margin: 40px auto;
-      padding: 30px;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-      text-align: center;
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: background 0.3s;
     }
-
-    .container h2 {
+    .nav-links a:hover {
+      background: #ffde59;
       color: #2d2e52;
+    }
+    .join-container {
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .join-container h1 {
+      font-size: 30px;
       margin-bottom: 20px;
+      color: #2d2e52;
     }
-
-    .container p {
-      margin-bottom: 25px;
+    .join-container p {
+      font-size: 18px;
+      margin-bottom: 30px;
     }
-
     .join-btn {
-      background: #25d366;
+      background: #2d2e52;
       color: #fff;
       padding: 12px 25px;
       border-radius: 8px;
       text-decoration: none;
       font-weight: bold;
+      transition: 0.3s ease;
       display: inline-block;
-      transition: background 0.3s ease;
     }
-
     .join-btn:hover {
-      background: #1ebd5b;
+      background: #1a1a3a;
+      transform: scale(1.05);
     }
-
     footer {
       background: #2d2e52;
       color: #fff;
+      padding: 20px;
       text-align: center;
-      padding: 15px 0;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
+      font-size: 14px;
     }
-
-    @media (max-width: 600px) {
-      .container {
-        margin: 20px 15px;
-        padding: 20px;
+    @media (max-width: 768px) {
+      .nav-links {
+        justify-content: center;
+        width: 100%;
+        margin-top: 10px;
       }
     }
   </style>
 </head>
 <body>
 
-  <div class="navbar">
-    <h1>🔗 Join JokerLudo Group</h1>
-  </div>
+  <nav class="navbar">
+    <a href="index.html" class="logo">🎲 JokerLudo</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="rules.html">Rules</a>
+      <a href="join.html">Join</a>
+      <a href="addgroup.html">Add Group</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+    </div>
+  </nav>
 
-  <div class="container">
-    <h2>Join Our Official WhatsApp Group 🎯</h2>
-    <p>Daily Ludo Matches | Instant Withdrawal | 24x7 Support</p>
-    <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p?mode=ac_c" class="join-btn" target="_blank">Join WhatsApp Group</a>
+  <div class="join-container">
+    <h1>Join Our Official WhatsApp Group</h1>
+    <p>Click below to become part of India's trusted Ludo earning platform!</p>
+    <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p?mode=ac_c" class="join-btn">Join Now</a>
   </div>
 
   <footer>
-    © 2025 JokerLudo Group
+    <p>© 2025 JokerLudo Group. All Rights Reserved.</p>
   </footer>
 
 </body>
