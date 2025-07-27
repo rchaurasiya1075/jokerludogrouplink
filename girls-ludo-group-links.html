@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>JOKER LUDO GIRLS Group</title>
   <style>
     body {
@@ -15,16 +15,16 @@
     h1 {
       text-align: center;
       color: #ff3cac;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
     }
     .card-container {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      overflow-x: auto;
       gap: 20px;
-      padding-bottom: 20px;
+      padding-bottom: 30px;
     }
     .card {
+      flex: 0 0 auto;
       width: 250px;
       background: #1f1f1f;
       border-radius: 12px;
@@ -59,15 +59,26 @@
     .card a:hover {
       background: #ff71c4;
     }
+    footer {
+      margin-top: 40px;
+      padding: 20px;
+      text-align: center;
+      background: #1a1a1a;
+      color: #888;
+      border-top: 1px solid #333;
+      font-size: 14px;
+    }
+    footer a {
+      color: #ff3cac;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
 
 <h1>JOKER LUDO GIRLS Group</h1>
+
 <div class="card-container">
-
-<!-- Repeatable Card Items Below -->
-
 <script>
   const images = [
     "https://i.pinimg.com/736x/48/8e/3d/488e3d0ae10d6596b2eda425e0e2f484.jpg",
@@ -145,7 +156,11 @@
     container.appendChild(card);
   });
 </script>
-
 </div>
+
+<footer>
+  &copy; 2025 <a href="https://ludogrouplink.com">ludogrouplink.com</a> | Made with ❤️ for Ludo lovers | All rights reserved.
+</footer>
+
 </body>
 </html>
