@@ -19,12 +19,12 @@
     }
     .card-container {
       display: flex;
-      overflow-x: auto;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 20px;
       padding-bottom: 20px;
     }
     .card {
-      flex: 0 0 auto;
       width: 250px;
       background: #1f1f1f;
       border-radius: 12px;
@@ -64,88 +64,88 @@
 <body>
 
 <h1>JOKER LUDO GIRLS Group</h1>
+<div class="card-container">
 
-<div class="<!-- Start of Group Cards -->
-<!-- Repeat these with unique names and descriptions -->
-<!-- Images will auto-load from Unsplash -->
+<!-- Repeatable Card Items Below -->
 
-<!-- Sample of 10 shown below, repeat format up to 50+ -->
+<script>
+  const images = [
+    "https://i.pinimg.com/736x/48/8e/3d/488e3d0ae10d6596b2eda425e0e2f484.jpg",
+    "https://i.pinimg.com/736x/9e/68/f5/9e68f5374f7660fe5de4705660b108b1.jpg",
+    "https://i.pinimg.com/736x/9a/bf/eb/9abfeb9f0dfc77f9966848d18b25907d.jpg",
+    "https://i.pinimg.com/736x/e2/95/fd/e295fdd81876765c0ca940a30187f041.jpg",
+    "https://i.pinimg.com/736x/8e/92/80/8e9280b06dd2ea3d9ba946b113ddbedb.jpg",
+    "https://i.pinimg.com/736x/02/96/1d/02961d53a522c9d86f728fdceb8311be.jpg"
+  ];
 
-<div class="card">
-  <img src="https://source.unsplash.com/250x200/?girl,hot" alt="Girl">
-  <h3>Delhi Girls Ludo Group</h3>
-  <p>Join this WhatsApp Ludo group with fun Delhi girls. Play & win daily matches!</p>
-  <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p">Join Now</a>
+  const groupNames = [
+    "Delhi Girls Ludo Group",
+    "Mumbai Girls Ludo Group",
+    "Russian Girls Ludo Group",
+    "Pakistani Girls Ludo Group",
+    "Nepal Girls Ludo Group",
+    "Kolkata Girls Ludo Group",
+    "Lucknow Girls Ludo Group",
+    "Goa Girls Ludo Group",
+    "Dubai Girls Ludo Group",
+    "USA Girls Ludo Group",
+    "UK Girls Ludo Group",
+    "Canada Girls Ludo Group",
+    "Punjab Girls Ludo Group",
+    "Chennai Girls Ludo Group",
+    "Bhopal Girls Ludo Group",
+    "Ranchi Girls Ludo Group",
+    "Thailand Girls Ludo Group",
+    "Bangladesh Girls Ludo Group",
+    "Vietnam Girls Ludo Group",
+    "Singapore Girls Ludo Group",
+    "Jaipur Girls Ludo Group",
+    "Indore Girls Ludo Group",
+    "Nagpur Girls Ludo Group",
+    "Hyderabad Girls Ludo Group",
+    "Agra Girls Ludo Group",
+    "Bihar Girls Ludo Group",
+    "Gujarat Girls Ludo Group",
+    "Shimla Girls Ludo Group",
+    "Manali Girls Ludo Group",
+    "Assam Girls Ludo Group",
+    "Kerala Girls Ludo Group",
+    "Patna Girls Ludo Group",
+    "Noida Girls Ludo Group",
+    "Gurgaon Girls Ludo Group",
+    "Ahmedabad Girls Ludo Group",
+    "Raipur Girls Ludo Group",
+    "Raichur Girls Ludo Group",
+    "Varanasi Girls Ludo Group",
+    "Kanpur Girls Ludo Group",
+    "Amritsar Girls Ludo Group",
+    "Dehradun Girls Ludo Group",
+    "Pune Girls Ludo Group",
+    "Nashik Girls Ludo Group",
+    "Srinagar Girls Ludo Group",
+    "Jammu Girls Ludo Group",
+    "Surat Girls Ludo Group",
+    "Meerut Girls Ludo Group",
+    "Aligarh Girls Ludo Group",
+    "Moradabad Girls Ludo Group",
+    "Bareilly Girls Ludo Group"
+  ];
+
+  const container = document.querySelector('.card-container');
+  groupNames.forEach((name, i) => {
+    const image = images[i % images.length];
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <img src="${image}" alt="Girl">
+      <h3>${name}</h3>
+      <p>WhatsApp Ludo group with fun girls. Join now and enjoy unlimited Ludo!</p>
+      <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p">Join Now</a>
+    `;
+    container.appendChild(card);
+  });
+</script>
+
 </div>
-
-<div class="card">
-  <img src="https://source.unsplash.com/250x200/?indian,girl" alt="Girl">
-  <h3>Mumbai Girls Ludo Group</h3>
-  <p>Mumbai girls are waiting to play. Join this WhatsApp Ludo group now and enjoy!</p>
-  <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p">Join Now</a>
-</div>
-
-<div class="card">
-  <img src="https://source.unsplash.com/250x200/?russian,girl" alt="Girl">
-  <h3>Russian Girls Ludo Group</h3>
-  <p>Russian girls ke saath Ludo khelne ka maza hi alag hai. Join now!</p>
-  <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p">Join Now</a>
-</div>
-
-<div class="card">
-  <img src="https://source.unsplash.com/250x200/?pakistani,girl" alt="Girl">
-  <h3>Pakistani Girls Ludo Group</h3>
-  <p>WhatsApp Ludo group with fun Pakistani girls. Join karo aur enjoy karo!</p>
-  <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p">Join Now</a>
-</div>
-
-<div class="card">
-  <img src="https://source.unsplash.com/250x200/?nepali,girl" alt="Girl">
-  <h3>Nepal Girls Ludo Group</h3>
-  <p>Full masti aur enjoyment ke sath Ludo khelo. WhatsApp Ludo group join karein.</p>
-  <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p">Join Now</a>
-</div>
-
-<div class="card">
-  <img src="https://source.unsplash.com/250x200/?kolkata,girl" alt="Girl">
-  <h3>Kolkata Girls Ludo Group</h3>
-  <p>Kolkata ki ladkiyo ke sath Ludo ka swag. Join WhatsApp Ludo group abhi.</p>
-  <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p">Join Now</a>
-</div>
-
-<div class="card">
-  <img src="https://source.unsplash.com/250x200/?beautiful,girl" alt="Girl">
-  <h3>Lucknow Girls Ludo Group</h3>
-  <p>Lucknow girls ke sath fair game aur full entertainment. WhatsApp group join karein.</p>
-  <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p">Join Now</a>
-</div>
-
-<div class="card">
-  <img src="https://source.unsplash.com/250x200/?goa,girl" alt="Girl">
-  <h3>Goa Girls Ludo Group</h3>
-  <p>Chill with Goa girls and play in this WhatsApp Ludo group. Full fun ahead!</p>
-  <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p">Join Now</a>
-</div>
-
-<div class="card">
-  <img src="https://source.unsplash.com/250x200/?dubai,girl" alt="Girl">
-  <h3>Dubai Girls Ludo Group</h3>
-  <p>Dubai ki ladkiyo ke sath Ludo khelna hai? Join this WhatsApp Ludo group now.</p>
-  <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p">Join Now</a>
-</div>
-
-<div class="card">
-  <img src="https://source.unsplash.com/250x200/?usa,girl" alt="Girl">
-  <h3>USA Girls Ludo Group</h3>
-  <p>Connect with USA girls in this WhatsApp Ludo group. Join now and start playing!</p>
-  <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p">Join Now</a>
-</div>
-
-<!-- Continue similar pattern for 40+ more: Jaipur, Chennai, Punjab, Canada, UK, Bangladesh, Kerala, Indore, Nagpur, Ranchi, Thailand, Vietnam, etc. -->
-
-<!-- End of Cards -->
-">
-</div> <!-- End of card-container -->
-
 </body>
 </html>
