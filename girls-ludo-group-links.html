@@ -7,22 +7,41 @@
   <style>
     body {
       margin: 0;
-      padding: 20px;
+      padding: 0;
       font-family: Arial, sans-serif;
       background: #111;
       color: #fff;
     }
-    h1 {
-      text-align: center;
-      color: #ff3cac;
-      margin-bottom: 30px;
+    header {
+      background: #1a1a1a;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #333;
     }
+    header h1 {
+      color: #ff3cac;
+      font-size: 22px;
+    }
+    nav a {
+      color: #ff3cac;
+      margin-left: 15px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+
     .card-container {
       display: flex;
       overflow-x: auto;
       gap: 20px;
-      padding-bottom: 30px;
+      padding: 30px 20px;
     }
+
     .card {
       flex: 0 0 auto;
       width: 250px;
@@ -72,11 +91,26 @@
       color: #ff3cac;
       text-decoration: none;
     }
+
+    /* Horizontal Scrollbar styling (optional) */
+    .card-container::-webkit-scrollbar {
+      height: 8px;
+    }
+    .card-container::-webkit-scrollbar-thumb {
+      background: #555;
+      border-radius: 4px;
+    }
   </style>
 </head>
 <body>
 
-<h1>JOKER LUDO GIRLS Group</h1>
+<header>
+  <h1>JOKER LUDO GIRLS Group</h1>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/add-group">Add Group</a>
+  </nav>
+</header>
 
 <div class="card-container">
 <script>
@@ -150,8 +184,8 @@
     card.innerHTML = `
       <img src="${image}" alt="Girl">
       <h3>${name}</h3>
-      <p>WhatsApp Ludo group with fun girls. Join now and enjoy unlimited Ludo!</p>
-      <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p">Join Now</a>
+      <p>WhatsApp Ludo group with fun girls. Join now and enjoy unlimited Ludo matches, masti & chat!</p>
+      <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p" target="_blank">Join Now</a>
     `;
     container.appendChild(card);
   });
