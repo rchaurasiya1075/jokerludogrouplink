@@ -115,4 +115,10 @@
     <priority>0.4</priority>
   </url>
 
+    <url>
+    <loc>https://ludogrouplink.com/ludo-king-game.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.99</priority>
+  </url>
+
 </urlset>
