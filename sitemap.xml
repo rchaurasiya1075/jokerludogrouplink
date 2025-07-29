@@ -115,13 +115,13 @@
     <priority>0.4</priority>
   </url>
 
-    <url>
+  <url>
     <loc>https://ludogrouplink.com/ludo-king-game.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.99</priority>
   </url>
 
-   <url>
+  <url>
     <loc>https://ludogrouplink.com/ludo-whatsapp-group-links.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.98</priority>
@@ -132,4 +132,5 @@
     <changefreq>yearly</changefreq>
     <priority>0.98</priority>
   </url>
+
 </urlset>
