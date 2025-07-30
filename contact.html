@@ -290,7 +290,7 @@
       const message = document.getElementById("message").value.trim();
 
       const finalMsg = `Hello Admin,%0A%0AI have a query regarding JokerLudo.%0A%0A👤 Name: ${encodeURIComponent(name)}%0A📧 Email: ${encodeURIComponent(email)}%0A📝 Message: ${encodeURIComponent(message)}%0A%0AThanks.`;
-      const phone = "9473746020";
+    const phone = "919473746020"; // ← Yeh fix kiya gaya
       const whatsappURL = `https://wa.me/${phone}?text=${finalMsg}`;
       window.open(whatsappURL, '_blank');
     });
