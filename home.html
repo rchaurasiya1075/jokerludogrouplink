@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <title>Ludo Group Link</title>
+    <link rel="stylesheet" href="styles.css">
+  <style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 30px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #e91e63;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.intro-text {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="url"],
+textarea,
+input[type="file"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+button {
+    margin-top: 20px;
+    background: #e91e63;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #c2185b;
+}
+
+.contact-info {
+    margin-top: 30px;
+    background: #fce4ec;
+    padding: 15px;
+    border-left: 5px solid #e91e63;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+footer {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 14px;
+}
+
+footer a {
+    color: #e91e63;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+</style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Ludo Group Link</h1>
+        <p class="intro-text">
+            क्या आप अपने लूडो ग्रुप को हमारी वेबसाइट पर दिखाना चाहते है?<br>
+            यदि आप अपने लूडो ग्रुप को हमारी वेबसाइट <strong>लूडो ग्रुप लिंक</strong> पर दिखना चाहते हैं तो आपके लूडो ग्रुप में अधिक सदस्य शामिल हो सकते हैं। अपने लूडो ग्रुप को हमारी साइट पर दिखाने के लिए नीचे दिए गए फार्म को भरें और <strong>Submit</strong> बटन पर क्लिक करें ताकि लूडो प्लेयर आपके ग्रुप को गूगल पर सर्च कर सके और ज्वाइन कर सके!
+        </p>
+
+        <form class="form">
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Enter Your Name" required>
+
+            <label for="number">Number</label>
+            <input type="tel" id="number" placeholder="Enter Your Calling Number" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Enter Your Email Id" required>
+
+            <label for="groupName">Group Name</label>
+            <input type="text" id="groupName" placeholder="Enter Your Group Name" required>
+
+            <label for="groupLink">Group Link</label>
+            <input type="url" id="groupLink" placeholder="Enter Your Group Link" required>
+
+            <label for="rules">Group Rules</label>
+            <textarea id="rules" rows="4" placeholder="Type Here Your Group Rules..." required></textarea>
+
+            <label for="dp">Upload Your Group DP (Logo)</label>
+            <input type="file" id="dp" accept="image/*">
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <div class="contact-info">
+            <p>आप आपके ग्रुप को हमें <strong>01169266013</strong> इस नंबर पर कॉल कर के भी ऐड करवा सकते है।</p>
+            <p>You can also get your group added by calling us on this number <strong>01169266013</strong></p>
+        </div>
+
+        <footer>
+            <a href="#">About Us</a> |
+            <a href="#">Contact Us</a> |
+            <a href="#">Privacy Policy</a> |
+            <a href="#">Terms & Conditions</a> |
+            <a href="#">Disclaimer</a>
+        </footer>
+
+    </div>
+
+</body>
+</html>
