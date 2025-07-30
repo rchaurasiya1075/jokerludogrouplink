@@ -5,7 +5,19 @@
     <title>Ludo Group Link</title>
     <link rel="stylesheet" href="styles.css">
   <style>
-  body {
+  body 
+      
+      }
+      margin: 0;
+      padding: 0;
+      background: #f2f2f2;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+{
     font-family: Arial, sans-serif;
     background: #f4f4f4;
     margin: 0;
@@ -98,7 +110,37 @@ footer a {
 
 footer a:hover {
     text-decoration: underline;
-}
+
+    h1 {
+      font-size: 3rem;
+      color: #fff;
+      background: linear-gradient(135deg, #ff4e50, #f9d423);
+      padding: 20px 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      animation: popIn 1s ease-out, glow 2s infinite alternate;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    @keyframes popIn {
+      0% {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes glow {
+      0% {
+        box-shadow: 0 0 15px rgba(255, 78, 80, 0.6);
+      }
+      100% {
+        box-shadow: 0 0 30px rgba(249, 212, 35, 0.9);
+      }
+    }
 </style>
 </head>
 <body>
