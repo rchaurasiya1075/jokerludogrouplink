@@ -190,21 +190,63 @@
     .footer-links a:hover {
       color: #ffde59;
     }
+
+    .vertical-navbar {
+  background: linear-gradient(135deg, #f9d423, #ff4e50);
+  padding: 20px 10px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  width: 200px;
+  margin: 0 auto;
+}
+
+.vertical-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.vertical-menu li {
+  margin-bottom: 12px;
+}
+
+.vertical-menu li a {
+  display: block;
+  padding: 10px 15px;
+  background: #ffffff20;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.vertical-menu li a:hover {
+  background: rgba(255, 255, 255, 0.4);
+  text-shadow: 1px 1px 2px #000;
+}
+@media (max-width: 600px) {
+  .vertical-navbar {
+    width: 90%;
+  }
+}
+
   </style>
 </head>
 <body>
 
-  <nav class="navbar">
-    <a href="index.html" class="logo">🎲 JokerLudo Group</a>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="rules.html">Rules</a>
-      <a href="join.html">Join</a>
-      <a href="addgroup.html">Add Group</a>
-      <a href="contact.html">Contact</a>
-      <a href="privacy.html">Privacy</a>
-    </div>
-  </nav>
+<nav class="vertical-navbar">
+  <ul class="vertical-menu">
+    <li><a href="index.html">🏠 Home</a></li>
+    <li><a href="groups.html">👥 Groups</a></li>
+    <li><a href="add-group.html">➕ Add Group</a></li>
+    <li><a href="policy.html">📃 Policy</a></li>
+    <li><a href="contact.html">📞 Contact</a></li>
+    <li><a href="girls-group.html">👩 Girls Group</a></li>
+  </ul>
+</nav>
+
 
   <div class="container">
     <h1>Contact Us</h1>
