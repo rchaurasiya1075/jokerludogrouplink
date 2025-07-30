@@ -133,11 +133,62 @@
       color: #e91e63;
       margin: 0 10px;
       text-decoration: none;
+
+      /* Navigation Bar Styling */
+.navbar {
+  background: linear-gradient(135deg, #f9d423, #ff4e50);
+  padding: 10px 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  border-bottom: 3px solid #fff;
+}
+
+.nav-menu {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.nav-menu li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 15px;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.nav-menu li a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  text-shadow: 1px 1px 3px #000;
+}
+@media (max-width: 600px) {
+  .nav-menu {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+}
+
     }
   </style>
 </head>
 <body>
   <header>
+    <nav class="navbar">
+  <ul class="nav-menu">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="groups.html">Groups</a></li>
+    <li><a href="add-group.html">Add Group</a></li>
+    <li><a href="policy.html">Policy</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="girls-group.html">Girls Group</a></li>
+  </ul>
+</nav>
+
     <h1 class="animated-title">
       <span style="--i:1">L</span><span style="--i:2">u</span><span style="--i:3">d</span><span style="--i:4">o</span>
       <span style="--i:5"> </span><span style="--i:6">G</span><span style="--i:7">r</span><span style="--i:8">o</span><span style="--i:9">u</span><span style="--i:10">p</span>
