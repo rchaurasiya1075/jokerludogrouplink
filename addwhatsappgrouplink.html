@@ -1,218 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BetLinkHub - Trusted Betting Links</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <script>
-    // Dark mode toggle
-    function toggleDarkMode() {
-      document.documentElement.classList.toggle('dark');
-      localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
-    }
-
-    // Load theme preference
-    if (localStorage.getItem('theme') === 'dark') {
-      document.documentElement.classList.add('dark');
-    }
-  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Join trusted and verified betting WhatsApp groups for Cricket, Football, Casino, Teen Patti, Poker & Fantasy League. Daily tips, predictions & strategies to maximize your earnings safely.">
+  <meta name="keywords" content="betting group links, cricket betting tips, football betting, casino tips, teen patti strategies, poker group, fantasy league tips, whatsapp group links">
+  <meta name="robots" content="index, follow">
+  <title>BetLinkHub - Trusted Betting WhatsApp Groups</title>
   <style>
-    .btn-primary {
-      background-color: #2563eb;
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 0.375rem;
-      font-weight: 500;
-      transition: background-color 0.3s ease;
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+      color: #222;
+      transition: background 0.3s, color 0.3s;
     }
-    .btn-primary:hover {
-      background-color: #1d4ed8;
+    .dark-mode {
+      background: #1a1a1a;
+      color: #f1f1f1;
     }
-
- .group-card {
-      background: white;
-      border-radius: 12px;
+    header {
+      text-align: center;
       padding: 20px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
+      background: #0077cc;
+      color: #fff;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+    .toggle-btn {
+      margin-top: 10px;
+      padding: 8px 16px;
+      background: #fff;
+      color: #0077cc;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+    }
+    .groups {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .group-card {
+      background: #fff;
+      padding: 16px;
+      border-radius: 10px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      transition: transform 0.2s ease;
+      transition: transform 0.2s;
+    }
+    .dark-mode .group-card {
+      background: #2b2b2b;
     }
     .group-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-3px);
     }
-    .group-logo {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
-.group-item h4 {
-  display: flex;
-  align-items: center;
-  font-size: 1.25rem; /* matches text-xl */
-  font-weight: 600;
-}
-
-    .fade-hidden { 
-  opacity: 0; 
-  transform: translateY(10px); 
-  transition: opacity 0.4s ease, transform 0.4s ease; 
-}
-.fade-show { 
-  opacity: 1 !important; 
-  transform: translateY(0) !important; 
-}
+    .group-card img {
+      width: 40px;
+      height: 40px;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+    .group-card h4 {
+      margin: 0;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+    }
+    .group-card p {
+      margin: 10px 0;
+      font-size: 14px;
+    }
+    .btn-primary {
+      display: inline-block;
+      padding: 8px 14px;
+      background: #0077cc;
+      color: #fff;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+    .dark-mode .btn-primary {
+      background: #3399ff;
+    }
+    .view-toggle {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #0077cc;
+    }
+    .faq {
+      margin-top: 40px;
+    }
+    .faq h3 {
+      margin-bottom: 10px;
+    }
+    .faq p {
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
   </style>
+  <!-- FAQ Schema for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [{
+      "@type": "Question",
+      "name": "What is BetLinkHub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "BetLinkHub is a platform that provides trusted and verified WhatsApp group links for Cricket, Football, Casino, Teen Patti, Poker, and Fantasy League betting."
+      }
+    },{
+      "@type": "Question",
+      "name": "Are the betting groups safe to join?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, all listed groups are verified and regularly monitored to ensure safe and trustworthy betting tips."
+      }
+    }]
+  }
+  </script>
 </head>
-<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
-  
-  <!-- Header -->
-  <header class="py-4 shadow bg-white dark:bg-gray-800">
-    <div class="max-w-6xl mx-auto flex justify-between items-center px-4">
-      <h1 class="text-xl font-bold">BetLinkHub</h1>
-      <button onclick="toggleDarkMode()" class="btn-primary">Toggle Dark Mode</button>
-    </div>
+<body>
+  <header>
+    <h1>BetLinkHub</h1>
+    <button class="toggle-btn" onclick="toggleDarkMode()">Toggle Dark Mode</button>
   </header>
 
-  <!-- Hero Section -->
-  <section class="py-16 text-center bg-gray-100 dark:bg-gray-700">
-    <div class="max-w-3xl mx-auto">
-      <h2 class="text-3xl font-bold mb-4">Join Trusted Betting Groups</h2>
-      <p class="mb-6">Find and join the most trusted and verified betting group links to maximize your earnings safely.</p>
-      <a href="#groups" class="btn-primary">Explore Groups</a>
+  <section>
+    <h2 style="text-align:center;">Join Trusted Betting Groups</h2>
+    <p style="text-align:center; max-width:800px; margin:auto;">
+      Discover the most trusted and verified betting WhatsApp groups for <strong>Cricket, Football, Casino, Teen Patti, Poker,</strong> and <strong>Fantasy League</strong>. 
+      Get daily expert tips, predictions, and strategies to increase your winnings safely.
+    </p>
+
+    <div class="groups" id="group-list">
+      <div class="group-card">
+        <h4><img src="https://cdn-icons-png.flaticon.com/512/861/861512.png"> [254 Members] Cricket Betting Group</h4>
+        <p>Verified cricket betting tips and match predictions for safe and profitable betting.</p>
+        <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
+      </div>
+      <div class="group-card">
+        <h4><img src="https://cdn-icons-png.flaticon.com/512/271/271228.png"> [189 Members] Football Betting Group</h4>
+        <p>Daily football match insights, odds analysis, and safe betting tips from experts.</p>
+        <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
+      </div>
+      <div class="group-card">
+        <h4><img src="https://cdn-icons-png.flaticon.com/512/861/861464.png"> [312 Members] Casino Betting Group</h4>
+        <p>Learn safe casino strategies, game analysis, and winning tricks from professionals.</p>
+        <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
+      </div>
+      <div class="group-card hidden">
+        <h4><img src="https://cdn-icons-png.flaticon.com/512/616/616489.png"> [276 Members] Teen Patti Pro Group</h4>
+        <p>Exclusive Teen Patti strategies, high-stakes tips, and pro tricks to win big.</p>
+        <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
+      </div>
+      <div class="group-card hidden">
+        <h4><img src="https://cdn-icons-png.flaticon.com/512/616/616408.png"> [198 Members] Poker Mastermind</h4>
+        <p>Learn winning poker strategies, bluffing techniques, and cash game secrets.</p>
+        <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
+      </div>
+      <div class="group-card hidden">
+        <h4><img src="https://cdn-icons-png.flaticon.com/512/5969/5969012.png"> [223 Members] Fantasy League Experts</h4>
+        <p>Get expert picks, tips, and team strategies for fantasy sports leagues.</p>
+        <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
+      </div>
+    </div>
+
+    <span class="view-toggle" onclick="toggleGroups()">View All</span>
+
+    <div class="faq">
+      <h3>Frequently Asked Questions</h3>
+      <p><strong>Q:</strong> How do I join a betting group?<br><strong>A:</strong> Simply click the "Join Now" button next to your desired group.</p>
+      <p><strong>Q:</strong> Are these groups free to join?<br><strong>A:</strong> Yes, all listed groups are free unless specified otherwise.</p>
     </div>
   </section>
 
-  <!-- Groups Section -->
-  <section id="groups" class="py-16 max-w-6xl mx-auto px-4">
-  <h3 class="text-2xl font-bold mb-8 text-center">Available Groups</h3>
-  
- <!-- Grid -->
-<div id="groupGrid" class="grid md:grid-cols-3 gap-6">
-
-  <!-- First 6 visible groups -->
-  <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item flex items-start gap-4">
-    <img src="https://cdn-icons-png.flaticon.com/512/9131/9131529.png" alt="Cricket" class="group-logo">
-    <div>
-      <h4 class="text-xl font-semibold mb-2">[254 Members] Cricket Betting Group</h4>
-      <p class="mb-4">Verified cricket betting tips and match predictions.</p>
-      <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
-    </div>
-  </div>
-
-  <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item flex items-start gap-4">
-    <img src="https://cdn-icons-png.flaticon.com/512/535/535239.png" alt="Football" class="group-logo">
-    <div>
-      <h4 class="text-xl font-semibold mb-2">[189 Members] Football Betting Group</h4>
-      <p class="mb-4">Daily football match insights and safe betting tips.</p>
-      <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
-    </div>
-  </div>
-
-  <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item flex items-start gap-4">
-    <img src="https://cdn-icons-png.flaticon.com/512/942/942748.png" alt="Casino" class="group-logo">
-    <div>
-      <h4 class="text-xl font-semibold mb-2">[312 Members] Casino Betting Group</h4>
-      <p class="mb-4">Learn safe casino strategies with expert tips.</p>
-      <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
-    </div>
-  </div>
-
-  <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item flex items-start gap-4">
-    <img src="https://cdn-icons-png.flaticon.com/512/861/861060.png" alt="Teen Patti" class="group-logo">
-    <div>
-      <h4 class="text-xl font-semibold mb-2">[276 Members] Teen Patti Pro Group</h4>
-      <p class="mb-4">Exclusive Teen Patti strategies & high-stakes tips.</p>
-      <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
-    </div>
-  </div>
-
-  <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item flex items-start gap-4">
-    <img src="https://cdn-icons-png.flaticon.com/512/1055/1055646.png" alt="Poker" class="group-logo">
-    <div>
-      <h4 class="text-xl font-semibold mb-2">[198 Members] Poker Mastermind</h4>
-      <p class="mb-4">Learn winning poker strategies from top players.</p>
-      <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
-    </div>
-  </div>
-
-  <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item flex items-start gap-4">
-    <img src="https://cdn-icons-png.flaticon.com/512/4836/4836920.png" alt="Fantasy League" class="group-logo">
-    <div>
-      <h4 class="text-xl font-semibold mb-2">[223 Members] Fantasy League Experts</h4>
-      <p class="mb-4">Get expert picks & tips for fantasy sports leagues.</p>
-      <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
-    </div>
-  </div>
-
-  <!-- Hidden groups -->
-  <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item hidden fade-hidden flex items-start gap-4">
-    <img src="https://cdn-icons-png.flaticon.com/512/2704/2704180.png" alt="Horse Racing" class="group-logo">
-    <div>
-      <h4 class="text-xl font-semibold mb-2">[305 Members] Horse Racing Champions</h4>
-      <p class="mb-4">Daily horse racing predictions & analysis.</p>
-      <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
-    </div>
-  </div>
-
-  <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item hidden fade-hidden flex items-start gap-4">
-    <img src="https://cdn-icons-png.flaticon.com/512/1077/1077041.png" alt="Esports" class="group-logo">
-    <div>
-      <h4 class="text-xl font-semibold mb-2">[174 Members] Esports Betting Crew</h4>
-      <p class="mb-4">Insights for CS:GO, Dota2, and other esports bets.</p>
-      <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
-    </div>
-  </div>
-
-  <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item hidden fade-hidden flex items-start gap-4">
-    <img src="https://cdn-icons-png.flaticon.com/512/3176/3176369.png" alt="Roulette" class="group-logo">
-    <div>
-      <h4 class="text-xl font-semibold mb-2">[260 Members] Roulette Kings</h4>
-      <p class="mb-4">Master roulette betting strategies & techniques.</p>
-      <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
-    </div>
-  </div>
-
-</div>
-
-<!-- View All Button -->
-<div class="text-center mt-8">
-  <button id="viewAllBtn" class="btn-primary px-6 py-2">View All</button>
-</div>
-
-
-  <!-- Footer -->
-  <footer class="py-6 bg-gray-200 dark:bg-gray-800 text-center">
-    <p>&copy; 2025 BetLinkHub. All rights reserved.</p>
+  <footer style="text-align:center; padding:20px; background:#0077cc; color:#fff;">
+    © 2025 BetLinkHub. All rights reserved.
   </footer>
- <script>
-document.addEventListener("DOMContentLoaded", function() {
-  const btn = document.getElementById("viewAllBtn");
-  const hiddenGroups = document.querySelectorAll(".fade-hidden");
 
-  btn.addEventListener("click", function() {
-    const isShowingAll = btn.dataset.showing === "true";
-    hiddenGroups.forEach(group => {
-      if (isShowingAll) {
-        group.classList.add("hidden");
-        group.classList.remove("fade-show");
-      } else {
-        group.classList.remove("hidden");
-        setTimeout(() => group.classList.add("fade-show"), 10);
-      }
-    });
-    btn.textContent = isShowingAll ? "View All" : "Show Less";
-    btn.dataset.showing = !isShowingAll;
-    
-    if (!isShowingAll) {
-      document.getElementById("groupGrid").lastElementChild.scrollIntoView({ behavior: "smooth" });
+  <script>
+    function toggleDarkMode(){
+      document.body.classList.toggle('dark-mode');
     }
-  });
-});
-</script>
+    function toggleGroups(){
+      const hiddenGroups = document.querySelectorAll('.group-card.hidden');
+      const toggleBtn = document.querySelector('.view-toggle');
+      hiddenGroups.forEach(g => g.classList.toggle('hidden'));
+      toggleBtn.textContent = toggleBtn.textContent === 'View All' ? 'Show Less' : 'View All';
+    }
+  </script>
 </body>
 </html>
