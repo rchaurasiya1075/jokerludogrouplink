@@ -135,33 +135,30 @@
   <footer class="py-6 bg-gray-200 dark:bg-gray-800 text-center">
     <p>&copy; 2025 BetLinkHub. All rights reserved.</p>
   </footer>
-  <script>
-    // Dark Mode Toggle
-    document.getElementById('darkModeToggle').addEventListener('click', () => {
-      document.documentElement.classList.toggle('dark');
-    });
+ <script>
+document.addEventListener("DOMContentLoaded", function() {
+  const btn = document.getElementById("viewAllBtn");
+  const hiddenGroups = document.querySelectorAll(".fade-hidden");
 
-    // View All / Show Less Function
-    const viewAllBtn = document.getElementById('viewAllBtn');
-    const hiddenGroups = document.querySelectorAll('.fade-hidden');
-    let expanded = false;
-
-    viewAllBtn.addEventListener('click', () => {
-      expanded = !expanded;
-      hiddenGroups.forEach((group, index) => {
-        if (expanded) {
-          group.style.display = 'block';
-          setTimeout(() => group.classList.add('fade-show'), 50);
-        } else {
-          group.classList.remove('fade-show');
-          setTimeout(() => group.style.display = 'none', 400);
-        }
-      });
-      viewAllBtn.textContent = expanded ? 'Show Less' : 'View All';
-      if (expanded && hiddenGroups.length > 0) {
-        hiddenGroups[0].scrollIntoView({ behavior: 'smooth' });
+  btn.addEventListener("click", function() {
+    const isShowingAll = btn.dataset.showing === "true";
+    hiddenGroups.forEach(group => {
+      if (isShowingAll) {
+        group.classList.add("hidden");
+        group.classList.remove("fade-show");
+      } else {
+        group.classList.remove("hidden");
+        setTimeout(() => group.classList.add("fade-show"), 10);
       }
     });
-  </script>
+    btn.textContent = isShowingAll ? "View All" : "Show Less";
+    btn.dataset.showing = !isShowingAll;
+    
+    if (!isShowingAll) {
+      document.getElementById("groupGrid").lastElementChild.scrollIntoView({ behavior: "smooth" });
+    }
+  });
+});
+</script>
 </body>
 </html>
