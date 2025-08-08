@@ -30,6 +30,33 @@
       background-color: #1d4ed8;
     }
 
+ .group-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+    }
+    .group-card:hover {
+      transform: translateY(-5px);
+    }
+    .group-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.group-item h4 {
+  display: flex;
+  align-items: center;
+  font-size: 1.25rem; /* matches text-xl */
+  font-weight: 600;
+}
+
     .fade-hidden { 
   opacity: 0; 
   transform: translateY(10px); 
@@ -64,72 +91,99 @@
   <section id="groups" class="py-16 max-w-6xl mx-auto px-4">
   <h3 class="text-2xl font-bold mb-8 text-center">Available Groups</h3>
   
-  <!-- Grid -->
-  <div id="groupGrid" class="grid md:grid-cols-3 gap-6">
-    
-    <!-- First 6 visible groups -->
-    <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item">
+ <!-- Grid -->
+<div id="groupGrid" class="grid md:grid-cols-3 gap-6">
+
+  <!-- First 6 visible groups -->
+  <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item flex items-start gap-4">
+    <img src="https://cdn-icons-png.flaticon.com/512/9131/9131529.png" alt="Cricket" class="group-logo">
+    <div>
       <h4 class="text-xl font-semibold mb-2">[254 Members] Cricket Betting Group</h4>
       <p class="mb-4">Verified cricket betting tips and match predictions.</p>
       <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
     </div>
-    
-    <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item">
+  </div>
+
+  <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item flex items-start gap-4">
+    <img src="https://cdn-icons-png.flaticon.com/512/535/535239.png" alt="Football" class="group-logo">
+    <div>
       <h4 class="text-xl font-semibold mb-2">[189 Members] Football Betting Group</h4>
       <p class="mb-4">Daily football match insights and safe betting tips.</p>
       <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
     </div>
-    
-    <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item">
+  </div>
+
+  <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item flex items-start gap-4">
+    <img src="https://cdn-icons-png.flaticon.com/512/942/942748.png" alt="Casino" class="group-logo">
+    <div>
       <h4 class="text-xl font-semibold mb-2">[312 Members] Casino Betting Group</h4>
       <p class="mb-4">Learn safe casino strategies with expert tips.</p>
       <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
     </div>
-    
-    <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item">
+  </div>
+
+  <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item flex items-start gap-4">
+    <img src="https://cdn-icons-png.flaticon.com/512/861/861060.png" alt="Teen Patti" class="group-logo">
+    <div>
       <h4 class="text-xl font-semibold mb-2">[276 Members] Teen Patti Pro Group</h4>
       <p class="mb-4">Exclusive Teen Patti strategies & high-stakes tips.</p>
       <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
     </div>
-    
-    <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item">
+  </div>
+
+  <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item flex items-start gap-4">
+    <img src="https://cdn-icons-png.flaticon.com/512/1055/1055646.png" alt="Poker" class="group-logo">
+    <div>
       <h4 class="text-xl font-semibold mb-2">[198 Members] Poker Mastermind</h4>
       <p class="mb-4">Learn winning poker strategies from top players.</p>
       <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
     </div>
-    
-    <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item">
+  </div>
+
+  <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item flex items-start gap-4">
+    <img src="https://cdn-icons-png.flaticon.com/512/4836/4836920.png" alt="Fantasy League" class="group-logo">
+    <div>
       <h4 class="text-xl font-semibold mb-2">[223 Members] Fantasy League Experts</h4>
       <p class="mb-4">Get expert picks & tips for fantasy sports leagues.</p>
       <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
     </div>
-    
-    <!-- Hidden groups (will appear on View All) -->
-    <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item hidden fade-hidden">
+  </div>
+
+  <!-- Hidden groups -->
+  <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item hidden fade-hidden flex items-start gap-4">
+    <img src="https://cdn-icons-png.flaticon.com/512/2704/2704180.png" alt="Horse Racing" class="group-logo">
+    <div>
       <h4 class="text-xl font-semibold mb-2">[305 Members] Horse Racing Champions</h4>
       <p class="mb-4">Daily horse racing predictions & analysis.</p>
       <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
     </div>
-    
-    <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item hidden fade-hidden">
+  </div>
+
+  <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item hidden fade-hidden flex items-start gap-4">
+    <img src="https://cdn-icons-png.flaticon.com/512/1077/1077041.png" alt="Esports" class="group-logo">
+    <div>
       <h4 class="text-xl font-semibold mb-2">[174 Members] Esports Betting Crew</h4>
       <p class="mb-4">Insights for CS:GO, Dota2, and other esports bets.</p>
       <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
     </div>
-    
-    <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item hidden fade-hidden">
+  </div>
+
+  <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item hidden fade-hidden flex items-start gap-4">
+    <img src="https://cdn-icons-png.flaticon.com/512/3176/3176369.png" alt="Roulette" class="group-logo">
+    <div>
       <h4 class="text-xl font-semibold mb-2">[260 Members] Roulette Kings</h4>
       <p class="mb-4">Master roulette betting strategies & techniques.</p>
       <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
     </div>
+  </div>
 
-  </div>
-  
-  <!-- View All Button -->
-  <div class="text-center mt-8">
-    <button id="viewAllBtn" class="btn-primary px-6 py-2">View All</button>
-  </div>
-</section>
+</div>
+
+<!-- View All Button -->
+<div class="text-center mt-8">
+  <button id="viewAllBtn" class="btn-primary px-6 py-2">View All</button>
+</div>
+
 
   <!-- Footer -->
   <footer class="py-6 bg-gray-200 dark:bg-gray-800 text-center">
