@@ -1,63 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bet Link Hub - Trusted Groups</title>
-  <meta name="description" content="Join trusted and active Bet & Ludo groups. Find the best group links updated daily.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BetLinkHub - Trusted Betting Links</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script>
+    // Dark mode toggle
+    function toggleDarkMode() {
+      document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+    }
+
+    // Load theme preference
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
   <style>
-    .fade-hidden { display: none; opacity: 0; transition: opacity 0.4s ease-in-out; }
-    .fade-show { display: block; opacity: 1; }
     .btn-primary {
       background-color: #2563eb;
       color: white;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-weight: 600;
-      transition: background-color 0.3s;
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      font-weight: 500;
+      transition: background-color 0.3s ease;
     }
-    .btn-primary:hover { background-color: #1e40af; }
+    .btn-primary:hover {
+      background-color: #1d4ed8;
+    }
   </style>
 </head>
-<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
-
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+  
   <!-- Header -->
-  <header class="bg-white dark:bg-gray-800 shadow p-4 flex justify-between items-center">
-    <h1 class="text-xl font-bold">Bet Link Hub</h1>
-    <button id="darkModeToggle" class="btn-primary">Toggle Dark Mode</button>
+  <header class="py-4 shadow bg-white dark:bg-gray-800">
+    <div class="max-w-6xl mx-auto flex justify-between items-center px-4">
+      <h1 class="text-xl font-bold">BetLinkHub</h1>
+      <button onclick="toggleDarkMode()" class="btn-primary">Toggle Dark Mode</button>
+    </div>
   </header>
 
-  <!-- Groups Section -->
-  <section class="max-w-6xl mx-auto p-6">
-    <h2 class="text-2xl font-bold mb-4">Groups</h2>
-    <div id="groupsContainer" class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-      <!-- Example group items -->
-      <div class="group-item p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
-        <img src="group1.jpg" alt="Group 1" class="rounded w-full h-40 object-cover" loading="lazy">
-        <h3 class="mt-2 font-semibold">Group 1</h3>
-      </div>
-      <div class="group-item p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
-        <img src="group2.jpg" alt="Group 2" class="rounded w-full h-40 object-cover" loading="lazy">
-        <h3 class="mt-2 font-semibold">Group 2</h3>
-      </div>
-      <div class="group-item p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
-        <img src="group3.jpg" alt="Group 3" class="rounded w-full h-40 object-cover" loading="lazy">
-        <h3 class="mt-2 font-semibold">Group 3</h3>
-      </div>
-      <div class="group-item p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
-        <img src="group4.jpg" alt="Group 4" class="rounded w-full h-40 object-cover" loading="lazy">
-        <h3 class="mt-2 font-semibold">Group 4</h3>
-      </div>
-      <div class="group-item p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
-        <img src="group5.jpg" alt="Group 5" class="rounded w-full h-40 object-cover" loading="lazy">
-        <h3 class="mt-2 font-semibold">Group 5</h3>
-      </div>
-      <div class="group-item p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
-        <img src="group6.jpg" alt="Group 6" class="rounded w-full h-40 object-cover" loading="lazy">
-        <h3 class="mt-2 font-semibold">Group 6</h3>
-      </div>
+  <!-- Hero Section -->
+  <section class="py-16 text-center bg-gray-100 dark:bg-gray-700">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-3xl font-bold mb-4">Join Trusted Betting Groups</h2>
+      <p class="mb-6">Find and join the most trusted and verified betting group links to maximize your earnings safely.</p>
+      <a href="#groups" class="btn-primary">Explore Groups</a>
+    </div>
+  </section>
 
+  <!-- Groups Section -->
+  <section id="groups" class="py-16 max-w-6xl mx-auto px-4">
+    <h3 class="text-2xl font-bold mb-8 text-center">Available Groups</h3>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow">
+        <h4 class="text-xl font-semibold mb-2">Cricket Betting Group</h4>
+        <p class="mb-4">Verified cricket betting tips and match predictions.</p>
+        <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
+      </div>
+      <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow">
+        <h4 class="text-xl font-semibold mb-2">Football Betting Group</h4>
+        <p class="mb-4">Daily football match insights and safe betting tips.</p>
+        <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
+      </div>
+      <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow">
+        <h4 class="text-xl font-semibold mb-2">Casino Betting Group</h4>
+        <p class="mb-4">Learn safe casino strategies with expert tips.</p>
+        <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
+      </div>
+    </div>
       <!-- More groups (will be hidden initially) -->
       <div class="group-item fade-hidden p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
         <img src="group7.jpg" alt="Group 7" class="rounded w-full h-40 object-cover" loading="lazy">
@@ -75,10 +87,9 @@
   </section>
 
   <!-- Footer -->
-  <footer class="bg-gray-100 dark:bg-gray-800 p-4 text-center text-sm">
-    &copy; 2025 Bet Link Hub. All Rights Reserved.
+  <footer class="py-6 bg-gray-200 dark:bg-gray-800 text-center">
+    <p>&copy; 2025 BetLinkHub. All rights reserved.</p>
   </footer>
-
   <script>
     // Dark Mode Toggle
     document.getElementById('darkModeToggle').addEventListener('click', () => {
