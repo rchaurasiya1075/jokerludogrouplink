@@ -29,6 +29,16 @@
     .btn-primary:hover {
       background-color: #1d4ed8;
     }
+
+    .fade-hidden { 
+  opacity: 0; 
+  transform: translateY(10px); 
+  transition: opacity 0.4s ease, transform 0.4s ease; 
+}
+.fade-show { 
+  opacity: 1 !important; 
+  transform: translateY(0) !important; 
+}
   </style>
 </head>
 <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
@@ -52,39 +62,74 @@
 
   <!-- Groups Section -->
   <section id="groups" class="py-16 max-w-6xl mx-auto px-4">
-    <h3 class="text-2xl font-bold mb-8 text-center">Available Groups</h3>
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow">
-        <h4 class="text-xl font-semibold mb-2">Cricket Betting Group</h4>
-        <p class="mb-4">Verified cricket betting tips and match predictions.</p>
-        <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
-      </div>
-      <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow">
-        <h4 class="text-xl font-semibold mb-2">Football Betting Group</h4>
-        <p class="mb-4">Daily football match insights and safe betting tips.</p>
-        <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
-      </div>
-      <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow">
-        <h4 class="text-xl font-semibold mb-2">Casino Betting Group</h4>
-        <p class="mb-4">Learn safe casino strategies with expert tips.</p>
-        <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
-      </div>
+  <h3 class="text-2xl font-bold mb-8 text-center">Available Groups</h3>
+  
+  <!-- Grid -->
+  <div id="groupGrid" class="grid md:grid-cols-3 gap-6">
+    
+    <!-- First 6 visible groups -->
+    <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item">
+      <h4 class="text-xl font-semibold mb-2">[254 Members] Cricket Betting Group</h4>
+      <p class="mb-4">Verified cricket betting tips and match predictions.</p>
+      <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
     </div>
-      <!-- More groups (will be hidden initially) -->
-      <div class="group-item fade-hidden p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
-        <img src="group7.jpg" alt="Group 7" class="rounded w-full h-40 object-cover" loading="lazy">
-        <h3 class="mt-2 font-semibold">Group 7</h3>
-      </div>
-      <div class="group-item fade-hidden p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
-        <img src="group8.jpg" alt="Group 8" class="rounded w-full h-40 object-cover" loading="lazy">
-        <h3 class="mt-2 font-semibold">Group 8</h3>
-      </div>
+    
+    <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item">
+      <h4 class="text-xl font-semibold mb-2">[189 Members] Football Betting Group</h4>
+      <p class="mb-4">Daily football match insights and safe betting tips.</p>
+      <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
+    </div>
+    
+    <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item">
+      <h4 class="text-xl font-semibold mb-2">[312 Members] Casino Betting Group</h4>
+      <p class="mb-4">Learn safe casino strategies with expert tips.</p>
+      <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
+    </div>
+    
+    <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item">
+      <h4 class="text-xl font-semibold mb-2">[276 Members] Teen Patti Pro Group</h4>
+      <p class="mb-4">Exclusive Teen Patti strategies & high-stakes tips.</p>
+      <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
+    </div>
+    
+    <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item">
+      <h4 class="text-xl font-semibold mb-2">[198 Members] Poker Mastermind</h4>
+      <p class="mb-4">Learn winning poker strategies from top players.</p>
+      <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
+    </div>
+    
+    <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item">
+      <h4 class="text-xl font-semibold mb-2">[223 Members] Fantasy League Experts</h4>
+      <p class="mb-4">Get expert picks & tips for fantasy sports leagues.</p>
+      <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
+    </div>
+    
+    <!-- Hidden groups (will appear on View All) -->
+    <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item hidden fade-hidden">
+      <h4 class="text-xl font-semibold mb-2">[305 Members] Horse Racing Champions</h4>
+      <p class="mb-4">Daily horse racing predictions & analysis.</p>
+      <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
+    </div>
+    
+    <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item hidden fade-hidden">
+      <h4 class="text-xl font-semibold mb-2">[174 Members] Esports Betting Crew</h4>
+      <p class="mb-4">Insights for CS:GO, Dota2, and other esports bets.</p>
+      <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
+    </div>
+    
+    <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow group-item hidden fade-hidden">
+      <h4 class="text-xl font-semibold mb-2">[260 Members] Roulette Kings</h4>
+      <p class="mb-4">Master roulette betting strategies & techniques.</p>
+      <a href="https://wa.me/919670814522" target="_blank" class="btn-primary">Join Now</a>
     </div>
 
-    <div class="mt-6 text-center">
-      <button id="viewAllBtn" class="btn-primary">View All</button>
-    </div>
-  </section>
+  </div>
+  
+  <!-- View All Button -->
+  <div class="text-center mt-8">
+    <button id="viewAllBtn" class="btn-primary px-6 py-2">View All</button>
+  </div>
+</section>
 
   <!-- Footer -->
   <footer class="py-6 bg-gray-200 dark:bg-gray-800 text-center">
