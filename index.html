@@ -255,12 +255,12 @@
     @media(max-width: 768px) {
       .features { flex-direction: column; }
     }
-@media (max-width: 480px) {
-  h1 {
-    font-size: 18px !important;
-    line-height: 1.2 !important;
+  @media (max-width: 768px) {
+    h1[style] {
+      font-size: 18px !important;  /* sirf is inline styled h1 par lagega */
+      line-height: 1.2 !important;
+    }
   }
-}
     .nero {
     text-align: center;
     padding: 50px 20px;
