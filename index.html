@@ -266,6 +266,68 @@ a:hover { text-decoration: underline; }
   margin-top: 10px;
 }
 
+    .table-of-contents {
+  width: 90%;
+  max-width: 700px;
+  margin: 30px auto;
+  font-family: Arial, sans-serif;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  padding: 20px;
+}
+
+.toc-title {
+  text-align: center;
+  font-size: 26px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.toc-item {
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+}
+
+.toc-item:last-child {
+  border-bottom: none;
+}
+
+.toc-item h3 {
+  font-size: 20px;
+  color: #007BFF;
+  cursor: pointer;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.toc-item h3:hover {
+  color: #0056b3;
+}
+
+.toc-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, padding 0.3s ease;
+  padding: 0 10px;
+}
+
+.toc-content.open {
+  max-height: 500px; /* adjust as needed */
+  padding: 10px;
+}
+
+.toc-content ul,
+.toc-content p {
+  margin: 0;
+  padding: 0;
+  list-style: disc;
+  margin-left: 20px;
+  color: #555;
+}
+
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .features { flex-direction: column; }
@@ -330,45 +392,33 @@ a:hover { text-decoration: underline; }
   </section>
    <div class="container">
 
-  <!-- Table of Contents -->
-  <div class="table-of-contents">
-    <h3>📑 Table of Contents</h3>
-    <ul>
-      <li><a href="#welcome">Welcome to Joker Ludo</a></li>
-      <li><a href="#why">Why Choose Joker Ludo?</a></li>
-      <li><a href="#popular">Popular Ludo WhatsApp Groups</a></li>
-      <li><a href="#how">How to Join Our Ludo Groups?</a></li>
-      <li><a href="#faqs">FAQs About Joker Ludo Groups</a></li>
-      <li><a href="#join">Join Joker Ludo Today</a></li>
-    </ul>
-  </div>
 
-  <!-- Sections -->
-  <section id="welcome" class="nero">
-    <h1>Welcome to Joker Ludo – Your Ultimate Destination for Ludo WhatsApp Group Links!</h1>
-    <div>
-      <ol>
-        <li>Are you looking to join the best <strong>Ludo WhatsApp group link</strong> and play exciting Ludo games with real players? Joker Ludo offers verified and active <strong>WhatsApp Ludo group links</strong> where you can connect with fellow Ludo enthusiasts, participate in daily matches, and even win real rewards!</li>
+
+<div class="table-of-contents">
+  <h2 class="toc-title">Table of Contents</h2>
+  <div class="toc-item">
+    <h3>Welcome to Joker Ludo – Your Ultimate Destination for Ludo WhatsApp Group Links!</h3>
+    <div class="toc-content">
+      <ul>
+       <li>Are you looking to join the best <strong>Ludo WhatsApp group link</strong> and play exciting Ludo games with real players? Joker Ludo offers verified and active <strong>WhatsApp Ludo group links</strong> where you can connect with fellow Ludo enthusiasts, participate in daily matches, and even win real rewards!</li>
         <li>Whether you want to join a casual <strong>Ludo group link WhatsApp</strong> or compete in competitive <strong>Ludo King WhatsApp group links</strong>, we have got you covered.</li>
-      </ol>
+      </ul>
     </div>
-  </section>
-
-  <section id="why" class="nero">
-    <h2>Why Choose Joker Ludo?</h2>
-    <div>
-      <ol>
+  </div>
+  <div class="toc-item">
+    <h3>Why Choose Joker Ludo?</h3>
+    <div class="toc-content">
+        <ol>
         <li><strong>Authentic Links</strong><br>All group links are verified and updated regularly.</li>
         <li><strong>Variety of Groups</strong><br>Join Ludo Star, Ludo betting, or online Ludo groups.</li>
         <li><strong>Safe and Secure</strong><br>Play responsibly in groups with real money contests.</li>
         <li><strong>Easy to Join</strong><br>Click, request to join, and start playing!</li>
       </ol>
     </div>
-  </section>
-
-  <section id="popular" class="nero">
-    <h2>Popular Ludo WhatsApp Groups You Can Join</h2>
-    <div>
+  </div>
+  <div class="toc-item">
+    <h3>Popular Ludo WhatsApp Groups You Can Join</h3>
+    <div class="toc-content">
       <ul>
         <li>Ludo WhatsApp Group Link – Casual and pro players.</li>
         <li>WhatsApp Ludo Group Link – Chat and play daily.</li>
@@ -377,46 +427,91 @@ a:hover { text-decoration: underline; }
         <li>Online Ludo Group WhatsApp Link – Play anytime with active members.</li>
       </ul>
     </div>
-  </section>
-
-  <section id="how" class="nero">
-    <h2>How to Join Our Ludo Groups?</h2>
-    <div>
-      <ol>
+  </div>
+  <div class="toc-item">
+    <h3>How to Join Our Ludo Groups?</h3>
+    <div class="toc-content">
+   <ol>
         <li>Browse our updated list of <strong>Ludo WhatsApp group links</strong>.</li>
         <li>Click your favorite link to open WhatsApp.</li>
         <li>Wait for admin approval and enjoy matches.</li>
         <li>Engage with the community to level up!</li>
       </ol>
     </div>
-  </section>
+  </div>
 
-  <section id="faqs" class="nero">
-    <h2>FAQs About Joker Ludo Groups</h2>
-    <div>
-      <ul>
+  <div class="toc-item">
+    <h3>FAQs About Joker Ludo Groups</h3>
+    <div class="toc-content">
+       <ul>
         <li><strong>Are these groups free?</strong> Yes, most are free to join.</li>
         <li><strong>Is betting legal?</strong> Check local laws and play responsibly.</li>
         <li><strong>Groups by region?</strong> Yes, we have Kerala, Telugu, and more.</li>
         <li><strong>Link not working?</strong> We update links regularly.</li>
       </ul>
     </div>
-  </section>
-
-  <section id="join" class="nero">
-    <h2>Join Joker Ludo WhatsApp Groups Today and Start Playing!</h2>
-    <div>
-      <ol>
+  </div>
+  <div class="toc-item">
+    <h3>Join Joker Ludo WhatsApp Groups Today and Start Playing!</h3>
+    <div class="toc-content">
+     <ol>
         <li>Don’t miss the fun! Explore trusted <strong>Ludo WhatsApp group links</strong> now.</li>
       </ol>
-    </div>
-  </section>
-
-  <section class="seo-text">
+      <section class="seo-text">
     <ul>
       <li>Explore top-rated <strong>Ludo WhatsApp group links</strong> with JokerLudo. Reliable and high-paying <strong>WhatsApp Ludo groups</strong> with daily match updates and secure transactions.</li>
     </ul>
   </section>
+    </div>
+  </div>
+</div>
+
+
+     
+
+
+
+
+     
+  <!-- Table of Contents -->
+ 
+
+  <section id="why" class="nero">
+    <h2>Why Choose Joker Ludo?</h2>
+    <div>
+    
+    </div>
+  </section>
+
+  <section id="popular" class="nero">
+    <h2></h2>
+    <div>
+    
+    </div>
+  </section>
+
+  <section id="how" class="nero">
+    <h2></h2>
+    <div>
+     
+    </div>
+  </section>
+
+  <section id="faqs" class="nero">
+    <h2></h2>
+    <div>
+    
+    </div>
+  </section>
+
+  <section id="join" class="nero">
+    <h2></h2>
+    <div>
+      
+    </div>
+  </section>
+
+  
 
   <section class="features">
     <div class="card">
@@ -498,19 +593,19 @@ a:hover { text-decoration: underline; }
 
   loadFrames();
 
-  // Collapsible headings
-  document.querySelectorAll('.nero h2').forEach(function(heading) {
+  document.querySelectorAll('.toc-item h3').forEach(heading => {
     heading.addEventListener('click', function() {
-      // Grab the next sibling element only if it exists and is an element node
-      let content = this.nextElementSibling;
-      if (!content) return;
+      const content = this.nextElementSibling;
 
-      // Toggle display
-      if (content.style.display === 'block') {
-        content.style.display = 'none';
-      } else {
-        content.style.display = 'block';
-      }
+      // Close other sections if needed (optional)
+      document.querySelectorAll('.toc-content').forEach(c => {
+        if (c !== content) {
+          c.classList.remove('open');
+        }
+      });
+
+      // Toggle current
+      content.classList.toggle('open');
     });
   });
 </script>
