@@ -220,6 +220,72 @@
     </div>
     <p>© 2025 JokerLudo Group. All Rights Reserved.</p>
   </footer>
+<!-- 🔑 Admin Login (hidden at bottom) -->
+<div id="admin-login" style="margin-top:50px; text-align:center; display:none;">
+  <h3>Admin Login</h3>
+  <form id="loginForm" style="max-width:300px; margin:auto;">
+    <input type="email" id="adminEmail" placeholder="Admin Email" required 
+           style="width:100%; padding:10px; margin:5px 0; border-radius:8px; border:1px solid #ccc;">
+    <input type="password" id="adminPassword" placeholder="Password" required 
+           style="width:100%; padding:10px; margin:5px 0; border-radius:8px; border:1px solid #ccc;">
+    <button type="submit" 
+            style="width:100%; padding:10px; border:none; border-radius:8px; background:#007bff; color:white; cursor:pointer;">
+      Login
+    </button>
+  </form>
+  <p id="loginMsg" style="color:red; margin-top:10px;"></p>
+</div>
 
+<script>
+  // Firebase Config
+  const firebaseConfig = {
+    apiKey: "AIzaSyCwdlnLXcXauh3_YmY6cwswqzcieMOHI0Y",
+    authDomain: "ludogroup-a530a.firebaseapp.com",
+    projectId: "ludogroup-a530a",
+    storageBucket: "ludogroup-a530a.appspot.com",
+    messagingSenderId: "838421084676",
+    appId: "1:838421084676:web:9e02670e280eafcd86d351"
+  };
+
+  // Initialize Firebase
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
+
+  const auth = firebase.auth();
+
+  // ⏳ Page load hone ke baad admin login section show karo (hidden from casual users)
+  document.addEventListener("DOMContentLoaded", () => {
+    const loginBox = document.getElementById("admin-login");
+
+    // Sirf keyboard shortcut se open hoga (Ctrl + Shift + L)
+    document.addEventListener("keydown", (e) => {
+      if (e.ctrlKey && e.shiftKey && e.key === "L") {
+        loginBox.style.display = "block";
+        window.scrollTo(0, document.body.scrollHeight);
+      }
+    });
+
+    // Login Form Submit
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("adminEmail").value;
+      const password = document.getElementById("adminPassword").value;
+      const msg = document.getElementById("loginMsg");
+
+      try {
+        await auth.signInWithEmailAndPassword(email, password);
+        msg.style.color = "green";
+        msg.innerText = "✅ Login successful! Redirecting...";
+        setTimeout(() => {
+          window.location.href = "admin.html"; // 🔗 Admin panel page
+        }, 1500);
+      } catch (error) {
+        msg.style.color = "red";
+        msg.innerText = "❌ " + error.message;
+      }
+    });
+  });
+</script>
 </body>
 </html>
