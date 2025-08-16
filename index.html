@@ -716,126 +716,113 @@ body {
 
   loadFrames();
 
-    // Initialize Firebase
-    const firebaseConfig = {
-      apiKey: "AIzaSyCwdlnLXcXauh3_YmY6cwswqzcieMOHI0Y",
-      authDomain: "ludogroup-a530a.firebaseapp.com",
-      projectId: "ludogroup-a530a",
-      storageBucket: "ludogroup-a530a.appspot.com",
-      messagingSenderId: "838421084676",
-      appId: "1:838421084676:web:9e02670e280eafcd86d351"
-    };
-    
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
+  <script>
+  // Initialize Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyCwdlnLXcXauh3_YmY6cwswqzcieMOHI0Y",
+    authDomain: "ludogroup-a530a.firebaseapp.com",
+    projectId: "ludogroup-a530a",
+    storageBucket: "ludogroup-a530a.appspot.com",
+    messagingSenderId: "838421084676",
+    appId: "1:838421084676:web:9e02670e280eafcd86d351"
+  };
 
-    // DOM elements
-    const form = document.getElementById("groupForm");
-    const groupsList = document.getElementById("groupsList");
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
 
-    // Function to generate a color from group name
-    function stringToColor(str) {
-      let hash = 0;
-      for (let i = 0; i < str.length; i++) {
-        hash = str.charCodeAt(i) + ((hash << 5) - hash);
-      }
-      const c = (hash & 0x00FFFFFF).toString(16).toUpperCase();
-      return "#" + "00000".substring(0, 6 - c.length) + c;
+  // Admin Email(s)
+  const adminEmails = ["jokerludo@gmail.com"]; // अपनी admin Gmail डालो
+
+  let currentUser = null;
+  let isAdmin = false;
+
+  // Listen for login state
+  firebase.auth().onAuthStateChanged((user) => {
+    currentUser = user;
+    if (user) {
+      isAdmin = adminEmails.includes(user.email);
+      console.log("Logged in:", user.email, "Admin:", isAdmin);
+    } else {
+      isAdmin = false;
     }
+    loadGroups(); // हर बार reload करो ताकि delete button दिखे/छुपे
+  });
 
-    // Form submission handler
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      
-      const name = document.getElementById("name").value.trim();
-      const link = document.getElementById("link").value.trim();
+  // DOM element
+  const groupsList = document.getElementById("groupsList");
 
-      if (!name || !link) {
-        alert("Please fill both group name and link fields");
+  // Function to generate a color from group name
+  function stringToColor(str) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    const c = (hash & 0x00FFFFFF).toString(16).toUpperCase();
+    return "#" + "00000".substring(0, 6 - c.length) + c;
+  }
+
+  // Function to load and display groups
+  async function loadGroups() {
+    try {
+      groupsList.innerHTML = '<div class="loading">Loading groups...</div>';
+
+      // Get latest 4 groups
+      const querySnapshot = await db.collection("Groups")
+        .orderBy("timestamp", "desc")
+        .limit(4)
+        .get();
+
+      if (querySnapshot.empty) {
+        groupsList.innerHTML = "<p>No groups available yet.</p>";
         return;
       }
 
-      try {
-        // Add new group to Firestore
-        await db.collection("Groups").add({
-          name: name,
-          link: link,
-          timestamp: firebase.firestore.FieldValue.serverTimestamp()
-        });
-        
-        alert("Group added successfully!");
-        form.reset();
-        loadGroups(); // Refresh the groups list
-      } catch (error) {
-        console.error("Error adding group: ", error);
-        alert("Failed to add group. Please try again later.");
-      }
-    });
+      groupsList.innerHTML = "";
 
-    // Function to load and display groups
-    async function loadGroups() {
-      try {
-        groupsList.innerHTML = '<div class="loading">Loading groups...</div>';
-        
-        // Get groups from Firestore, ordered by timestamp
-        const querySnapshot = await db.collection("Groups")
-          .orderBy("timestamp", "desc")
-          .get();
+      querySnapshot.forEach((doc) => {
+        const group = doc.data();
+        const color = stringToColor(group.name);
+        const firstLetter = group.name.charAt(0).toUpperCase();
 
-        if (querySnapshot.empty) {
-          groupsList.innerHTML = "<p>No groups available yet. Be the first to add one!</p>";
-          return;
+        // Create group card
+        const card = document.createElement("div");
+        card.className = "group-card";
+        card.innerHTML = `
+          <div class="group-info">
+            <div class="group-dp" style="background-color:${color}">${firstLetter}</div>
+            <h3>${group.name}</h3>
+          </div>
+          <a href="${group.link}" target="_blank" class="join-btn">Join</a>
+          ${isAdmin ? `<button class="delete-btn" data-id="${doc.id}">Delete</button>` : ""}
+        `;
+        groupsList.appendChild(card);
+      });
+    } catch (error) {
+      console.error("Error loading groups: ", error);
+      groupsList.innerHTML = '<div class="error">Error loading groups. Please refresh the page.</div>';
+    }
+  }
+
+  // Delete group (only admin can see button)
+  groupsList.addEventListener("click", async (e) => {
+    if (e.target.classList.contains("delete-btn")) {
+      const id = e.target.dataset.id;
+      if (confirm("Delete this group?")) {
+        try {
+          await db.collection("Groups").doc(id).delete();
+          alert("Group deleted!");
+          loadGroups();
+        } catch (err) {
+          console.error("Error deleting group: ", err);
+          alert("Failed to delete group.");
         }
-
-        // Clear loading message
-        groupsList.innerHTML = "";
-
-        querySnapshot.forEach((doc) => {
-          const group = doc.data();
-          const color = stringToColor(group.name);
-          const firstLetter = group.name.charAt(0).toUpperCase();
-
-          // Create group card
-          const card = document.createElement("div");
-          card.className = "group-card";
-          card.innerHTML = `
-            <div class="group-info">
-              <div class="group-dp" style="background-color:${color}">${firstLetter}</div>
-              <h3>${group.name}</h3>
-            </div>
-            <a href="${group.link}" target="_blank" class="join-btn">Join</a>
-          `;
-          groupsList.appendChild(card);
-        });
-      } catch (error) {
-        console.error("Error loading groups: ", error);
-        groupsList.innerHTML = '<div class="error">Error loading groups. Please refresh the page.</div>';
       }
     }
+  });
 
-    // Load groups when page loads
-    document.addEventListener("DOMContentLoaded", loadGroups);
-
-// Admin Email(s)
-const adminEmails = ["jokerludo@gmail.com"]; // यहाँ अपनी Firebase वाली Gmail डालो
-
-let currentUser = null;
-let isAdmin = false;
-
-// Listen auth state
-firebase.auth().onAuthStateChanged((user) => {
-  currentUser = user;
-  if (user) {
-    isAdmin = adminEmails.includes(user.email);
-    console.log("Logged in:", user.email, "Admin:", isAdmin);
-  } else {
-    isAdmin = false;
-  }
-});
-
+  // Load groups when page loads
+  document.addEventListener("DOMContentLoaded", loadGroups);
 </script>
-
 
   <footer>
     <div class="footer-links">
