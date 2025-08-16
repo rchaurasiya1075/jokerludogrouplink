@@ -208,7 +208,7 @@
     <h2>6. Updates</h2>
     <p>We may update this Privacy Policy periodically. Please check this page regularly to stay informed.</p>
   </div>
-  <!-- 🔥 Admin Login Form (only for Admin) -->
+<!-- 🔥 Admin Login Form (only for Admin) -->
 <div style="margin-top:50px; padding:20px; border:1px solid #ddd; max-width:400px;">
   <h3>Admin Login</h3>
   <form id="adminLoginForm">
@@ -225,6 +225,10 @@
   <button id="logoutBtn" style="display:none; margin-top:10px; padding:10px; background:red; color:white; border:none; cursor:pointer;">Logout</button>
 </div>
 
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
 <script>
   // ✅ Firebase config
   const firebaseConfig = {
@@ -236,20 +240,21 @@
     appId: "1:838421084676:web:9e02670e280eafcd86d351"
   };
 
-  // ✅ Initialize Firebase
   if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
   }
   const auth = firebase.auth();
 
+  // ✅ Allowed Admin Email
   const ADMIN_EMAIL = "rchaurasiyaself1@gmail.com";
 
-  // ✅ Login Form
+  // ✅ Login Form Submit
   document.getElementById("adminLoginForm").addEventListener("submit", async (e) => {
-    e.preventDefault(); // 🚨 Stop page reload
+    e.preventDefault();
     const email = document.getElementById("adminEmail").value;
     const password = document.getElementById("adminPassword").value;
     const loginStatus = document.getElementById("loginStatus");
+    const logoutBtn = document.getElementById("logoutBtn");
 
     try {
       const userCredential = await auth.signInWithEmailAndPassword(email, password);
@@ -257,8 +262,9 @@
 
       if (user.email === ADMIN_EMAIL) {
         loginStatus.innerHTML = "✅ Logged in as Admin. Redirecting...";
-        
-        // 🔥 Redirect after login
+        logoutBtn.style.display = "block"; // 👈 ab logout button visible hoga
+
+        // 🔥 Redirect after 1s
         setTimeout(() => {
           window.location.href = "admin.html";
         }, 1000);
@@ -272,7 +278,7 @@
     }
   });
 
-  // ✅ Listen for Auth State (extra safety)
+  // ✅ Auth State Protection
   auth.onAuthStateChanged((user) => {
     if (user && user.email === ADMIN_EMAIL) {
       // Agar already login hai toh direct admin.html bhej do
@@ -289,7 +295,6 @@
     document.getElementById("logoutBtn").style.display = "none";
   });
 </script>
-
   <footer>
     <div class="footer-links">
       <a href="index.html">Home</a>
