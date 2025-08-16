@@ -719,26 +719,34 @@ body {
 <div id="groupsList"></div>
 <button id="addGroupBtn" style="margin-top:15px; padding:10px 15px; background:green; color:white; border:none; cursor:pointer;">Add Group</button>
 
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
 <script>
+  // Firebase config
+  const firebaseConfig = {
+    apiKey: "AIzaSyCwdlnLXcXauh3_YmY6cwswqzcieMOHI0Y",
+    authDomain: "ludogroup-a530a.firebaseapp.com",
+    projectId: "ludogroup-a530a",
+    storageBucket: "ludogroup-a530a.appspot.com",
+    messagingSenderId: "838421084676",
+    appId: "1:838421084676:web:9e02670e280eafcd86d351"
+  };
+  if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+
+  const auth = firebase.auth();
   const db = firebase.firestore();
+
+  const adminEmails = ["rchaurasiyaself1@gmail.com"];
+  let isAdmin = false;
 
   const groupsList = document.getElementById("groupsList");
   const addGroupBtn = document.getElementById("addGroupBtn");
+  const maxVisibleGroups = 5;
 
-  const maxVisibleGroups = 5; // Latest 5 groups show
-  let currentUser = null;
-  let adminEmails = ["rchaurasiyaself1@gmail.com"]; // Admin email list
-  let isAdmin = false;
-
-  // Admin login check
-  firebase.auth().onAuthStateChanged((user) => {
-    currentUser = user;
-    isAdmin = user && adminEmails.includes(user.email);
-    loadGroups();
-  });
-
+  // Redirect add group button to join.html
   addGroupBtn.addEventListener("click", () => {
-    // Redirect normal users to join.html to submit group
     window.location.href = "join.html";
   });
 
@@ -753,44 +761,44 @@ body {
 
   async function loadGroups() {
     groupsList.innerHTML = '<div class="loading">Loading groups...</div>';
+
     try {
-      const querySnapshot = await db.collection("Groups")
+      const snapshot = await db.collection("Groups")
         .orderBy("timestamp", "desc")
         .limit(maxVisibleGroups)
         .get();
 
-      if (querySnapshot.empty) {
+      if (snapshot.empty) {
         groupsList.innerHTML = "<p>No groups available yet.</p>";
         return;
       }
 
       groupsList.innerHTML = "";
 
-      querySnapshot.forEach(doc => {
-        const group = doc.data();
-        const color = stringToColor(group.name);
-        const firstLetter = group.name.charAt(0).toUpperCase();
+      snapshot.forEach(doc => {
+        const g = doc.data();
+        const color = stringToColor(g.name);
+        const firstLetter = g.name.charAt(0).toUpperCase();
 
         const card = document.createElement("div");
         card.className = "group-card";
         card.innerHTML = `
           <div class="group-info">
             <div class="group-dp" style="background-color:${color}">${firstLetter}</div>
-            <h3>${group.name}</h3>
+            <h3>${g.name}</h3>
           </div>
-          <a href="${group.link}" target="_blank" class="join-btn">Join</a>
+          <a href="${g.link}" target="_blank" class="join-btn">Join</a>
           ${isAdmin ? `<button class="delete-btn" data-id="${doc.id}">Delete</button>` : ""}
         `;
         groupsList.appendChild(card);
       });
-
     } catch (err) {
-      console.error("Error loading groups: ", err);
-      groupsList.innerHTML = '<div class="error">Error loading groups. Refresh page.</div>';
+      console.error(err);
+      groupsList.innerHTML = '<div class="error">Error loading groups.</div>';
     }
   }
 
-  // Delete group only for admin
+  // Delete group (only admin)
   groupsList.addEventListener("click", async (e) => {
     if (e.target.classList.contains("delete-btn")) {
       const id = e.target.dataset.id;
@@ -806,8 +814,19 @@ body {
     }
   });
 
+  // Check if user is admin
+  auth.onAuthStateChanged(user => {
+    if (user && adminEmails.includes(user.email)) {
+      isAdmin = true;
+    } else {
+      isAdmin = false;
+    }
+    loadGroups();
+  });
+
   document.addEventListener("DOMContentLoaded", loadGroups);
 </script>
+
   <footer>
     <div class="footer-links">
       <a href="index.html">Home</a>
