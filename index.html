@@ -633,75 +633,18 @@ h3.custom-heading {
 
   loadFrames();
 
- function toggleGroupForm() {
-      const form = document.getElementById("group-form");
-      form.style.display = (form.style.display === "block") ? "none" : "block";
-      if (form.style.display === "block") {
-        form.scrollIntoView({ behavior: "smooth" });
-      }
-    }
-
-    function addGroup(event) {
-      event.preventDefault();
-
-      const name = document.getElementById("group-name").value;
-      const link = document.getElementById("group-link").value;
-      const image = document.getElementById("group-image").value;
-
-      const groupList = document.getElementById("group-list");
-
-      // Create new group card
-      const card = document.createElement("div");
-      card.className = "group-card";
-      card.innerHTML = `
-        <img src="${image}" alt="${name} DP">
-        <h4>${name}</h4>
-        <a href="${link}" target="_blank">Join Group</a>
-      `;
-
-      // Add to list
-      groupList.appendChild(card);
-
-      // Reset form
-      document.getElementById("group-name").value = "";
-      document.getElementById("group-link").value = "";
-      document.getElementById("group-image").value = "";
-      document.getElementById("group-form").style.display = "none";
-
-      // Auto scroll to new group
-      card.scrollIntoView({ behavior: "smooth" });
-    }
-
-
-  document.querySelectorAll('.toc-item h3').forEach(heading => {
-    heading.addEventListener('click', function() {
-      const content = this.nextElementSibling;
-
-      // Close other sections if needed (optional)
-      document.querySelectorAll('.toc-content').forEach(c => {
-        if (c !== content) {
-          c.classList.remove('open');
-        }
-      });
-
-      // Toggle current
-      content.classList.toggle('open');
-    });
-  });
-  <script type="module">
-  // Import the functions you need from the SDKs you need
+ <script type="module">
+  // Firebase SDKs import
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+  import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  // तुम्हारा Firebase config
   const firebaseConfig = {
     apiKey: "AIzaSyCwdlnLXcXauh3_YmY6cwswqzcieMOHI0Y",
     authDomain: "ludogroup-a530a.firebaseapp.com",
     projectId: "ludogroup-a530a",
-    storageBucket: "ludogroup-a530a.firebasestorage.app",
+    storageBucket: "ludogroup-a530a.appspot.com",
     messagingSenderId: "838421084676",
     appId: "1:838421084676:web:9e02670e280eafcd86d351",
     measurementId: "G-CRQL1LBZTN"
@@ -710,24 +653,9 @@ h3.custom-heading {
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
-</script>
-     <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
-  import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
-
-  // ⚡ Tumhara Firebase config yaha paste karo
-  const firebaseConfig = {
-    apiKey: "AIzaSyDk-XXXXXX",
-    authDomain: "ludogroup-a530a.firebaseapp.com",
-    projectId: "ludogroup-a530a",
-    storageBucket: "ludogroup-a530a.appspot.com",
-    messagingSenderId: "838421084676",
-    appId: "1:838421084676:web:abcdef123456"
-  };
-
-  const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
+  // Form aur list get karo
   const form = document.getElementById("groupForm");
   const groupsList = document.getElementById("groupsList");
 
@@ -764,8 +692,10 @@ h3.custom-heading {
     });
   }
 
+  // First load
   loadGroups();
 </script>
+
 </script>
 
 
