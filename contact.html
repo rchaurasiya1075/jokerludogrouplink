@@ -69,7 +69,7 @@
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
   <!-- Firebase Auth -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-  <style>
+ <style>
     /* ===== GLOBAL STYLES ===== */
     * {
       margin: 0;
@@ -84,56 +84,70 @@
       line-height: 1.6;
     }
     
-    /* ===== NAVBAR ===== */
+    /* ===== ENHANCED HEADER/NAVBAR ===== */
     .navbar {
       background: #2d2e52;
-      padding: 15px 20px;
-      text-align: center;
+      padding: 20px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
       position: sticky;
       top: 0;
       z-index: 100;
+      gap: 20px;
+    }
+    
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex-grow: 1;
     }
     
     .logo-img {
-      width: 80px;
-      height: auto;
+      width: 70px;
+      height: 70px;
       border-radius: 8px;
-      margin-bottom: 10px;
+      object-fit: cover;
+      border: 2px solid #ffde59;
     }
     
-    .navbar h1 {
+    .header-title {
       color: #fff;
-      font-size: 22px;
-      margin-top: 5px;
+      font-size: 28px;
+      font-weight: 700;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
     }
     
     .nav-links {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 10px;
+      gap: 15px;
     }
     
     .nav-links a {
       color: #fff;
       text-decoration: none;
-      padding: 6px 12px;
+      padding: 8px 15px;
       border-radius: 6px;
-      transition: 0.3s;
-      font-size: 14px;
+      transition: all 0.3s ease;
+      font-size: 15px;
+      font-weight: 500;
     }
     
     .nav-links a:hover {
       background: #ffde59;
-      color: #000;
+      color: #2d2e52;
+      transform: translateY(-2px);
     }
     
     /* ===== MAIN CONTENT ===== */
     .container {
       max-width: 800px;
       margin: 30px auto;
-      padding: 20px;
+      padding: 25px;
       background: white;
       border-radius: 10px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -215,31 +229,6 @@
       transform: translateY(-2px);
     }
     
-    .submit-button:active {
-      transform: translateY(0);
-    }
-    
-    /* ===== EMAIL INFO ===== */
-    .email-info {
-      text-align: center;
-      margin-top: 30px;
-      padding: 15px;
-      background: #f0f8ff;
-      border-radius: 6px;
-    }
-    
-    .email-info a {
-      color: #2d2e52;
-      font-weight: 500;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-    
-    .email-info a:hover {
-      color: #25D366;
-      text-decoration: underline;
-    }
-    
     /* ===== FOOTER ===== */
     footer {
       background: #2d2e52;
@@ -286,23 +275,36 @@
     
     /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        padding: 15px;
+      }
+      
+      .header-brand {
+        margin-bottom: 15px;
+        justify-content: center;
+        text-align: center;
+      }
+      
       .container {
         margin: 20px 15px;
         padding: 15px;
       }
-      
-      h1 {
-        font-size: 24px;
-      }
-      
-      #contactForm {
-        padding: 20px;
-      }
     }
     
     @media (max-width: 480px) {
-      .navbar h1 {
-        font-size: 20px;
+      .header-brand {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .header-title {
+        font-size: 24px;
+      }
+      
+      .logo-img {
+        width: 60px;
+        height: 60px;
       }
       
       .nav-links {
@@ -310,12 +312,8 @@
       }
       
       .nav-links a {
-        padding: 5px 8px;
+        padding: 6px 10px;
         font-size: 13px;
-      }
-      
-      .submit-button {
-        font-size: 15px;
       }
     }
   </style>
@@ -325,8 +323,11 @@
 </head>
 <body>
   <nav class="navbar">
-    <img src="WhatsApp Image 2025-07-27 at 10.45.50.jpeg" alt="JokerLudo Logo" class="logo-img">
-    <h1>JokerLudo</h1>
+    <div class="header-brand">
+      <img src="WhatsApp Image 2025-07-27 at 10.45.50.jpeg" alt="JokerLudo Logo" class="logo-img">
+      <div class="header-title">JokerLudo</div>
+    </div>
+    
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="rules.html">Rules</a>
