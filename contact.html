@@ -56,131 +56,470 @@
   }
   </script>
 
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f5f5f5;
-      color: #333;
-    }
+   <style>
+   /* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    .horizontal-navbar {
-      background: linear-gradient(90deg, #f9d423, #ff4e50);
-      padding: 10px 0;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 15px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    }
+/* ===== GLOBAL STYLES ===== */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f4f5ff;
+  color: #333;
+}
 
-    .horizontal-navbar a {
-      color: #fff;
-      text-decoration: none;
+/* ===== NAVBAR ===== */
+.navbar {
+  background: #2d2e52;
+  padding: 20px;
+  text-align: center;
+}
+.logo-img {
+  width: 100px;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+.navbar h1 {
+  color: #fff;
+  font-size: 24px;
+  margin-top: 5px;
+}
+.nav-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 10px;
+}
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+.nav-links a:hover {
+  background: #ffde59;
+  color: #000;
+}
+
+/* ===== HERO SECTION ===== */
+.hero {
+  text-align: center;
+  padding: 50px 20px;
+  background: linear-gradient(to right, #ffe57f, #ffc107);
+}
+.hero h1 {
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+.hero p {
+  font-size: 18px;
+  margin-bottom: 25px;
+  max-width: 700px;
+  margin: 0 auto 25px auto;
+  line-height: 1.5;
+}
+.join-btn {
+  background: #2d2e52;
+  color: #fff;
+  padding: 12px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+  display: inline-block;
+}
+.join-btn:hover {
+  background: #1a1a3a;
+  transform: scale(1.05);
+}
+
+/* ===== FEATURES ===== */
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px 20px;
+}
+.card, .group-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  width: 280px;
+  text-align: center;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: #2d2e52;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+.footer-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+.footer-links a {
+  color: #fff;
+  text-decoration: none;
+}
+.footer-links a:hover {
+  color: #ffde59;
+}
+
+/* ===== SEO TEXT ===== */
+.seo-text {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 0 20px;
+  color: #555;
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* ===== MAIN CONTAINER ===== */
+#container {
+  max-width: 900px;
+  margin: 30px auto;
+  background: white;
+  padding: 25px 30px;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+/* ===== HEADINGS ===== */
+header {
+  background: #ff3e3e;
+  color: white;
+  padding: 20px 15px;
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  border-radius: 8px 8px 0 0;
+}
+h1, h2, h3 {
+  color: #d22;
+  margin-top: 1.5rem;
+}
+h1 { font-size: 2rem; margin-bottom: 1rem; }
+h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+
+/* ===== LISTS ===== */
+ul, ol {
+  padding-left: 20px;
+  margin-bottom: 1rem;
+}
+ul li, ol li { margin-bottom: 8px; }
+p { margin-bottom: 1rem; }
+a { color: #ff3e3e; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ===== CUSTOM SECTIONS ===== */
+.jk-section { margin-bottom: 30px; }
+
+/* ===== NERO SECTION (toggle headings) ===== */
+.nero {
+  text-align: center;
+  padding: 50px 20px;
+  background: #f9f9f9;
+}
+.nero h1 {
+  display: inline-block;
+  font-size: 32px;
+  margin-bottom: 20px;
+  background-color: #ff7043;
+  color: #fff;
+  padding: 12px 25px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+  cursor: pointer;
+}
+.nero ol {
+  font-size: 18px;
+  margin: 0 auto;
+  max-width: 700px;
+  text-align: left;
+  line-height: 1.6;
+  padding-left: 40px;
+  display: none; /* hide by default for toggle effect */
+  margin-top: 10px;
+}
+
+    .table-of-contents {
+  width: 90%;
+  max-width: 700px;
+  margin: 30px auto;
+  font-family: Arial, sans-serif;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  padding: 20px;
+}
+
+.toc-title {
+  text-align: center;
+  font-size: 26px;
+  font-weight: bold;
+  color: #d22;
+  margin-bottom: 20px;
+}
+
+.toc-item {
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+}
+
+.toc-item:last-child {
+  border-bottom: none;
+}
+
+.toc-item h3 {
+  font-size: 20px;
+  color: #007BFF;
+  cursor: pointer;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.toc-item h3:hover {
+  color: #0056b3;
+}
+
+.toc-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, padding 0.3s ease;
+  padding: 0 10px;
+}
+
+.toc-content.open {
+  max-height: 500px; /* adjust as needed */
+  padding: 10px;
+}
+
+.toc-content ul,
+.toc-content p {
+  margin: 0;
+  padding: 0;
+  list-style: disc;
+  margin-left: 20px;
+  color: #555;
+}
+
+h3.custom-heading {
+      color: black;
       font-weight: bold;
-      padding: 10px 16px;
-      border-radius: 6px;
-      background: #ffffff20;
-      transition: background 0.3s;
     }
 
-    .horizontal-navbar a:hover {
-      background: rgba(255, 255, 255, 0.4);
-      text-shadow: 1px 1px 2px #000;
-    }
 
-    .container {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 20px;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
 
-    h1 {
-      text-align: center;
-      color: #2d2e52;
-      margin-bottom: 20px;
-    }
+/* ===== MODERN FORM SECTION ===== */
+#groupForm {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 15px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px);
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  max-width: 500px;
+  margin: 30px auto;
+  font-family: "Segoe UI", sans-serif;
+  border: 1px solid rgba(255,255,255,0.3);
+  transition: 0.3s;
+}
 
-    label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: 600;
-    }
+#groupForm h2 {
+  width: 100%;
+  font-size: 24px;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
 
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
+#groupForm input {
+  flex: 1 1 180px;
+  min-width: 120px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: none;
+  background: rgba(255,255,255,0.25);
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
 
-    .submit-button {
-      background: #2d2e52;
-      color: white;
-      padding: 12px 18px;
-      font-size: 16px;
-      font-weight: 600;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      display: block;
-      margin: 0 auto;
-      transition: background 0.3s;
-    }
+#groupForm input::placeholder {
+  color: rgba(255,255,255,0.7);
+}
 
-    .submit-button:hover {
-      background: #ffde59;
-      color: #2d2e52;
-    }
+#groupForm input:focus {
+  background: rgba(255,255,255,0.35);
+  box-shadow: 0 0 8px #25D366;
+}
 
-    .email-info {
-      text-align: center;
-      margin-top: 20px;
-    }
+#groupForm button {
+  flex: 1 1 120px;
+  min-width: 100px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #25D366, #1ebe5d);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.4s;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
 
-    footer {
-      background: #2d2e52;
-      color: #fff;
-      padding: 15px;
-      text-align: center;
-      font-size: 14px;
-      margin-top: 40px;
-    }
+#groupForm button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
 
-    .footer-links a {
-      margin: 0 10px;
-      color: #fff;
-      text-decoration: none;
-    }
+/* ===== MODERN GROUP CARDS ===== */
+#groupsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+  font-family: "Segoe UI", sans-serif;
+}
 
-    .footer-links a:hover {
-      color: #ffde59;
-    }
+.group-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 350px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 15px 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
 
-    @media (max-width: 600px) {
-      .horizontal-navbar {
-        flex-direction: column;
-        align-items: center;
-      }
-    }
-  </style>
+.group-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+}
+
+.group-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.group-info img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #25D366;
+  object-fit: cover;
+}
+
+.group-info h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+/* ===== JOIN BUTTON ===== */
+.join-btn {
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.4s;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.join-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+  #groupForm {
+    flex-direction: column;
+    gap: 15px;
+  }
+  #groupForm input, #groupForm button {
+    flex: 1 1 100%;
+  }
+  .group-card {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .join-btn {
+    width: 100%;
+  }
+}
+
+/* BACKGROUND FOR MODERN TECH LOOK */
+body {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  min-height: 100vh;
+  color: white;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .features { flex-direction: column; }
+  h1[style] {
+    font-size: 18px !important;
+    line-height: 1.2 !important;
+  }
+}
+@media (max-width: 600px) {
+  #container {
+    padding: 20px 15px;
+    margin: 20px 10px;
+  }
+}
+    </style>
 </head>
 <body>
-
-<nav class="horizontal-navbar">
-  <a href="index.html">🏠 Home</a>
-  <a href="groups.html">👥 Groups</a>
-  <a href="add-group.html">➕ Add Group</a>
-  <a href="policy.html">📃 Policy</a>
-  <a href="contact.html">📞 Contact</a>
-  <a href="girls-group.html">👩 Girls Group</a>
-</nav>
-
+  <nav class="navbar">
+    <img src="WhatsApp Image 2025-07-27 at 10.45.50.jpeg" alt="JokerLudo Logo" class="logo-img">
+    <h1>JokerLudo</h1>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="rules.html">Rules</a>
+      <a href="join.html">Join Group</a>
+      <a href="addgroup.html">Add Group</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+    </div>
+  </nav>
 <div class="container">
   <h1>Contact Us</h1>
   <p>If you have any questions, group issues, or suggestions, feel free to reach out. You can contact us via WhatsApp or email. We’ll respond as quickly as possible.</p>
@@ -203,17 +542,25 @@
   </div>
 </div>
 
-<footer>
-  <div class="footer-links">
-    <a href="index.html">Home</a>
-    <a href="rules.html">Rules</a>
-    <a href="join.html">Join</a>
-    <a href="add-group.html">Add Group</a>
-    <a href="contact.html">Contact</a>
-    <a href="privacy.html">Privacy</a>
-  </div>
-  <p>© 2025 JokerLudo Group. All Rights Reserved.</p>
-</footer>
+ <footer>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="rules.html">Rules</a>
+      <a href="join.html">Join</a>
+      <a href="addgroup.html">Add Group</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    
+    <div class="social-links">
+      <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+      <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+    
+    <p class="copyright">© 2025 JokerLudo Group. All Rights Reserved.</p>
+  </footer>
 
 <script>
   document.getElementById("contactForm").addEventListener("submit", function(e) {
