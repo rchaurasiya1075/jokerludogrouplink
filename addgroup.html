@@ -58,268 +58,114 @@
   }
   </script>
   <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f5f5f5;
-      color: #333;
-    }
-
-    .navbar {
-      background: #2d2e52;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .logo {
-      font-size: 30px;
-      font-weight: 700;
-      color: #fff;
-      text-decoration: none;
-      display: block;
-    }
-
-    .nav-links {
-      margin-top: 10px;
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-    }
-
-    .nav-links a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 500;
-      padding: 8px 12px;
-      border-radius: 5px;
-      transition: background 0.3s;
-    }
-
-    .nav-links a:hover {
-      background: #ffde59;
-      color: #2d2e52;
-    }
-
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f9f9f9; }
     .container {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 20px;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      max-width: 520px; margin: auto; background: white; padding: 20px;
+      border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
-
-    h1 {
-      text-align: center;
-      color: #2d2e52;
-      margin-bottom: 20px;
+    h2 { text-align: center; color: #222; }
+    label { display: block; margin-top: 12px; font-weight: bold; }
+    input, select {
+      width: 100%; padding: 10px; margin-top: 6px;
+      border: 1px solid #ccc; border-radius: 6px;
     }
-
-    label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: 600;
+    .checkbox-group { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 5px; }
+    .checkbox-group label { font-weight: normal; }
+    button {
+      margin-top: 20px; width: 100%; padding: 12px;
+      background: #007bff; color: white; border: none;
+      border-radius: 6px; font-size: 16px; cursor: pointer;
     }
-
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-
-    .note {
-      background: #fffae6;
-      padding: 15px;
-      border-left: 5px solid #ffbf00;
-      margin-bottom: 20px;
-      font-size: 15px;
-    }
-
-    .group-list {
-      margin-top: 30px;
-    }
-
-    .group-list h2 {
-      margin-bottom: 15px;
-      color: #2d2e52;
-    }
-
-    .group-box {
-      padding: 10px;
-      background: #f1f1f1;
-      border-left: 4px solid #2d2e52;
-      margin-bottom: 10px;
-    }
-
-    .submit-button {
-      background: #2d2e52;
-      color: white;
-      padding: 12px 18px;
-      font-size: 16px;
-      font-weight: 600;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      display: block;
-      margin: 0 auto;
-      transition: background 0.3s;
-    }
-
-    .submit-button:hover {
-      background: #ffde59;
-      color: #2d2e52;
-    }
-
-    footer {
-      background: #2d2e52;
-      color: #fff;
-      padding: 15px;
-      text-align: center;
-      font-size: 14px;
-      margin-top: 40px;
-    }
-
-    .footer-links {
-      margin-bottom: 8px;
-    }
-
-    .footer-links a {
-      margin: 0 10px;
-      color: #fff;
-      text-decoration: none;
-    }
-
-    .footer-links a:hover {
-      color: #ffde59;
-    }
+    button:hover { background: #0056b3; }
   </style>
 </head>
 <body>
-
-  <nav class="navbar">
-    <a href="index.html" class="logo">🎲 JokerLudo Group</a>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="rules.html">Rules</a>
-      <a href="join.html">Join</a>
-      <a href="addgroup.html">Add Group</a>
-      <a href="contact.html">Contact</a>
-      <a href="privacy.html">Privacy</a>
-    </div>
-  </nav>
-
   <div class="container">
-    <h1>Add Your Ludo WhatsApp Group</h1>
-    <div class="note">
-      📢 <strong>Note:</strong> All group submissions are free. However, they will only be published **after admin approval**. <br>
-      ➡️ After submitting, your message will be sent directly to the admin on WhatsApp. <br>
-      ✅ No charges at all.
-    </div>
+    <h2>Add Betting Group</h2>
+    <form id="groupForm">
+      <label for="name">Group Name</label>
+      <input type="text" id="name" required>
 
-  <div class="container">
-  <h2>Add New Group</h2>
-  <form id="groupForm">
-    <input type="text" id="name" placeholder="Group Name" required>
-    <input type="url" id="link" placeholder="Group Link" required>
-    <select id="groupType" required>
-      <option value="">Select Group Type</option>
-      <option value="Gaming">Gaming</option>
-      <option value="Education">Education</option>
-      <option value="Music">Music</option>
-      <option value="Sports">Sports</option>
-      <option value="Movies">Movies</option>
-      <!-- add up to 10-15 -->
-    </select>
-    <div class="platforms">
-      <label><input type="checkbox" class="platform" value="WhatsApp"> WhatsApp</label>
-      <label><input type="checkbox" class="platform" value="Telegram"> Telegram</label>
-      <label><input type="checkbox" class="platform" value="Discord"> Discord</label>
-    </div>
-    <button type="submit">Add Group</button>
-  </form>
-</div>
+      <label for="link">Group Link</label>
+      <input type="url" id="link" placeholder="https://chat.whatsapp.com/..." required>
 
-    <div class="group-list">
-      <h2>Popular Groups You Can Join</h2>
-      <div class="group-box"><strong>Group 1:</strong> Joker Kings – <a href="#">https://chat.whatsapp.com/abc123</a></div>
-      <div class="group-box"><strong>Group 2:</strong> Ludo Master Arena – <a href="#">https://chat.whatsapp.com/def456</a></div>
-      <div class="group-box"><strong>Group 3:</strong> Joker Night War – <a href="#">https://chat.whatsapp.com/ghi789</a></div>
-      <div class="group-box"><strong>Group 4:</strong> Royal Ludo Club – <a href="#">https://chat.whatsapp.com/jkl123</a></div>
-      <div class="group-box"><strong>Group 5:</strong> Daily Ludo Battle – <a href="#">https://chat.whatsapp.com/mno456</a></div>
-      <div class="group-box"><strong>Group 6:</strong> Joker Superstars – <a href="#">https://chat.whatsapp.com/pqr789</a></div>
-      <div class="group-box"><strong>Group 7:</strong> Joker Army – <a href="#">https://chat.whatsapp.com/uvw123</a></div>
-      <div class="group-box"><strong>Group 8:</strong> Classic Ludo Team – <a href="#">https://chat.whatsapp.com/xyz456</a></div>
-      <div class="group-box"><strong>Group 9:</strong> Joker Fire Group – <a href="#">https://chat.whatsapp.com/yza123</a></div>
-      <div class="group-box"><strong>Group 10:</strong> Champion Ludo Pro – <a href="#">https://chat.whatsapp.com/cde456</a></div>
-    </div>
+      <label for="type">Game Category</label>
+      <select id="type" required>
+        <option value="">-- Select Game --</option>
+        <option value="Cricket">🏏 Cricket</option>
+        <option value="Football">⚽ Football</option>
+        <option value="Tennis">🎾 Tennis</option>
+        <option value="Ludo">🎲 Ludo</option>
+        <option value="Kabaddi">🤼 Kabaddi</option>
+        <option value="Basketball">🏀 Basketball</option>
+        <option value="Hockey">🏑 Hockey</option>
+        <option value="Esports">🎮 Esports</option>
+        <option value="Casino">🎰 Casino</option>
+        <option value="Other">➕ Other</option>
+      </select>
+
+      <label>Platforms</label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" value="WhatsApp"> WhatsApp</label>
+        <label><input type="checkbox" value="Telegram"> Telegram</label>
+        <label><input type="checkbox" value="Discord"> Discord</label>
+      </div>
+
+      <button type="submit">Add Group</button>
+    </form>
   </div>
 
-  <footer>
-    <div class="footer-links">
-      <a href="index.html">Home</a>
-      <a href="rules.html">Rules</a>
-      <a href="join.html">Join</a>
-      <a href="addgroup.html">Add Group</a>
-      <a href="contact.html">Contact</a>
-      <a href="privacy.html">Privacy</a>
-    </div>
-    <p>© 2025 JokerLudo Group. All Rights Reserved.</p>
-  </footer>
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 
   <script>
-    document.getElementById("groupForm").addEventListener("submit", function(e) {
+    // Firebase Config
+    const firebaseConfig = {
+      apiKey: "AIzaSyCwdlnLXcXauh3_YmY6cwswqzcieMOHI0Y",
+      authDomain: "ludogroup-a530a.firebaseapp.com",
+      projectId: "ludogroup-a530a",
+      storageBucket: "ludogroup-a530a.appspot.com",
+      messagingSenderId: "838421084676",
+      appId: "1:838421084676:web:9e02670e280eafcd86d351"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    const form = document.getElementById("groupForm");
+
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
+
       const name = document.getElementById("name").value.trim();
       const link = document.getElementById("link").value.trim();
-      const message = `Hello Admin,%0A%0AI would like to add my Ludo group to the site.%0A%0A📛 Group Name: ${encodeURIComponent(name)}%0A🔗 Group Link: ${encodeURIComponent(link)}%0A%0AThank you!`;
-      const phone = "9473746020";
-      const whatsappURL = `https://wa.me/${phone}?text=${message}`;
-      window.open(whatsappURL, '_blank');
+      const type = document.getElementById("type").value;
+
+      // Collect selected platforms
+      const platformCheckboxes = document.querySelectorAll(".checkbox-group input:checked");
+      const platforms = Array.from(platformCheckboxes).map(cb => cb.value);
+
+      if (!name || !link || !type || platforms.length === 0) {
+        alert("⚠️ Please fill all fields and select at least one platform");
+        return;
+      }
+
+      try {
+        await db.collection("Groups").add({
+          name: name,
+          link: link,
+          type: type,
+          platforms: platforms,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        });
+
+        alert("✅ Group added successfully!");
+        form.reset();
+      } catch (error) {
+        console.error("Error adding group:", error);
+        alert("❌ Failed to add group. Try again.");
+      }
     });
-    <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-const form = document.getElementById("groupForm");
-
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const name = document.getElementById("name").value.trim();
-  const link = document.getElementById("link").value.trim();
-  const type = document.getElementById("groupType").value;
-  const platforms = Array.from(document.querySelectorAll(".platform:checked")).map(p => p.value);
-
-  if(!name || !link || !type || platforms.length === 0){
-    alert("Fill all fields and select at least one platform");
-    return;
-  }
-
-  try {
-    await addDoc(collection(db, "Groups"), { name, link, type, platforms });
-    alert("Group added successfully!");
-    form.reset();
-  } catch(err){
-    console.error(err);
-    alert("Error adding group. Check console.");
-  }
-});
-</script>
   </script>
-
 </body>
 </html>
