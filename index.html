@@ -331,6 +331,60 @@ h3.custom-heading {
       color: black;
       font-weight: bold;
     }
+
+
+
+form {
+  display: flex;
+  flex-wrap: wrap; /* Mobile friendly wrap */
+  justify-content: center;
+  gap: 10px;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  max-width: 500px;
+  margin: 0 auto 30px auto;
+}
+
+form input {
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  flex: 1 1 150px; /* Flexible width, min 150px */
+  min-width: 120px;
+}
+
+form button {
+  padding: 12px 20px;
+  border: none;
+  background-color: #25D366;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  flex: 1 1 100px; /* button flexible on mobile */
+}
+
+form button:hover {
+  background-color: #128C7E;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 480px) {
+  form {
+    flex-direction: column;
+    gap: 12px;
+    padding: 15px;
+  }
+  form input, form button {
+    flex: 1 1 100%;
+  }
+}
+
+
+    
 /* 🌟 Form Styling */
 #groupForm {
   margin: 20px;
