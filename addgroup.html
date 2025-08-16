@@ -305,94 +305,163 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 
   <script>
-    // Initialize Firebase
-    const firebaseConfig = {
-      apiKey: "AIzaSyCwdlnLXcXauh3_YmY6cwswqzcieMOHI0Y",
-      authDomain: "ludogroup-a530a.firebaseapp.com",
-      projectId: "ludogroup-a530a",
-      storageBucket: "ludogroup-a530a.appspot.com",
-      messagingSenderId: "838421084676",
-      appId: "1:838421084676:web:9e02670e280eafcd86d351"
-    };
+<script>
+  // Initialize Firebase with your configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyCwdlnLXcXauh3_YmY6cwswqzcieMOHI0Y",
+    authDomain: "ludogroup-a530a.firebaseapp.com",
+    projectId: "ludogroup-a530a",
+    storageBucket: "ludogroup-a530a.appspot.com",
+    messagingSenderId: "838421084676",
+    appId: "1:838421084676:web:9e02670e280eafcd86d351"
+  };
 
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
 
-    // DOM elements
-    const form = document.getElementById("groupForm");
-    const statusMessage = document.getElementById("statusMessage");
+  // DOM elements
+  const groupsList = document.getElementById("groupsList");
+  const categoryTabs = document.getElementById("categoryTabs");
+  const categoryContents = document.getElementById("categoryContents");
+  let activeCategory = "All";
 
-    // Form submission handler
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+  // Function to generate color from group name
+  function stringToColor(str) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    const c = (hash & 0x00FFFFFF).toString(16).toUpperCase();
+    return "#" + "00000".substring(0, 6 - c.length) + c;
+  }
+
+  // Function to load and display groups
+  async function loadGroups() {
+    try {
+      // Show loading state
+      groupsList.innerHTML = '<div class="loading">Loading groups...</div>';
       
-      // Get form values
-      const name = document.getElementById("name").value.trim();
-      const link = document.getElementById("link").value.trim();
-      const groupType = document.getElementById("groupType").value;
-      const description = document.getElementById("description").value.trim();
-      
-      // Get checked platforms
-      const platformCheckboxes = document.querySelectorAll(".platform:checked");
-      const platforms = Array.from(platformCheckboxes).map(cb => cb.value);
-      
-      // Validation
-      if (!name || !link || !groupType || platforms.length === 0) {
-        showMessage("Please fill all required fields", "error");
+      // Get groups from Firestore, ordered by timestamp (newest first)
+      const querySnapshot = await db.collection("Groups")
+        .where("status", "==", "approved") // Only show approved groups
+        .orderBy("timestamp", "desc")
+        .get();
+
+      if (querySnapshot.empty) {
+        groupsList.innerHTML = '<p class="no-groups">No groups available yet. Check back later!</p>';
         return;
       }
 
-      try {
-        // Add new group to Firestore
-        await db.collection("Groups").add({
-          name: name,
-          link: link,
-          type: groupType,
-          platforms: platforms,
-          description: description,
-          status: "pending", // Needs admin approval
-          timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      // Organize groups by category
+      const groupsByCategory = {
+        "All": []
+      };
+
+      querySnapshot.forEach(doc => {
+        const group = doc.data();
+        const groupType = group.type || "Other"; // Default to "Other" if no type specified
+        
+        // Add to "All" category
+        groupsByCategory["All"].push({
+          id: doc.id,
+          ...group
         });
-        
-        // Show success message
-        showMessage("Group submitted successfully! It will be published after admin approval.", "success");
-        
-        // Send WhatsApp message to admin
-        const phone = "9473746020";
-        const message = `New Group Submission:%0A%0A📛 Name: ${encodeURIComponent(name)}%0A🔗 Link: ${encodeURIComponent(link)}%0A🏷 Type: ${encodeURIComponent(groupType)}%0A📱 Platforms: ${encodeURIComponent(platforms.join(", "))}%0A%0A${description ? `📝 Description: ${encodeURIComponent(description)}` : ''}`;
-        const whatsappURL = `https://wa.me/${phone}?text=${message}`;
-        
-        // Open WhatsApp in new tab
-        window.open(whatsappURL, '_blank');
-        
-        // Reset form
-        form.reset();
-      } catch (error) {
-        console.error("Error adding group: ", error);
-        showMessage("Failed to submit group. Please try again later.", "error");
-      }
-    });
-// In your addgroup.html form submission handler:
-await db.collection("Groups").add({
-  name: name,
-  link: link,
-  type: groupType,
-  platforms: platforms,
-  description: description,
-  status: "approved", // Change this to "approved" for testing
-  timestamp: firebase.firestore.FieldValue.serverTimestamp()
-});
-    // Function to show status messages
-    function showMessage(message, type) {
-      statusMessage.textContent = message;
-      statusMessage.className = `status-message ${type}`;
-      statusMessage.style.display = "block";
-      
-      // Hide message after 5 seconds
-      setTimeout(() => {
-        statusMessage.style.display = "none";
-      }, 5000);
+
+        // Add to specific category
+        if (!groupsByCategory[groupType]) {
+          groupsByCategory[groupType] = [];
+        }
+        groupsByCategory[groupType].push({
+          id: doc.id,
+          ...group
+        });
+      });
+
+      // Generate category tabs
+      const categories = Object.keys(groupsByCategory);
+      categoryTabs.innerHTML = categories.map(category => `
+        <button class="category-tab ${category === 'All' ? 'active' : ''}" 
+                data-category="${category}">
+          ${category}
+        </button>
+      `).join('');
+
+      // Generate group cards for each category
+      categoryContents.innerHTML = categories.map(category => {
+        const groupsHTML = groupsByCategory[category].map(group => {
+          const color = stringToColor(group.name);
+          const firstLetter = group.name.charAt(0).toUpperCase();
+          
+          return `
+            <div class="group-card">
+              <div class="group-header">
+                <div class="group-avatar" style="background:${color}">
+                  ${firstLetter}
+                </div>
+                <div class="group-info">
+                  <h3>${group.name}</h3>
+                  <p class="group-type">${group.type}</p>
+                  <div class="platform-tags">
+                    ${group.platforms.map(platform => `
+                      <span class="platform-tag ${platform.toLowerCase()}">
+                        ${platform}
+                      </span>
+                    `).join('')}
+                  </div>
+                </div>
+              </div>
+              <a href="${group.link}" target="_blank" class="join-btn">Join Now</a>
+            </div>
+          `;
+        }).join('');
+
+        return `
+          <div class="category-content ${category === 'All' ? 'active' : ''}" 
+               id="content-${category}">
+            ${groupsHTML}
+          </div>
+        `;
+      }).join('');
+
+      // Add click event listeners to category tabs
+      document.querySelectorAll('.category-tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+          // Remove active class from all tabs
+          document.querySelectorAll('.category-tab').forEach(t => {
+            t.classList.remove('active');
+          });
+          
+          // Add active class to clicked tab
+          this.classList.add('active');
+          activeCategory = this.dataset.category;
+          
+          // Hide all category contents
+          document.querySelectorAll('.category-content').forEach(content => {
+            content.classList.remove('active');
+          });
+          
+          // Show selected category content
+          document.getElementById(`content-${activeCategory}`).classList.add('active');
+        });
+      });
+
+    } catch (error) {
+      console.error("Error loading groups:", error);
+      groupsList.innerHTML = `
+        <div class="error-message">
+          Failed to load groups. Please refresh the page or try again later.
+        </div>
+      `;
     }
+  }
+
+  // Load groups when page loads
+  document.addEventListener('DOMContentLoaded', loadGroups);
+
+  // Optional: Add refresh button functionality
+  document.getElementById('refreshBtn')?.addEventListener('click', loadGroups);
+</script>
   </script>
 </body>
 </html>
