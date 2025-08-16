@@ -68,6 +68,9 @@
   <!-- Add these Firebase scripts to your <head> section -->
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <!-- Firebase Auth -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
   <style>
    /* ===== RESET ===== */
 * {
@@ -813,6 +816,24 @@ body {
 
     // Load groups when page loads
     document.addEventListener("DOMContentLoaded", loadGroups);
+
+// Admin Email(s)
+const adminEmails = ["jokerludo@gmail.com"]; // यहाँ अपनी Firebase वाली Gmail डालो
+
+let currentUser = null;
+let isAdmin = false;
+
+// Listen auth state
+firebase.auth().onAuthStateChanged((user) => {
+  currentUser = user;
+  if (user) {
+    isAdmin = adminEmails.includes(user.email);
+    console.log("Logged in:", user.email, "Admin:", isAdmin);
+  } else {
+    isAdmin = false;
+  }
+});
+
 </script>
 
 
