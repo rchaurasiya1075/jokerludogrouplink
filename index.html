@@ -633,12 +633,7 @@ body {
     </div>
   </div>
 </div>
-  <section class="features" style="
-  width: 80%; 
-  max-width: 1000px;
-  margin: 0 auto; 
-  text-align: center;
-">
+
    <!-- Add Group Form -->
   <form id="groupForm">
     <h2>Add New Group</h2>
@@ -649,7 +644,13 @@ body {
 
   <!-- Groups List -->
   <div id="groupsList"></div>
-<br> <br>
+<br> 
+       <section class="features" style="
+  width: 80%; 
+  max-width: 1000px;
+  margin: 0 auto; 
+  text-align: center;
+">
     <div class="card">
       <h3>✅ 24x7 Support</h3>
       <p>Always online to help with fast responses.</p>
@@ -783,6 +784,10 @@ async function loadGroups() {
     `;
     groupsList.appendChild(card);
   });
+snapshot.forEach(doc => {
+  const data = doc.data();
+  console.log("Loaded group:", data.name, data.link); // ✅ debug
+});
 
   // Scroll to last added group
   groupsList.lastChild?.scrollIntoView({ behavior: "smooth" });
