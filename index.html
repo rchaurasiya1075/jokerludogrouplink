@@ -462,20 +462,15 @@ h3.custom-heading {
     <button onclick="toggleGroupForm()">➕ Add Your Ludo Group</button>
   </div>
 
-  <!-- Hidden Group Form -->
-  <div id="group-form" class="group-form">
-    <h3>Add Your Ludo WhatsApp Group</h3>
-    <form onsubmit="addGroup(event)">
-      <input type="text" id="group-name" placeholder="Enter Group Name" required><br>
-      <input type="url" id="group-link" placeholder="Enter WhatsApp Group Link" required><br>
-      <input type="url" id="group-image" placeholder="Enter Group DP Image URL" required><br>
-      <button type="submit">Submit</button>
-    </form>
-  </div>
+ <h2>Add New Group</h2>
+<form id="groupForm">
+  <input type="text" id="name" placeholder="Group Name" required>
+  <input type="text" id="link" placeholder="WhatsApp Group Link" required>
+  <button type="submit">Add Group</button>
+</form>
 
-  <!-- Groups List -->
-  <div id="group-list" class="group-list"></div>
-
+<h2>Available Groups</h2>
+<div id="groupsList"></div>
   <section class="features">
     <div style="flex: 1; min-width: 300px;">
       <video width="100%" controls muted poster="WhatsApp Image 2025-07-27 at 10.45.50.jpeg">
@@ -693,6 +688,84 @@ h3.custom-heading {
       content.classList.toggle('open');
     });
   });
+  <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyCwdlnLXcXauh3_YmY6cwswqzcieMOHI0Y",
+    authDomain: "ludogroup-a530a.firebaseapp.com",
+    projectId: "ludogroup-a530a",
+    storageBucket: "ludogroup-a530a.firebasestorage.app",
+    messagingSenderId: "838421084676",
+    appId: "1:838421084676:web:9e02670e280eafcd86d351",
+    measurementId: "G-CRQL1LBZTN"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+     <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
+
+  // ⚡ Tumhara Firebase config yaha paste karo
+  const firebaseConfig = {
+    apiKey: "AIzaSyDk-XXXXXX",
+    authDomain: "ludogroup-a530a.firebaseapp.com",
+    projectId: "ludogroup-a530a",
+    storageBucket: "ludogroup-a530a.appspot.com",
+    messagingSenderId: "838421084676",
+    appId: "1:838421084676:web:abcdef123456"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const form = document.getElementById("groupForm");
+  const groupsList = document.getElementById("groupsList");
+
+  // ✅ Add new group
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const name = document.getElementById("name").value;
+    const link = document.getElementById("link").value;
+
+    await addDoc(collection(db, "Groups"), {
+      name,
+      link
+    });
+
+    form.reset();
+    loadGroups(); // refresh list
+  });
+
+  // ✅ Fetch & show groups
+  async function loadGroups() {
+    groupsList.innerHTML = "";
+    const querySnapshot = await getDocs(collection(db, "Groups"));
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      groupsList.innerHTML += `
+        <div style="border:1px solid #ccc; margin:10px; padding:10px; border-radius:8px;">
+          <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" width="50" height="50" style="border-radius:50%">
+          <h3>${data.name}</h3>
+          <a href="${data.link}" target="_blank">
+            <button>Join Group</button>
+          </a>
+        </div>
+      `;
+    });
+  }
+
+  loadGroups();
+</script>
 </script>
 
 
