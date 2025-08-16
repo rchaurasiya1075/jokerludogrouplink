@@ -34,19 +34,38 @@
   <meta property="og:url" content="https://ludogrouplink.com/join.html" />
   <meta property="og:type" content="website" />
 
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <style>
+    :root {
+      --primary-color: #2d2e52;
+      --secondary-color: #ffde59;
+      --text-color: #333;
+      --light-text: #555;
+      --bg-color: #f5f7fa;
+      --card-bg: white;
+      --error-color: #e74c3c;
+      --success-color: #2ecc71;
+    }
+
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
       padding: 0;
-      background: #f5f7fa;
-      color: #333;
+      background: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
     }
 
     .navbar {
-      background: #2d2e52;
+      background: var(--primary-color);
       padding: 25px 20px 10px;
       text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
     .logo {
@@ -56,13 +75,18 @@
       margin-bottom: 15px;
       display: block;
       text-decoration: none;
+      transition: transform 0.3s;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
     }
 
     .nav-links {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 15px;
+      gap: 12px;
     }
 
     .nav-links a {
@@ -71,126 +95,164 @@
       font-weight: 500;
       padding: 8px 14px;
       border-radius: 5px;
-      transition: background 0.3s;
+      transition: all 0.3s;
+      font-size: 15px;
     }
 
-    .nav-links a:hover {
-      background: #ffde59;
-      color: #2d2e52;
+    .nav-links a:hover, .nav-links a.active {
+      background: var(--secondary-color);
+      color: var(--primary-color);
     }
 
     .container {
-      max-width: 900px;
+      max-width: 1200px;
       margin: 40px auto;
       padding: 20px;
     }
 
     h1, h2 {
       text-align: center;
-      color: #2d2e52;
+      color: var(--primary-color);
       margin-bottom: 30px;
+      position: relative;
+    }
+
+    h1::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: var(--secondary-color);
+      margin: 15px auto 0;
+      border-radius: 2px;
+    }
+
+    .intro-text {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 30px;
+      color: var(--light-text);
+      font-size: 16px;
     }
 
     /* Filter Section */
     .filter-section {
-      background: white;
-      padding: 20px;
+      background: var(--card-bg);
+      padding: 25px;
       border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 15px rgba(0,0,0,0.08);
       margin-bottom: 30px;
     }
 
     .filter-group {
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
 
     .filter-group h3 {
-      margin: 0 0 10px;
+      margin: 0 0 12px;
       font-size: 16px;
-      color: #555;
+      color: var(--light-text);
+      font-weight: 600;
     }
 
     .filter-buttons {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 10px;
     }
 
     .filter-btn {
-      padding: 8px 15px;
+      padding: 8px 18px;
       background: #f1f1f1;
       border: none;
       border-radius: 20px;
       cursor: pointer;
       transition: all 0.3s;
       font-size: 14px;
+      font-weight: 500;
+    }
+
+    .filter-btn:hover {
+      background: #ddd;
     }
 
     .filter-btn.active {
-      background: #2d2e52;
+      background: var(--primary-color);
       color: white;
     }
 
     /* Groups List */
     .groups-container {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 25px;
     }
 
     .group-card {
-      background: white;
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-      transition: transform 0.3s;
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
     }
 
     .group-card:hover {
       transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
     }
 
     .group-header {
       display: flex;
       align-items: center;
-      margin-bottom: 15px;
+      margin-bottom: 18px;
     }
 
     .group-avatar {
-      width: 50px;
-      height: 50px;
+      width: 55px;
+      height: 55px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
       font-weight: bold;
-      font-size: 20px;
-      margin-right: 15px;
+      font-size: 22px;
+      margin-right: 18px;
+      flex-shrink: 0;
     }
 
     .group-title {
       flex: 1;
+      min-width: 0;
     }
 
     .group-title h3 {
       margin: 0;
-      color: #2d2e52;
+      color: var(--primary-color);
+      font-size: 18px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .group-type {
       display: inline-block;
       background: #e0e0e0;
-      padding: 3px 10px;
+      padding: 4px 12px;
       border-radius: 4px;
       font-size: 12px;
-      margin-top: 5px;
+      margin-top: 6px;
+      font-weight: 500;
     }
 
     .group-details {
       margin: 15px 0;
-      color: #555;
+      color: var(--light-text);
       font-size: 14px;
+      flex-grow: 1;
     }
 
     .group-platforms {
@@ -202,76 +264,162 @@
 
     .platform-tag {
       background: #f1f1f1;
-      padding: 4px 10px;
+      padding: 5px 12px;
       border-radius: 4px;
       font-size: 12px;
+      font-weight: 500;
     }
 
     .whatsapp { background: #25D366; color: white; }
     .telegram { background: #0088cc; color: white; }
     .discord { background: #5865F2; color: white; }
+    .facebook { background: #1877F2; color: white; }
 
     .join-btn {
       display: block;
       text-align: center;
-      background: #2d2e52;
+      background: var(--primary-color);
       color: white;
-      padding: 10px;
+      padding: 12px;
       border-radius: 6px;
       text-decoration: none;
       font-weight: 600;
-      transition: background 0.3s;
+      transition: all 0.3s;
+      margin-top: 10px;
     }
 
     .join-btn:hover {
-      background: #ffde59;
-      color: #2d2e52;
+      background: var(--secondary-color);
+      color: var(--primary-color);
+      transform: translateY(-2px);
     }
 
+    .join-btn i {
+      margin-left: 5px;
+    }
+
+    /* Status Messages */
     .loading {
       text-align: center;
       padding: 40px;
       font-size: 18px;
-      color: #666;
+      color: var(--light-text);
+      grid-column: 1 / -1;
+    }
+
+    .loading i {
+      margin-right: 10px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     .no-results {
       text-align: center;
       padding: 40px;
       grid-column: 1 / -1;
+      color: var(--light-text);
     }
 
-    footer {
-      background: #2d2e52;
-      color: #fff;
-      padding: 20px 10px;
+    .no-results i {
+      font-size: 40px;
+      margin-bottom: 15px;
+      color: #ccc;
+    }
+
+    .error-message {
+      color: var(--error-color);
       text-align: center;
-      font-size: 14px;
-      margin-top: 50px;
+      padding: 20px;
+      background: rgba(231, 76, 60, 0.1);
+      border-radius: 8px;
+      margin: 20px 0;
+      grid-column: 1 / -1;
+    }
+
+    .refresh-btn {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 4px;
+      margin-top: 15px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .refresh-btn:hover {
+      background: #1a1b35;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--primary-color);
+      color: #fff;
+      padding: 30px 10px;
+      text-align: center;
+      font-size: 15px;
+      margin-top: 60px;
     }
 
     .footer-links {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 15px;
-      margin-bottom: 10px;
+      gap: 20px;
+      margin-bottom: 15px;
     }
 
     .footer-links a {
       color: #fff;
       text-decoration: none;
       font-weight: 500;
-      transition: color 0.3s;
+      transition: all 0.3s;
     }
 
     .footer-links a:hover {
-      color: #ffde59;
+      color: var(--secondary-color);
+      transform: translateY(-2px);
     }
 
-    @media (max-width: 600px) {
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    .social-links a {
+      color: white;
+      background: rgba(255,255,255,0.1);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+
+    .social-links a:hover {
+      background: var(--secondary-color);
+      color: var(--primary-color);
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      opacity: 0.8;
+      font-size: 14px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
       .container {
         padding: 15px;
+        margin: 20px auto;
       }
       
       .groups-container {
@@ -280,6 +428,38 @@
       
       .filter-buttons {
         justify-content: center;
+      }
+      
+      .group-card {
+        padding: 20px;
+      }
+      
+      h1 {
+        font-size: 24px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .navbar {
+        padding: 15px 10px 5px;
+      }
+      
+      .logo {
+        font-size: 28px;
+      }
+      
+      .nav-links a {
+        padding: 6px 10px;
+        font-size: 14px;
+      }
+      
+      .filter-section {
+        padding: 15px;
+      }
+      
+      .filter-btn {
+        padding: 6px 12px;
+        font-size: 13px;
       }
     }
   </style>
@@ -291,7 +471,7 @@
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="rules.html">Rules</a>
-      <a href="join.html">Join</a>
+      <a href="join.html" class="active">Join</a>
       <a href="addgroup.html">Add Group</a>
       <a href="contact.html">Contact</a>
       <a href="privacy.html">Privacy</a>
@@ -300,7 +480,7 @@
 
   <div class="container">
     <h1>Join Ludo Groups</h1>
-    <p style="text-align: center; max-width: 700px; margin: 0 auto 30px; color: #555;">
+    <p class="intro-text">
       Browse and join the best Ludo groups by category. Find WhatsApp, Telegram and Discord groups for gaming, earning money, tournaments and more.
     </p>
 
@@ -311,9 +491,9 @@
         <div class="filter-buttons" id="categoryFilters">
           <button class="filter-btn active" data-category="All">All Categories</button>
           <button class="filter-btn" data-category="Gaming">Gaming</button>
-          <button class="filter-btn" data-category="Earning">Earning</button>
+          <button class="filter-btn" data-category="Earning">Earning Money</button>
           <button class="filter-btn" data-category="Tournament">Tournament</button>
-          <button class="filter-btn" data-category="Casual">Casual</button>
+          <button class="filter-btn" data-category="Casual">Casual Play</button>
           <button class="filter-btn" data-category="Competitive">Competitive</button>
         </div>
       </div>
@@ -325,13 +505,14 @@
           <button class="filter-btn" data-platform="WhatsApp">WhatsApp</button>
           <button class="filter-btn" data-platform="Telegram">Telegram</button>
           <button class="filter-btn" data-platform="Discord">Discord</button>
+          <button class="filter-btn" data-platform="Facebook">Facebook</button>
         </div>
       </div>
     </div>
 
     <!-- Groups List -->
     <div class="groups-container" id="groupsList">
-      <div class="loading">Loading groups...</div>
+      <div class="loading"><i class="fas fa-spinner"></i> Loading groups...</div>
     </div>
   </div>
 
@@ -344,7 +525,15 @@
       <a href="privacy.html">Privacy</a>
       <a href="contact.html">Contact</a>
     </div>
-    <p>© 2025 JokerLudo Group. All Rights Reserved.</p>
+    
+    <div class="social-links">
+      <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+      <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+    
+    <p class="copyright">© 2025 JokerLudo Group. All Rights Reserved.</p>
   </footer>
 
   <!-- Firebase SDK -->
@@ -361,6 +550,8 @@
       messagingSenderId: "838421084676",
       appId: "1:838421084676:web:9e02670e280eafcd86d351"
     };
+    
+    // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
@@ -379,9 +570,20 @@
       return "#" + "00000".substring(0, 6 - c.length) + c;
     }
 
+    // Get platform icon
+    function getPlatformIcon(platform) {
+      switch(platform) {
+        case 'WhatsApp': return '<i class="fab fa-whatsapp"></i>';
+        case 'Telegram': return '<i class="fab fa-telegram"></i>';
+        case 'Discord': return '<i class="fab fa-discord"></i>';
+        case 'Facebook': return '<i class="fab fa-facebook-f"></i>';
+        default: return '';
+      }
+    }
+
     // Load and display groups
     async function loadGroups() {
-      groupsList.innerHTML = '<div class="loading">Loading groups...</div>';
+      groupsList.innerHTML = '<div class="loading"><i class="fas fa-spinner"></i> Loading groups...</div>';
       
       try {
         const querySnapshot = await db.collection("Groups")
@@ -390,7 +592,12 @@
           .get();
 
         if (querySnapshot.empty) {
-          groupsList.innerHTML = '<div class="no-results">No groups available yet. Check back later!</div>';
+          groupsList.innerHTML = `
+            <div class="no-results">
+              <i class="fas fa-users-slash"></i>
+              <p>No groups available yet. Check back later!</p>
+            </div>
+          `;
           return;
         }
 
@@ -410,11 +617,8 @@
 
             // Create platform tags
             const platformTags = group.platforms.map(platform => {
-              let platformClass = '';
-              if (platform === 'WhatsApp') platformClass = 'whatsapp';
-              if (platform === 'Telegram') platformClass = 'telegram';
-              if (platform === 'Discord') platformClass = 'discord';
-              return `<span class="platform-tag ${platformClass}">${platform}</span>`;
+              let platformClass = platform.toLowerCase();
+              return `<span class="platform-tag ${platformClass}">${getPlatformIcon(platform)} ${platform}</span>`;
             }).join('');
 
             const groupCard = document.createElement('div');
@@ -424,7 +628,7 @@
                 <div class="group-avatar" style="background:${color}">${firstLetter}</div>
                 <div class="group-title">
                   <h3>${group.name}</h3>
-                  <span class="group-type">${group.type}</span>
+                  <span class="group-type">${group.type || 'General'}</span>
                 </div>
               </div>
               
@@ -434,7 +638,7 @@
                 ${platformTags}
               </div>
               
-              <a href="${group.link}" target="_blank" class="join-btn">Join Group</a>
+              <a href="${group.link}" target="_blank" class="join-btn">Join Group <i class="fas fa-external-link-alt"></i></a>
             `;
             
             groupsList.appendChild(groupCard);
@@ -442,12 +646,23 @@
         });
 
         if (!hasResults) {
-          groupsList.innerHTML = '<div class="no-results">No groups match your filters. Try different criteria.</div>';
+          groupsList.innerHTML = `
+            <div class="no-results">
+              <i class="fas fa-filter"></i>
+              <p>No groups match your filters. Try different criteria.</p>
+            </div>
+          `;
         }
 
       } catch (error) {
         console.error("Error loading groups: ", error);
-        groupsList.innerHTML = '<div class="no-results">Error loading groups. Please try again later.</div>';
+        groupsList.innerHTML = `
+          <div class="error-message">
+            <i class="fas fa-exclamation-triangle"></i>
+            <p>Error loading groups. Please try again later.</p>
+            <button onclick="loadGroups()" class="refresh-btn">Refresh <i class="fas fa-sync-alt"></i></button>
+          </div>
+        `;
       }
     }
 
