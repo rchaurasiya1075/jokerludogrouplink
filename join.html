@@ -486,6 +486,47 @@
      <section class="hero">
     <a href="addgroup.html" class="join-btn" style="background: #ff5722;">Add Your Whatsapp/Telegram Ludo Group Link</a>
   </section>
+
+    <div class="container" id="groupsList"></div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_STORAGE_BUCKET",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const groupsList = document.getElementById("groupsList");
+
+// Fetch all groups (can add query filters for category/platform later)
+async function loadGroups() {
+  groupsList.innerHTML = "";
+  const snapshot = await getDocs(collection(db, "Groups"));
+  snapshot.forEach(doc => {
+    const data = doc.data();
+    const card = document.createElement("div");
+    card.className = "group-card";
+    card.innerHTML = `
+      <h3>${data.name}</h3>
+      <p>Type: ${data.type}</p>
+      <p>Platforms: ${data.platforms.join(", ")}</p>
+      <a href="${data.link}" target="_blank"><button class="join-btn">Join</button></a>
+    `;
+    groupsList.appendChild(card);
+  });
+}
+loadGroups();
+</script>
+
+    
   <footer>
     <div class="footer-links">
       <a href="index.html">Home</a>
