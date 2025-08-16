@@ -458,29 +458,23 @@ h3.custom-heading {
     <br><br>
     <a href="addgroup.html" class="join-btn" style="background: #ff5722;">Add Your Ludo Group</a>
   </section>
-<!-- Fixed Bottom Button -->
 <div class="bottom-fixed">
-  <button onclick="toggleGroupForm()">➕ Add Your Ludo Group</button>
-</div>
+    <button onclick="toggleGroupForm()">➕ Add Your Ludo Group</button>
+  </div>
 
-<!-- Fixed Bottom Button -->
-<div class="bottom-fixed">
-  <button onclick="toggleGroupForm()">➕ Add Your Ludo Group</button>
-</div>
+  <!-- Hidden Group Form -->
+  <div id="group-form" class="group-form">
+    <h3>Add Your Ludo WhatsApp Group</h3>
+    <form onsubmit="addGroup(event)">
+      <input type="text" id="group-name" placeholder="Enter Group Name" required><br>
+      <input type="url" id="group-link" placeholder="Enter WhatsApp Group Link" required><br>
+      <input type="url" id="group-image" placeholder="Enter Group DP Image URL" required><br>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
 
-<!-- Hidden Group Form -->
-<div id="group-form" class="group-form">
-  <h3>Add Your Ludo WhatsApp Group</h3>
-  <form onsubmit="addGroup(event)">
-    <input type="text" id="group-name" placeholder="Enter Group Name" required><br>
-    <input type="url" id="group-link" placeholder="Enter WhatsApp Group Link" required><br>
-    <input type="url" id="group-image" placeholder="Enter Group DP Image URL" required><br>
-    <button type="submit">Submit</button>
-  </form>
-</div>
-
-<!-- Groups List -->
-<div id="group-list" class="group-list"></div>
+  <!-- Groups List -->
+  <div id="group-list" class="group-list"></div>
 
   <section class="features">
     <div style="flex: 1; min-width: 300px;">
@@ -643,46 +637,45 @@ h3.custom-heading {
   }
 
   loadFrames();
-<script>
-function toggleGroupForm() {
-  const form = document.getElementById("group-form");
-  form.style.display = (form.style.display === "block") ? "none" : "block";
-  if (form.style.display === "block") {
-    form.scrollIntoView({ behavior: "smooth" });
-  }
-}
 
-function addGroup(event) {
-  event.preventDefault();
+ function toggleGroupForm() {
+      const form = document.getElementById("group-form");
+      form.style.display = (form.style.display === "block") ? "none" : "block";
+      if (form.style.display === "block") {
+        form.scrollIntoView({ behavior: "smooth" });
+      }
+    }
 
-  const name = document.getElementById("group-name").value;
-  const link = document.getElementById("group-link").value;
-  const image = document.getElementById("group-image").value;
+    function addGroup(event) {
+      event.preventDefault();
 
-  const groupList = document.getElementById("group-list");
+      const name = document.getElementById("group-name").value;
+      const link = document.getElementById("group-link").value;
+      const image = document.getElementById("group-image").value;
 
-  // Create new group card
-  const card = document.createElement("div");
-  card.className = "group-card";
-  card.innerHTML = `
-    <img src="${image}" alt="${name} DP">
-    <h4>${name}</h4>
-    <a href="${link}" target="_blank">Join Group</a>
-  `;
+      const groupList = document.getElementById("group-list");
 
-  // Add to list
-  groupList.appendChild(card);
+      // Create new group card
+      const card = document.createElement("div");
+      card.className = "group-card";
+      card.innerHTML = `
+        <img src="${image}" alt="${name} DP">
+        <h4>${name}</h4>
+        <a href="${link}" target="_blank">Join Group</a>
+      `;
 
-  // Reset form
-  document.getElementById("group-name").value = "";
-  document.getElementById("group-link").value = "";
-  document.getElementById("group-image").value = "";
-  document.getElementById("group-form").style.display = "none";
+      // Add to list
+      groupList.appendChild(card);
 
-  // Auto scroll to new group
-  card.scrollIntoView({ behavior: "smooth" });
-}
-</script>
+      // Reset form
+      document.getElementById("group-name").value = "";
+      document.getElementById("group-link").value = "";
+      document.getElementById("group-image").value = "";
+      document.getElementById("group-form").style.display = "none";
+
+      // Auto scroll to new group
+      card.scrollIntoView({ behavior: "smooth" });
+    }
 
 
   document.querySelectorAll('.toc-item h3').forEach(heading => {
