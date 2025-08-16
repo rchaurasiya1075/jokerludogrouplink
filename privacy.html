@@ -208,18 +208,6 @@
     <h2>6. Updates</h2>
     <p>We may update this Privacy Policy periodically. Please check this page regularly to stay informed.</p>
   </div>
-<!-- 🔐 Admin Login Section (Bottom of privacy.html) -->
-<div id="adminLoginBox" style="margin-top:50px; padding:20px; border-top:1px solid #ccc;">
-  <h3>🔐 Admin Login</h3>
-  <form id="adminLoginForm">
-    <input type="email" id="adminEmail" placeholder="Enter Admin Email" required style="padding:8px; margin:5px;"><br>
-    <input type="password" id="adminPassword" placeholder="Enter Password" required style="padding:8px; margin:5px;"><br>
-    <button type="submit" style="padding:10px 20px; margin:5px;">Login</button>
-  </form>
-  <div id="loginStatus" style="margin-top:10px; color:red;"></div>
-  <button id="logoutBtn" style="display:none; padding:10px 20px; margin-top:10px;">Logout</button>
-</div>
-
 <script>
   // ✅ Firebase config
   const firebaseConfig = {
@@ -237,12 +225,11 @@
   }
   const auth = firebase.auth();
 
-  // ✅ Only this Gmail can access Admin Panel
   const ADMIN_EMAIL = "rchaurasiyaself1@gmail.com";
 
-  // ✅ Handle login
+  // ✅ Login Form
   document.getElementById("adminLoginForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // 🚨 Stop page reload
     const email = document.getElementById("adminEmail").value;
     const password = document.getElementById("adminPassword").value;
     const loginStatus = document.getElementById("loginStatus");
@@ -254,7 +241,7 @@
       if (user.email === ADMIN_EMAIL) {
         loginStatus.innerHTML = "✅ Logged in as Admin. Redirecting...";
         
-        // 🔥 Admin page पर redirect
+        // 🔥 Redirect after login
         setTimeout(() => {
           window.location.href = "admin.html";
         }, 1000);
@@ -268,7 +255,17 @@
     }
   });
 
-  // ✅ Handle logout
+  // ✅ Listen for Auth State (extra safety)
+  auth.onAuthStateChanged((user) => {
+    if (user && user.email === ADMIN_EMAIL) {
+      // Agar already login hai toh direct admin.html bhej do
+      if (window.location.pathname.includes("privacy.html")) {
+        window.location.href = "admin.html";
+      }
+    }
+  });
+
+  // ✅ Logout
   document.getElementById("logoutBtn").addEventListener("click", async () => {
     await auth.signOut();
     document.getElementById("loginStatus").innerHTML = "✅ Logged out";
