@@ -331,95 +331,118 @@ h3.custom-heading {
       color: black;
       font-weight: bold;
     }
-  /* Fixed Bottom Button */
-.bottom-fixed {
-  position: fixed;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
-}
-.bottom-fixed button {
-  background: #ff3e3e;
-  color: #fff;
-  padding: 12px 25px;
-  border-radius: 50px;
-  border: none;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-/* Hidden Form */
-.group-form {
-  display: none;
-  max-width: 400px;
-  margin: 30px auto;
+/* 🌟 Form Styling */
+#groupForm {
+  margin: 20px;
   padding: 20px;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-  text-align: center;
+  background: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  font-family: "Segoe UI", sans-serif;
 }
-.group-form h3 { color: #d22; margin-bottom: 15px; }
-.group-form input {
-  width: 90%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-}
-.group-form button {
-  background: #2d2e52;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-.group-form button:hover { background: #1a1a3a; }
 
-/* Group List */
-.group-list {
-  max-width: 900px;
-  margin: 30px auto;
+#groupForm h2 {
+  margin-bottom: 15px;
+  font-size: 22px;
+  color: #333;
+}
+
+#groupForm input {
+  padding: 10px;
+  width: 45%;
+  margin-right: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+#groupForm button {
+  padding: 10px 20px;
+  background: #25d366;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+#groupForm button:hover {
+  background: #1ebe5d;
+}
+
+/* 🌟 Groups Container */
+#groupsList {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  padding: 20px;
+  font-family: "Segoe UI", sans-serif;
   justify-content: center;
 }
+
+/* 🌟 Each Group Card */
 .group-card {
-  width: 250px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 350px;
+  background: white;
+  border-radius: 15px;
   padding: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
-.group-card img {
-  width: 100px;
-  height: 100px;
+
+.group-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+/* 🌟 Left Side (DP + Name) */
+.group-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.group-info img {
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 10px;
+  border: 2px solid #25d366;
 }
-.group-card h4 {
-  margin-bottom: 10px;
+
+.group-info h3 {
+  margin: 0;
+  font-size: 18px;
   color: #333;
 }
-.group-card a {
-  display: inline-block;
-  background: #25D366;
-  color: #fff;
-  padding: 8px 15px;
-  border-radius: 6px;
-  text-decoration: none;
+
+.group-info p {
+  margin: 0;
+  font-size: 13px;
+  color: #777;
+}
+
+/* 🌟 Join Button */
+.join-btn {
+  background: #25d366;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 14px;
   font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
 }
-.group-card a:hover {
-  background: #128C7E;
+
+.join-btn:hover {
+  background: #1ebe5d;
 }
+
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
@@ -560,21 +583,16 @@ h3.custom-heading {
   margin: 0 auto; 
   text-align: center;
 ">
-    <!-- Group Add Form -->
-<form id="groupForm" style="margin:20px; padding:20px; background:#f9f9f9; border-radius:12px; box-shadow:0 4px 8px rgba(0,0,0,0.1);">
-  <h2 style="margin-bottom:15px; font-family:sans-serif; color:#333;">➕ Add New Group</h2>
-  <input id="name" type="text" placeholder="Group Name" required 
-         style="padding:10px; width:45%; margin-right:10px; border-radius:8px; border:1px solid #ccc;">
-  <input id="link" type="url" placeholder="Group Link" required 
-         style="padding:10px; width:45%; border-radius:8px; border:1px solid #ccc;">
-  <button type="submit" 
-          style="padding:10px 20px; margin-left:10px; background:#25d366; color:white; border:none; border-radius:8px; cursor:pointer; font-weight:bold;">
-    Add
-  </button>
-</form>
+   <!-- Add Group Form -->
+  <form id="groupForm">
+    <h2>Add New Group</h2>
+    <input type="text" id="name" placeholder="Enter Group Name" required>
+    <input type="url" id="link" placeholder="Enter Group Link" required>
+    <button type="submit">Add Group</button>
+  </form>
 
-<!-- Groups List -->
-<div id="groupsList" style="display:flex; flex-wrap:wrap; gap:20px; padding:20px;"></div>
+  <!-- Groups List -->
+  <div id="groupsList"></div>
 
     <div class="card">
       <h3>✅ 24x7 Support</h3>
@@ -636,68 +654,66 @@ h3.custom-heading {
 
   loadFrames();
 
- <script type="module">
-  // Firebase SDKs import
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-analytics.js";
-  import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+   <!-- Firebase + Firestore -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
 
-  // तुम्हारा Firebase config
-  const firebaseConfig = {
-    apiKey: "AIzaSyCwdlnLXcXauh3_YmY6cwswqzcieMOHI0Y",
-    authDomain: "ludogroup-a530a.firebaseapp.com",
-    projectId: "ludogroup-a530a",
-    storageBucket: "ludogroup-a530a.appspot.com",
-    messagingSenderId: "838421084676",
-    appId: "1:838421084676:web:9e02670e280eafcd86d351",
-    measurementId: "G-CRQL1LBZTN"
-  };
+    // ✅ Your Firebase Config
+    const firebaseConfig = {
+      apiKey: "AIzaSyCwdlnLXcXauh3_YmY6cwswqzcieMOHI0Y",
+      authDomain: "ludogroup-a530a.firebaseapp.com",
+      projectId: "ludogroup-a530a",
+      storageBucket: "ludogroup-a530a.appspot.com",
+      messagingSenderId: "838421084676",
+      appId: "1:838421084676:web:9e02670e280eafcd86d351"
+    };
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-  const db = getFirestore(app);
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
 
-  // Form aur list get karo
-  const form = document.getElementById("groupForm");
-  const groupsList = document.getElementById("groupsList");
+    const form = document.getElementById("groupForm");
+    const groupsList = document.getElementById("groupsList");
 
-  // ✅ Add new group
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const name = document.getElementById("name").value;
-    const link = document.getElementById("link").value;
+    // ✅ Add new group
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const link = document.getElementById("link").value;
 
-    await addDoc(collection(db, "Groups"), {
-      name,
-      link
+      await addDoc(collection(db, "Groups"), { name, link });
+
+      form.reset();
+      loadGroups(); // refresh list
     });
 
-    form.reset();
-    loadGroups(); // refresh list
-  });
+    // ✅ Fetch & show groups
+    async function loadGroups() {
+      groupsList.innerHTML = "";
+      const querySnapshot = await getDocs(collection(db, "Groups"));
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        let groupDP = "https://img.icons8.com/color/96/whatsapp--v1.png"; // default DP
 
-  // ✅ Fetch & show groups
-  async function loadGroups() {
-    groupsList.innerHTML = "";
-    const querySnapshot = await getDocs(collection(db, "Groups"));
-    querySnapshot.forEach((doc) => {
-      const data = doc.data();
-      groupsList.innerHTML += `
-        <div style="border:1px solid #ccc; margin:10px; padding:10px; border-radius:8px;">
-          <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" width="50" height="50" style="border-radius:50%">
-          <h3>${data.name}</h3>
-          <a href="${data.link}" target="_blank">
-            <button>Join Group</button>
-          </a>
-        </div>
-      `;
-    });
-  }
+        groupsList.innerHTML += `
+          <div class="group-card">
+            <div class="group-info">
+              <img src="${groupDP}" alt="Group DP">
+              <div>
+                <h3>${data.name}</h3>
+                <p>WhatsApp Group</p>
+              </div>
+            </div>
+            <a href="${data.link}" target="_blank">
+              <button class="join-btn">Join</button>
+            </a>
+          </div>
+        `;
+      });
+    }
 
-  // First load
-  loadGroups();
-</script>
+    loadGroups();
+  </script>
 
 </script>
 
