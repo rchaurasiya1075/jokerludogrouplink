@@ -710,7 +710,9 @@ body {
 
   loadFrames();
 
-  <script type="module">
+
+<!-- ===== FIREBASE JS ===== -->
+<script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
@@ -743,6 +745,8 @@ function stringToColor(str) {
 // Add new group
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
+  e.stopPropagation();
+
   const name = document.getElementById("name").value.trim();
   const link = document.getElementById("link").value.trim();
 
@@ -762,26 +766,31 @@ form.addEventListener("submit", async (e) => {
 async function loadGroups() {
   groupsList.innerHTML = "";
   const snapshot = await getDocs(collection(db, "Groups"));
+
   snapshot.forEach(doc => {
     const data = doc.data();
     const color = stringToColor(data.name);
     const firstLetter = data.name.charAt(0).toUpperCase();
-    groupsList.innerHTML += `
-      <div class="group-card">
-        <div class="group-dp" style="background-color:${color}">${firstLetter}</div>
-        <div class="group-info">
-          <h3>${data.name}</h3>
-          <a href="${data.link}" target="_blank"><button>Join</button></a>
-        </div>
+
+    const card = document.createElement("div");
+    card.className = "group-card";
+    card.innerHTML = `
+      <div class="group-dp" style="background-color:${color}">${firstLetter}</div>
+      <div class="group-info">
+        <h3>${data.name}</h3>
+        <a href="${data.link}" target="_blank"><button class="join-btn" type="button">Join</button></a>
       </div>
     `;
+    groupsList.appendChild(card);
   });
+
+  // Scroll to last added group
+  groupsList.lastChild?.scrollIntoView({ behavior: "smooth" });
 }
 
 // Initial load
 loadGroups();
 </script>
-
 </script>
 
 
