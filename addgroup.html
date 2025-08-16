@@ -335,7 +335,8 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 
   <script>
-  // Initialize Firebase with error handling
+<script>
+  // Initialize Firebase with enhanced error handling
   const firebaseConfig = {
     apiKey: "AIzaSyCwdlnLXcXauh3_YmY6cwswqzcieMOHI0Y",
     authDomain: "ludogroup-a530a.firebaseapp.com",
@@ -345,90 +346,144 @@
     appId: "1:838421084676:web:9e02670e280eafcd86d351"
   };
 
-  try {
-    // Initialize Firebase if not already initialized
-    if (!firebase.apps.length) {
-      firebase.initializeApp(firebaseConfig);
-    }
-  } catch (error) {
-    console.error("Firebase initialization error:", error);
-    alert("Failed to initialize database. Please refresh the page.");
-  }
+  // Connection status elements
+  const connectionStatus = document.createElement('div');
+  connectionStatus.className = 'connection-status';
+  document.body.appendChild(connectionStatus);
 
-  const db = firebase.firestore();
-
-  // Form submission with enhanced error handling
-  document.getElementById("groupForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    
-    // Get and validate form values
-    const name = document.getElementById("name").value.trim();
-    const link = document.getElementById("link").value.trim();
-    const groupType = document.getElementById("groupType").value;
-    const description = document.getElementById("description").value.trim();
-    const platforms = Array.from(document.querySelectorAll(".platform:checked")).map(cb => cb.value);
-
-    if (!name || !link || !groupType || platforms.length === 0) {
-      alert("Please fill all required fields");
-      return;
-    }
-
+  // Test Firestore connection
+  async function testConnection() {
     try {
-      // Add document with all required fields
-      const docRef = await db.collection("Groups").add({
-        name: name,
-        link: link,
-        type: groupType,
-        platforms: platforms,
-        description: description || "No description provided",
-        status: "approved", // Change to "pending" if you need admin approval
-        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-        created_at: new Date().toISOString()
-      });
-
-      console.log("Group added with ID:", docRef.id);
+      if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+      }
+      const db = firebase.firestore();
       
-      // Show success popup
-      showPopup();
+      // Test with a simple read operation
+      await db.collection("Groups").limit(1).get();
       
-      // Send WhatsApp notification
-      const phone = "9473746020";
-      const message = `New Group:%0AName: ${encodeURIComponent(name)}%0ALink: ${encodeURIComponent(link)}%0AType: ${encodeURIComponent(groupType)}`;
-      window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
-      
-      // Reset form
-      document.getElementById("groupForm").reset();
-
-    } catch (error) {
-      console.error("Submission error:", {
-        error: error,
-        message: error.message,
-        stack: error.stack
-      });
-      
-      alert(`Submission failed: ${error.message}. Please check console for details.`);
-    }
-  });
-
-  // Debugging function to check Firestore connection
-  async function testFirestoreConnection() {
-    try {
-      const testDoc = await db.collection("Test").doc("connection").get();
-      console.log("Firestore connection test successful");
+      connectionStatus.innerHTML = '<span class="connected"><i class="fas fa-check-circle"></i> Connected to database</span>';
       return true;
     } catch (error) {
-      console.error("Firestore connection failed:", error);
+      console.error("Connection test failed:", error);
+      connectionStatus.innerHTML = '<span class="disconnected"><i class="fas fa-exclamation-triangle"></i> Could not connect to database. Some features may not work.</span>';
       return false;
     }
   }
 
-  // Run connection test on page load
-  window.addEventListener('load', async () => {
-    const connected = await testFirestoreConnection();
-    if (!connected) {
-      alert("Warning: Could not connect to database. Some features may not work.");
+  // Initialize Firebase and test connection
+  document.addEventListener('DOMContentLoaded', async () => {
+    const isConnected = await testConnection();
+    
+    if (!isConnected) {
+      // Show warning but still allow form submission attempt
+      const form = document.getElementById('groupForm');
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        alert('Database connection failed. Please check your internet connection and try again.');
+      });
+      return;
     }
+
+    // Proceed with normal form submission if connected
+    const db = firebase.firestore();
+    
+    document.getElementById("groupForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      
+      // Get form values
+      const name = document.getElementById("name").value.trim();
+      const link = document.getElementById("link").value.trim();
+      const groupType = document.getElementById("groupType").value;
+      const description = document.getElementById("description").value.trim();
+      const platforms = Array.from(document.querySelectorAll(".platform:checked")).map(cb => cb.value);
+
+      // Validation
+      if (!name || !link || !groupType || platforms.length === 0) {
+        alert("Please fill all required fields");
+        return;
+      }
+
+      try {
+        // Show loading state
+        const submitBtn = document.querySelector('.submit-button');
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+
+        // Add to Firestore
+        await db.collection("Groups").add({
+          name: name,
+          link: link,
+          type: groupType,
+          platforms: platforms,
+          description: description,
+          status: "pending",
+          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+          created_at: new Date().toISOString()
+        });
+
+        // Show success
+        submitBtn.innerHTML = '<i class="fas fa-check"></i> Submitted Successfully!';
+        setTimeout(() => {
+          submitBtn.innerHTML = 'Submit Group';
+          submitBtn.disabled = false;
+        }, 2000);
+
+        // Send WhatsApp notification
+        const phone = "9473746020";
+        const message = `New Group Submission:%0A%0A📛 Name: ${name}%0A🔗 Link: ${link}%0A🏷 Type: ${groupType}%0A📱 Platforms: ${platforms.join(", ")}`;
+        window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+        
+        // Reset form
+        document.getElementById("groupForm").reset();
+
+      } catch (error) {
+        console.error("Submission error:", error);
+        alert(`Submission failed: ${error.message}`);
+        document.querySelector('.submit-button').disabled = false;
+        document.querySelector('.submit-button').innerHTML = 'Submit Group';
+      }
+    });
   });
 </script>
+
+<style>
+  /* Add these styles to your existing CSS */
+  .connection-status {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    z-index: 1000;
+    font-size: 14px;
+  }
+  
+  .connection-status .connected {
+    color: #28a745;
+    background: #e8f5e9;
+    padding: 8px 12px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  .connection-status .disconnected {
+    color: #dc3545;
+    background: #f8d7da;
+    padding: 8px 12px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  .connection-status i {
+    margin-right: 8px;
+  }
+  
+  .submit-button i {
+    margin-right: 8px;
+  }
+</style>
 </body>
 </html>
