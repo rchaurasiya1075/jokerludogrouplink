@@ -716,42 +716,32 @@ body {
 
   loadFrames();
 
-  <script>
-  // Initialize Firebase
-  const firebaseConfig = {
-    apiKey: "AIzaSyCwdlnLXcXauh3_YmY6cwswqzcieMOHI0Y",
-    authDomain: "ludogroup-a530a.firebaseapp.com",
-    projectId: "ludogroup-a530a",
-    storageBucket: "ludogroup-a530a.appspot.com",
-    messagingSenderId: "838421084676",
-    appId: "1:838421084676:web:9e02670e280eafcd86d351"
-  };
+<div id="groupsList"></div>
+<button id="addGroupBtn" style="margin-top:15px; padding:10px 15px; background:green; color:white; border:none; cursor:pointer;">Add Group</button>
 
-  firebase.initializeApp(firebaseConfig);
+<script>
   const db = firebase.firestore();
 
-  // Admin Email(s)
-  const adminEmails = ["jokerludo@gmail.com"]; // अपनी admin Gmail डालो
+  const groupsList = document.getElementById("groupsList");
+  const addGroupBtn = document.getElementById("addGroupBtn");
 
+  const maxVisibleGroups = 5; // Latest 5 groups show
   let currentUser = null;
+  let adminEmails = ["rchaurasiyaself1@gmail.com"]; // Admin email list
   let isAdmin = false;
 
-  // Listen for login state
+  // Admin login check
   firebase.auth().onAuthStateChanged((user) => {
     currentUser = user;
-    if (user) {
-      isAdmin = adminEmails.includes(user.email);
-      console.log("Logged in:", user.email, "Admin:", isAdmin);
-    } else {
-      isAdmin = false;
-    }
-    loadGroups(); // हर बार reload करो ताकि delete button दिखे/छुपे
+    isAdmin = user && adminEmails.includes(user.email);
+    loadGroups();
   });
 
-  // DOM element
-  const groupsList = document.getElementById("groupsList");
+  addGroupBtn.addEventListener("click", () => {
+    // Redirect normal users to join.html to submit group
+    window.location.href = "join.html";
+  });
 
-  // Function to generate a color from group name
   function stringToColor(str) {
     let hash = 0;
     for (let i = 0; i < str.length; i++) {
@@ -761,15 +751,12 @@ body {
     return "#" + "00000".substring(0, 6 - c.length) + c;
   }
 
-  // Function to load and display groups
   async function loadGroups() {
+    groupsList.innerHTML = '<div class="loading">Loading groups...</div>';
     try {
-      groupsList.innerHTML = '<div class="loading">Loading groups...</div>';
-
-      // Get latest 4 groups
       const querySnapshot = await db.collection("Groups")
         .orderBy("timestamp", "desc")
-        .limit(4)
+        .limit(maxVisibleGroups)
         .get();
 
       if (querySnapshot.empty) {
@@ -779,12 +766,11 @@ body {
 
       groupsList.innerHTML = "";
 
-      querySnapshot.forEach((doc) => {
+      querySnapshot.forEach(doc => {
         const group = doc.data();
         const color = stringToColor(group.name);
         const firstLetter = group.name.charAt(0).toUpperCase();
 
-        // Create group card
         const card = document.createElement("div");
         card.className = "group-card";
         card.innerHTML = `
@@ -797,13 +783,14 @@ body {
         `;
         groupsList.appendChild(card);
       });
-    } catch (error) {
-      console.error("Error loading groups: ", error);
-      groupsList.innerHTML = '<div class="error">Error loading groups. Please refresh the page.</div>';
+
+    } catch (err) {
+      console.error("Error loading groups: ", err);
+      groupsList.innerHTML = '<div class="error">Error loading groups. Refresh page.</div>';
     }
   }
 
-  // Delete group (only admin can see button)
+  // Delete group only for admin
   groupsList.addEventListener("click", async (e) => {
     if (e.target.classList.contains("delete-btn")) {
       const id = e.target.dataset.id;
@@ -813,17 +800,14 @@ body {
           alert("Group deleted!");
           loadGroups();
         } catch (err) {
-          console.error("Error deleting group: ", err);
-          alert("Failed to delete group.");
+          alert("Failed to delete group: " + err.message);
         }
       }
     }
   });
 
-  // Load groups when page loads
   document.addEventListener("DOMContentLoaded", loadGroups);
 </script>
-
   <footer>
     <div class="footer-links">
       <a href="index.html">Home</a>
