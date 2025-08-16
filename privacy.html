@@ -269,6 +269,25 @@
     document.getElementById("loginStatus").innerHTML = "✅ Logged out";
     document.getElementById("logoutBtn").style.display = "none";
   });
+  firebase.auth().signInWithEmailAndPassword(email, password)
+  .then((userCredential) => {
+    const user = userCredential.user;
+
+    // सिर्फ वही Gmail login कर पाए जो admin है
+    if (user.email === "labccna455@gmail.com") {
+      loginStatus.innerHTML = "✅ Logged in as Admin";
+
+      // 🔥 Login होते ही admin page पर redirect करो
+      window.location.href = "admin.html";  
+    } else {
+      loginStatus.innerHTML = "⛔ Not Authorized";
+      firebase.auth().signOut();
+    }
+  })
+  .catch((error) => {
+    loginStatus.innerHTML = "❌ Login failed: " + error.message;
+  });
+
 </script>
 
   <footer>
