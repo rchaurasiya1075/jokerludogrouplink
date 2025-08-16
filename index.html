@@ -65,6 +65,9 @@
   }
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+  <!-- Add these Firebase scripts to your <head> section -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
   <style>
    /* ===== RESET ===== */
 * {
@@ -712,90 +715,106 @@ body {
   loadFrames();
 
 
-<!-- ===== FIREBASE JS ===== -->
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+  // Firebase configuration and initialization
+  const firebaseConfig = {
+    apiKey: "AIzaSyCwdlnLXcXauh3_YmY6cwswqzcieMOHI0Y",
+    authDomain: "ludogroup-a530a.firebaseapp.com",
+    projectId: "ludogroup-a530a",
+    storageBucket: "ludogroup-a530a.appspot.com",
+    messagingSenderId: "838421084676",
+    appId: "1:838421084676:web:9e02670e280eafcd86d351"
+  };
 
-// Firebase config
-const firebaseConfig = {
-  apiKey: "AIzaSyCwdlnLXcXauh3_YmY6cwswqzcieMOHI0Y",
-  authDomain: "ludogroup-a530a.firebaseapp.com",
-  projectId: "ludogroup-a530a",
-  storageBucket: "ludogroup-a530a.appspot.com",
-  messagingSenderId: "838421084676",
-  appId: "1:838421084676:web:9e02670e280eafcd86d351"
-};
+  // Initialize Firebase
+  const app = firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+  // DOM elements
+  const form = document.getElementById("groupForm");
+  const groupsList = document.getElementById("groupsList");
 
-const form = document.getElementById("groupForm");
-const groupsList = document.getElementById("groupsList");
-
-// Generate color from string
-function stringToColor(str) {
-  let hash = 0;
-  for (let i = 0; i < str.length; i++) {
-    hash = str.charCodeAt(i) + ((hash << 5) - hash);
+  // Function to generate a color from group name
+  function stringToColor(str) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    const c = (hash & 0x00FFFFFF).toString(16).toUpperCase();
+    return "#" + "00000".substring(0, 6 - c.length) + c;
   }
-  const c = (hash & 0x00FFFFFF).toString(16).toUpperCase();
-  return "#" + "00000".substring(0, 6 - c.length) + c;
-}
 
-// Add new group
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  e.stopPropagation();
+  // Form submission handler
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    
+    const name = document.getElementById("name").value.trim();
+    const link = document.getElementById("link").value.trim();
 
-  const name = document.getElementById("name").value.trim();
-  const link = document.getElementById("link").value.trim();
+    if (!name || !link) {
+      alert("Please fill both group name and link fields");
+      return;
+    }
 
-  if (!name || !link) return alert("Please fill both fields");
-
-  try {
-    await addDoc(collection(db, "Groups"), { name, link });
-    form.reset();
-    loadGroups();
-  } catch (err) {
-    console.error("Error adding group:", err);
-    alert("Failed to add group. Check console.");
-  }
-});
-
-// Load & show groups
-async function loadGroups() {
-  groupsList.innerHTML = "";
-  const snapshot = await getDocs(collection(db, "Groups"));
-
-  snapshot.forEach(doc => {
-    const data = doc.data();
-    const color = stringToColor(data.name);
-    const firstLetter = data.name.charAt(0).toUpperCase();
-
-    const card = document.createElement("div");
-    card.className = "group-card";
-    card.innerHTML = `
-      <div class="group-dp" style="background-color:${color}">${firstLetter}</div>
-      <div class="group-info">
-        <h3>${data.name}</h3>
-        <a href="${data.link}" target="_blank"><button class="join-btn" type="button">Join</button></a>
-      </div>
-    `;
-    groupsList.appendChild(card);
+    try {
+      // Add new group to Firestore
+      await db.collection("Groups").add({
+        name: name,
+        link: link,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      });
+      
+      alert("Group added successfully!");
+      form.reset();
+      loadGroups(); // Refresh the groups list
+    } catch (error) {
+      console.error("Error adding group: ", error);
+      alert("Failed to add group. Please try again later.");
+    }
   });
-snapshot.forEach(doc => {
-  const data = doc.data();
-  console.log("Loaded group:", data.name, data.link); // ✅ debug
-});
 
-  // Scroll to last added group
-  groupsList.lastChild?.scrollIntoView({ behavior: "smooth" });
-}
+  // Function to load and display groups
+  async function loadGroups() {
+    try {
+      groupsList.innerHTML = ""; // Clear current list
+      
+      // Get groups from Firestore, ordered by timestamp
+      const querySnapshot = await db.collection("Groups")
+        .orderBy("timestamp", "desc")
+        .get();
 
-// Initial load
-loadGroups();
+      if (querySnapshot.empty) {
+        groupsList.innerHTML = "<p>No groups available yet. Be the first to add one!</p>";
+        return;
+      }
+
+      querySnapshot.forEach((doc) => {
+        const group = doc.data();
+        const color = stringToColor(group.name);
+        const firstLetter = group.name.charAt(0).toUpperCase();
+
+        // Create group card
+        const card = document.createElement("div");
+        card.className = "group-card";
+        card.innerHTML = `
+          <div class="group-info">
+            <div class="group-dp" style="background-color:${color}">${firstLetter}</div>
+            <h3>${group.name}</h3>
+          </div>
+          <a href="${group.link}" target="_blank" class="join-btn">Join</a>
+        `;
+        groupsList.appendChild(card);
+      });
+    } catch (error) {
+      console.error("Error loading groups: ", error);
+      groupsList.innerHTML = "<p>Error loading groups. Please refresh the page.</p>";
+    }
+  }
+
+  // Load groups when page loads
+  document.addEventListener("DOMContentLoaded", loadGroups);
 </script>
+
 </script>
 
 
