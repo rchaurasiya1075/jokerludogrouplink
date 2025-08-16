@@ -331,7 +331,7 @@ h3.custom-heading {
       color: black;
       font-weight: bold;
     }
-    /* Fixed Bottom Button */
+  /* Fixed Bottom Button */
 .bottom-fixed {
   position: fixed;
   bottom: 15px;
@@ -355,17 +355,14 @@ h3.custom-heading {
 .group-form {
   display: none;
   max-width: 400px;
-  margin: 50px auto;
+  margin: 30px auto;
   padding: 20px;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 5px 20px rgba(0,0,0,0.1);
   text-align: center;
 }
-.group-form h3 {
-  margin-bottom: 15px;
-  color: #d22;
-}
+.group-form h3 { color: #d22; margin-bottom: 15px; }
 .group-form input {
   width: 90%;
   padding: 10px;
@@ -381,8 +378,47 @@ h3.custom-heading {
   border-radius: 6px;
   cursor: pointer;
 }
-.group-form button:hover {
-  background: #1a1a3a;
+.group-form button:hover { background: #1a1a3a; }
+
+/* Group List */
+.group-list {
+  max-width: 900px;
+  margin: 30px auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+.group-card {
+  width: 250px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  text-align: center;
+  padding: 15px;
+}
+.group-card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+.group-card h4 {
+  margin-bottom: 10px;
+  color: #333;
+}
+.group-card a {
+  display: inline-block;
+  background: #25D366;
+  color: #fff;
+  padding: 8px 15px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+}
+.group-card a:hover {
+  background: #128C7E;
 }
 
 /* ===== RESPONSIVE ===== */
@@ -427,15 +463,25 @@ h3.custom-heading {
   <button onclick="toggleGroupForm()">➕ Add Your Ludo Group</button>
 </div>
 
+<!-- Fixed Bottom Button -->
+<div class="bottom-fixed">
+  <button onclick="toggleGroupForm()">➕ Add Your Ludo Group</button>
+</div>
+
 <!-- Hidden Group Form -->
 <div id="group-form" class="group-form">
   <h3>Add Your Ludo WhatsApp Group</h3>
-  <form>
-    <input type="text" placeholder="Enter Group Name" required><br>
-    <input type="url" placeholder="Enter WhatsApp Group Link" required><br>
+  <form onsubmit="addGroup(event)">
+    <input type="text" id="group-name" placeholder="Enter Group Name" required><br>
+    <input type="url" id="group-link" placeholder="Enter WhatsApp Group Link" required><br>
+    <input type="url" id="group-image" placeholder="Enter Group DP Image URL" required><br>
     <button type="submit">Submit</button>
   </form>
 </div>
+
+<!-- Groups List -->
+<div id="group-list" class="group-list"></div>
+
   <section class="features">
     <div style="flex: 1; min-width: 300px;">
       <video width="100%" controls muted poster="WhatsApp Image 2025-07-27 at 10.45.50.jpeg">
@@ -597,15 +643,47 @@ h3.custom-heading {
   }
 
   loadFrames();
+<script>
 function toggleGroupForm() {
   const form = document.getElementById("group-form");
+  form.style.display = (form.style.display === "block") ? "none" : "block";
   if (form.style.display === "block") {
-    form.style.display = "none";
-  } else {
-    form.style.display = "block";
-    form.scrollIntoView({ behavior: "smooth" }); // auto scroll niche
+    form.scrollIntoView({ behavior: "smooth" });
   }
 }
+
+function addGroup(event) {
+  event.preventDefault();
+
+  const name = document.getElementById("group-name").value;
+  const link = document.getElementById("group-link").value;
+  const image = document.getElementById("group-image").value;
+
+  const groupList = document.getElementById("group-list");
+
+  // Create new group card
+  const card = document.createElement("div");
+  card.className = "group-card";
+  card.innerHTML = `
+    <img src="${image}" alt="${name} DP">
+    <h4>${name}</h4>
+    <a href="${link}" target="_blank">Join Group</a>
+  `;
+
+  // Add to list
+  groupList.appendChild(card);
+
+  // Reset form
+  document.getElementById("group-name").value = "";
+  document.getElementById("group-link").value = "";
+  document.getElementById("group-image").value = "";
+  document.getElementById("group-form").style.display = "none";
+
+  // Auto scroll to new group
+  card.scrollIntoView({ behavior: "smooth" });
+}
+</script>
+
 
   document.querySelectorAll('.toc-item h3').forEach(heading => {
     heading.addEventListener('click', function() {
