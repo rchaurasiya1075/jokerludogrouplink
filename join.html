@@ -57,7 +57,9 @@
     ]
   }
   </script>
-
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <style>
   <!-- Styles -->
   <style>
   .container {
@@ -300,6 +302,42 @@
     .footer-links a:hover {
       color: #ffde59;
     }
+
+}
+    .join-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+    }
+    .join-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+    .group-details {
+      margin: 20px 0;
+    }
+    .group-dp {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    
   </style>
 </head>
 <body>
@@ -489,42 +527,101 @@
 
     <div class="container" id="groupsList"></div>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+<div class="join-container">
+    <div id="group-display">
+      <div class="group-dp" id="group-avatar">G</div>
+      <h1 id="join-title">Join Our Community</h1>
+      <p id="join-description">Click the button below to join</p>
+    </div>
+    <button class="join-button" id="join-button">Join Now</button>
+  </div>
 
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
-};
+  <script>
+    // Initialize Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyCwdlnLXcXauh3_YmY6cwswqzcieMOHI0Y",
+      authDomain: "ludogroup-a530a.firebaseapp.com",
+      projectId: "ludogroup-a530a",
+      storageBucket: "ludogroup-a530a.appspot.com",
+      messagingSenderId: "838421084676",
+      appId: "1:838421084676:web:9e02670e280eafcd86d351"
+    };
+    
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const groupsList = document.getElementById("groupsList");
+    // Parse URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const type = urlParams.get('type');
+    
+    // Function to generate a color from group name
+    function stringToColor(str) {
+      let hash = 0;
+      for (let i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+      }
+      const c = (hash & 0x00FFFFFF).toString(16).toUpperCase();
+      return "#" + "00000".substring(0, 6 - c.length) + c;
+    }
 
-// Fetch all groups (can add query filters for category/platform later)
-async function loadGroups() {
-  groupsList.innerHTML = "";
-  const snapshot = await getDocs(collection(db, "Groups"));
-  snapshot.forEach(doc => {
-    const data = doc.data();
-    const card = document.createElement("div");
-    card.className = "group-card";
-    card.innerHTML = `
-      <h3>${data.name}</h3>
-      <p>Type: ${data.type}</p>
-      <p>Platforms: ${data.platforms.join(", ")}</p>
-      <a href="${data.link}" target="_blank"><button class="join-btn">Join</button></a>
-    `;
-    groupsList.appendChild(card);
-  });
-}
-loadGroups();
-</script>
+    if (type === 'group') {
+      const groupId = urlParams.get('groupId');
+      
+      // Fetch group details from Firestore
+      db.collection("Groups").doc(groupId).get()
+        .then((doc) => {
+          if (doc.exists) {
+            const group = doc.data();
+            const color = stringToColor(group.name);
+            const firstLetter = group.name.charAt(0).toUpperCase();
+            
+            // Update UI with group details
+            document.getElementById('group-avatar').textContent = firstLetter;
+            document.getElementById('group-avatar').style.backgroundColor = color;
+            document.getElementById('join-title').textContent = `Join ${group.name}`;
+            document.getElementById('join-description').textContent = `You're joining our ${group.name} community`;
+            
+            // Set button action
+            document.getElementById('join-button').addEventListener('click', function() {
+              window.location.href = group.link;
+            });
+          } else {
+            // Group not found
+            document.getElementById('join-title').textContent = 'Group Not Found';
+            document.getElementById('join-description').textContent = 'The requested group does not exist or may have been removed.';
+            document.getElementById('join-button').style.display = 'none';
+          }
+        })
+        .catch((error) => {
+          console.error("Error getting group: ", error);
+          document.getElementById('join-title').textContent = 'Error Loading Group';
+          document.getElementById('join-description').textContent = 'There was an error loading the group information. Please try again later.';
+          document.getElementById('join-button').style.display = 'none';
+        });
+    } 
+    else if (type === 'social') {
+      const socialType = urlParams.get('socialType');
+      
+      // Set content based on social media
+      document.getElementById('join-title').textContent = `Join Our ${socialType.charAt(0).toUpperCase() + socialType.slice(1)} Group`;
+      document.getElementById('group-avatar').textContent = socialType.charAt(0).toUpperCase();
+      document.getElementById('group-avatar').style.backgroundColor = '#3f51b5';
+      
+      // Set button action
+      document.getElementById('join-button').addEventListener('click', function() {
+        // Replace with actual social media links
+        const links = {
+          whatsapp: 'https://whatsapp.com/yourgroup',
+          telegram: 'https://t.me/yourgroup',
+          facebook: 'https://facebook.com/groups/yourgroup'
+        };
+        
+        if (links[socialType]) {
+          window.location.href = links[socialType];
+        }
+      });
+    }
+  </script>
 
     
   <footer>
