@@ -372,7 +372,16 @@
         showMessage("Failed to submit group. Please try again later.", "error");
       }
     });
-
+// In your addgroup.html form submission handler:
+await db.collection("Groups").add({
+  name: name,
+  link: link,
+  type: groupType,
+  platforms: platforms,
+  description: description,
+  status: "approved", // Change this to "approved" for testing
+  timestamp: firebase.firestore.FieldValue.serverTimestamp()
+});
     // Function to show status messages
     function showMessage(message, type) {
       statusMessage.textContent = message;
