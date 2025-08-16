@@ -219,15 +219,28 @@
       ✅ No charges at all.
     </div>
 
-    <form id="groupForm">
-      <label for="name">Group Name</label>
-      <input type="text" id="name" placeholder="Example: Joker Ludo Zone" required>
-
-      <label for="link">Group Link</label>
-      <input type="url" id="link" placeholder="Example: https://chat.whatsapp.com/XXXXXXXXXX" required>
-
-      <button type="submit" class="submit-button">📩 Submit to Admin</button>
-    </form>
+  <div class="container">
+  <h2>Add New Group</h2>
+  <form id="groupForm">
+    <input type="text" id="name" placeholder="Group Name" required>
+    <input type="url" id="link" placeholder="Group Link" required>
+    <select id="groupType" required>
+      <option value="">Select Group Type</option>
+      <option value="Gaming">Gaming</option>
+      <option value="Education">Education</option>
+      <option value="Music">Music</option>
+      <option value="Sports">Sports</option>
+      <option value="Movies">Movies</option>
+      <!-- add up to 10-15 -->
+    </select>
+    <div class="platforms">
+      <label><input type="checkbox" class="platform" value="WhatsApp"> WhatsApp</label>
+      <label><input type="checkbox" class="platform" value="Telegram"> Telegram</label>
+      <label><input type="checkbox" class="platform" value="Discord"> Discord</label>
+    </div>
+    <button type="submit">Add Group</button>
+  </form>
+</div>
 
     <div class="group-list">
       <h2>Popular Groups You Can Join</h2>
@@ -266,6 +279,46 @@
       const whatsappURL = `https://wa.me/${phone}?text=${message}`;
       window.open(whatsappURL, '_blank');
     });
+    <script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_STORAGE_BUCKET",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const form = document.getElementById("groupForm");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const name = document.getElementById("name").value.trim();
+  const link = document.getElementById("link").value.trim();
+  const type = document.getElementById("groupType").value;
+  const platforms = Array.from(document.querySelectorAll(".platform:checked")).map(p => p.value);
+
+  if(!name || !link || !type || platforms.length === 0){
+    alert("Fill all fields and select at least one platform");
+    return;
+  }
+
+  try {
+    await addDoc(collection(db, "Groups"), { name, link, type, platforms });
+    alert("Group added successfully!");
+    form.reset();
+  } catch(err){
+    console.error(err);
+    alert("Error adding group. Check console.");
+  }
+});
+</script>
   </script>
 
 </body>
