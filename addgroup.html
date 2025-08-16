@@ -306,7 +306,7 @@
 
   <script>
 <script>
-  // Initialize Firebase with your configuration
+  // Initialize Firebase
   const firebaseConfig = {
     apiKey: "AIzaSyCwdlnLXcXauh3_YmY6cwswqzcieMOHI0Y",
     authDomain: "ludogroup-a530a.firebaseapp.com",
@@ -321,12 +321,13 @@
   const db = firebase.firestore();
 
   // DOM elements
-  const groupsList = document.getElementById("groupsList");
-  const categoryTabs = document.getElementById("categoryTabs");
-  const categoryContents = document.getElementById("categoryContents");
+  const groupsContainer = document.querySelector('.groups-container');
+  const categoryFilters = document.getElementById('categoryFilters');
+  const platformFilters = document.getElementById('platformFilters');
   let activeCategory = "All";
+  let activePlatform = "All";
 
-  // Function to generate color from group name
+  // Function to generate color from string
   function stringToColor(str) {
     let hash = 0;
     for (let i = 0; i < str.length; i++) {
@@ -336,132 +337,115 @@
     return "#" + "00000".substring(0, 6 - c.length) + c;
   }
 
-  // Function to load and display groups
+  // Load and display groups
   async function loadGroups() {
     try {
-      // Show loading state
-      groupsList.innerHTML = '<div class="loading">Loading groups...</div>';
+      groupsContainer.innerHTML = '<div class="loading">Loading groups...</div>';
       
-      // Get groups from Firestore, ordered by timestamp (newest first)
-      const querySnapshot = await db.collection("Groups")
-        .where("status", "==", "approved") // Only show approved groups
-        .orderBy("timestamp", "desc")
-        .get();
+      let query = db.collection("Groups");
+      
+      // Only apply status filter if not in development
+      if (window.location.hostname !== "localhost") {
+        query = query.where("status", "==", "approved");
+      }
+      
+      const querySnapshot = await query.orderBy("timestamp", "desc").get();
 
       if (querySnapshot.empty) {
-        groupsList.innerHTML = '<p class="no-groups">No groups available yet. Check back later!</p>';
+        groupsContainer.innerHTML = '<div class="no-results">No groups available yet. Check back later!</div>';
         return;
       }
 
-      // Organize groups by category
-      const groupsByCategory = {
-        "All": []
-      };
-
+      groupsContainer.innerHTML = '';
+      
       querySnapshot.forEach(doc => {
         const group = doc.data();
-        const groupType = group.type || "Other"; // Default to "Other" if no type specified
+        const groupType = group.type || "General";
         
-        // Add to "All" category
-        groupsByCategory["All"].push({
-          id: doc.id,
-          ...group
-        });
-
-        // Add to specific category
-        if (!groupsByCategory[groupType]) {
-          groupsByCategory[groupType] = [];
-        }
-        groupsByCategory[groupType].push({
-          id: doc.id,
-          ...group
-        });
-      });
-
-      // Generate category tabs
-      const categories = Object.keys(groupsByCategory);
-      categoryTabs.innerHTML = categories.map(category => `
-        <button class="category-tab ${category === 'All' ? 'active' : ''}" 
-                data-category="${category}">
-          ${category}
-        </button>
-      `).join('');
-
-      // Generate group cards for each category
-      categoryContents.innerHTML = categories.map(category => {
-        const groupsHTML = groupsByCategory[category].map(group => {
+        // Apply filters
+        if ((activeCategory === "All" || groupType === activeCategory) && 
+            (activePlatform === "All" || group.platforms.includes(activePlatform))) {
+          
           const color = stringToColor(group.name);
           const firstLetter = group.name.charAt(0).toUpperCase();
           
-          return `
-            <div class="group-card">
-              <div class="group-header">
-                <div class="group-avatar" style="background:${color}">
-                  ${firstLetter}
-                </div>
-                <div class="group-info">
-                  <h3>${group.name}</h3>
-                  <p class="group-type">${group.type}</p>
-                  <div class="platform-tags">
-                    ${group.platforms.map(platform => `
-                      <span class="platform-tag ${platform.toLowerCase()}">
-                        ${platform}
-                      </span>
-                    `).join('')}
-                  </div>
-                </div>
+          // Create platform tags
+          const platformTags = group.platforms.map(platform => {
+            let platformClass = platform.toLowerCase();
+            return `<span class="platform-tag ${platformClass}">${platform}</span>`;
+          }).join('');
+          
+          const groupCard = document.createElement('div');
+          groupCard.className = 'group-card';
+          groupCard.innerHTML = `
+            <div class="group-header">
+              <div class="group-avatar" style="background:${color}">${firstLetter}</div>
+              <div class="group-title">
+                <h3>${group.name}</h3>
+                <span class="group-type">${groupType}</span>
               </div>
-              <a href="${group.link}" target="_blank" class="join-btn">Join Now</a>
             </div>
+            
+            ${group.description ? `<div class="group-details">${group.description}</div>` : ''}
+            
+            <div class="group-platforms">
+              ${platformTags}
+            </div>
+            
+            <a href="${group.link}" target="_blank" class="join-btn">Join Group</a>
           `;
-        }).join('');
-
-        return `
-          <div class="category-content ${category === 'All' ? 'active' : ''}" 
-               id="content-${category}">
-            ${groupsHTML}
-          </div>
-        `;
-      }).join('');
-
-      // Add click event listeners to category tabs
-      document.querySelectorAll('.category-tab').forEach(tab => {
-        tab.addEventListener('click', function() {
-          // Remove active class from all tabs
-          document.querySelectorAll('.category-tab').forEach(t => {
-            t.classList.remove('active');
-          });
           
-          // Add active class to clicked tab
-          this.classList.add('active');
-          activeCategory = this.dataset.category;
-          
-          // Hide all category contents
-          document.querySelectorAll('.category-content').forEach(content => {
-            content.classList.remove('active');
-          });
-          
-          // Show selected category content
-          document.getElementById(`content-${activeCategory}`).classList.add('active');
-        });
+          groupsContainer.appendChild(groupCard);
+        }
       });
+
+      if (groupsContainer.children.length === 0) {
+        groupsContainer.innerHTML = '<div class="no-results">No groups match your filters. Try different criteria.</div>';
+      }
 
     } catch (error) {
       console.error("Error loading groups:", error);
-      groupsList.innerHTML = `
+      groupsContainer.innerHTML = `
         <div class="error-message">
-          Failed to load groups. Please refresh the page or try again later.
+          <p>Error loading groups. Please try again later.</p>
+          <button onclick="loadGroups()" class="refresh-btn">Refresh</button>
         </div>
       `;
     }
   }
 
-  // Load groups when page loads
-  document.addEventListener('DOMContentLoaded', loadGroups);
+  // Initialize filter buttons
+  function initFilters() {
+    // Category filter event listeners
+    document.querySelectorAll('#categoryFilters .filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#categoryFilters .filter-btn').forEach(b => {
+          b.classList.remove('active');
+        });
+        btn.classList.add('active');
+        activeCategory = btn.dataset.category;
+        loadGroups();
+      });
+    });
 
-  // Optional: Add refresh button functionality
-  document.getElementById('refreshBtn')?.addEventListener('click', loadGroups);
+    // Platform filter event listeners
+    document.querySelectorAll('#platformFilters .filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#platformFilters .filter-btn').forEach(b => {
+          b.classList.remove('active');
+        });
+        btn.classList.add('active');
+        activePlatform = btn.dataset.platform;
+        loadGroups();
+      });
+    });
+  }
+
+  // Initialize page
+  document.addEventListener('DOMContentLoaded', () => {
+    initFilters();
+    loadGroups();
+  });
 </script>
-  </script>
 </body>
 </html>
