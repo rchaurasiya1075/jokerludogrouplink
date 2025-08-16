@@ -540,153 +540,203 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 
-  <script>
-    // Initialize Firebase
-    const firebaseConfig = {
-      apiKey: "AIzaSyCwdlnLXcXauh3_YmY6cwswqzcieMOHI0Y",
-      authDomain: "ludogroup-a530a.firebaseapp.com",
-      projectId: "ludogroup-a530a",
-      storageBucket: "ludogroup-a530a.appspot.com",
-      messagingSenderId: "838421084676",
-      appId: "1:838421084676:web:9e02670e280eafcd86d351"
-    };
+ <script>
+  // Initialize Firebase with error handling
+  const firebaseConfig = {
+    apiKey: "AIzaSyCwdlnLXcXauh3_YmY6cwswqzcieMOHI0Y",
+    authDomain: "ludogroup-a530a.firebaseapp.com",
+    projectId: "ludogroup-a530a",
+    storageBucket: "ludogroup-a530a.appspot.com",
+    messagingSenderId: "838421084676",
+    appId: "1:838421084676:web:9e02670e280eafcd86d351"
+  };
+
+  try {
+    // Initialize Firebase only if not already initialized
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    } else {
+      firebase.app(); // Use existing app if already initialized
+    }
+  } catch (error) {
+    console.error("Firebase initialization failed:", error);
+    showError("Database connection failed. Please refresh the page.");
+  }
+
+  const db = firebase.firestore();
+  const groupsList = document.getElementById("groupsList");
+  let activeCategory = "All";
+  let activePlatform = "All";
+
+  // Enhanced group loading with debugging
+  async function loadGroups() {
+    showLoading();
     
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-
-    // DOM Elements
-    const groupsList = document.getElementById("groupsList");
-    let activeCategory = "All";
-    let activePlatform = "All";
-
-    // Generate color from group name
-    function stringToColor(str) {
-      let hash = 0;
-      for (let i = 0; i < str.length; i++) {
-        hash = str.charCodeAt(i) + ((hash << 5) - hash);
-      }
-      const c = (hash & 0x00FFFFFF).toString(16).toUpperCase();
-      return "#" + "00000".substring(0, 6 - c.length) + c;
-    }
-
-    // Get platform icon
-    function getPlatformIcon(platform) {
-      switch(platform) {
-        case 'WhatsApp': return '<i class="fab fa-whatsapp"></i>';
-        case 'Telegram': return '<i class="fab fa-telegram"></i>';
-        case 'Discord': return '<i class="fab fa-discord"></i>';
-        case 'Facebook': return '<i class="fab fa-facebook-f"></i>';
-        default: return '';
-      }
-    }
-
-    // Load and display groups
-    async function loadGroups() {
-      groupsList.innerHTML = '<div class="loading"><i class="fas fa-spinner"></i> Loading groups...</div>';
+    try {
+      console.log("Attempting to load groups...");
       
-      try {
-        const querySnapshot = await db.collection("Groups")
-          .where("status", "==", "approved")
+      // First try with status filter
+      let query = db.collection("Groups")
+        .where("status", "==", "approved")
+        .orderBy("timestamp", "desc");
+      
+      const querySnapshot = await query.get();
+      console.log(`Found ${querySnapshot.size} approved groups`);
+      
+      if (querySnapshot.empty) {
+        // Fallback: Try without status filter for debugging
+        console.log("No approved groups found, trying without status filter...");
+        const fallbackQuery = await db.collection("Groups")
           .orderBy("timestamp", "desc")
           .get();
-
-        if (querySnapshot.empty) {
-          groupsList.innerHTML = `
-            <div class="no-results">
-              <i class="fas fa-users-slash"></i>
-              <p>No groups available yet. Check back later!</p>
-            </div>
-          `;
+        
+        if (fallbackQuery.empty) {
+          showNoResults("No groups available yet. Check back later!");
           return;
         }
-
-        groupsList.innerHTML = '';
-        let hasResults = false;
-
-        querySnapshot.forEach(doc => {
-          const group = doc.data();
-          
-          // Apply filters
-          if ((activeCategory === "All" || group.type === activeCategory) && 
-              (activePlatform === "All" || group.platforms.includes(activePlatform))) {
-            
-            hasResults = true;
-            const color = stringToColor(group.name);
-            const firstLetter = group.name.charAt(0).toUpperCase();
-
-            // Create platform tags
-            const platformTags = group.platforms.map(platform => {
-              let platformClass = platform.toLowerCase();
-              return `<span class="platform-tag ${platformClass}">${getPlatformIcon(platform)} ${platform}</span>`;
-            }).join('');
-
-            const groupCard = document.createElement('div');
-            groupCard.className = 'group-card';
-            groupCard.innerHTML = `
-              <div class="group-header">
-                <div class="group-avatar" style="background:${color}">${firstLetter}</div>
-                <div class="group-title">
-                  <h3>${group.name}</h3>
-                  <span class="group-type">${group.type || 'General'}</span>
-                </div>
-              </div>
-              
-              ${group.description ? `<div class="group-details">${group.description}</div>` : ''}
-              
-              <div class="group-platforms">
-                ${platformTags}
-              </div>
-              
-              <a href="${group.link}" target="_blank" class="join-btn">Join Group <i class="fas fa-external-link-alt"></i></a>
-            `;
-            
-            groupsList.appendChild(groupCard);
-          }
-        });
-
-        if (!hasResults) {
-          groupsList.innerHTML = `
-            <div class="no-results">
-              <i class="fas fa-filter"></i>
-              <p>No groups match your filters. Try different criteria.</p>
-            </div>
-          `;
-        }
-
-      } catch (error) {
-        console.error("Error loading groups: ", error);
-        groupsList.innerHTML = `
-          <div class="error-message">
-            <i class="fas fa-exclamation-triangle"></i>
-            <p>Error loading groups. Please try again later.</p>
-            <button onclick="loadGroups()" class="refresh-btn">Refresh <i class="fas fa-sync-alt"></i></button>
-          </div>
-        `;
+        displayGroups(fallbackQuery);
+      } else {
+        displayGroups(querySnapshot);
       }
-    }
-
-    // Filter button event listeners
-    document.querySelectorAll('#categoryFilters .filter-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('#categoryFilters .filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        activeCategory = btn.dataset.category;
-        loadGroups();
+      
+    } catch (error) {
+      console.error("Error loading groups:", {
+        error: error,
+        message: error.message,
+        stack: error.stack
       });
+      showError(`Failed to load groups: ${error.message}`);
+    }
+  }
+
+  function displayGroups(snapshot) {
+    groupsList.innerHTML = '';
+    let hasResults = false;
+    
+    snapshot.forEach(doc => {
+      const group = doc.data();
+      
+      // Apply filters
+      if ((activeCategory === "All" || group.type === activeCategory) && 
+          (activePlatform === "All" || (group.platforms && group.platforms.includes(activePlatform)))) {
+        
+        hasResults = true;
+        const color = stringToColor(group.name || "Group");
+        const firstLetter = (group.name || "G").charAt(0).toUpperCase();
+
+        const groupCard = document.createElement('div');
+        groupCard.className = 'group-card';
+        groupCard.innerHTML = `
+          <div class="group-header">
+            <div class="group-avatar" style="background:${color}">${firstLetter}</div>
+            <div class="group-title">
+              <h3>${group.name || "Unnamed Group"}</h3>
+              <span class="group-type">${group.type || "General"}</span>
+            </div>
+          </div>
+          
+          ${group.description ? `<div class="group-details">${group.description}</div>` : ''}
+          
+          <div class="group-platforms">
+            ${group.platforms ? group.platforms.map(p => `
+              <span class="platform-tag ${p.toLowerCase()}">
+                ${getPlatformIcon(p)} ${p}
+              </span>
+            `).join('') : '<span class="platform-tag">No platforms</span>'}
+          </div>
+          
+          <a href="${group.link || '#'}" target="_blank" class="join-btn">
+            Join Group <i class="fas fa-external-link-alt"></i>
+          </a>
+        `;
+        
+        groupsList.appendChild(groupCard);
+      }
     });
 
-    document.querySelectorAll('#platformFilters .filter-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('#platformFilters .filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        activePlatform = btn.dataset.platform;
+    if (!hasResults) {
+      showNoResults("No groups match your filters. Try different criteria.");
+    }
+  }
+
+  // Helper functions
+  function stringToColor(str) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    const c = (hash & 0x00FFFFFF).toString(16).toUpperCase();
+    return "#" + "00000".substring(0, 6 - c.length) + c;
+  }
+
+  function getPlatformIcon(platform) {
+    const icons = {
+      'WhatsApp': 'fa-whatsapp',
+      'Telegram': 'fa-telegram',
+      'Discord': 'fa-discord',
+      'Facebook': 'fa-facebook-f'
+    };
+    return `<i class="fab ${icons[platform] || 'fa-globe'}"></i>`;
+  }
+
+  function showLoading() {
+    groupsList.innerHTML = `
+      <div class="loading">
+        <i class="fas fa-spinner fa-spin"></i> Loading groups...
+      </div>
+    `;
+  }
+
+  function showNoResults(message) {
+    groupsList.innerHTML = `
+      <div class="no-results">
+        <i class="fas fa-users-slash"></i>
+        <p>${message}</p>
+      </div>
+    `;
+  }
+
+  function showError(message) {
+    groupsList.innerHTML = `
+      <div class="error-message">
+        <i class="fas fa-exclamation-triangle"></i>
+        <p>${message}</p>
+        <button onclick="loadGroups()" class="refresh-btn">
+          <i class="fas fa-sync-alt"></i> Try Again
+        </button>
+      </div>
+    `;
+  }
+
+  // Initialize filters and load groups
+  document.addEventListener('DOMContentLoaded', () => {
+    // Set up filter buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const filterType = this.parentElement.id.includes('category') ? 'category' : 'platform';
+        const value = this.dataset[filterType];
+        
+        // Update active filter
+        if (filterType === 'category') {
+          activeCategory = value;
+        } else {
+          activePlatform = value;
+        }
+        
+        // Update UI
+        document.querySelectorAll(`#${filterType}Filters .filter-btn`).forEach(b => {
+          b.classList.remove('active');
+        });
+        this.classList.add('active');
+        
+        // Reload groups
         loadGroups();
       });
     });
 
     // Initial load
-    document.addEventListener('DOMContentLoaded', loadGroups);
-  </script>
+    loadGroups();
+  });
+</script>
 </body>
 </html>
