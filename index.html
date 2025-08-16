@@ -334,115 +334,63 @@ h3.custom-heading {
 
 
 
-form {
+/* ===== FORM SECTION ===== */
+#groupForm {
   display: flex;
-  flex-wrap: wrap; /* Mobile friendly wrap */
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
-  background: white;
+  gap: 12px;
+  background: #ffffff;
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   max-width: 500px;
-  margin: 0 auto 30px auto;
-}
-
-form input {
-  padding: 12px 15px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  flex: 1 1 150px; /* Flexible width, min 150px */
-  min-width: 120px;
-}
-
-form button {
-  padding: 12px 20px;
-  border: none;
-  background-color: #25D366;
-  color: white;
-  font-weight: bold;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-  flex: 1 1 100px; /* button flexible on mobile */
-}
-
-form button:hover {
-  background-color: #128C7E;
-}
-
-/* Mobile responsiveness */
-@media (max-width: 480px) {
-  form {
-    flex-direction: column;
-    gap: 12px;
-    padding: 15px;
-  }
-  form input, form button {
-    flex: 1 1 100%;
-  }
-}
-
-
-    
-/* 🌟 Form Styling */
-#groupForm {
-  margin: 20px;
-  padding: 20px;
-  background: #f9f9f9;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin: 20px auto;
   font-family: "Segoe UI", sans-serif;
 }
 
-#groupForm h2 {
-  margin-bottom: 15px;
-  font-size: 22px;
-  color: #333;
-}
-
 #groupForm input {
-  padding: 10px;
-  width: 45%;
-  margin-right: 10px;
+  flex: 1 1 180px;
+  min-width: 120px;
+  padding: 12px 15px;
   border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 14px;
 }
 
 #groupForm button {
-  padding: 10px 20px;
-  background: #25d366;
-  color: white;
-  border: none;
+  flex: 1 1 120px;
+  min-width: 100px;
+  padding: 12px 20px;
   border-radius: 8px;
-  cursor: pointer;
+  border: none;
+  background: #25D366;
+  color: white;
   font-weight: bold;
-  font-size: 14px;
+  cursor: pointer;
   transition: 0.3s;
 }
 
 #groupForm button:hover {
-  background: #1ebe5d;
+  background: #128C7E;
 }
 
-/* 🌟 Groups Container */
+/* ===== GROUP CARDS ===== */
 #groupsList {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  justify-content: center;
   padding: 20px;
   font-family: "Segoe UI", sans-serif;
-  justify-content: center;
 }
 
-/* 🌟 Each Group Card */
 .group-card {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 350px;
-  background: white;
+  background: #fff;
   border-radius: 15px;
   padding: 15px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -454,7 +402,6 @@ form button:hover {
   box-shadow: 0 8px 16px rgba(0,0,0,0.15);
 }
 
-/* 🌟 Left Side (DP + Name) */
 .group-info {
   display: flex;
   align-items: center;
@@ -465,7 +412,8 @@ form button:hover {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  border: 2px solid #25d366;
+  border: 2px solid #25D366;
+  object-fit: cover;
 }
 
 .group-info h3 {
@@ -474,18 +422,12 @@ form button:hover {
   color: #333;
 }
 
-.group-info p {
-  margin: 0;
-  font-size: 13px;
-  color: #777;
-}
-
-/* 🌟 Join Button */
+/* ===== JOIN BUTTON ===== */
 .join-btn {
-  background: #25d366;
+  background: #25D366;
   color: white;
   border: none;
-  padding: 8px 16px;
+  padding: 10px 18px;
   border-radius: 10px;
   font-size: 14px;
   font-weight: bold;
@@ -494,8 +436,30 @@ form button:hover {
 }
 
 .join-btn:hover {
-  background: #1ebe5d;
+  background: #128C7E;
 }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+  #groupForm {
+    flex-direction: column;
+    gap: 12px;
+    padding: 15px;
+  }
+  #groupForm input, #groupForm button {
+    flex: 1 1 100%;
+  }
+  .group-card {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .join-btn {
+    width: 100%;
+  }
+}
+
 
 
 /* ===== RESPONSIVE ===== */
