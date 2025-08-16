@@ -654,66 +654,77 @@ h3.custom-heading {
 
   loadFrames();
 
-   <!-- Firebase + Firestore -->
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
-    import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-    // ✅ Your Firebase Config
-    const firebaseConfig = {
-      apiKey: "AIzaSyCwdlnLXcXauh3_YmY6cwswqzcieMOHI0Y",
-      authDomain: "ludogroup-a530a.firebaseapp.com",
-      projectId: "ludogroup-a530a",
-      storageBucket: "ludogroup-a530a.appspot.com",
-      messagingSenderId: "838421084676",
-      appId: "1:838421084676:web:9e02670e280eafcd86d351"
-    };
+// Firebase config
+const firebaseConfig = {
+  apiKey: "AIzaSyCwdlnLXcXauh3_YmY6cwswqzcieMOHI0Y",
+  authDomain: "ludogroup-a530a.firebaseapp.com",
+  projectId: "ludogroup-a530a",
+  storageBucket: "ludogroup-a530a.appspot.com",
+  messagingSenderId: "838421084676",
+  appId: "1:838421084676:web:9e02670e280eafcd86d351"
+};
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-    const form = document.getElementById("groupForm");
-    const groupsList = document.getElementById("groupsList");
+const form = document.getElementById("groupForm");
+const groupsList = document.getElementById("groupsList");
 
-    // ✅ Add new group
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const name = document.getElementById("name").value;
-      const link = document.getElementById("link").value;
+// Generate color from string
+function stringToColor(str) {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = str.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  const c = (hash & 0x00FFFFFF).toString(16).toUpperCase();
+  return "#" + "00000".substring(0, 6 - c.length) + c;
+}
 
-      await addDoc(collection(db, "Groups"), { name, link });
+// Add new group
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const name = document.getElementById("name").value.trim();
+  const link = document.getElementById("link").value.trim();
 
-      form.reset();
-      loadGroups(); // refresh list
-    });
+  if (!name || !link) return alert("Please fill both fields");
 
-    // ✅ Fetch & show groups
-    async function loadGroups() {
-      groupsList.innerHTML = "";
-      const querySnapshot = await getDocs(collection(db, "Groups"));
-      querySnapshot.forEach((doc) => {
-        const data = doc.data();
-        let groupDP = "https://img.icons8.com/color/96/whatsapp--v1.png"; // default DP
-
-        groupsList.innerHTML += `
-          <div class="group-card">
-            <div class="group-info">
-              <img src="${groupDP}" alt="Group DP">
-              <div>
-                <h3>${data.name}</h3>
-                <p>WhatsApp Group</p>
-              </div>
-            </div>
-            <a href="${data.link}" target="_blank">
-              <button class="join-btn">Join</button>
-            </a>
-          </div>
-        `;
-      });
-    }
-
+  try {
+    await addDoc(collection(db, "Groups"), { name, link });
+    form.reset();
     loadGroups();
-  </script>
+  } catch (err) {
+    console.error("Error adding group:", err);
+    alert("Failed to add group. Check console.");
+  }
+});
+
+// Load & show groups
+async function loadGroups() {
+  groupsList.innerHTML = "";
+  const snapshot = await getDocs(collection(db, "Groups"));
+  snapshot.forEach(doc => {
+    const data = doc.data();
+    const color = stringToColor(data.name);
+    const firstLetter = data.name.charAt(0).toUpperCase();
+    groupsList.innerHTML += `
+      <div class="group-card">
+        <div class="group-dp" style="background-color:${color}">${firstLetter}</div>
+        <div class="group-info">
+          <h3>${data.name}</h3>
+          <a href="${data.link}" target="_blank"><button>Join</button></a>
+        </div>
+      </div>
+    `;
+  });
+}
+
+// Initial load
+loadGroups();
+</script>
 
 </script>
 
