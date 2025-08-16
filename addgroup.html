@@ -184,24 +184,46 @@
       color: #ffde59;
     }
 
-    .status-message {
-      text-align: center;
-      padding: 12px;
-      margin: 15px 0;
-      border-radius: 5px;
+    /* Success Popup Styles */
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
       display: none;
     }
 
-    .success {
-      background-color: #d4edda;
-      color: #155724;
-      border: 1px solid #c3e6cb;
+    .success-popup {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
 
-    .error {
-      background-color: #f8d7da;
-      color: #721c24;
-      border: 1px solid #f5c6cb;
+    .success-icon {
+      font-size: 50px;
+      color: #4CAF50;
+      margin-bottom: 15px;
+    }
+
+    .popup-close {
+      background: #2d2e52;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      margin-top: 20px;
+      cursor: pointer;
+      font-weight: 600;
     }
 
     @media (max-width: 600px) {
@@ -241,8 +263,6 @@
       📢 <strong>Note:</strong> All group submissions are free. Groups will be published after admin approval.<br>
       ✅ No charges at all. Spam submissions will be banned.
     </div>
-
-    <div id="statusMessage" class="status-message"></div>
 
     <form id="groupForm">
       <div class="form-group">
@@ -288,6 +308,16 @@
     </form>
   </div>
 
+  <!-- Success Popup -->
+  <div class="popup-overlay" id="successPopup">
+    <div class="success-popup">
+      <div class="success-icon">✓</div>
+      <h3>Group Added Successfully!</h3>
+      <p>Your group has been submitted for admin approval.</p>
+      <button class="popup-close" onclick="closePopup()">OK</button>
+    </div>
+  </div>
+
   <footer>
     <div class="footer-links">
       <a href="index.html">Home</a>
@@ -305,147 +335,85 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 
   <script>
-<script>
-  // Initialize Firebase
-  const firebaseConfig = {
-    apiKey: "AIzaSyCwdlnLXcXauh3_YmY6cwswqzcieMOHI0Y",
-    authDomain: "ludogroup-a530a.firebaseapp.com",
-    projectId: "ludogroup-a530a",
-    storageBucket: "ludogroup-a530a.appspot.com",
-    messagingSenderId: "838421084676",
-    appId: "1:838421084676:web:9e02670e280eafcd86d351"
-  };
+    // Initialize Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyCwdlnLXcXauh3_YmY6cwswqzcieMOHI0Y",
+      authDomain: "ludogroup-a530a.firebaseapp.com",
+      projectId: "ludogroup-a530a",
+      storageBucket: "ludogroup-a530a.appspot.com",
+      messagingSenderId: "838421084676",
+      appId: "1:838421084676:web:9e02670e280eafcd86d351"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
 
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
+    // Get popup element
+    const successPopup = document.getElementById("successPopup");
 
-  // DOM elements
-  const groupsContainer = document.querySelector('.groups-container');
-  const categoryFilters = document.getElementById('categoryFilters');
-  const platformFilters = document.getElementById('platformFilters');
-  let activeCategory = "All";
-  let activePlatform = "All";
-
-  // Function to generate color from string
-  function stringToColor(str) {
-    let hash = 0;
-    for (let i = 0; i < str.length; i++) {
-      hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    // Function to show popup
+    function showPopup() {
+      successPopup.style.display = "flex";
     }
-    const c = (hash & 0x00FFFFFF).toString(16).toUpperCase();
-    return "#" + "00000".substring(0, 6 - c.length) + c;
-  }
 
-  // Load and display groups
-  async function loadGroups() {
-    try {
-      groupsContainer.innerHTML = '<div class="loading">Loading groups...</div>';
-      
-      let query = db.collection("Groups");
-      
-      // Only apply status filter if not in development
-      if (window.location.hostname !== "localhost") {
-        query = query.where("status", "==", "approved");
-      }
-      
-      const querySnapshot = await query.orderBy("timestamp", "desc").get();
+    // Function to close popup
+    function closePopup() {
+      successPopup.style.display = "none";
+    }
 
-      if (querySnapshot.empty) {
-        groupsContainer.innerHTML = '<div class="no-results">No groups available yet. Check back later!</div>';
+    // Form submission handler
+    document.getElementById("groupForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      
+      // Get form values
+      const name = document.getElementById("name").value.trim();
+      const link = document.getElementById("link").value.trim();
+      const groupType = document.getElementById("groupType").value;
+      const description = document.getElementById("description").value.trim();
+      
+      // Get checked platforms
+      const platformCheckboxes = document.querySelectorAll(".platform:checked");
+      const platforms = Array.from(platformCheckboxes).map(cb => cb.value);
+      
+      // Validation
+      if (!name || !link || !groupType || platforms.length === 0) {
+        alert("Please fill all required fields");
         return;
       }
 
-      groupsContainer.innerHTML = '';
-      
-      querySnapshot.forEach(doc => {
-        const group = doc.data();
-        const groupType = group.type || "General";
+      try {
+        // Add new group to Firestore
+        await db.collection("Groups").add({
+          name: name,
+          link: link,
+          type: groupType,
+          platforms: platforms,
+          description: description,
+          status: "pending", // Needs admin approval
+          timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        });
         
-        // Apply filters
-        if ((activeCategory === "All" || groupType === activeCategory) && 
-            (activePlatform === "All" || group.platforms.includes(activePlatform))) {
-          
-          const color = stringToColor(group.name);
-          const firstLetter = group.name.charAt(0).toUpperCase();
-          
-          // Create platform tags
-          const platformTags = group.platforms.map(platform => {
-            let platformClass = platform.toLowerCase();
-            return `<span class="platform-tag ${platformClass}">${platform}</span>`;
-          }).join('');
-          
-          const groupCard = document.createElement('div');
-          groupCard.className = 'group-card';
-          groupCard.innerHTML = `
-            <div class="group-header">
-              <div class="group-avatar" style="background:${color}">${firstLetter}</div>
-              <div class="group-title">
-                <h3>${group.name}</h3>
-                <span class="group-type">${groupType}</span>
-              </div>
-            </div>
-            
-            ${group.description ? `<div class="group-details">${group.description}</div>` : ''}
-            
-            <div class="group-platforms">
-              ${platformTags}
-            </div>
-            
-            <a href="${group.link}" target="_blank" class="join-btn">Join Group</a>
-          `;
-          
-          groupsContainer.appendChild(groupCard);
-        }
-      });
-
-      if (groupsContainer.children.length === 0) {
-        groupsContainer.innerHTML = '<div class="no-results">No groups match your filters. Try different criteria.</div>';
+        // Show success popup
+        showPopup();
+        
+        // Send WhatsApp message to admin
+        const phone = "9473746020";
+        const message = `New Group Submission:%0A%0A📛 Name: ${encodeURIComponent(name)}%0A🔗 Link: ${encodeURIComponent(link)}%0A🏷 Type: ${encodeURIComponent(groupType)}%0A📱 Platforms: ${encodeURIComponent(platforms.join(", "))}%0A%0A${description ? `📝 Description: ${encodeURIComponent(description)}` : ''}`;
+        window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+        
+        // Reset form
+        document.getElementById("groupForm").reset();
+      } catch (error) {
+        console.error("Error adding group: ", error);
+        alert("Failed to submit group. Please try again later.");
       }
-
-    } catch (error) {
-      console.error("Error loading groups:", error);
-      groupsContainer.innerHTML = `
-        <div class="error-message">
-          <p>Error loading groups. Please try again later.</p>
-          <button onclick="loadGroups()" class="refresh-btn">Refresh</button>
-        </div>
-      `;
-    }
-  }
-
-  // Initialize filter buttons
-  function initFilters() {
-    // Category filter event listeners
-    document.querySelectorAll('#categoryFilters .filter-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('#categoryFilters .filter-btn').forEach(b => {
-          b.classList.remove('active');
-        });
-        btn.classList.add('active');
-        activeCategory = btn.dataset.category;
-        loadGroups();
-      });
     });
 
-    // Platform filter event listeners
-    document.querySelectorAll('#platformFilters .filter-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('#platformFilters .filter-btn').forEach(b => {
-          b.classList.remove('active');
-        });
-        btn.classList.add('active');
-        activePlatform = btn.dataset.platform;
-        loadGroups();
-      });
+    // Close popup when clicking outside
+    window.addEventListener("click", (event) => {
+      if (event.target == successPopup) {
+        closePopup();
+      }
     });
-  }
-
-  // Initialize page
-  document.addEventListener('DOMContentLoaded', () => {
-    initFilters();
-    loadGroups();
-  });
-</script>
+  </script>
 </body>
 </html>
