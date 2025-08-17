@@ -368,8 +368,9 @@
   </footer>
 
 <!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 
 <script>
   // Firebase Config
@@ -382,18 +383,21 @@
     appId: "1:838421084676:web:9e02670e280eafcd86d351"
   };
 
+  // Initialize Firebase safely
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
+
+  const db = firebase.firestore();
+
   // Connection status banner
   const connectionStatus = document.createElement('div');
   connectionStatus.className = 'connection-status';
-  document.body.appendChild(connectionStatus);
+  if(document.body) document.body.appendChild(connectionStatus);
 
   // Test Firestore connection
   async function testConnection() {
     try {
-      if (!firebase.apps.length) {
-        firebase.initializeApp(firebaseConfig);
-      }
-      const db = firebase.firestore();
       await db.collection("Groups").limit(1).get(); // test read
       connectionStatus.innerHTML = '<span class="connected"><i class="fas fa-check-circle"></i> Connected to database</span>';
       return true;
@@ -409,6 +413,11 @@
     const isConnected = await testConnection();
     const form = document.getElementById('groupForm');
 
+    if (!form) {
+      console.error("Form element with ID 'groupForm' not found!");
+      return;
+    }
+
     if (!isConnected) {
       // Disable submission if DB not connected
       form.addEventListener('submit', (e) => {
@@ -417,9 +426,6 @@
       });
       return;
     }
-
-    // Firestore reference
-    const db = firebase.firestore();
 
     // Form submission handler
     form.addEventListener("submit", async (e) => {
@@ -441,7 +447,7 @@
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
 
-        // Save group
+        // Save group in Firestore
         await db.collection("Groups").add({
           name,
           link,
@@ -461,7 +467,7 @@
         }, 2000);
 
         // WhatsApp notify
-        const phone = "9473746020"; // 🔔 admin number
+        const phone = "9473746020"; // admin number
         const message = `🆕 New Group Submission:%0A%0A📛 Name: ${name}%0A🔗 Link: ${link}%0A🏷 Type: ${groupType}%0A📱 Platforms: ${platforms.join(", ")}`;
         window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
 
