@@ -715,6 +715,14 @@ body {
   }
 
   loadFrames();
+</script>
+<div id="groupsList"></div>
+<button id="addGroupBtn" style="margin-top:15px; padding:10px 15px; background:green; color:white; border:none; cursor:pointer;">Add Group</button>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
 <script>
   // Firebase config
   const firebaseConfig = {
@@ -742,7 +750,6 @@ body {
     window.location.href = "join.html";
   });
 
-  // Helper to generate color
   function stringToColor(str) {
     let hash = 0;
     for (let i = 0; i < str.length; i++) {
@@ -767,6 +774,7 @@ body {
       }
 
       groupsList.innerHTML = "";
+
       snapshot.forEach(doc => {
         const g = doc.data();
         const color = stringToColor(g.name);
@@ -806,19 +814,13 @@ body {
     }
   });
 
-  // Listen for login state
+  // Listen for login state to check if admin
   auth.onAuthStateChanged(user => {
-    if (user && adminEmails.includes(user.email)) {
-      isAdmin = true;
-    } else {
-      isAdmin = false;
-    }
-    loadGroups(); // Reload groups whenever auth state changes
+    isAdmin = user && adminEmails.includes(user.email);
+    loadGroups();
   });
-
-  // Initial load
-  loadGroups();
 </script>
+
  <footer>
     <div class="footer-links">
       <a href="index.html">Home</a>
