@@ -1,212 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JokerLudo - Play Ludo & Earn Money</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    :root {
-      --dark-bg: #1B1B1F;
-      --primary: #FF3B30;
-      --secondary: #0A84FF;
-      --light: #FFFFFF;
-      --success: #34C759;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JokerLudo - Play Ludo & Earn Money</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root {
+    --bg: #0A1F44;        /* Navy Blue background */
+    --heading: #FF3B30;   /* Red headings */
+    --text: #FFFFFF;      /* White text */
+    --btn-primary: #FF3B30;
+    --btn-hover: #FF6666;
+    --card-bg: #11294D;    /* Slightly lighter navy */
+    --success: #34C759;
+  }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+  * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+  body { background: var(--bg); color: var(--text); overflow-x: hidden; }
 
-    body { background-color: var(--dark-bg); color: var(--light); overflow-x: hidden; }
+  header {
+    background: #00172B;
+    color: var(--text);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  }
+  .logo { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.3rem; color: var(--heading); }
+  .logo img { width: 40px; height: 40px; border-radius: 50%; }
+  .nav-links { display:flex; gap:1rem; }
+  .nav-links a { color: var(--text); text-decoration:none; padding:0.4rem 0.8rem; border-radius:6px; transition:0.3s; font-weight:500; }
+  .nav-links a:hover { background: var(--btn-primary); color: var(--text); }
 
-    header {
-      background: #000;
-      color: white;
-      padding: 0.8rem 1rem;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-    }
+  section { padding: 3rem 1rem; }
+  #hero { text-align:center; padding:5rem 1rem; background: linear-gradient(135deg, #00172B, #0A1F44, #00172B); }
+  #hero img { width:100px; border-radius:50%; margin-bottom:1rem; }
+  #hero h1 { font-size:3rem; color: var(--heading); margin-bottom:1rem; }
+  #hero p { font-size:1.2rem; margin-bottom:2rem; color:#eee; }
+  .btn { display:inline-block; padding:0.8rem 1.6rem; border-radius:8px; font-weight:600; text-decoration:none; transition:all 0.3s; }
+  .btn-primary { background: var(--btn-primary); color: var(--text); box-shadow:0 4px 15px rgba(255,59,48,0.5); }
+  .btn-primary:hover { transform: translateY(-3px); background: var(--btn-hover); }
+  .btn-secondary { background: rgba(255,255,255,0.1); color: var(--text); }
+  .btn-secondary:hover { background: var(--heading); }
 
-    .logo { display: flex; align-items: center; gap: 0.5rem; font-weight: 700; font-size: 1.2rem; color: var(--primary); }
-    .logo img { width: 35px; height: 35px; border-radius: 50%; }
+  .section-title { font-size:2rem; text-align:center; margin-bottom:2rem; color: var(--heading); }
 
-    .nav-links { display: flex; gap: 1rem; }
-    .nav-links a {
-      color: var(--light); text-decoration: none; font-weight: 500; padding: 0.3rem 0.8rem;
-      border-radius: 5px; transition: all 0.3s;
-    }
-    .nav-links a:hover { background: var(--primary); color: var(--light); }
+  .features-grid { display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; }
+  .feature-card { background: var(--card-bg); padding:1.5rem; border-radius:12px; text-align:center; width:250px; transition: transform 0.3s, box-shadow 0.3s; }
+  .feature-card:hover { transform: translateY(-5px); box-shadow:0 8px 20px rgba(255,59,48,0.5); }
+  .feature-icon { font-size:2.5rem; color: var(--heading); margin-bottom:0.5rem; }
+  .feature-card h3 { margin-bottom:0.5rem; color: var(--heading); }
+  .feature-card p { color:#fff; font-size:0.95rem; }
 
-    /* Hero Section */
-    #hero {
-      background: linear-gradient(135deg, #FF3B30, #1B1B1F, #0A84FF);
-      text-align: center;
-      padding: 4rem 1rem;
-    }
-    #hero img { width: 100px; border-radius: 50%; margin-bottom: 1rem; }
-    #hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
-    #hero p { font-size: 1.1rem; margin-bottom: 2rem; color: #eee; }
-    .btn { display: inline-block; padding: 0.7rem 1.5rem; border-radius: 8px; font-weight: 600; text-decoration: none; transition: all 0.3s; }
-    .btn-primary { background: var(--primary); color: var(--light); }
-    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(255,59,48,0.5); }
-    .btn-secondary { background: rgba(255,255,255,0.1); color: var(--light); }
-    .btn-secondary:hover { background: var(--secondary); color: var(--light); }
+  .horizontal-scroll { display:flex; gap:1rem; overflow-x:auto; scroll-behavior:smooth; padding-bottom:1rem; }
+  .horizontal-scroll::-webkit-scrollbar { height:10px; }
+  .horizontal-scroll::-webkit-scrollbar-thumb { background: var(--btn-primary); border-radius:5px; }
 
-    section { padding: 3rem 1rem; }
+  .card { min-width:260px; background: var(--card-bg); padding:1rem; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.5); transition: transform 0.4s, box-shadow 0.4s; }
+  .card:hover { transform: rotateY(10deg) scale(1.05); box-shadow:0 10px 25px rgba(255,59,48,0.6); }
+  .group-icon { width:45px; height:45px; background: var(--heading); color: var(--text); border-radius:10px; display:flex; justify-content:center; align-items:center; margin-bottom:0.5rem; }
+  .join-btn { background: var(--success); color: var(--text); padding:0.5rem 1rem; border-radius:6px; font-size:0.85rem; text-decoration:none; transition:0.3s; }
+  .join-btn:hover { background: var(--btn-primary); }
 
-    /* Features */
-    #features { background: #111; }
-    .section-title { font-size: 2rem; text-align: center; margin-bottom: 2rem; color: var(--primary); }
-    .features-grid { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
-    .feature-card { background: #222; padding: 1.5rem; border-radius: 12px; text-align: center; width: 250px; transition: transform 0.3s, box-shadow 0.3s; }
-    .feature-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(10,132,255,0.4); }
-    .feature-icon { font-size: 2.5rem; color: var(--primary); margin-bottom: 0.5rem; }
-    .feature-card h3 { margin-bottom: 0.5rem; color: var(--light); }
-    .feature-card p { color: #ccc; font-size: 0.95rem; }
+  /* Steps */
+  .steps .step { min-width:220px; background: var(--card-bg); padding:1.5rem; border-radius:12px; text-align:center; transition: transform 0.3s, box-shadow 0.3s; }
+  .step:hover { transform: rotateY(10deg) scale(1.05); box-shadow:0 10px 20px rgba(255,59,48,0.5); }
+  .step-number { width:45px; height:45px; border-radius:50%; background: var(--heading); display:flex; justify-content:center; align-items:center; margin:0 auto 0.5rem; color: var(--text); font-weight:700; }
 
-    /* Horizontal Scrolling Sections with 3D effect */
-    .horizontal-scroll { display: flex; gap: 1rem; overflow-x: auto; scroll-behavior: smooth; padding-bottom: 1rem; }
-    .horizontal-scroll::-webkit-scrollbar { height: 10px; }
-    .horizontal-scroll::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 5px; }
+  /* Testimonials */
+  .testimonial-card { min-width:280px; background: var(--card-bg); padding:1.2rem; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.5); transition: transform 0.4s; }
+  .testimonial-card:hover { transform: rotateY(10deg) scale(1.05); box-shadow:0 10px 20px rgba(255,59,48,0.5); }
+  .testimonial-card p { color:#fff; font-size:0.95rem; margin-bottom:1rem; }
 
-    .card {
-      min-width: 260px;
-      background: #1C1C1E;
-      padding: 1rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-      transition: transform 0.4s, box-shadow 0.4s;
-      perspective: 1000px;
-    }
-    .card:hover { transform: rotateY(10deg) scale(1.05); box-shadow: 0 10px 20px rgba(255,59,48,0.6); }
+  /* Footer */
+  footer { background:#00172B; color: var(--text); padding:2rem 1rem; text-align:center; }
+  .footer-links, .social-links { display:flex; justify-content:center; flex-wrap:wrap; gap:1rem; margin-bottom:1rem; }
+  .footer-links a, .social-links a { color: var(--text); text-decoration:none; font-size:0.9rem; }
+  .footer-links a:hover, .social-links a:hover { color: var(--heading); }
+  .copyright { font-size:0.8rem; color:#ccc; }
 
-    .group-icon { width: 45px; height: 45px; background: var(--primary); color: var(--light); border-radius: 10px; display: flex; justify-content: center; align-items: center; margin-bottom: 0.5rem; }
-    .join-btn { background: var(--success); color: var(--light); padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.85rem; display: inline-block; margin-top: 0.5rem; text-decoration: none; transition: all 0.3s; }
-    .join-btn:hover { background: var(--primary); }
-
-    /* How It Works */
-    #how-it-works { background: #111; }
-    .steps .step { min-width: 220px; background: #222; padding: 1.5rem; border-radius: 12px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; }
-    .step:hover { transform: rotateY(10deg) scale(1.05); box-shadow: 0 10px 20px rgba(255,59,48,0.5); }
-    .step-number { width: 45px; height: 45px; border-radius: 50%; background: var(--primary); display: flex; justify-content: center; align-items: center; margin: 0 auto 0.5rem; color: var(--light); font-weight: 700; }
-
-    /* Testimonials */
-    #testimonials { background: #0F0F0F; }
-    .testimonial-card { min-width: 280px; background: #1C1C1E; padding: 1.2rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); transition: transform 0.4s; }
-    .testimonial-card:hover { transform: rotateY(10deg) scale(1.05); box-shadow: 0 10px 20px rgba(10,132,255,0.5); }
-    .testimonial-card p { color: #ccc; font-size: 0.95rem; margin-bottom: 1rem; }
-
-    /* Footer */
-    footer { background: #000; color: var(--light); padding: 2rem 1rem; text-align: center; }
-    .footer-links, .social-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem; }
-    .footer-links a, .social-links a { color: var(--light); text-decoration: none; font-size: 0.9rem; }
-    .footer-links a:hover, .social-links a:hover { color: var(--primary); }
-    .copyright { font-size: 0.8rem; color: #aaa; }
-
-    @media (max-width: 768px) {
-      .features-grid, .horizontal-scroll { flex-wrap: nowrap; }
-      .step, .feature-card, .testimonial-card, .card { min-width: 220px; }
-    }
-  </style>
+  @media (max-width:768px) {
+    .features-grid, .horizontal-scroll { flex-wrap:nowrap; }
+    .step, .feature-card, .testimonial-card, .card { min-width:220px; }
+  }
+</style>
 </head>
 <body>
-  <header>
-    <div class="logo"><img src="WhatsApp Image 2025-07-27 at 10.45.50.jpeg" alt="Logo"> JokerLudo</div>
-    <nav class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="rules.html">Rules</a>
-      <a href="join.html" class="active">Join</a>
-      <a href="addgroup.html">Add Group</a>
-      <a href="contact.html">Contact</a>
-      <a href="privacy.html">Privacy</a>
-    </nav>
-  </header>
 
-  <!-- Hero -->
-  <section id="hero">
-    <img src="WhatsApp Image 2025-07-27 at 10.45.50.jpeg" alt="Logo">
-    <h1>Earn Money Playing Ludo</h1>
-    <p>Join verified gaming groups and win real cash instantly!</p>
-    <a href="#groups" class="btn btn-primary">Join Groups</a>
-    <a href="addgroup.html" class="btn btn-secondary">Add Your Group</a>
-  </section>
+<header>
+  <div class="logo"><img src="WhatsApp Image 2025-07-27 at 10.45.50.jpeg" alt="Logo"> JokerLudo</div>
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="rules.html">Rules</a>
+    <a href="join.html" class="active">Join</a>
+    <a href="addgroup.html">Add Group</a>
+    <a href="contact.html">Contact</a>
+    <a href="privacy.html">Privacy</a>
+  </nav>
+</header>
 
-  <!-- Features -->
-  <section id="features">
-    <h2 class="section-title">Why Choose JokerLudo?</h2>
-    <div class="features-grid">
-      <div class="feature-card"><div class="feature-icon"><i class="fas fa-shield-alt"></i></div><h3>Verified Groups</h3><p>Trusted & secure cash transactions.</p></div>
-      <div class="feature-card"><div class="feature-icon"><i class="fas fa-rupee-sign"></i></div><h3>Instant Payouts</h3><p>Withdraw winnings immediately.</p></div>
-      <div class="feature-card"><div class="feature-icon"><i class="fas fa-headset"></i></div><h3>24/7 Support</h3><p>Dedicated help anytime.</p></div>
-    </div>
-  </section>
+<section id="hero">
+  <img src="WhatsApp Image 2025-07-27 at 10.45.50.jpeg" alt="Logo">
+  <h1>Earn Money Playing Ludo</h1>
+  <p>Join verified gaming groups and win real cash instantly!</p>
+  <a href="#groups" class="btn btn-primary">Join Groups</a>
+  <a href="addgroup.html" class="btn btn-secondary">Add Your Group</a>
+</section>
 
-  <!-- Groups -->
-  <section id="groups">
-    <h2 class="section-title">Popular Ludo Groups</h2>
-    <div class="horizontal-scroll">
-      <div class="card group-card">
-        <div class="group-icon"><i class="fas fa-crown"></i></div>
-        <h3>Ludo King Premium</h3>
-        <p>High-stakes matches with big payouts.</p>
-        <a href="#" class="join-btn">Join Now</a>
-      </div>
-      <div class="card group-card">
-        <div class="group-icon"><i class="fas fa-star"></i></div>
-        <h3>Ludo Star Winners</h3>
-        <p>Friendly matches for all levels.</p>
-        <a href="#" class="join-btn">Join Now</a>
-      </div>
-      <div class="card group-card">
-        <div class="group-icon"><i class="fas fa-bolt"></i></div>
-        <h3>FastWin Ludo</h3>
-        <p>Quick matches with instant payouts.</p>
-        <a href="#" class="join-btn">Join Now</a>
-      </div>
-    </div>
-  </section>
+<section id="features">
+  <h2 class="section-title">Why Choose JokerLudo?</h2>
+  <div class="features-grid">
+    <div class="feature-card"><div class="feature-icon"><i class="fas fa-shield-alt"></i></div><h3>Verified Groups</h3><p>Trusted & secure cash transactions.</p></div>
+    <div class="feature-card"><div class="feature-icon"><i class="fas fa-rupee-sign"></i></div><h3>Instant Payouts</h3><p>Withdraw winnings immediately.</p></div>
+    <div class="feature-card"><div class="feature-icon"><i class="fas fa-headset"></i></div><h3>24/7 Support</h3><p>Dedicated help anytime.</p></div>
+  </div>
+</section>
 
-  <!-- How It Works -->
-  <section id="how-it-works">
-    <h2 class="section-title">How It Works</h2>
-    <div class="horizontal-scroll steps">
-      <div class="step"><div class="step-number">1</div><h3>Join Group</h3><p>Select from verified groups.</p></div>
-      <div class="step"><div class="step-number">2</div><h3>Play & Win</h3><p>Participate in matches & tournaments.</p></div>
-      <div class="step"><div class="step-number">3</div><h3>Earn Money</h3><p>Withdraw winnings instantly.</p></div>
-    </div>
-  </section>
+<section id="groups">
+  <h2 class="section-title">Popular Ludo Groups</h2>
+  <div class="horizontal-scroll">
+    <div class="card group-card"><div class="group-icon"><i class="fas fa-crown"></i></div><h3>Ludo King Premium</h3><p>High-stakes matches with big payouts.</p><a href="#" class="join-btn">Join Now</a></div>
+    <div class="card group-card"><div class="group-icon"><i class="fas fa-star"></i></div><h3>Ludo Star Winners</h3><p>Friendly matches for all levels.</p><a href="#" class="join-btn">Join Now</a></div>
+    <div class="card group-card"><div class="group-icon"><i class="fas fa-bolt"></i></div><h3>FastWin Ludo</h3><p>Quick matches with instant payouts.</p><a href="#" class="join-btn">Join Now</a></div>
+  </div>
+</section>
 
-  <!-- Testimonials -->
-  <section id="testimonials">
-    <h2 class="section-title">Player Reviews</h2>
-    <div class="horizontal-scroll testimonials-grid">
-      <div class="testimonial-card card"><p>"Earned ₹15,000 in one month! Withdrawals are instant."</p><strong>Rahul Sharma</strong></div>
-      <div class="testimonial-card card"><p>"Admin support is excellent. Resolved my payment issue in minutes."</p><strong>Priya Patel</strong></div>
-      <div class="testimonial-card card"><p>"Won ₹3,200 in my first tournament! Groups are well-managed."</p><strong>Amit Kumar</strong></div>
-    </div>
-  </section>
+<section id="how-it-works">
+  <h2 class="section-title">How It Works</h2>
+  <div class="horizontal-scroll steps">
+    <div class="step"><div class="step-number">1</div><h3>Join Group</h3><p>Select from verified groups.</p></div>
+    <div class="step"><div class="step-number">2</div><h3>Play & Win</h3><p>Participate in matches & tournaments.</p></div>
+    <div class="step"><div class="step-number">3</div><h3>Earn Money</h3><p>Withdraw winnings instantly.</p></div>
+  </div>
+</section>
 
-  <!-- Footer -->
-  <footer>
-    <div class="footer-links">
-      <a href="index.html">Home</a>
-      <a href="rules.html">Rules</a>
-      <a href="join.html">Join</a>
-      <a href="addgroup.html">Add Group</a>
-      <a href="privacy.html">Privacy</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <div class="social-links">
-      <a href="#"><i class="fab fa-whatsapp"></i></a>
-      <a href="#"><i class="fab fa-telegram"></i></a>
-      <a href="#"><i class="fab fa-facebook-f"></i></a>
-      <a href="#"><i class="fab fa-instagram"></i></a>
-    </div>
-    <p class="copyright">© 2025 JokerLudo Group. All Rights Reserved.</p>
-  </footer>
+<section id="testimonials">
+  <h2 class="section-title">Player Reviews</h2>
+  <div class="horizontal-scroll testimonials-grid">
+    <div class="testimonial-card card"><p>"Earned ₹15,000 in one month! Withdrawals are instant."</p><strong>Rahul Sharma</strong></div>
+    <div class="testimonial-card card"><p>"Admin support is excellent. Resolved my payment issue in minutes."</p><strong>Priya Patel</strong></div>
+    <div class="testimonial-card card"><p>"Won ₹3,200 in my first tournament! Groups are well-managed."</p><strong>Amit Kumar</strong></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="rules.html">Rules</a>
+    <a href="join.html">Join</a>
+    <a href="addgroup.html">Add Group</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="social-links">
+    <a href="#"><i class="fab fa-whatsapp"></i></a>
+    <a href="#"><i class="fab fa-telegram"></i></a>
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+  </div>
+  <p class="copyright">© 2025 JokerLudo Group. All Rights Reserved.</p>
+</footer>
+
 </body>
 </html>
