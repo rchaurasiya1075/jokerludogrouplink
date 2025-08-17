@@ -1,246 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JokerLudo - Play Ludo & Earn Money</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    :root {
-      --primary: #1E88E5; /* Blue tone for gaming feel */
-      --secondary: #FFC107;
-      --dark: #0D47A1;
-      --light: #F5F5FF;
-      --success: #4CAF50;
-      --text-dark: #333;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JokerLudo - Play Ludo & Earn Money</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --primary: #1E88E5;
+  --secondary: #FFC107;
+  --dark: #0D47A1;
+  --light: #F5F5FF;
+  --success: #4CAF50;
+  --text-dark: #333;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Poppins',sans-serif;background:#f0f2f5;color:var(--text-dark);overflow-x:hidden;}
 
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family:'Poppins',sans-serif; background:#f0f2f5; color:var(--text-dark); overflow-x:hidden; }
+/* Header */
+header{background: var(--dark); color:white; padding:0.5rem 1rem; position: sticky; top:0; z-index:100; display:flex; justify-content:space-between; align-items:center;}
+.logo{display:flex;align-items:center;gap:0.5rem;font-weight:700;font-size:1.1rem;}
+.logo img{width:30px;height:30px;border-radius:50%;}
+.nav-links a{color:white;text-decoration:none;font-size:0.9rem;padding:0.3rem 0.6rem;border-radius:4px;transition:0.3s;}
+.nav-links a:hover,.nav-links a.active{background: rgba(255,255,255,0.2);}
 
-    header {
-      background: var(--dark);
-      color:white;
-      padding:0.5rem 1rem;
-      position: sticky;
-      top:0;
-      z-index:100;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-    }
-    .logo { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.1rem; }
-    .logo img { width:30px; height:30px; border-radius:50%; }
-    .nav-links a {
-      color:white; text-decoration:none; font-size:0.9rem;
-      padding:0.3rem 0.6rem; border-radius:4px; transition:0.3s;
-    }
-    .nav-links a:hover, .nav-links a.active { background: rgba(255,255,255,0.2); }
+/* Hero */
+#hero{position: relative; background: var(--dark); color:white; display:flex; justify-content:center; align-items:center; text-align:center; padding:2rem 1rem; min-height:70vh; overflow:hidden;}
+#hero h1{font-size:2rem; margin-bottom:1rem; z-index:1; position:relative;}
+#hero p{opacity:0.9; margin-bottom:1.5rem; z-index:1; position:relative;}
+#hero .btn{display:inline-block; padding:0.6rem 1.2rem; border-radius:4px; font-weight:600; text-decoration:none; transition:0.3s;}
+.btn-primary{background:var(--secondary); color:var(--dark);}
+.btn-primary:hover{transform:translateY(-2px); box-shadow:0 4px 8px rgba(0,0,0,0.2);}
+.btn-secondary{background: rgba(255,255,255,0.2); color:white;}
+.btn-secondary:hover{transform:translateY(-2px); box-shadow:0 4px 8px rgba(0,0,0,0.2);}
 
-    /* Hero */
-    #hero {
-      background: linear-gradient(135deg, var(--primary), #42A5F5);
-      color:white;
-      display:flex; justify-content:center; align-items:center;
-      text-align:center; padding:2rem 1rem; min-height:70vh;
-    }
-    #hero img { width:80px; border-radius:50%; margin-bottom:1rem; }
-    #hero h1 { font-size:2rem; margin-bottom:1rem; }
-    #hero p { opacity:0.9; margin-bottom:1.5rem; }
-    .btn { display:inline-block; padding:0.6rem 1.2rem; border-radius:4px; font-weight:600; text-decoration:none; transition:0.3s; }
-    .btn-primary { background: var(--secondary); color: var(--dark); }
-    .btn-primary:hover { transform:translateY(-2px); box-shadow:0 4px 8px rgba(0,0,0,0.2); }
-    .btn-secondary { background: rgba(255,255,255,0.2); color:white; }
-    .btn-secondary:hover { transform:translateY(-2px); box-shadow:0 4px 8px rgba(0,0,0,0.2); }
+/* Hero Canvas for Animation */
+#hero canvas{position:absolute; top:0; left:0; width:100%; height:100%; z-index:0;}
 
-    /* Features */
-    #features { background:white; padding:2rem 1rem; }
-    .section-title { text-align:center; font-size:1.5rem; margin-bottom:1.5rem; color:var(--dark); }
-    .features-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem; }
-    .feature-card { background:var(--light); padding:1rem; border-radius:8px; text-align:center; }
-    .feature-icon { font-size:2rem; color:var(--primary); margin-bottom:0.5rem; }
+/* Features */
+#features{background:white; padding:2rem 1rem;}
+.section-title{text-align:center; font-size:1.5rem; margin-bottom:1.5rem; color:var(--dark);}
+.features-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem;}
+.feature-card{background:var(--light); padding:1rem; border-radius:8px; text-align:center; transition:0.3s;}
+.feature-card:hover{transform:translateY(-5px); box-shadow:0 4px 12px rgba(0,0,0,0.1);}
+.feature-icon{font-size:2rem; color:var(--primary); margin-bottom:0.5rem;}
 
-    /* Groups Slider */
-    #groups { background:#f9f9f9; padding:2rem 0; }
-    .animated-slider {
-      display:flex; overflow-x:auto; scroll-snap-type:x mandatory; gap:1rem; padding:1rem;
-      -webkit-overflow-scrolling: touch; scroll-behavior: smooth; justify-content:center; perspective:1000px;
-    }
-    .animated-slider .group-card {
-      flex:0 0 250px; background:white; border-radius:8px; padding:1rem; box-shadow:0 2px 8px rgba(0,0,0,0.1);
-      scroll-snap-align:center; transition: transform 0.3s;
-    }
-    .animated-slider .group-card.active { transform:scale(1.1); }
-    .group-icon { width:40px; height:40px; background:var(--primary); color:white; border-radius:8px; display:flex; align-items:center; justify-content:center; margin-bottom:0.5rem; }
-    .join-btn { background: var(--success); color:white; padding:0.4rem 0.8rem; border-radius:4px; font-size:0.8rem; margin-top:0.5rem; display:inline-block; text-align:center; }
-    .animated-slider::-webkit-scrollbar { height:6px; }
-    .animated-slider::-webkit-scrollbar-thumb { background:rgba(0,0,0,0.2); border-radius:3px; }
+/* Groups */
+#groups{background:#f9f9f9; padding:2rem 0;}
+.animated-slider{display:flex; overflow-x:auto; scroll-snap-type:x mandatory; gap:1rem; padding:1rem; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; justify-content:center; perspective:1000px;}
+.animated-slider .group-card{flex:0 0 250px; background:white; border-radius:8px; padding:1rem; box-shadow:0 2px 8px rgba(0,0,0,0.1); scroll-snap-align:center; transition: transform 0.3s;}
+.animated-slider .group-card.active{transform:scale(1.1);}
+.group-icon{width:40px;height:40px;background:var(--primary); color:white; border-radius:8px; display:flex; align-items:center; justify-content:center; margin-bottom:0.5rem;}
+.join-btn{background: var(--success); color:white; padding:0.4rem 0.8rem; border-radius:4px; font-size:0.8rem; margin-top:0.5rem; display:inline-block; text-align:center;}
+.animated-slider::-webkit-scrollbar{height:6px;}
+.animated-slider::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.2); border-radius:3px;}
 
-    /* How It Works Slider */
-    #how-it-works { background:white; padding:2rem 1rem; }
-    .steps-slider { display:flex; overflow-x:auto; gap:1rem; scroll-snap-type:x mandatory; padding:1rem; scroll-behavior:smooth; justify-content:center; }
-    .step { flex:0 0 200px; scroll-snap-align:center; background:var(--light); padding:1rem; border-radius:8px; text-align:center; transition: transform 0.3s; }
-    .step.active { transform:scale(1.1); }
-    .step-number { width:40px; height:40px; background:var(--primary); color:white; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 0.5rem; }
+/* How It Works */
+#how-it-works{background:white; padding:2rem 1rem;}
+.steps-slider{display:flex; overflow-x:auto; gap:1rem; scroll-snap-type:x mandatory; padding:1rem; scroll-behavior:smooth; justify-content:center;}
+.step{flex:0 0 200px; scroll-snap-align:center; background:var(--light); padding:1rem; border-radius:8px; text-align:center; transition: transform 0.3s;}
+.step.active{transform:scale(1.1);}
+.step-number{width:40px; height:40px; background:var(--primary); color:white; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 0.5rem;}
 
-    /* Testimonials */
-    #testimonials { background:#f9f9f9; padding:2rem 1rem; }
-    .testimonials-grid { display:flex; gap:1rem; overflow-x:auto; padding:1rem; -webkit-overflow-scrolling:touch; scroll-behavior:smooth; }
-    .testimonial-card { flex:0 0 280px; background:white; padding:1rem; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
+/* Testimonials */
+#testimonials{background:#f9f9f9; padding:2rem 1rem;}
+.testimonials-grid{display:flex; gap:1rem; overflow-x:auto; padding:1rem; -webkit-overflow-scrolling:touch; scroll-behavior:smooth;}
+.testimonial-card{flex:0 0 280px; background:white; padding:1rem; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);}
 
-    /* Footer */
-    footer { background:var(--dark); color:white; padding:2rem 1rem; text-align:center; }
-    .footer-links, .social-links { display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; margin-bottom:1rem; }
-    .footer-links a, .social-links a { color:white; text-decoration:none; font-size:0.9rem; }
-    .social-links a { font-size:1.2rem; }
-    .copyright { font-size:0.8rem; opacity:0.8; }
+/* Footer */
+footer{background:var(--dark); color:white; padding:2rem 1rem; text-align:center;}
+.footer-links,.social-links{display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; margin-bottom:1rem;}
+.footer-links a,.social-links a{color:white; text-decoration:none; font-size:0.9rem;}
+.social-links a{font-size:1.2rem;}
+copyright{font-size:0.8rem; opacity:0.8;}
 
-    /* Responsive */
-    @media (max-width:768px){
-      .features-grid { grid-template-columns:1fr; }
-    }
-  </style>
+@media(max-width:768px){.features-grid{grid-template-columns:1fr;}}
+</style>
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <div class="logo">
-      <img src="WhatsApp Image 2025-07-27 at 10.45.50.jpeg" alt="Logo">
-      JokerLudo
-    </div>
-    <nav class="nav-links">
-      <a href="index.html" class="active">Home</a>
-      <a href="rules.html">Rules</a>
-      <a href="join.html">Join</a>
-      <a href="addgroup.html">Add Group</a>
-      <a href="contact.html">Contact</a>
-      <a href="privacy.html">Privacy</a>
-    </nav>
-  </header>
 
-  <!-- Hero -->
-  <section id="hero">
-    <div>
-      <img src="WhatsApp Image 2025-07-27 at 10.45.50.jpeg" alt="Logo">
-      <h1>Earn Money Playing Ludo</h1>
-      <p>Join India's most trusted Ludo WhatsApp groups with instant payouts.</p>
-      <div style="display:flex; gap:1rem; justify-content:center;">
-        <a href="#groups" class="btn btn-primary">Join Groups</a>
-        <a href="addgroup.html" class="btn btn-secondary">Add Your Group</a>
-      </div>
-    </div>
-  </section>
+<header>
+<div class="logo"><img src="WhatsApp Image 2025-07-27 at 10.45.50.jpeg" alt="Logo"> JokerLudo</div>
+<nav class="nav-links">
+  <a href="index.html" class="active">Home</a>
+  <a href="rules.html">Rules</a>
+  <a href="join.html">Join</a>
+  <a href="addgroup.html">Add Group</a>
+  <a href="contact.html">Contact</a>
+  <a href="privacy.html">Privacy</a>
+</nav>
+</header>
 
-  <!-- Features -->
-  <section id="features">
-    <h2 class="section-title">Why Choose JokerLudo?</h2>
-    <div class="features-grid">
-      <div class="feature-card"><div class="feature-icon"><i class="fas fa-shield-alt"></i></div><h3>Verified Groups</h3><p>All groups are verified for safety and trust.</p></div>
-      <div class="feature-card"><div class="feature-icon"><i class="fas fa-rupee-sign"></i></div><h3>Instant Payouts</h3><p>Receive your winnings instantly in your account.</p></div>
-      <div class="feature-card"><div class="feature-icon"><i class="fas fa-headset"></i></div><h3>24/7 Support</h3><p>Our dedicated team is available anytime for help.</p></div>
-    </div>
-  </section>
+<section id="hero">
+<canvas id="heroCanvas"></canvas>
+<div>
+  <h1>Earn Money Playing Ludo</h1>
+  <p>Join India's most trusted Ludo WhatsApp groups with instant payouts.</p>
+  <div style="display:flex; gap:1rem; justify-content:center;">
+    <a href="#groups" class="btn btn-primary">Join Groups</a>
+    <a href="addgroup.html" class="btn btn-secondary">Add Your Group</a>
+  </div>
+</div>
+</section>
 
-  <!-- Groups -->
-  <section id="groups">
-    <h2 class="section-title">Popular Ludo Groups</h2>
-    <div class="animated-slider" id="groupsSlider">
-      <div class="group-card">
-        <div class="group-icon"><i class="fas fa-crown"></i></div>
-        <h3>Ludo King Premium</h3>
-        <p>High-stakes matches with big payouts and competitive fun.</p>
-        <div><i class="fas fa-users"></i> 250+ members</div>
-        <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p" class="join-btn">Join Now</a>
-      </div>
-      <div class="group-card">
-        <div class="group-icon"><i class="fas fa-star"></i></div>
-        <h3>Ludo Star Winners</h3>
-        <p>Friendly matches for beginners and advanced players.</p>
-        <div><i class="fas fa-users"></i> 180+ members</div>
-        <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p" class="join-btn">Join Now</a>
-      </div>
-      <div class="group-card">
-        <div class="group-icon"><i class="fas fa-bolt"></i></div>
-        <h3>FastWin Ludo</h3>
-        <p>Quick matches with instant payouts for everyone.</p>
-        <div><i class="fas fa-users"></i> 300+ members</div>
-        <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p" class="join-btn">Join Now</a>
-      </div>
-    </div>
-  </section>
+<section id="features">
+<h2 class="section-title">Why Choose JokerLudo?</h2>
+<div class="features-grid">
+  <div class="feature-card"><div class="feature-icon"><i class="fas fa-shield-alt"></i></div><h3>Verified Groups</h3><p>All groups are verified for safety and trust.</p></div>
+  <div class="feature-card"><div class="feature-icon"><i class="fas fa-rupee-sign"></i></div><h3>Instant Payouts</h3><p>Receive your winnings instantly in your account.</p></div>
+  <div class="feature-card"><div class="feature-icon"><i class="fas fa-headset"></i></div><h3>24/7 Support</h3><p>Our dedicated team is available anytime for help.</p></div>
+</div>
+</section>
 
-  <!-- How It Works -->
-  <section id="how-it-works">
-    <h2 class="section-title">How It Works</h2>
-    <div class="steps-slider" id="stepsSlider">
-      <div class="step">
-        <div class="step-number">1</div>
-        <h3>Join Group</h3>
-        <p>Select from verified WhatsApp groups</p>
-      </div>
-      <div class="step">
-        <div class="step-number">2</div>
-        <h3>Play & Win</h3>
-        <p>Participate in matches and tournaments</p>
-      </div>
-      <div class="step">
-        <div class="step-number">3</div>
-        <h3>Earn Money</h3>
-        <p>Withdraw your winnings instantly</p>
-      </div>
-    </div>
-  </section>
+<section id="groups">
+<h2 class="section-title">Popular Ludo Groups</h2>
+<div class="animated-slider" id="groupsSlider">
+<div class="group-card"><div class="group-icon"><i class="fas fa-crown"></i></div><h3>Ludo King Premium</h3><p>High-stakes matches with big payouts.</p><div><i class="fas fa-users"></i> 250+ members</div><a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p" class="join-btn">Join Now</a></div>
+<div class="group-card"><div class="group-icon"><i class="fas fa-star"></i></div><h3>Ludo Star Winners</h3><p>Friendly matches for beginners & advanced players.</p><div><i class="fas fa-users"></i> 180+ members</div><a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p" class="join-btn">Join Now</a></div>
+<div class="group-card"><div class="group-icon"><i class="fas fa-bolt"></i></div><h3>FastWin Ludo</h3><p>Quick matches with instant payouts for everyone.</p><div><i class="fas fa-users"></i> 300+ members</div><a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p" class="join-btn">Join Now</a></div>
+</div>
+</section>
 
-  <!-- Testimonials -->
-  <section id="testimonials">
-    <h2 class="section-title">Player Reviews</h2>
-    <div class="testimonials-grid">
-      <div class="testimonial-card"><p>"Earned ₹15,000 in one month! Withdrawals are really instant."</p><div style="display:flex; align-items:center; margin-top:1rem;"><div style="width:30px;height:30px;background:var(--primary);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-right:0.5rem;">R</div><div><strong>Rahul Sharma</strong><div style="font-size:0.8rem;color:#666;">Delhi</div></div></div></div>
-      <div class="testimonial-card"><p>"Admin support is excellent. Resolved my payment issue in minutes."</p><div style="display:flex; align-items:center; margin-top:1rem;"><div style="width:30px;height:30px;background:var(--primary);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-right:0.5rem;">P</div><div><strong>Priya Patel</strong><div style="font-size:0.8rem;color:#666;">Mumbai</div></div></div></div>
-    </div>
-  </section>
+<section id="how-it-works">
+<h2 class="section-title">How It Works</h2>
+<div class="steps-slider" id="stepsSlider">
+<div class="step"><div class="step-number">1</div><h3>Join Group</h3><p>Select from verified WhatsApp groups</p></div>
+<div class="step"><div class="step-number">2</div><h3>Play & Win</h3><p>Participate in matches and tournaments</p></div>
+<div class="step"><div class="step-number">3</div><h3>Earn Money</h3><p>Withdraw your winnings instantly</p></div>
+</div>
+</section>
 
-  <!-- Footer -->
-  <footer>
-    <div class="footer-links">
-      <a href="index.html">Home</a>
-      <a href="rules.html">Rules</a>
-      <a href="join.html">Join</a>
-      <a href="addgroup.html">Add Group</a>
-      <a href="privacy.html">Privacy</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <div class="social-links">
-      <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-      <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
-      <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-    </div>
-    <p class="copyright">© 2025 JokerLudo Group. All Rights Reserved.</p>
-  </footer>
+<section id="testimonials">
+<h2 class="section-title">Player Reviews</h2>
+<div class="testimonials-grid">
+<div class="testimonial-card"><p>"Earned ₹15,000 in one month! Withdrawals are instant."</p><div style="display:flex; align-items:center; margin-top:1rem;"><div style="width:30px;height:30px;background:var(--primary);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-right:0.5rem;">R</div><div><strong>Rahul Sharma</strong><div style="font-size:0.8rem;color:#666;">Delhi</div></div></div></div>
+<div class="testimonial-card"><p>"Admin support is excellent. Resolved my payment issue in minutes."</p><div style="display:flex; align-items:center; margin-top:1rem;"><div style="width:30px;height:30px;background:var(--primary);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-right:0.5rem;">P</div><div><strong>Priya Patel</strong><div style="font-size:0.8rem;color:#666;">Mumbai</div></div></div></div>
+</div>
+</section>
 
-  <script>
-    // Animated slider center card
-    function animateSlider(sliderId) {
-      const slider = document.getElementById(sliderId);
-      const items = slider.querySelectorAll('.group-card, .step');
-      function update() {
-        const center = slider.scrollLeft + slider.offsetWidth/2;
-        items.forEach(el => el.classList.remove('active'));
-        let closest=null, closestDist=Infinity;
-        items.forEach(el => {
-          const elCenter = el.offsetLeft + el.offsetWidth/2;
-          const dist=Math.abs(center - elCenter);
-          if(dist<closestDist){closestDist=dist; closest=el;}
-        });
-        if(closest) closest.classList.add('active');
-      }
-      slider.addEventListener('scroll', update);
-      window.addEventListener('load', update);
-      window.addEventListener('resize', update);
-    }
-    animateSlider('groupsSlider');
-    animateSlider('stepsSlider');
-  </script>
+<footer>
+<div class="footer-links">
+<a href="index.html">Home</a>
+<a href="rules.html">Rules</a>
+<a href="join.html">Join</a>
+<a href="addgroup.html">Add Group</a>
+<a href="privacy.html">Privacy</a>
+<a href="contact.html">Contact</a>
+</div>
+<div class="social-links">
+<a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+<a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+<a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+<a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+</div>
+<p class="copyright">© 2025 JokerLudo Group. All Rights Reserved.</p>
+</footer>
+
+<script>
+// Hero Canvas animation with Ludo dice
+const canvas=document.getElementById('heroCanvas');
+const ctx=canvas.getContext('2d');
+canvas.width=canvas.offsetWidth; canvas.height=canvas.offsetHeight;
+let diceArr=[];
+for(let i=0;i<20;i++){diceArr.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,size:20+Math.random()*20,dx:(Math.random()-0.5)*2,dy:(Math.random()-0.5)*2,value:Math.floor(Math.random()*6)+1})}
+function drawDice(d){ctx.fillStyle='white';ctx.fillRect(d.x,d.y,d.size,d.size);ctx.fillStyle='black';const s=d.size/6;const c=d.x+d.size/2; const r=d.y+d.size/2; for(let i=0;i<d.value;i++){ctx.beginPath();ctx.arc(c, r, s, 0, Math.PI*2); ctx.fill();} }
+function animateDice(){ctx.clearRect(0,0,canvas.width,canvas.height);diceArr.forEach(d=>{d.x+=d.dx; d.y+=d.dy; if(d.x>d.size+canvas.width) d.x=-d.size;if(d.x<-d.size)d.x=canvas.width+d.size;if(d.y>canvas.height+d.size)d.y=-d.size;if(d.y<-d.size)d.y=canvas.height+d.size; drawDice(d);}); requestAnimationFrame(animateDice);}
+animateDice();
+window.addEventListener('resize',()=>{canvas.width=canvas.offsetWidth; canvas.height=canvas.offsetHeight;});
+
+// Animated sliders
+function animateSlider(sliderId){const slider=document.getElementById(sliderId);const items=slider.querySelectorAll('.group-card,.step');function update(){const center=slider.scrollLeft+slider.offsetWidth/2;items.forEach(el=>el.classList.remove('active'));let closest=null,closestDist=Infinity;items.forEach(el=>{const elCenter=el.offsetLeft+el.offsetWidth/2;const dist=Math.abs(center-elCenter);if(dist<closestDist){closestDist=dist;closest=el;}});if(closest) closest.classList.add('active');}slider.addEventListener('scroll',update);window.addEventListener('load',update);window.addEventListener('resize',update);}
+animateSlider('groupsSlider'); animateSlider('stepsSlider');
+</script>
+
 </body>
 </html>
