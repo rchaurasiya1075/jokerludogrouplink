@@ -1038,135 +1038,105 @@
     <p>© 2025 JokerLudo. All Rights Reserved.</p>
   </footer>
   
-  <!-- Firebase Configuration -->
-  <script>
-    // Firebase configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyCwdlnLXcXauh3_YmY6cwswqzcieMOHI0Y",
-      authDomain: "ludogroup-a530a.firebaseapp.com",
-      projectId: "ludogroup-a530a",
-      storageBucket: "ludogroup-a530a.appspot.com",
-      messagingSenderId: "838421084676",
-      appId: "1:838421084676:web:9e02670e280eafcd86d351",
-      measurementId: "G-EZF7SRX6EJ"
-    };
-    
-    // Initialize Firebase
-    if (!firebase.apps.length) {
-      firebase.initializeApp(firebaseConfig);
-    }
-    const db = firebase.firestore();
-    const analytics = firebase.analytics();
-    
-    // Connection status element
-    const connectionStatus = document.createElement('div');
-    connectionStatus.className = 'connection-status';
-    document.body.appendChild(connectionStatus);
-    
-    // Test database connection
-    async function testConnection() {
-      try {
-        await db.collection("test").limit(1).get();
-        connectionStatus.innerHTML = '<i class="fas fa-check-circle"></i> Connected to database';
-        connectionStatus.className = 'connection-status connected';
-        return true;
-      } catch (error) {
-        console.error("Connection error:", error);
-        connectionStatus.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Database connection issue';
-        connectionStatus.className = 'connection-status disconnected';
-        return false;
+ <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+
+      // 1️⃣ Firebase Config
+      const firebaseConfig = {
+        apiKey: "AIzaSyCwdlnLXcXauh3_YmY6cwswqzcieMOHI0Y",
+        authDomain: "ludogroup-a530a.firebaseapp.com",
+        projectId: "ludogroup-a530a",
+        storageBucket: "ludogroup-a530a.appspot.com",
+        messagingSenderId: "838421084676",
+        appId: "1:838421084676:web:9e02670e280eafcd86d351"
+      };
+
+      // 2️⃣ Initialize Firebase safely
+      if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
       }
-    }
-    
-    // Form submission handler
-    document.getElementById('groupForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      const submitBtn = document.querySelector('.submit-button');
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
-      
-      // Get form values
-      const name = document.getElementById('name').value.trim();
-      const link = document.getElementById('link').value.trim();
-      const category = document.getElementById('category').value;
-      const description = document.getElementById('description').value.trim();
-      const adminContact = document.getElementById('adminContact').value.trim();
-      const platforms = Array.from(document.querySelectorAll('.platform:checked')).map(el => el.value);
-      
-      // Validate
-      if (!name || !link || !category || !description || platforms.length === 0) {
-        showError('Please fill all required fields');
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Group';
-        return;
+
+      const db = firebase.firestore();
+
+      // 3️⃣ Connection status
+      const connectionStatus = document.getElementById('connectionStatus');
+      async function testConnection() {
+        try {
+          await db.collection("Groups").limit(1).get();
+          connectionStatus.innerHTML = '<span class="connected"><i class="fas fa-check-circle"></i> Connected to database</span>';
+          return true;
+        } catch (err) {
+          console.error("Connection error:", err);
+          connectionStatus.innerHTML = '<span class="disconnected"><i class="fas fa-exclamation-triangle"></i> Could not connect to database.</span>';
+          return false;
+        }
       }
-      
-      // Check connection
+
       const isConnected = await testConnection();
+
+      const form = document.getElementById('groupForm');
       if (!isConnected) {
-        showError('Database connection failed. Please try again later.');
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Group';
+        form.addEventListener('submit', e => {
+          e.preventDefault();
+          alert('Database connection failed. Please try again later.');
+        });
         return;
       }
-      
-      try {
-        // Add group to Firestore
-        await db.collection("groups").add({
-          name,
-          link,
-          category,
-          platforms,
-          description,
-          adminContact: adminContact || null,
-          status: "pending",
-          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-          updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-        });
-        
-        // Log analytics event
-        analytics.logEvent('group_submitted', {
-          category: category,
-          platforms: platforms.join(',')
-        });
-        
-        // Show success
-        document.getElementById('categoryDisplay').textContent = 
-          document.querySelector(`#category option[value="${category}"]`).textContent;
-        
-        showSuccess();
-        document.getElementById('groupForm').reset();
-        
-      } catch (error) {
-        console.error("Submission error:", error);
-        showError(error.message || 'Failed to submit group. Please try again.');
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Group';
-      }
-    });
-    
-    // Show success popup
-    function showSuccess() {
-      document.getElementById('successPopup').classList.add('active');
-    }
-    
-    // Show error popup
-    function showError(message) {
-      document.getElementById('errorMessage').textContent = message;
-      document.getElementById('errorPopup').classList.add('active');
-    }
-    
-    // Close popup
-    function closePopup() {
-      document.getElementById('successPopup').classList.remove('active');
-      document.getElementById('errorPopup').classList.remove('active');
-    }
-    
-    // Initialize on page load
-    document.addEventListener('DOMContentLoaded', () => {
-      testConnection();
+
+      // 4️⃣ Form submission
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const link = document.getElementById("link").value.trim();
+        const groupType = document.getElementById("groupType").value;
+        const description = document.getElementById("description").value.trim();
+        const platforms = Array.from(document.querySelectorAll(".platform:checked")).map(cb => cb.value);
+
+        if (!name || !link || !groupType || platforms.length === 0) {
+          alert("⚠️ Please fill all required fields");
+          return;
+        }
+
+        try {
+          const submitBtn = document.querySelector('.submit-button');
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+
+          // Add group to Firestore
+          await db.collection("Groups").add({
+            name,
+            link,
+            type: groupType,
+            platforms,
+            description,
+            status: "pending",
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            created_at: new Date().toISOString()
+          });
+
+          submitBtn.innerHTML = '<i class="fas fa-check"></i> Submitted!';
+          setTimeout(() => {
+            submitBtn.innerHTML = 'Submit Group';
+            submitBtn.disabled = false;
+          }, 2000);
+
+          // WhatsApp notification
+          const phone = "9473746020";
+          const message = `🆕 New Group Submission:%0A%0A📛 Name: ${name}%0A🔗 Link: ${link}%0A🏷 Type: ${groupType}%0A📱 Platforms: ${platforms.join(", ")}`;
+          window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+
+          form.reset();
+
+        } catch (err) {
+          console.error("Submission error:", err);
+          alert(`Submission failed: ${err.message}`);
+          const submitBtn = document.querySelector('.submit-button');
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = 'Submit Group';
+        }
+      });
+
     });
   </script>
 </body>
