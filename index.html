@@ -722,9 +722,7 @@ body {
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-
 <script>
-  // Firebase config
   const firebaseConfig = {
     apiKey: "AIzaSyCwdlnLXcXauh3_YmY6cwswqzcieMOHI0Y",
     authDomain: "ludogroup-a530a.firebaseapp.com",
@@ -740,15 +738,8 @@ body {
 
   const adminEmails = ["rchaurasiyaself1@gmail.com"];
   let isAdmin = false;
-
   const groupsList = document.getElementById("groupsList");
-  const addGroupBtn = document.getElementById("addGroupBtn");
   const maxVisibleGroups = 5;
-
-  // Redirect add group button to join.html
-  addGroupBtn.addEventListener("click", () => {
-    window.location.href = "join.html";
-  });
 
   function stringToColor(str) {
     let hash = 0;
@@ -759,7 +750,6 @@ body {
     return "#" + "00000".substring(0, 6 - c.length) + c;
   }
 
-  // Load and display groups
   async function loadGroups() {
     groupsList.innerHTML = '<div class="loading">Loading groups...</div>';
     try {
@@ -801,6 +791,7 @@ body {
   // Delete group (only admin)
   groupsList.addEventListener("click", async (e) => {
     if (e.target.classList.contains("delete-btn")) {
+      if (!isAdmin) return alert("⛔ Only admin can delete");
       const id = e.target.dataset.id;
       if (confirm("Delete this group?")) {
         try {
@@ -814,11 +805,14 @@ body {
     }
   });
 
-  // Listen for login state to check if admin
+  // Check admin login state
   auth.onAuthStateChanged(user => {
     isAdmin = user && adminEmails.includes(user.email);
     loadGroups();
   });
+
+  // Initial load
+  loadGroups();
 </script>
 
  <footer>
