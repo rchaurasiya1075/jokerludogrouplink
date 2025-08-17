@@ -367,13 +367,15 @@
     <p>© 2025 JokerLudo Group. All Rights Reserved.</p>
   </footer>
 
-<!-- Firebase SDK -->
+<!-- Firebase SDKs -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 
 <script>
-  // Firebase Config
+document.addEventListener('DOMContentLoaded', () => {
+
+  // 1️⃣ Firebase Config
   const firebaseConfig = {
     apiKey: "AIzaSyCwdlnLXcXauh3_YmY6cwswqzcieMOHI0Y",
     authDomain: "ludogroup-a530a.firebaseapp.com",
@@ -383,52 +385,47 @@
     appId: "1:838421084676:web:9e02670e280eafcd86d351"
   };
 
-  // Initialize Firebase safely
+  // 2️⃣ Initialize Firebase safely
   if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
   }
 
   const db = firebase.firestore();
 
-  // Connection status banner
+  // 3️⃣ Connection status banner
   const connectionStatus = document.createElement('div');
   connectionStatus.className = 'connection-status';
-  if(document.body) document.body.appendChild(connectionStatus);
+  document.body.appendChild(connectionStatus);
 
-  // Test Firestore connection
   async function testConnection() {
     try {
-      await db.collection("Groups").limit(1).get(); // test read
+      await db.collection("Groups").limit(1).get();
       connectionStatus.innerHTML = '<span class="connected"><i class="fas fa-check-circle"></i> Connected to database</span>';
       return true;
-    } catch (error) {
-      console.error("Connection test failed:", error);
+    } catch (err) {
+      console.error("Connection test failed:", err);
       connectionStatus.innerHTML = '<span class="disconnected"><i class="fas fa-exclamation-triangle"></i> Could not connect to database.</span>';
       return false;
     }
   }
 
-  // Init on page load
-  document.addEventListener('DOMContentLoaded', async () => {
-    const isConnected = await testConnection();
-    const form = document.getElementById('groupForm');
+  // 4️⃣ Form Submission
+  const form = document.getElementById('groupForm');
+  if (!form) {
+    console.error("Form with ID 'groupForm' not found!");
+    return;
+  }
 
-    if (!form) {
-      console.error("Form element with ID 'groupForm' not found!");
-      return;
-    }
-
+  testConnection().then(isConnected => {
     if (!isConnected) {
-      // Disable submission if DB not connected
-      form.addEventListener('submit', (e) => {
+      form.addEventListener('submit', e => {
         e.preventDefault();
         alert('Database connection failed. Please try again later.');
       });
       return;
     }
 
-    // Form submission handler
-    form.addEventListener("submit", async (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const name = document.getElementById("name").value.trim();
@@ -459,29 +456,30 @@
           created_at: new Date().toISOString()
         });
 
-        // Success UI
         submitBtn.innerHTML = '<i class="fas fa-check"></i> Submitted!';
         setTimeout(() => {
           submitBtn.innerHTML = 'Submit Group';
           submitBtn.disabled = false;
         }, 2000);
 
-        // WhatsApp notify
-        const phone = "9473746020"; // admin number
+        // WhatsApp notification
+        const phone = "9473746020";
         const message = `🆕 New Group Submission:%0A%0A📛 Name: ${name}%0A🔗 Link: ${link}%0A🏷 Type: ${groupType}%0A📱 Platforms: ${platforms.join(", ")}`;
         window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
 
         form.reset();
 
-      } catch (error) {
-        console.error("Submission error:", error);
-        alert(`Submission failed: ${error.message}`);
+      } catch (err) {
+        console.error("Submission error:", err);
+        alert(`Submission failed: ${err.message}`);
         const submitBtn = document.querySelector('.submit-button');
         submitBtn.disabled = false;
         submitBtn.innerHTML = 'Submit Group';
       }
     });
   });
+
+});
 </script>
 
 <style>
