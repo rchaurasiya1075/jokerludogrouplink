@@ -14,85 +14,224 @@
   --light: #F5F5FF;
   --success: #4CAF50;
 }
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:'Poppins', sans-serif; background:#f0f2f5; color:#333; overflow-x:hidden; }
 
-/* Navbar */
-.navbar {
-  background: var(--dark);
-  color:white;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:0.6rem 1rem;
-  position:sticky;
-  top:0;
-  z-index:100;
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f0f2f5;
+  color: #333;
+  overflow-x: hidden;
 }
-.navbar .logo { font-weight:700; font-size:1.1rem; text-decoration:none; color:white; }
-.navbar .nav-links { display:flex; gap:0.8rem; }
-.navbar .nav-links a { color:white; text-decoration:none; padding:0.4rem 0.7rem; border-radius:4px; font-size:0.9rem; transition:0.3s; }
-.navbar .nav-links a:hover, .navbar .nav-links a.active { background: var(--primary-dark); }
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background: var(--dark);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar .logo {
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  margin-left: 1rem;
+  font-size: 0.9rem;
+}
+
+.nav-links a.active { text-decoration: underline; }
+
+header, .hero { position: relative; }
+
+.hero {
+  background: linear-gradient(135deg, var(--dark), var(--primary));
+  color: white;
+  text-align: center;
+  padding: 4rem 1rem 2rem 1rem;
+  border-bottom-left-radius: 50% 15%;
+  border-bottom-right-radius: 50% 15%;
+}
+
+.hero img {
+  width: 80px; border-radius: 50%; margin-bottom: 1rem;
+}
+
+.hero h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+.hero p { margin-bottom: 1.5rem; opacity: 0.9; }
+
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.btn-primary { background: var(--secondary); color: var(--dark); }
+.btn-primary:hover { transform: translateY(-2px); }
+
+.btn-secondary {
+  background: rgba(255,255,255,0.2);
+  color: white;
+}
+.btn-secondary:hover { transform: translateY(-2px); }
 
 /* Sections */
-section { padding:2rem 1rem; }
+.section {
+  padding: 2rem 1rem;
+}
 
-/* Hero */
-#hero { background: linear-gradient(135deg, var(--dark), var(--primary)); color:white; text-align:center; display:flex; flex-direction:column; justify-content:center; align-items:center; min-height:80vh; }
-#hero img { width:80px; border-radius:50%; margin-bottom:1rem; }
-#hero h1 { font-size:2rem; margin-bottom:1rem; }
-#hero p { margin-bottom:1.5rem; opacity:0.9; }
-.btn { text-decoration:none; padding:0.6rem 1.2rem; border-radius:4px; font-weight:600; transition:all 0.3s; }
-.btn-primary { background:var(--secondary); color:var(--dark); }
-.btn-primary:hover { transform:translateY(-2px); box-shadow:0 4px 8px rgba(0,0,0,0.2);}
-.btn-secondary { background:rgba(255,255,255,0.2); color:white; }
-.btn-secondary:hover { transform:translateY(-2px); box-shadow:0 4px 8px rgba(0,0,0,0.2); }
+.section-title { text-align: center; font-size: 1.5rem; margin-bottom: 1.5rem; }
 
 /* Features */
-#features { background:white; text-align:center; }
-.section-title { font-size:1.5rem; margin-bottom:1.5rem; color:var(--dark); }
-.features-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:1rem; }
+.features-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
 
-/* Feature card */
-.feature-card { background: var(--light); padding:1rem; border-radius:8px; text-align:center; transition: transform 0.3s; }
-.feature-card:hover { transform:translateY(-5px); }
-.feature-icon { font-size:2rem; color: var(--primary); margin-bottom:0.5rem; }
+.feature-card {
+  background: var(--light);
+  width: 200px;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+}
 
-/* Horizontal Slider common */
-.horizontal-slider-container { position:relative; }
-.horizontal-slider { display:flex; overflow-x:auto; gap:1rem; padding-bottom:1rem; scroll-behavior:smooth; scroll-snap-type:x mandatory; }
-.horizontal-slider::-webkit-scrollbar { display:none; }
-.slider-card, .step { flex:0 0 250px; scroll-snap-align:center; background:white; border-radius:8px; padding:1rem; box-shadow:0 2px 8px rgba(0,0,0,0.1); transition: transform 0.3s; }
-.slider-card.active, .step.active { transform:scale(1.05); }
+.feature-icon { font-size: 2rem; color: var(--primary); margin-bottom: 0.5rem; }
 
-/* Group card specifics */
-.group-icon { width:40px; height:40px; background:var(--primary); color:white; border-radius:8px; display:flex; justify-content:center; align-items:center; margin-bottom:0.5rem; }
-.join-btn { background:var(--success); color:white; padding:0.4rem 0.8rem; border-radius:4px; font-size:0.8rem; display:inline-block; margin-top:0.5rem; text-decoration:none; }
+/* Groups Horizontal Slider */
+.groups-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
 
-/* How It Works */
-.step-number { width:40px; height:40px; background: var(--primary); color:white; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 0.5rem; }
+.group-card {
+  min-width: 250px;
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+.group-icon {
+  width: 40px; height: 40px;
+  background: var(--primary); color: white;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.join-btn {
+  background: var(--success);
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  display: inline-block;
+  margin-top: 0.5rem;
+}
+
+/* Add Group Section */
+.addgroup-section {
+  background: var(--secondary);
+  color: var(--dark);
+  text-align: center;
+  padding: 2rem 1rem;
+  border-radius: 15px;
+  margin: 2rem 0;
+}
+
+/* How It Works Horizontal Scroll */
+.steps-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 1rem;
+}
+
+.step {
+  min-width: 200px;
+  flex-shrink: 0;
+  background: var(--light);
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  scroll-snap-align: start;
+}
+
+.step-number {
+  width: 40px; height: 40px;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 0.5rem;
+}
 
 /* Testimonials */
-#testimonials { background:#f9f9f9; }
-.testimonials-grid { display:flex; overflow-x:auto; gap:1rem; padding:1rem 0; }
-.testimonial-card { flex:0 0 280px; background:white; padding:1rem; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
+.testimonials-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  scroll-snap-type: x mandatory;
+}
 
-/* Arrow buttons */
-.slider-arrow { position:absolute; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.5); color:white; width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:10; }
-.slider-arrow.left { left:0; }
-.slider-arrow.right { right:0; }
+.testimonial-card {
+  min-width: 280px;
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
 
 /* Footer */
-footer { background:var(--dark); color:white; padding:1rem; text-align:center; }
-.footer-links, .social-links { display:flex; justify-content:center; flex-wrap:wrap; gap:1rem; margin-bottom:1rem; }
-.footer-links a, .social-links a { color:white; text-decoration:none; font-size:0.8rem; }
-.social-links a { font-size:1.2rem; }
+footer {
+  background: var(--dark);
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+/* Scrollbar styling */
+.groups-container::-webkit-scrollbar,
+.steps-container::-webkit-scrollbar,
+.testimonials-container::-webkit-scrollbar {
+  height: 6px;
+}
+.groups-container::-webkit-scrollbar-thumb,
+.steps-container::-webkit-scrollbar-thumb,
+.testimonials-container::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.2);
+  border-radius: 3px;
+}
 
 /* Responsive */
-@media (max-width:768px){
-  .features-grid { grid-template-columns:1fr; }
-  .slider-card, .step { flex:0 0 70%; }
-  .slider-arrow { display:none; }
+@media (max-width: 768px) {
+  .features-grid, .steps-container, .groups-container, .testimonials-container { flex-wrap: nowrap; }
 }
 </style>
 </head>
@@ -112,18 +251,16 @@ footer { background:var(--dark); color:white; padding:1rem; text-align:center; }
 </nav>
 
 <!-- Hero -->
-<section id="hero">
-  <img src="WhatsApp Image 2025-07-27 at 10.45.50.jpeg" alt="Logo">
+<section class="hero">
+  <img src="WhatsApp Image 2025-07-27 at 10.45.50.jpeg" alt="JokerLudo Logo">
   <h1>Earn Money Playing Ludo</h1>
   <p>Join India's most trusted Ludo WhatsApp groups with instant payouts</p>
-  <div style="display:flex; gap:1rem; justify-content:center;">
-    <a href="#groups" class="btn btn-primary">Join Groups</a>
-    <a href="addgroup.html" class="btn btn-secondary">Add Your Group</a>
-  </div>
+  <a href="#groups" class="btn btn-primary">Join Groups</a>
+  <a href="#addgroup" class="btn btn-secondary">Add Your Group</a>
 </section>
 
 <!-- Features -->
-<section id="features">
+<section class="section" id="features">
   <h2 class="section-title">Why Choose JokerLudo?</h2>
   <div class="features-grid">
     <div class="feature-card">
@@ -144,87 +281,85 @@ footer { background:var(--dark); color:white; padding:1rem; text-align:center; }
   </div>
 </section>
 
-<!-- Groups Horizontal Slider -->
-<section id="groups">
+<!-- Join Groups -->
+<section class="section" id="groups">
   <h2 class="section-title">Popular Ludo Groups</h2>
-  <div class="horizontal-slider-container">
-    <div class="slider-arrow left" data-target="groupsSlider"><i class="fas fa-chevron-left"></i></div>
-    <div class="slider-arrow right" data-target="groupsSlider"><i class="fas fa-chevron-right"></i></div>
-    <div class="horizontal-slider" id="groupsSlider">
-      <div class="slider-card">
-        <div class="group-icon"><i class="fas fa-crown"></i></div>
-        <h3>Ludo King Premium</h3>
-        <p>High-stakes matches with big payouts</p>
-        <div style="font-size:0.8rem; color:#666; margin:0.5rem 0;"><i class="fas fa-users"></i> 250+ members</div>
-        <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p" class="join-btn">Join Now</a>
-      </div>
-      <div class="slider-card">
-        <div class="group-icon"><i class="fas fa-star"></i></div>
-        <h3>Ludo Star Winners</h3>
-        <p>Friendly matches for all levels</p>
-        <div style="font-size:0.8rem; color:#666; margin:0.5rem 0;"><i class="fas fa-users"></i> 180+ members</div>
-        <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p" class="join-btn">Join Now</a>
-      </div>
-      <div class="slider-card">
-        <div class="group-icon"><i class="fas fa-bolt"></i></div>
-        <h3>FastWin Ludo</h3>
-        <p>Quick matches with instant payouts</p>
-        <div style="font-size:0.8rem; color:#666; margin:0.5rem 0;"><i class="fas fa-users"></i> 300+ members</div>
-        <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p" class="join-btn">Join Now</a>
-      </div>
+  <div class="groups-container">
+    <div class="group-card">
+      <div class="group-icon"><i class="fas fa-crown"></i></div>
+      <h3>Ludo King Premium</h3>
+      <p>High-stakes matches with big payouts</p>
+      <div style="font-size: 0.8rem; color: #666; margin: 0.5rem 0;"><i class="fas fa-users"></i> 250+ members</div>
+      <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p" class="join-btn">Join Now</a>
+    </div>
+    <div class="group-card">
+      <div class="group-icon"><i class="fas fa-star"></i></div>
+      <h3>Ludo Star Winners</h3>
+      <p>Friendly matches for all levels</p>
+      <div style="font-size: 0.8rem; color: #666; margin: 0.5rem 0;"><i class="fas fa-users"></i> 180+ members</div>
+      <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p" class="join-btn">Join Now</a>
+    </div>
+    <div class="group-card">
+      <div class="group-icon"><i class="fas fa-bolt"></i></div>
+      <h3>FastWin Ludo</h3>
+      <p>Quick matches with instant payouts</p>
+      <div style="font-size: 0.8rem; color: #666; margin: 0.5rem 0;"><i class="fas fa-users"></i> 300+ members</div>
+      <a href="https://chat.whatsapp.com/FNotwtBMa27JSlQBrSRz2p" class="join-btn">Join Now</a>
     </div>
   </div>
 </section>
 
-<!-- How It Works Horizontal Slider -->
-<section id="how-it-works">
+<!-- Add Your Group -->
+<section class="addgroup-section" id="addgroup">
+  <h2>Add Your Ludo Group</h2>
+  <p>Have your own WhatsApp Ludo group? Add it here and get more members instantly!</p>
+  <a href="addgroup.html" class="btn btn-primary">Add Group Now</a>
+</section>
+
+<!-- How It Works -->
+<section class="section" id="how-it-works">
   <h2 class="section-title">How It Works</h2>
-  <div class="horizontal-slider-container">
-    <div class="slider-arrow left" data-target="stepsSlider"><i class="fas fa-chevron-left"></i></div>
-    <div class="slider-arrow right" data-target="stepsSlider"><i class="fas fa-chevron-right"></i></div>
-    <div class="horizontal-slider" id="stepsSlider">
-      <div class="step">
-        <div class="step-number">1</div>
-        <h3>Join Group</h3>
-        <p>Select from verified WhatsApp groups</p>
-      </div>
-      <div class="step">
-        <div class="step-number">2</div>
-        <h3>Play & Win</h3>
-        <p>Participate in matches and tournaments</p>
-      </div>
-      <div class="step">
-        <div class="step-number">3</div>
-        <h3>Earn Money</h3>
-        <p>Withdraw your winnings instantly</p>
-      </div>
+  <div class="steps-container">
+    <div class="step">
+      <div class="step-number">1</div>
+      <h3>Join Group</h3>
+      <p>Select from verified WhatsApp groups</p>
+    </div>
+    <div class="step">
+      <div class="step-number">2</div>
+      <h3>Play & Win</h3>
+      <p>Participate in matches and tournaments</p>
+    </div>
+    <div class="step">
+      <div class="step-number">3</div>
+      <h3>Earn Money</h3>
+      <p>Withdraw your winnings instantly</p>
     </div>
   </div>
 </section>
 
-<!-- Testimonials Horizontal Slider -->
-<section id="testimonials">
+<!-- Testimonials -->
+<section class="section" id="testimonials">
   <h2 class="section-title">Player Reviews</h2>
-  <div class="testimonials-grid horizontal-slider" id="testimonialsSlider">
+  <div class="testimonials-container">
     <div class="testimonial-card">
       <p>"Earned ₹15,000 in one month! Withdrawals are really instant."</p>
-      <div style="display:flex; align-items:center; margin-top:1rem;">
-        <div style="width:30px;height:30px;background:var(--primary);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-right:0.5rem;">R</div>
-        <div><strong>Rahul Sharma</strong><div style="font-size:0.8rem;color:#666;">Delhi</div></div>
+      <div style="display: flex; align-items: center; margin-top: 1rem;">
+        <div style="width: 30px; height: 30px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 0.5rem;">R</div>
+        <div>
+          <strong>Rahul Sharma</strong><br>
+          <span style="font-size:0.8rem;color:#666;">Delhi</span>
+        </div>
       </div>
     </div>
     <div class="testimonial-card">
       <p>"Admin support is excellent. Resolved my payment issue in minutes."</p>
-      <div style="display:flex; align-items:center; margin-top:1rem;">
-        <div style="width:30px;height:30px;background:var(--primary);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-right:0.5rem;">P</div>
-        <div><strong>Priya Patel</strong><div style="font-size:0.8rem;color:#666;">Mumbai</div></div>
-      </div>
-    </div>
-    <div class="testimonial-card">
-      <p>"Won ₹3,200 in my first tournament! Groups are well-managed."</p>
-      <div style="display:flex; align-items:center; margin-top:1rem;">
-        <div style="width:30px;height:30px;background:var(--primary);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-right:0.5rem;">A</div>
-        <div><strong>Amit Kumar</strong><div style="font-size:0.8rem;color:#666;">Bangalore</div></div>
+      <div style="display: flex; align-items: center; margin-top: 1rem;">
+        <div style="width: 30px; height: 30px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 0.5rem;">P</div>
+        <div>
+          <strong>Priya Patel</strong><br>
+          <span style="font-size:0.8rem;color:#666;">Mumbai</span>
+        </div>
       </div>
     </div>
   </div>
@@ -232,75 +367,8 @@ footer { background:var(--dark); color:white; padding:1rem; text-align:center; }
 
 <!-- Footer -->
 <footer>
-  <div class="footer-links">
-    <a href="index.html">Home</a>
-    <a href="rules.html">Rules</a>
-    <a href="join.html">Join</a>
-    <a href="addgroup.html">Add Group</a>
-    <a href="privacy.html">Privacy</a>
-    <a href="contact.html">Contact</a>
-  </div>
-  <div class="social-links">
-    <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-    <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
-    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-  </div>
-  <p style="font-size:0.8rem;opacity:0.8;">© 2025 JokerLudo Group. All Rights Reserved.</p>
+  <p>© 2025 JokerLudo Group. All Rights Reserved.</p>
 </footer>
 
-<script>
-// Slider Active Card & Auto Slide
-function initSlider(sliderId, cardClass, autoSlide=true, interval=3000){
-  const slider = document.getElementById(sliderId);
-  const cards = slider.querySelectorAll(cardClass);
-
-  function setActiveCard(){
-    const sliderCenter = slider.scrollLeft + slider.offsetWidth/2;
-    let closestCard = null;
-    let closestDist = Infinity;
-    cards.forEach(card=>{
-      const cardCenter = card.offsetLeft + card.offsetWidth/2;
-      const dist = Math.abs(sliderCenter - cardCenter);
-      if(dist < closestDist){ closestDist = dist; closestCard = card; }
-    });
-    cards.forEach(c=>c.classList.remove('active'));
-    if(closestCard) closestCard.classList.add('active');
-  }
-
-  slider.addEventListener('scroll', setActiveCard);
-  window.addEventListener('resize', setActiveCard);
-  setActiveCard();
-
-  // Auto Slide
-  if(autoSlide){
-    let currentIndex = 0;
-    let slideInterval = setInterval(()=>{
-      currentIndex = (currentIndex + 1) % cards.length;
-      slider.scrollTo({ left: cards[currentIndex].offsetLeft, behavior:'smooth' });
-    }, interval);
-
-    slider.addEventListener('mouseenter', ()=>clearInterval(slideInterval));
-    slider.addEventListener('touchstart', ()=>clearInterval(slideInterval));
-  }
-}
-
-// Arrow Navigation
-document.querySelectorAll('.slider-arrow').forEach(arrow=>{
-  const targetId = arrow.getAttribute('data-target');
-  const slider = document.getElementById(targetId);
-  arrow.addEventListener('click', ()=>{
-    const cardWidth = slider.querySelector(':first-child').offsetWidth + 16; // gap
-    if(arrow.classList.contains('left')){
-      slider.scrollBy({ left: -cardWidth, behavior:'smooth' });
-    } else { slider.scrollBy({ left: cardWidth, behavior:'smooth' }); }
-  });
-});
-
-// Initialize Sliders
-initSlider('groupsSlider', '.slider-card');
-initSlider('stepsSlider', '.step');
-initSlider('testimonialsSlider', '.testimonial-card');
-</script>
 </body>
 </html>
