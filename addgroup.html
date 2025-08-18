@@ -7,6 +7,7 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</div>
   <style>
     :root {
       --primary: #4CAF50;
@@ -243,6 +244,29 @@
         margin: 1rem auto;
       }
     }
+     .suggestions-box {
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    max-height: 150px;
+    overflow-y: auto;
+    display: none;
+  }
+  .suggestions-box span {
+    display: inline-block;
+    background: #f1f1f1;
+    padding: 5px 10px;
+    margin: 3px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .suggestions-box span:hover {
+    background: #007bff;
+    color: white;
+  }
   </style>
 </head>
 <body>
@@ -311,9 +335,9 @@
         <div class="form-group">
           <label for="description">Description (SEO Optimized)</label>
           <textarea id="description" placeholder="Tell us about your group..."></textarea>
+          <div id="keywordSuggestions" class="suggestions-box"></div>
         </div>
 
-        <!-- ✅ id fix kiya -->
         <button type="submit" id="submitBtn">
           <i class="fas fa-paper-plane"></i> Submit Group
         </button>
@@ -321,80 +345,121 @@
     </div>
   </main>
 
-  <!-- SEO Auto Description Script -->
-  <script>
-    const groupType = document.getElementById("groupType");
-    const platforms = document.querySelectorAll(".platform");
-    const description = document.getElementById("description");
-
-    function updateDescription() {
-      let selectedType = groupType.value;
-      let selectedPlatforms = Array.from(platforms)
-        .filter(p => p.checked)
-        .map(p => p.value);
-
-      let seoKeywords = "";
-
-      if (selectedType) {
-        seoKeywords += `${selectedType} Group Links, Best ${selectedType} Community, Join Free ${selectedType} Groups. `;
-      }
-
-      if (selectedPlatforms.length > 0) {
-        seoKeywords += selectedPlatforms
-          .map(p => `${p} ${selectedType} Group, ${p} ${selectedType} Community`)
-          .join(", ");
-      }
-
-      if (seoKeywords.trim() !== "" && description.value.trim() === "") {
-        description.value = seoKeywords;
-      }
+  <!-- ✅ Suggestion CSS -->
+  <style>
+    .suggestions-box {
+      border: 1px solid #ccc;
+      background: #fff;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      max-height: 150px;
+      overflow-y: auto;
+      display: none;
     }
+    .suggestions-box span {
+      display: inline-block;
+      background: #f1f1f1;
+      padding: 5px 10px;
+      margin: 3px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .suggestions-box span:hover {
+      background: #007bff;
+      color: white;
+    }
+  </style>
 
-    groupType.addEventListener("change", updateDescription);
-    platforms.forEach(p => p.addEventListener("change", updateDescription));
-  </script>
+  <!-- Firebase CDN -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 
-  <!-- Footer Section -->
-  <footer>
-    <div class="footer-content">
-      <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms</a>
-        <a href="contact.html">Contact</a>
-      </div>
-      <div class="social-links">
-        <a href="#"><i class="fab fa-whatsapp"></i></a>
-        <a href="#"><i class="fab fa-telegram"></i></a>
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-      </div>
-      <p class="copyright">
-        &copy; 2025 LudoGroup. All rights reserved.
-      </p>
-    </div>
-  </footer>
-
-  <!-- Firebase Submission Script -->
   <script>
-    // Firebase config
+    // ✅ Firebase Config (apna config yahan dalna hai)
     const firebaseConfig = {
-      apiKey: "AIzaSyCwdlnLXcXauh3_YmY6cwswqzcieMOHI0Y",
-      authDomain: "ludogroup-a530a.firebaseapp.com",
-      projectId: "ludogroup-a530a",
-      storageBucket: "ludogroup-a530a.appspot.com",
-      messagingSenderId: "838421084676",
-      appId: "1:838421084676:web:9e02670e280eafcd86d351"
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT_ID.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
     };
-    
-    if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+
+    firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    // Form submission
     const form = document.getElementById("groupForm");
     const submitBtn = document.getElementById("submitBtn");
 
+    const groupTypeSelect = document.getElementById("groupType");
+    const descriptionBox = document.getElementById("description");
+    const suggestionsBox = document.getElementById("keywordSuggestions");
+
+    // ✅ SEO Keywords for each category
+    const seoKeywords = {
+      Cricket: [
+        "Best Cricket WhatsApp Group", "Live Cricket Updates", "Cricket Fans Community",
+        "IPL WhatsApp Group", "Fantasy Cricket Tips", "Cricket Lovers Chat",
+        "World Cup Cricket Groups", "Cricket Betting Tips", "Cricket News & Updates"
+      ],
+      Football: [
+        "Football Fans Group", "FIFA WhatsApp Group", "UEFA Champions League Chat",
+        "Best Football Updates", "Fantasy Football Tips", "Football Lovers Community",
+        "World Cup Football Groups", "Live Football Match Updates", "Football Betting Tips"
+      ],
+      Tennis: [
+        "Tennis Fans Group", "Wimbledon Updates", "US Open Live Chat",
+        "Tennis Lovers WhatsApp", "Best Tennis Community", "ATP Tour Updates",
+        "Grand Slam Tennis Groups", "Live Tennis Scores", "Tennis Discussion Group"
+      ],
+      Ludo: [
+        "Best Ludo WhatsApp Group", "Ludo Game Online", "Earn Money Ludo",
+        "Ludo King Tournament", "Play Ludo With Friends", "Ludo Earning Tricks",
+        "Join Ludo WhatsApp Group", "Ludo Real Cash Game", "Free Ludo Tournaments"
+      ],
+      Other: [
+        "Entertainment WhatsApp Group", "Study Group Online", "Tech Community",
+        "Music Lovers Chat", "Motivation Quotes Group", "News Updates Community",
+        "Friendship WhatsApp Group", "Daily Jokes Group", "Trending Social Groups"
+      ]
+    };
+
+    let selectedKeywords = [];
+
+    // ✅ Show suggestions when group type changes
+    groupTypeSelect.addEventListener("change", () => {
+      const type = groupTypeSelect.value;
+      suggestionsBox.innerHTML = "";
+      selectedKeywords = [];
+
+      if (type && seoKeywords[type]) {
+        seoKeywords[type].forEach(keyword => {
+          const span = document.createElement("span");
+          span.innerText = keyword;
+
+          span.addEventListener("click", () => {
+            if (selectedKeywords.length >= 6) {
+              alert("⚠️ Maximum 6 keywords allowed!");
+              return;
+            }
+            if (!selectedKeywords.includes(keyword)) {
+              selectedKeywords.push(keyword);
+              descriptionBox.value = selectedKeywords.join(", ");
+            }
+          });
+
+          suggestionsBox.appendChild(span);
+        });
+
+        suggestionsBox.style.display = "block";
+      } else {
+        suggestionsBox.style.display = "none";
+      }
+    });
+
+    // ✅ Submit Form
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
@@ -425,6 +490,7 @@
 
         alert("✅ Group submitted successfully!");
         form.reset();
+        suggestionsBox.style.display = "none";
       } catch (error) {
         alert("❌ Submission failed: " + error.message);
       } finally {
@@ -433,7 +499,5 @@
       }
     });
   </script>
-</body>
-</html>
 </body>
 </html>
