@@ -3,42 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Add Your Ludo Group - LudoGroup</title>
-  <meta name="description" content="Submit your Ludo WhatsApp group to our directory and connect with more players. Get your group listed today!">
-  <meta name="keywords" content="add ludo group, submit whatsapp group, ludo group submission, join ludo community">
-  
-  <!-- Firebase SDK -->
+  <title>Add Group - LudoGroup</title>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-  
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
+</div>
   <style>
     :root {
       --primary: #4CAF50;
       --primary-dark: #388E3C;
-      --primary-light: #C8E6C9;
       --secondary: #FFC107;
-      --secondary-dark: #FFA000;
-      --dark: #2C3E50;
+      --dark: #333;
       --light: #f9f9f9;
       --gray: #e0e0e0;
-      --danger: #E74C3C;
-      --success: #2ECC71;
-      --border-radius: 8px;
-      --box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-      --transition: all 0.3s ease;
     }
     
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     
     body {
@@ -51,11 +35,8 @@
     header {
       background-color: var(--primary);
       color: white;
-      padding: 1rem 2rem;
+      padding: 1.5rem 2rem;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 100;
     }
     
     .header-container {
@@ -72,8 +53,6 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      text-decoration: none;
-      color: white;
     }
     
     .logo i {
@@ -84,7 +63,7 @@
     nav ul {
       display: flex;
       list-style: none;
-      gap: 1rem;
+      gap: 1.5rem;
     }
     
     nav a {
@@ -92,22 +71,12 @@
       text-decoration: none;
       font-weight: 500;
       padding: 0.5rem 1rem;
-      border-radius: var(--border-radius);
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      gap: 5px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
     }
     
-    nav a:hover,
-    nav a:focus {
+    nav a:hover {
       background-color: var(--primary-dark);
-      outline: none;
-    }
-    
-    nav a.active {
-      background-color: var(--secondary);
-      color: var(--dark);
     }
     
     /* Main Content Styles */
@@ -117,18 +86,12 @@
     }
     
     .container {
-      max-width: 700px;
+      max-width: 600px;
       margin: 2rem auto;
       background: white;
       padding: 2rem;
-      border-radius: var(--border-radius);
-      box-shadow: var(--box-shadow);
-      animation: fadeIn 0.5s ease;
-    }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     }
     
     h2 {
@@ -136,31 +99,11 @@
       color: var(--primary);
       margin-bottom: 1.5rem;
       font-size: 1.8rem;
-      position: relative;
-      padding-bottom: 10px;
-    }
-    
-    h2::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 3px;
-      background: var(--secondary);
-    }
-    
-    .form-intro {
-      text-align: center;
-      margin-bottom: 2rem;
-      color: var(--dark);
     }
     
     /* Form Styles */
     .form-group {
-      margin-bottom: 1.5rem;
-      position: relative;
+      margin-bottom: 1.2rem;
     }
     
     label {
@@ -170,25 +113,20 @@
       color: var(--dark);
     }
     
-    .required::after {
-      content: '*';
-      color: var(--danger);
-      margin-left: 4px;
-    }
-    
     input, select, textarea {
       width: 100%;
       padding: 12px 15px;
-      border-radius: var(--border-radius);
+      margin: 8px 0;
+      border-radius: 8px;
       border: 1px solid var(--gray);
       font-size: 1rem;
-      transition: var(--transition);
+      transition: all 0.3s ease;
     }
     
     input:focus, select:focus, textarea:focus {
       border-color: var(--primary);
       outline: none;
-      box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+      box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
     }
     
     textarea {
@@ -197,29 +135,15 @@
     }
     
     .platforms-group {
-      margin: 1.5rem 0;
-    }
-    
-    .platforms-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-top: 0.5rem;
+      margin: 1rem 0;
     }
     
     .platform-label {
       display: inline-flex;
       align-items: center;
-      padding: 8px 12px;
-      background: var(--light);
-      border-radius: var(--border-radius);
+      margin-right: 1.5rem;
+      margin-bottom: 0.8rem;
       cursor: pointer;
-      transition: var(--transition);
-      border: 1px solid var(--gray);
-    }
-    
-    .platform-label:hover {
-      border-color: var(--primary);
     }
     
     .platform-label input {
@@ -234,122 +158,25 @@
       padding: 14px;
       font-size: 1.1rem;
       font-weight: 600;
-      border-radius: var(--border-radius);
+      border-radius: 8px;
       cursor: pointer;
-      transition: var(--transition);
+      transition: all 0.3s ease;
       margin-top: 1rem;
       width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
     }
     
     button[type="submit"]:hover {
       background: var(--primary-dark);
-      transform: translateY(-2px);
     }
     
     button[type="submit"]:disabled {
       background: #a5d6a7;
       cursor: not-allowed;
-      transform: none;
-    }
-    
-    /* Suggestions Box */
-    .suggestions-box {
-      border: 1px solid var(--gray);
-      background: white;
-      padding: 10px;
-      margin-top: 5px;
-      border-radius: var(--border-radius);
-      max-height: 150px;
-      overflow-y: auto;
-      display: none;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    
-    .suggestions-box span {
-      display: inline-block;
-      background: var(--light);
-      padding: 5px 10px;
-      margin: 3px;
-      border-radius: 15px;
-      cursor: pointer;
-      font-size: 14px;
-      transition: var(--transition);
-    }
-    
-    .suggestions-box span:hover {
-      background: var(--primary);
-      color: white;
-    }
-    
-    .selected-keywords {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-      margin-top: 10px;
-    }
-    
-    .keyword-tag {
-      background: var(--primary-light);
-      color: var(--primary-dark);
-      padding: 4px 10px;
-      border-radius: 15px;
-      font-size: 13px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    
-    .keyword-tag button {
-      background: none;
-      border: none;
-      color: var(--danger);
-      cursor: pointer;
-      font-size: 12px;
-      padding: 0;
-    }
-    
-    /* Form Validation */
-    .error-message {
-      color: var(--danger);
-      font-size: 13px;
-      margin-top: 5px;
-      display: none;
-    }
-    
-    input:invalid, select:invalid, textarea:invalid {
-      border-color: var(--danger);
-    }
-    
-    input:invalid + .error-message, 
-    select:invalid + .error-message,
-    textarea:invalid + .error-message {
-      display: block;
-    }
-    
-    /* Success Message */
-    .success-message {
-      display: none;
-      text-align: center;
-      padding: 20px;
-      background: var(--primary-light);
-      border-radius: var(--border-radius);
-      margin-top: 20px;
-      color: var(--primary-dark);
-    }
-    
-    .success-message i {
-      font-size: 2.5rem;
-      color: var(--success);
-      margin-bottom: 15px;
     }
     
     /* Footer Styles */
     footer {
-      background-color: var(--dark);
+      background-color: var(--primary);
       color: white;
       padding: 2rem;
       text-align: center;
@@ -371,7 +198,7 @@
     .footer-links a {
       color: white;
       text-decoration: none;
-      transition: var(--transition);
+      transition: color 0.3s ease;
     }
     
     .footer-links a:hover {
@@ -388,7 +215,7 @@
     .social-links a {
       color: white;
       font-size: 1.5rem;
-      transition: var(--transition);
+      transition: color 0.3s ease;
     }
     
     .social-links a:hover {
@@ -416,41 +243,46 @@
         padding: 1.5rem;
         margin: 1rem auto;
       }
-      
-      h2 {
-        font-size: 1.5rem;
-      }
     }
-    
-    @media (max-width: 480px) {
-      main {
-        padding: 1rem;
-      }
-      
-      .container {
-        padding: 1.2rem;
-      }
-      
-      .platforms-container {
-        flex-direction: column;
-      }
-    }
+     .suggestions-box {
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    max-height: 150px;
+    overflow-y: auto;
+    display: none;
+  }
+  .suggestions-box span {
+    display: inline-block;
+    background: #f1f1f1;
+    padding: 5px 10px;
+    margin: 3px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .suggestions-box span:hover {
+    background: #007bff;
+    color: white;
+  }
   </style>
 </head>
 <body>
   <!-- Header Section -->
   <header>
     <div class="header-container">
-      <a href="index.html" class="logo">
+      <div class="logo">
         <i class="fas fa-dice"></i>
         <span>LudoGroup</span>
-      </a>
-      <nav aria-label="Main navigation">
+      </div>
+      <nav>
         <ul>
           <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-          <li><a href="rules.html"><i class="fas fa-book"></i> Rules</a></li>
+            <li><a href="rules.html"><i class="fas fa-users"></i> Rules</a></li>
           <li><a href="join.html"><i class="fas fa-users"></i> Join Groups</a></li>
-          <li><a href="addgroup.html" class="active"><i class="fas fa-plus-circle"></i> Add Group</a></li>
+          <li><a href="addgroup.html"><i class="fas fa-plus-circle"></i> Add Group</a></li>
           <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
         </ul>
       </nav>
@@ -461,104 +293,91 @@
   <main>
     <div class="container">
       <h2><i class="fas fa-plus-circle"></i> Submit Your Group</h2>
-      <p class="form-intro">Get your Ludo group listed in our directory and connect with more players. All submissions are reviewed before approval.</p>
-      
-      <form id="groupForm" novalidate>
+      <form id="groupForm">
         <div class="form-group">
-          <label for="name" class="required">Group Name</label>
-          <input type="text" id="name" placeholder="Enter group name (e.g., Ludo Champions)" required>
-          <div class="error-message">Please enter a group name</div>
+          <label for="name">Group Name</label>
+          <input type="text" id="name" placeholder="Enter group name" required>
         </div>
 
         <div class="form-group">
-          <label for="link" class="required">Group Link</label>
-          <input type="url" id="link" placeholder="https://chat.whatsapp.com/yourgroup" 
-                 pattern="https?://.+" required>
-          <div class="error-message">Please enter a valid URL starting with http:// or https://</div>
+          <label for="link">Group Link</label>
+          <input type="url" id="link" placeholder="https://chat.whatsapp.com/yourgroup" required>
         </div>
 
         <div class="form-group">
-          <label for="groupType" class="required">Group Type</label>
+          <label for="groupType">Group Type</label>
           <select id="groupType" required>
             <option value="">-- Select Group Type --</option>
-            <option value="Ludo">🎲 Ludo (Most Popular)</option>
-            <option value="Ludo Tournament">🏆 Ludo Tournament</option>
-            <option value="Ludo Money">💰 Ludo Money Games</option>
-            <option value="Ludo Fun">😄 Ludo Fun & Friends</option>
-            <option value="Other">📌 Other Game Group</option>
+            <option value="Cricket">🏏 Cricket</option>
+            <option value="Football">⚽ Football</option>
+            <option value="Tennis">🎾 Tennis</option>
+            <option value="Ludo">🎲 Ludo</option>
+            <option value="Other">📌 Other</option>
           </select>
-          <div class="error-message">Please select a group type</div>
         </div>
 
         <div class="form-group platforms-group">
-          <label class="required">Platforms</label>
-          <div class="platforms-container">
-            <label class="platform-label">
-              <input type="checkbox" class="platform" value="WhatsApp" checked> 
-              <i class="fab fa-whatsapp"></i> WhatsApp
-            </label>
-            <label class="platform-label">
-              <input type="checkbox" class="platform" value="Telegram"> 
-              <i class="fab fa-telegram"></i> Telegram
-            </label>
-            <label class="platform-label">
-              <input type="checkbox" class="platform" value="Facebook"> 
-              <i class="fab fa-facebook"></i> Facebook
-            </label>
-            <label class="platform-label">
-              <input type="checkbox" class="platform" value="Discord"> 
-              <i class="fab fa-discord"></i> Discord
-            </label>
-          </div>
-          <div class="error-message">Please select at least one platform</div>
+          <label>Platforms</label><br>
+          <label class="platform-label">
+            <input type="checkbox" class="platform" value="WhatsApp"> WhatsApp
+          </label>
+          <label class="platform-label">
+            <input type="checkbox" class="platform" value="Telegram"> Telegram
+          </label>
+          <label class="platform-label">
+            <input type="checkbox" class="platform" value="Facebook"> Facebook
+          </label>
+          <label class="platform-label">
+            <input type="checkbox" class="platform" value="Other"> Other
+          </label>
         </div>
 
         <div class="form-group">
-          <label for="description">Group Description <small>(SEO Optimized)</small></label>
-          <textarea id="description" placeholder="Tell us about your group (rules, purpose, special features)..."></textarea>
+          <label for="description">Description (SEO Optimized)</label>
+          <textarea id="description" placeholder="Tell us about your group..."></textarea>
           <div id="keywordSuggestions" class="suggestions-box"></div>
-          <div id="selectedKeywords" class="selected-keywords"></div>
-          <small style="display: block; margin-top: 5px; color: #666;">Tip: Click on keywords below to add them to your description</small>
         </div>
 
         <button type="submit" id="submitBtn">
           <i class="fas fa-paper-plane"></i> Submit Group
         </button>
       </form>
-      
-      <div id="successMessage" class="success-message">
-        <i class="fas fa-check-circle"></i>
-        <h3>Group Submitted Successfully!</h3>
-        <p>Your group has been submitted for review. We'll notify you once it's approved and listed.</p>
-        <p>Thank you for contributing to our Ludo community!</p>
-      </div>
     </div>
   </main>
 
-  <!-- Footer -->
-  <footer>
-    <div class="footer-content">
-      <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="rules.html">Rules</a>
-        <a href="join.html">Join Groups</a>
-        <a href="addgroup.html">Add Group</a>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="contact.html">Contact Us</a>
-      </div>
-      <div class="social-links">
-        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-      </div>
-      <p class="copyright">© 2025 LudoGroup. All Rights Reserved.</p>
-      <p><small>Ludo King is a registered trademark of Gametion. We are not affiliated with Gametion.</small></p>
-    </div>
-  </footer>
+  <!-- ✅ Suggestion CSS -->
+  <style>
+    .suggestions-box {
+      border: 1px solid #ccc;
+      background: #fff;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      max-height: 150px;
+      overflow-y: auto;
+      display: none;
+    }
+    .suggestions-box span {
+      display: inline-block;
+      background: #f1f1f1;
+      padding: 5px 10px;
+      margin: 3px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .suggestions-box span:hover {
+      background: #007bff;
+      color: white;
+    }
+  </style>
+
+  <!-- Firebase CDN -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 
   <script>
-    // Firebase Configuration
+    // ✅ Firebase Config (apna config yahan dalna hai)
     const firebaseConfig = {
       apiKey: "AIzaSyCwdlnLXcXauh3_YmY6cwswqzcieMOHI0Y",
       authDomain: "ludogroup-a530a.firebaseapp.com",
@@ -568,144 +387,92 @@
       appId: "1:838421084676:web:9e02670e280eafcd86d351"
     };
 
-    // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    // DOM Elements
     const form = document.getElementById("groupForm");
     const submitBtn = document.getElementById("submitBtn");
-    const successMessage = document.getElementById("successMessage");
+
     const groupTypeSelect = document.getElementById("groupType");
     const descriptionBox = document.getElementById("description");
     const suggestionsBox = document.getElementById("keywordSuggestions");
-    const selectedKeywordsContainer = document.getElementById("selectedKeywords");
 
-    // SEO Keywords for each category
+    // ✅ SEO Keywords for each category
     const seoKeywords = {
-      "Ludo": [
-        "Best Ludo WhatsApp Group", "Ludo King Players", "Online Ludo Tournament",
-        "Play Ludo Online", "Ludo Game Group", "Ludo With Friends",
-        "Ludo Community", "Ludo Strategy Tips", "Ludo Fun Games"
+      Cricket: [
+        "Best Cricket WhatsApp Group", "Live Cricket Updates", "Cricket Fans Community",
+        "IPL WhatsApp Group", "Fantasy Cricket Tips", "Cricket Lovers Chat",
+        "World Cup Cricket Groups", "Cricket Betting Tips", "Cricket News & Updates"
       ],
-      "Ludo Tournament": [
-        "Ludo Tournament Group", "Ludo Competitions", "Ludo Championship",
-        "Ludo Prize Games", "Ludo League", "Competitive Ludo Players",
-        "Ludo Contest", "Ludo Challenge", "Ludo Winner Group"
+      Football: [
+        "Football Fans Group", "FIFA WhatsApp Group", "UEFA Champions League Chat",
+        "Best Football Updates", "Fantasy Football Tips", "Football Lovers Community",
+        "World Cup Football Groups", "Live Football Match Updates", "Football Betting Tips"
       ],
-      "Ludo Money": [
-        "Ludo Money Games", "Earn Money Ludo", "Ludo Cash Tournament",
-        "Ludo Betting Group", "Ludo Real Money", "Ludo Earning App",
-        "Ludo Winning Tips", "Paid Ludo Games", "Ludo With Cash Prize"
+      Tennis: [
+        "Tennis Fans Group", "Wimbledon Updates", "US Open Live Chat",
+        "Tennis Lovers WhatsApp", "Best Tennis Community", "ATP Tour Updates",
+        "Grand Slam Tennis Groups", "Live Tennis Scores", "Tennis Discussion Group"
       ],
-      "Ludo Fun": [
-        "Ludo Fun Group", "Friendly Ludo Games", "Casual Ludo Players",
-        "Ludo Time Pass", "Ludo For Enjoyment", "No Stress Ludo",
-        "Ludo With Family", "Ludo Relax Group", "Ludo Entertainment"
+      Ludo: [
+        "Best Ludo WhatsApp Group", "Ludo Game Online", "Earn Money Ludo",
+        "Ludo King Tournament", "Play Ludo With Friends", "Ludo Earning Tricks",
+        "Join Ludo WhatsApp Group", "Ludo Real Cash Game", "Free Ludo Tournaments"
       ],
-      "Other": [
-        "Game Community", "Online Gaming Group", "Mobile Games Chat",
-        "Board Games Group", "Multiplayer Games", "Fun Games WhatsApp",
-        "Game Lovers", "Online Players Community", "Virtual Games Group"
+      Other: [
+        "Entertainment WhatsApp Group", "Study Group Online", "Tech Community",
+        "Music Lovers Chat", "Motivation Quotes Group", "News Updates Community",
+        "Friendship WhatsApp Group", "Daily Jokes Group", "Trending Social Groups"
       ]
     };
 
     let selectedKeywords = [];
 
-    // Show suggestions when group type changes
+    // ✅ Show suggestions when group type changes
     groupTypeSelect.addEventListener("change", () => {
       const type = groupTypeSelect.value;
       suggestionsBox.innerHTML = "";
-      
+      selectedKeywords = [];
+
       if (type && seoKeywords[type]) {
         seoKeywords[type].forEach(keyword => {
           const span = document.createElement("span");
-          span.textContent = keyword;
-          span.tabIndex = 0;
-          span.addEventListener("click", () => addKeyword(keyword));
-          span.addEventListener("keypress", (e) => {
-            if (e.key === "Enter") addKeyword(keyword);
+          span.innerText = keyword;
+
+          span.addEventListener("click", () => {
+            if (selectedKeywords.length >= 6) {
+              alert("⚠️ Maximum 6 keywords allowed!");
+              return;
+            }
+            if (!selectedKeywords.includes(keyword)) {
+              selectedKeywords.push(keyword);
+              descriptionBox.value = selectedKeywords.join(", ");
+            }
           });
+
           suggestionsBox.appendChild(span);
         });
+
         suggestionsBox.style.display = "block";
       } else {
         suggestionsBox.style.display = "none";
       }
     });
 
-    // Add keyword to description
-    function addKeyword(keyword) {
-      if (selectedKeywords.length >= 6) {
-        alert("⚠️ Maximum 6 keywords allowed!");
-        return;
-      }
-      
-      if (!selectedKeywords.includes(keyword)) {
-        selectedKeywords.push(keyword);
-        updateDescription();
-        renderSelectedKeywords();
-      }
-    }
-
-    // Remove keyword
-    function removeKeyword(index) {
-      selectedKeywords.splice(index, 1);
-      updateDescription();
-      renderSelectedKeywords();
-    }
-
-    // Update description textarea
-    function updateDescription() {
-      if (selectedKeywords.length > 0) {
-        descriptionBox.value = selectedKeywords.join(", ") + 
-          (descriptionBox.value ? "\n\n" + descriptionBox.value : "");
-      }
-    }
-
-    // Render selected keywords
-    function renderSelectedKeywords() {
-      selectedKeywordsContainer.innerHTML = "";
-      selectedKeywords.forEach((keyword, index) => {
-        const tag = document.createElement("div");
-        tag.className = "keyword-tag";
-        tag.innerHTML = `
-          ${keyword}
-          <button type="button" aria-label="Remove keyword" onclick="removeKeyword(${index})">
-            <i class="fas fa-times"></i>
-          </button>
-        `;
-        selectedKeywordsContainer.appendChild(tag);
-      });
-    }
-
-    // Close suggestions when clicking outside
-    document.addEventListener("click", (e) => {
-      if (!e.target.closest("#groupType") && !e.target.closest(".suggestions-box")) {
-        suggestionsBox.style.display = "none";
-      }
-    });
-
-    // Form submission
+    // ✅ Submit Form
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
-
-      // Check at least one platform is selected
-      const platforms = Array.from(document.querySelectorAll(".platform:checked")).map(cb => cb.value);
-      if (platforms.length === 0) {
-        alert("⚠️ Please select at least one platform");
-        return;
-      }
 
       const name = document.getElementById("name").value.trim();
       const link = document.getElementById("link").value.trim();
       const groupType = document.getElementById("groupType").value;
       const description = document.getElementById("description").value.trim();
+      const platforms = Array.from(document.querySelectorAll(".platform:checked")).map(cb => cb.value);
+
+      if (!name || !link || !groupType || platforms.length === 0) {
+        alert("⚠️ Please fill all required fields");
+        return;
+      }
 
       try {
         submitBtn.disabled = true;
@@ -718,23 +485,12 @@
           platforms,
           description,
           status: "pending",
-          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-          views: 0,
-          members: 0
+          timestamp: firebase.firestore.FieldValue.serverTimestamp()
         });
 
-        // Show success message
-        form.style.display = "none";
-        successMessage.style.display = "block";
-        
-        // Reset form after delay
-        setTimeout(() => {
-          form.reset();
-          form.style.display = "block";
-          successMessage.style.display = "none";
-          selectedKeywords = [];
-          selectedKeywordsContainer.innerHTML = "";
-        }, 5000);
+        alert("✅ Group submitted successfully!");
+        form.reset();
+        suggestionsBox.style.display = "none";
       } catch (error) {
         alert("❌ Submission failed: " + error.message);
       } finally {
@@ -742,9 +498,6 @@
         submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Group';
       }
     });
-
-    // Make removeKeyword function available globally
-    window.removeKeyword = removeKeyword;
   </script>
 </body>
 </html>
