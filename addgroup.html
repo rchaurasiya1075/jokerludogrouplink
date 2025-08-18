@@ -393,7 +393,10 @@
 
     // Form submission (unchanged functionality)
     const form = document.getElementById("groupForm");
-    const submitBtn = document.getElementById("submitBtn");
+    <button type="submit" id="submitBtn">
+  <i class="fas fa-paper-plane"></i> Submit Group
+</button>
+
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
