@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All in One Tools & Community</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f6fa;
+      color: #333;
+    }
+    header {
+      background: #2c3e50;
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+    .container {
+      width: 90%;
+      max-width: 1000px;
+      margin: 20px auto;
+    }
+    h2 {
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin: 15px 0;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #3498db;
+      color: #fff;
+      border-radius: 5px;
+      text-decoration: none;
+      margin-top: 10px;
+    }
+    .btn:hover { background: #2980b9; }
+
+    /* Forum */
+    #forum input, #forum textarea {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    .question {
+      background: #ecf0f1;
+      padding: 10px;
+      border-radius: 5px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>All-in-One Tools & Community 🚀</h1>
+    <nav>
+      <a href="#tools">Free Tools</a>
+      <a href="#forum">Community</a>
+    </nav>
+  </header>
+
+  <div class="container">
+
+    <!-- Free Tools Section -->
+    <section id="tools">
+      <h2>🔧 Free Tools</h2>
+
+      <div class="card">
+        <h3>Link Shortener</h3>
+        <input type="text" id="longUrl" placeholder="Paste your link here">
+        <button class="btn" onclick="shortenUrl()">Shorten Link</button>
+        <p id="shortUrl"></p>
+      </div>
+
+      <div class="card">
+        <h3>Text to PDF Converter</h3>
+        <textarea id="pdfText" rows="4" placeholder="Write your text here"></textarea>
+        <button class="btn" onclick="downloadPDF()">Download PDF</button>
+      </div>
+
+      <div class="card">
+        <h3>Image Resizer</h3>
+        <input type="file" id="imgUpload" accept="image/*">
+        <button class="btn" onclick="resizeImage()">Resize Image</button>
+        <canvas id="canvas" style="display:none;"></canvas>
+      </div>
+
+      <div class="card">
+        <h3>Instagram DP Downloader</h3>
+        <input type="text" id="instaUser" placeholder="Enter Instagram Username">
+        <button class="btn" onclick="downloadDP()">Download DP</button>
+        <p>(Note: Needs backend API for real DP download)</p>
+      </div>
+
+      <div class="card">
+        <h3>YouTube Thumbnail Downloader</h3>
+        <input type="text" id="ytLink" placeholder="Enter YouTube video link">
+        <button class="btn" onclick="getThumbnail()">Get Thumbnail</button>
+        <div id="thumbnailResult"></div>
+      </div>
+    </section>
+
+    <!-- Forum Section -->
+    <section id="forum">
+      <h2>👥 Community Forum</h2>
+      <div class="card">
+        <h3>Ask a Question</h3>
+        <input type="text" id="qTitle" placeholder="Question Title">
+        <textarea id="qBody" placeholder="Write your question..."></textarea>
+        <button class="btn" onclick="postQuestion()">Post Question</button>
+      </div>
+      <div id="questionsList"></div>
+    </section>
+
+  </div>
+
+  <script>
+    // Simple Link Shortener (Demo)
+    function shortenUrl() {
+      let url = document.getElementById('longUrl').value;
+      if(url){
+        document.getElementById('shortUrl').innerHTML = 
+          "Shortened: yoursite.com/" + btoa(url).substring(0,6);
+      }
+    }
+
+    // Text to PDF (using window.print)
+    function downloadPDF() {
+      let text = document.getElementById('pdfText').value;
+      let win = window.open('', '', 'height=500,width=800');
+      win.document.write('<pre>' + text + '</pre>');
+      win.print();
+    }
+
+    // Image Resizer (Demo Canvas)
+    function resizeImage() {
+      const file = document.getElementById('imgUpload').files[0];
+      if (!file) return;
+      const img = new Image();
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        img.src = e.target.result;
+      };
+      img.onload = function() {
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = 200; // resize width
+        canvas.height = 200; // resize height
+        ctx.drawImage(img, 0, 0, 200, 200);
+        const link = document.createElement('a');
+        link.download = "resized.png";
+        link.href = canvas.toDataURL();
+        link.click();
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // YouTube Thumbnail
+    function getThumbnail() {
+      let url = document.getElementById('ytLink').value;
+      let videoId = url.split("v=")[1];
+      if(videoId){
+        let ampersand = videoId.indexOf("&");
+        if(ampersand != -1) { videoId = videoId.substring(0, ampersand); }
+        document.getElementById('thumbnailResult').innerHTML = 
+          `<img src="https://img.youtube.com/vi/${videoId}/hqdefault.jpg" width="300">`;
+      }
+    }
+
+    // Forum (Local Storage Demo)
+    function postQuestion() {
+      let title = document.getElementById('qTitle').value;
+      let body = document.getElementById('qBody').value;
+      if(title && body){
+        let div = document.createElement('div');
+        div.className = "question";
+        div.innerHTML = `<h4>${title}</h4><p>${body}</p>`;
+        document.getElementById('questionsList').prepend(div);
+        document.getElementById('qTitle').value = "";
+        document.getElementById('qBody').value = "";
+      }
+    }
+  </script>
+</body>
+</html>
