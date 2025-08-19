@@ -119,6 +119,15 @@
       color: var(--primary);
     }
     
+    .btn-success {
+      background: var(--success);
+      color: white;
+    }
+    
+    .btn-success:hover {
+      background: #27ae60;
+    }
+    
     .mobile-menu-btn {
       display: none;
       background: none;
@@ -444,6 +453,55 @@
       font-size: 0.8rem;
       margin-right: 5px;
     }
+    
+    .dimension-inputs {
+      display: flex;
+      gap: 10px;
+      margin: 10px 0;
+    }
+    
+    .dimension-inputs input {
+      flex: 1;
+    }
+    
+    .ratio-lock {
+      display: flex;
+      align-items: center;
+      margin: 5px 0 10px;
+      font-size: 0.9rem;
+      color: var(--gray);
+    }
+    
+    .ratio-lock input {
+      width: auto;
+      margin-right: 8px;
+    }
+    
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 15px 20px;
+      background: var(--success);
+      color: white;
+      border-radius: 5px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transform: translateX(100%);
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+    
+    .notification.show {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    
+    .tool-tip {
+      font-size: 0.85rem;
+      color: var(--gray);
+      margin-top: 5px;
+    }
   </style>
 </head>
 <body>
@@ -506,7 +564,7 @@
           <button class="btn btn-primary" onclick="shortenUrl()"><i class="fas fa-compress-alt"></i> Shorten Link</button>
           <div class="tool-result" id="shortUrlResult">
             <p>Shortened URL:</p>
-            <div style="display: flex; gap: 10px;">
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
               <input type="text" id="shortUrl" readonly>
               <button class="btn btn-primary" onclick="copyUrl()"><i class="fas fa-copy"></i> Copy</button>
             </div>
@@ -534,12 +592,33 @@
           </div>
           <p>Resize your images without losing quality</p>
           <input type="file" id="imgUpload" accept="image/*">
-          <div style="display: flex; gap: 10px; margin: 10px 0;">
-            <input type="number" id="imgWidth" placeholder="Width" style="width: 48%;">
-            <input type="number" id="imgHeight" placeholder="Height" style="width: 48%;">
+          
+          <div class="ratio-lock">
+            <input type="checkbox" id="maintainRatio" checked>
+            <label for="maintainRatio">Maintain aspect ratio</label>
           </div>
+          
+          <div class="dimension-inputs">
+            <div>
+              <label for="imgWidth">Width (px)</label>
+              <input type="number" id="imgWidth" placeholder="Width" min="1">
+            </div>
+            <div>
+              <label for="imgHeight">Height (px)</label>
+              <input type="number" id="imgHeight" placeholder="Height" min="1">
+            </div>
+          </div>
+          
           <button class="btn btn-primary" onclick="resizeImage()"><i class="fas fa-expand-alt"></i> Resize Image</button>
           <canvas id="canvas" style="display:none;"></canvas>
+          
+          <div class="tool-result" id="resizeResult">
+            <p>Resized Image:</p>
+            <img id="resizedImg" src="" style="max-width: 100%; border-radius: 8px; margin-top: 10px; display: none;">
+            <a href="#" class="btn btn-success" id="downloadResized" style="margin-top: 10px; display: none;">
+              <i class="fas fa-download"></i> Download Resized Image
+            </a>
+          </div>
         </div>
 
         <div class="card">
@@ -552,8 +631,12 @@
           <p>Download Instagram profile pictures in high quality</p>
           <input type="text" id="instaUser" placeholder="Enter Instagram Username">
           <button class="btn btn-primary" onclick="downloadDP()"><i class="fas fa-download"></i> Download DP</button>
+          <p class="tool-tip">Note: This is a demo. In a real application, this would require a backend service.</p>
           <div class="tool-result" id="dpResult">
             <img id="dpImage" src="" style="max-width: 100%; border-radius: 8px; margin-top: 10px;">
+            <a href="#" class="btn btn-success" id="downloadDpBtn" style="margin-top: 10px;">
+              <i class="fas fa-download"></i> Download Image
+            </a>
           </div>
         </div>
 
@@ -565,12 +648,13 @@
             <h3>YouTube Thumbnail Downloader</h3>
           </div>
           <p>Get high-quality thumbnails from any YouTube video</p>
-          <input type="text" id="ytLink" placeholder="Enter YouTube video link">
+          <input type="text" id="ytLink" placeholder="Enter YouTube video URL">
           <button class="btn btn-primary" onclick="getThumbnail()"><i class="fas fa-download"></i> Get Thumbnail</button>
           <div class="tool-result" id="thumbnailResult">
             <img id="thumbnailImg" src="" style="max-width: 100%; border-radius: 8px; margin-top: 10px;">
             <div style="display: flex; gap: 10px; margin-top: 10px;">
-              <a href="#" class="btn btn-primary" id="downloadThumbnail"><i class="fas fa-download"></i> Download</a>
+              <a href="#" class="btn btn-success" id="downloadThumbnail"><i class="fas fa-download"></i> Download</a>
+              <a href="#" class="btn btn-primary" id="viewThumbnail" target="_blank"><i class="fas fa-external-link-alt"></i> View Full Size</a>
             </div>
           </div>
         </div>
@@ -590,17 +674,24 @@
               <option value="en">English</option>
               <option value="es">Spanish</option>
               <option value="fr">French</option>
+              <option value="de">German</option>
+              <option value="ja">Japanese</option>
             </select>
             <select id="targetLang" style="width: 48%;">
               <option value="en">English</option>
               <option value="es">Spanish</option>
               <option value="fr">French</option>
+              <option value="de">German</option>
+              <option value="ja">Japanese</option>
             </select>
           </div>
           <button class="btn btn-primary" onclick="translateText()"><i class="fas fa-exchange-alt"></i> Translate</button>
           <div class="tool-result" id="translationResult">
             <p>Translation:</p>
             <div id="translatedText" style="padding: 10px; background: #f8f9fa; border-radius: 6px; margin-top: 10px;"></div>
+            <button class="btn btn-primary" onclick="copyTranslation()" style="margin-top: 10px;">
+              <i class="fas fa-copy"></i> Copy Translation
+            </button>
           </div>
         </div>
       </div>
@@ -682,83 +773,173 @@
     </div>
   </footer>
 
+  <div class="notification" id="notification">Operation completed successfully!</div>
+
   <script>
     // Mobile menu toggle
     document.getElementById('mobileMenuBtn').addEventListener('click', function() {
       document.getElementById('mainNav').classList.toggle('active');
     });
     
+    // Show notification function
+    function showNotification(message, isError = false) {
+      const notification = document.getElementById('notification');
+      notification.textContent = message;
+      notification.style.background = isError ? '#e74c3c' : '#2ecc71';
+      notification.classList.add('show');
+      
+      setTimeout(() => {
+        notification.classList.remove('show');
+      }, 3000);
+    }
+    
     // Simple Link Shortener (Demo)
     function shortenUrl() {
       let url = document.getElementById('longUrl').value;
-      if(url){
-        // Show progress bar animation
-        const progressBar = document.getElementById('urlProgress');
-        let width = 0;
-        const interval = setInterval(() => {
-          if (width >= 100) {
-            clearInterval(interval);
-            document.getElementById('shortUrlResult').classList.add('active');
-            document.getElementById('shortUrl').value = "https://toolhub.link/" + Math.random().toString(36).substring(2, 8);
-          } else {
-            width += 5;
-            progressBar.style.width = width + '%';
-          }
-        }, 30);
+      
+      if(!url) {
+        showNotification('Please enter a URL to shorten', true);
+        return;
       }
+      
+      if(!url.startsWith('http')) {
+        url = 'https://' + url;
+      }
+      
+      // Show progress bar animation
+      const progressBar = document.getElementById('urlProgress');
+      let width = 0;
+      const interval = setInterval(() => {
+        if (width >= 100) {
+          clearInterval(interval);
+          document.getElementById('shortUrlResult').classList.add('active');
+          const shortCode = Math.random().toString(36).substring(2, 8);
+          document.getElementById('shortUrl').value = "https://toolhub.link/" + shortCode;
+          showNotification('URL shortened successfully!');
+        } else {
+          width += 5;
+          progressBar.style.width = width + '%';
+        }
+      }, 30);
     }
     
     function copyUrl() {
       const copyText = document.getElementById("shortUrl");
       copyText.select();
       document.execCommand("copy");
-      alert("Copied the URL: " + copyText.value);
+      showNotification('URL copied to clipboard!');
     }
 
     // Text to PDF (using window.print)
     function downloadPDF() {
       let text = document.getElementById('pdfText').value;
       if (!text) {
-        alert("Please enter some text first");
+        showNotification('Please enter some text first', true);
         return;
       }
+      
       let win = window.open('', '', 'height=500,width=800');
       win.document.write('<html><head><title>Document</title>');
       win.document.write('<style>body{font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;}</style>');
       win.document.write('</head><body>');
       win.document.write('<pre>' + text + '</pre>');
       win.document.write('</body></html>');
-      win.print();
       win.document.close();
+      
+      setTimeout(function() {
+        win.print();
+        showNotification('PDF generated successfully!');
+      }, 250);
     }
 
-    // Image Resizer (Demo Canvas)
+    // Image Resizer with dimension inputs
+    let originalWidth, originalHeight, aspectRatio;
+    
+    document.getElementById('imgUpload').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      
+      const img = new Image();
+      const reader = new FileReader();
+      
+      reader.onload = function(e) {
+        img.src = e.target.result;
+        
+        img.onload = function() {
+          originalWidth = img.width;
+          originalHeight = img.height;
+          aspectRatio = originalWidth / originalHeight;
+          
+          document.getElementById('imgWidth').value = originalWidth;
+          document.getElementById('imgHeight').value = originalHeight;
+          
+          // Show preview
+          const resizeResult = document.getElementById('resizeResult');
+          const resizedImg = document.getElementById('resizedImg');
+          resizedImg.src = e.target.result;
+          resizedImg.style.display = 'block';
+          resizeResult.classList.add('active');
+        };
+      };
+      
+      reader.readAsDataURL(file);
+    });
+    
+    // Maintain aspect ratio when changing dimensions
+    document.getElementById('imgWidth').addEventListener('input', function() {
+      if (document.getElementById('maintainRatio').checked && aspectRatio) {
+        document.getElementById('imgHeight').value = Math.round(this.value / aspectRatio);
+      }
+    });
+    
+    document.getElementById('imgHeight').addEventListener('input', function() {
+      if (document.getElementById('maintainRatio').checked && aspectRatio) {
+        document.getElementById('imgWidth').value = Math.round(this.value * aspectRatio);
+      }
+    });
+    
     function resizeImage() {
       const file = document.getElementById('imgUpload').files[0];
-      const width = document.getElementById('imgWidth').value || 200;
-      const height = document.getElementById('imgHeight').value || 200;
+      const width = parseInt(document.getElementById('imgWidth').value) || 200;
+      const height = parseInt(document.getElementById('imgHeight').value) || 200;
       
       if (!file) {
-        alert("Please select an image first");
+        showNotification('Please select an image first', true);
         return;
       }
       
       const img = new Image();
       const reader = new FileReader();
+      
       reader.onload = function(e) {
         img.src = e.target.result;
+        
+        img.onload = function() {
+          const canvas = document.getElementById('canvas');
+          const ctx = canvas.getContext('2d');
+          canvas.width = width;
+          canvas.height = height;
+          
+          // Use high-quality image rendering
+          ctx.imageSmoothingEnabled = true;
+          ctx.imageSmoothingQuality = 'high';
+          ctx.drawImage(img, 0, 0, width, height);
+          
+          // Create download link
+          const link = document.createElement('a');
+          link.download = "resized_image.png";
+          link.href = canvas.toDataURL('image/png');
+          
+          // Update preview and download button
+          document.getElementById('resizedImg').src = link.href;
+          document.getElementById('downloadResized').href = link.href;
+          document.getElementById('downloadResized').style.display = 'inline-block';
+          document.getElementById('resizeResult').classList.add('active');
+          
+          showNotification('Image resized successfully!');
+        };
       };
-      img.onload = function() {
-        const canvas = document.getElementById('canvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = width;
-        canvas.height = height;
-        ctx.drawImage(img, 0, 0, width, height);
-        const link = document.createElement('a');
-        link.download = "resized_image.png";
-        link.href = canvas.toDataURL();
-        link.click();
-      };
+      
       reader.readAsDataURL(file);
     }
 
@@ -766,32 +947,71 @@
     function downloadDP() {
       const username = document.getElementById('instaUser').value;
       if (!username) {
-        alert("Please enter a username");
+        showNotification('Please enter a username', true);
         return;
       }
       
       // This is just a demo - in a real app, you would need a backend API
       document.getElementById('dpResult').classList.add('active');
-      document.getElementById('dpImage').src = "https://via.placeholder.com/300x300/3498db/ffffff?text=Profile+Pic+(" + username + ")";
+      
+      // Create a placeholder image
+      const canvas = document.createElement('canvas');
+      canvas.width = 300;
+      canvas.height = 300;
+      const ctx = canvas.getContext('2d');
+      
+      // Draw background
+      ctx.fillStyle = '#3498db';
+      ctx.fillRect(0, 0, 300, 300);
+      
+      // Draw text
+      ctx.fillStyle = 'white';
+      ctx.font = 'bold 20px Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText('@' + username, 150, 150);
+      
+      // Set image and download link
+      const dataUrl = canvas.toDataURL('image/png');
+      document.getElementById('dpImage').src = dataUrl;
+      document.getElementById('downloadDpBtn').href = dataUrl;
+      
+      showNotification('Profile picture generated for demo purposes');
     }
 
     // YouTube Thumbnail
     function getThumbnail() {
       let url = document.getElementById('ytLink').value;
-      let videoId = url.split("v=")[1];
-      if(!videoId) {
-        alert("Please enter a valid YouTube URL");
+      if (!url) {
+        showNotification('Please enter a YouTube URL', true);
         return;
       }
       
-      if(videoId){
-        let ampersand = videoId.indexOf("&");
-        if(ampersand != -1) { 
-          videoId = videoId.substring(0, ampersand); 
+      let videoId = null;
+      
+      // Handle different YouTube URL formats
+      if (url.includes('youtube.com/watch?v=')) {
+        videoId = url.split('v=')[1];
+        const ampersandPosition = videoId.indexOf('&');
+        if (ampersandPosition !== -1) {
+          videoId = videoId.substring(0, ampersandPosition);
         }
+      } else if (url.includes('youtu.be/')) {
+        videoId = url.split('youtu.be/')[1];
+        const questionMarkPosition = videoId.indexOf('?');
+        if (questionMarkPosition !== -1) {
+          videoId = videoId.substring(0, questionMarkPosition);
+        }
+      }
+      
+      if (videoId) {
         document.getElementById('thumbnailResult').classList.add('active');
-        document.getElementById('thumbnailImg').src = "https://img.youtube.com/vi/" + videoId + "/maxresdefault.jpg";
-        document.getElementById('downloadThumbnail').href = "https://img.youtube.com/vi/" + videoId + "/maxresdefault.jpg";
+        const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+        document.getElementById('thumbnailImg').src = thumbnailUrl;
+        document.getElementById('downloadThumbnail').href = thumbnailUrl;
+        document.getElementById('viewThumbnail').href = thumbnailUrl;
+        showNotification('Thumbnail loaded successfully!');
+      } else {
+        showNotification('Please enter a valid YouTube URL', true);
       }
     }
     
@@ -799,19 +1019,28 @@
     function translateText() {
       const text = document.getElementById('translateText').value;
       if (!text) {
-        alert("Please enter some text to translate");
+        showNotification('Please enter some text to translate', true);
         return;
       }
       
       // This is a demo - in a real app, you would use a translation API
       document.getElementById('translationResult').classList.add('active');
       document.getElementById('translatedText').textContent = "[Translated] " + text;
+      showNotification('Text translated (demo mode)');
+    }
+    
+    function copyTranslation() {
+      const translationText = document.getElementById('translatedText').textContent;
+      navigator.clipboard.writeText(translationText).then(() => {
+        showNotification('Translation copied to clipboard!');
+      });
     }
 
     // Forum (Local Storage Demo)
     function postQuestion() {
       let title = document.getElementById('qTitle').value;
       let body = document.getElementById('qBody').value;
+      
       if(title && body){
         let div = document.createElement('div');
         div.className = "question";
@@ -836,8 +1065,10 @@
         document.getElementById('questionsList').prepend(div);
         document.getElementById('qTitle').value = "";
         document.getElementById('qBody').value = "";
+        
+        showNotification('Question posted successfully!');
       } else {
-        alert("Please fill both title and question body");
+        showNotification('Please fill both title and question body', true);
       }
     }
     
