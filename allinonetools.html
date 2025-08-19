@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>All in One Tools & Community</title>
+  <title>YouTube Thumbnail Downloader</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
@@ -28,161 +28,24 @@
       background: #f5f6fa;
       color: #333;
       line-height: 1.6;
+      padding: 20px;
     }
     
-    /* Header Styles */
-    header {
-      background: var(--primary);
-      color: #fff;
-      padding: 0;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    
-    .header-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 15px 20px;
-    }
-    
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-    
-    .logo i {
-      color: var(--secondary);
-    }
-    
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 20px;
-    }
-    
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 500;
-      padding: 5px 10px;
-      border-radius: 4px;
-      transition: all 0.3s ease;
-    }
-    
-    nav a:hover, nav a.active {
-      background: rgba(255,255,255,0.1);
-    }
-    
-    .auth-buttons {
-      display: flex;
-      gap: 10px;
-    }
-    
-    .btn {
-      padding: 8px 16px;
-      border-radius: 4px;
-      text-decoration: none;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      border: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-    }
-    
-    .btn-primary {
-      background: var(--secondary);
-      color: white;
-    }
-    
-    .btn-primary:hover {
-      background: #2980b9;
-    }
-    
-    .btn-outline {
-      background: transparent;
-      border: 1px solid white;
-      color: white;
-    }
-    
-    .btn-outline:hover {
-      background: white;
-      color: var(--primary);
-    }
-    
-    .btn-success {
-      background: var(--success);
-      color: white;
-    }
-    
-    .btn-success:hover {
-      background: #27ae60;
-    }
-    
-    .mobile-menu-btn {
-      display: none;
-      background: none;
-      border: none;
-      color: white;
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-    
-    /* Hero Section */
-    .hero {
-      background: linear-gradient(135deg, var(--primary) 0%, #1a2530 100%);
-      color: white;
-      padding: 60px 20px;
-      text-align: center;
-    }
-    
-    .hero-content {
+    .container {
       max-width: 800px;
       margin: 0 auto;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      padding: 25px;
     }
     
-    .hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-    }
-    
-    .hero p {
-      font-size: 1.2rem;
-      margin-bottom: 30px;
-      opacity: 0.9;
-    }
-    
-    /* Container */
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 40px auto;
-    }
-    
-    .section-title {
-      font-size: 1.8rem;
+    h1 {
       color: var(--primary);
+      text-align: center;
       margin-bottom: 20px;
       padding-bottom: 10px;
       border-bottom: 2px solid var(--secondary);
-      display: inline-block;
-    }
-    
-    /* Card Styles */
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 20px;
-      margin: 20px 0;
     }
     
     .card {
@@ -190,14 +53,7 @@
       border-radius: 10px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       padding: 25px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      margin: 20px 0;
     }
     
     .card-header {
@@ -223,13 +79,7 @@
       margin: 0;
     }
     
-    .card p {
-      color: #666;
-      margin-bottom: 20px;
-    }
-    
-    /* Form Elements */
-    input, textarea, select {
+    input, textarea {
       width: 100%;
       padding: 12px 15px;
       margin: 8px 0;
@@ -239,183 +89,44 @@
       font-size: 1rem;
     }
     
-    input:focus, textarea:focus, select:focus {
+    input:focus, textarea:focus {
       outline: none;
       border-color: var(--secondary);
       box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
     }
     
-    /* Forum Styles */
-    .question {
-      background: #f8f9fa;
-      padding: 20px;
-      border-radius: 8px;
-      margin: 15px 0;
-      border-left: 4px solid var(--secondary);
-    }
-    
-    .question-header {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 10px;
-    }
-    
-    .question-user {
-      font-weight: bold;
-      color: var(--primary);
-    }
-    
-    .question-date {
-      color: var(--gray);
-      font-size: 0.9rem;
-    }
-    
-    .question-actions {
-      display: flex;
-      gap: 15px;
-      margin-top: 15px;
-    }
-    
-    .action-btn {
-      background: none;
-      border: none;
-      color: var(--gray);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 0.9rem;
-    }
-    
-    .action-btn:hover {
-      color: var(--secondary);
-    }
-    
-    /* Footer */
-    footer {
-      background: var(--dark);
-      color: white;
-      padding: 50px 0 20px;
-      margin-top: 60px;
-    }
-    
-    .footer-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-    }
-    
-    .footer-col h4 {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-      position: relative;
-      padding-bottom: 10px;
-    }
-    
-    .footer-col h4::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 50px;
-      height: 2px;
-      background: var(--secondary);
-    }
-    
-    .footer-col ul {
-      list-style: none;
-    }
-    
-    .footer-col ul li {
-      margin-bottom: 12px;
-    }
-    
-    .footer-col ul li a {
-      color: #bbb;
+    .btn {
+      padding: 12px 20px;
+      border-radius: 6px;
       text-decoration: none;
+      font-weight: 500;
+      cursor: pointer;
       transition: all 0.3s ease;
-    }
-    
-    .footer-col ul li a:hover {
-      color: white;
-      padding-left: 5px;
-    }
-    
-    .social-links {
-      display: flex;
-      gap: 15px;
-      margin-top: 20px;
-    }
-    
-    .social-links a {
+      border: none;
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 50%;
-      color: white;
-      transition: all 0.3s ease;
+      gap: 5px;
+      font-size: 1rem;
     }
     
-    .social-links a:hover {
+    .btn-primary {
       background: var(--secondary);
-      transform: translateY(-3px);
+      color: white;
     }
     
-    .copyright {
-      text-align: center;
-      padding-top: 30px;
-      margin-top: 30px;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      font-size: 0.9rem;
-      color: #bbb;
+    .btn-primary:hover {
+      background: #2980b9;
     }
     
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .header-container {
-        flex-wrap: wrap;
-      }
-      
-      nav {
-        order: 3;
-        width: 100%;
-        margin-top: 15px;
-        display: none;
-      }
-      
-      nav.active {
-        display: block;
-      }
-      
-      nav ul {
-        flex-direction: column;
-        gap: 10px;
-      }
-      
-      .auth-buttons {
-        margin-left: auto;
-      }
-      
-      .mobile-menu-btn {
-        display: block;
-      }
-      
-      .hero h1 {
-        font-size: 2rem;
-      }
-      
-      .hero p {
-        font-size: 1rem;
-      }
+    .btn-success {
+      background: var(--success);
+      color: white;
     }
     
-    /* Tool specific styles */
+    .btn-success:hover {
+      background: #27ae60;
+    }
+    
     .tool-result {
       margin-top: 15px;
       padding: 15px;
@@ -426,55 +137,31 @@
     
     .tool-result.active {
       display: block;
+      animation: fadeIn 0.5s;
     }
     
-    .progress-bar {
-      height: 5px;
-      width: 100%;
-      background: #eee;
-      border-radius: 3px;
-      overflow: hidden;
-      margin: 10px 0;
-    }
-    
-    .progress {
-      height: 100%;
-      background: var(--secondary);
-      width: 0%;
-      transition: width 0.3s ease;
-    }
-    
-    .tag {
-      display: inline-block;
-      background: #e1f0ff;
-      color: var(--secondary);
-      padding: 3px 8px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      margin-right: 5px;
-    }
-    
-    .dimension-inputs {
-      display: flex;
-      gap: 10px;
-      margin: 10px 0;
-    }
-    
-    .dimension-inputs input {
-      flex: 1;
-    }
-    
-    .ratio-lock {
-      display: flex;
-      align-items: center;
-      margin: 5px 0 10px;
+    .url-examples {
+      margin-top: 15px;
+      padding: 15px;
+      background: #e8f4fc;
+      border-radius: 6px;
       font-size: 0.9rem;
-      color: var(--gray);
     }
     
-    .ratio-lock input {
-      width: auto;
-      margin-right: 8px;
+    .url-examples h4 {
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+    
+    .example-list {
+      list-style: none;
+    }
+    
+    .example-list li {
+      margin-bottom: 8px;
+      padding: 5px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 4px;
     }
     
     .notification {
@@ -497,295 +184,140 @@
       opacity: 1;
     }
     
-    .tool-tip {
-      font-size: 0.85rem;
-      color: var(--gray);
-      margin-top: 5px;
+    .notification.error {
+      background: var(--accent);
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .thumbnail-options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 15px;
+    }
+    
+    .thumbnail-option {
+      text-align: center;
+    }
+    
+    .thumbnail-option img {
+      width: 100%;
+      border-radius: 6px;
+      margin-bottom: 5px;
+    }
+    
+    .thumbnail-option .btn {
+      width: 100%;
+      justify-content: center;
+    }
+    
+    .instructions {
+      margin-top: 20px;
+      padding: 15px;
+      background: #fff8e1;
+      border-radius: 6px;
+      border-left: 4px solid var(--warning);
+    }
+    
+    .instructions h4 {
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+    
+    .instructions ol {
+      padding-left: 20px;
+    }
+    
+    .instructions li {
+      margin-bottom: 8px;
     }
   </style>
 </head>
 <body>
-
-  <header>
-    <div class="header-container">
-      <div class="logo">
-        <i class="fas fa-tools"></i>
-        <span>ToolHub</span>
+  <div class="container">
+    <h1><i class="fab fa-youtube"></i> YouTube Thumbnail Downloader</h1>
+    
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">
+          <i class="fab fa-youtube"></i>
+        </div>
+        <h3>Get YouTube Thumbnails</h3>
       </div>
       
-      <button class="mobile-menu-btn" id="mobileMenuBtn">
-        <i class="fas fa-bars"></i>
+      <p>Enter any YouTube video URL to download its thumbnail image</p>
+      
+      <input type="text" id="ytLink" placeholder="Paste YouTube video URL here">
+      <button class="btn btn-primary" onclick="getThumbnail()">
+        <i class="fas fa-download"></i> Get Thumbnail
       </button>
       
-      <nav id="mainNav">
-        <ul>
-          <li><a href="#tools" class="active">Tools</a></li>
-          <li><a href="#forum">Community</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#pricing">Pricing</a></li>
-          <li><a href="#blog">Blog</a></li>
+      <div class="url-examples">
+        <h4>Accepted URL Formats:</h4>
+        <ul class="example-list">
+          <li>https://www.youtube.com/watch?v=VIDEO_ID</li>
+          <li>https://youtu.be/VIDEO_ID</li>
+          <li>https://www.youtube.com/embed/VIDEO_ID</li>
+          <li>https://www.youtube.com/v/VIDEO_ID</li>
+          <li>https://www.youtube.com/shorts/VIDEO_ID</li>
         </ul>
-      </nav>
-      
-      <div class="auth-buttons">
-        <a href="#login" class="btn btn-outline">Login</a>
-        <a href="#signup" class="btn btn-primary">Sign Up</a>
       </div>
-    </div>
-  </header>
-
-  <section class="hero">
-    <div class="hero-content">
-      <h1>All-in-One Tools & Community Platform</h1>
-      <p>Free online tools for your daily tasks and an active community to help you succeed</p>
-      <a href="#tools" class="btn btn-primary"><i class="fas fa-rocket"></i> Explore Tools</a>
-    </div>
-  </section>
-
-  <div class="container">
-
-    <!-- Free Tools Section -->
-    <section id="tools">
-      <h2 class="section-title"><i class="fas fa-tools"></i> Free Tools</h2>
-
-      <div class="card-grid">
-        <div class="card">
-          <div class="card-header">
-            <div class="card-icon">
-              <i class="fas fa-link"></i>
-            </div>
-            <h3>Link Shortener</h3>
+      
+      <div class="tool-result" id="thumbnailResult">
+        <h4>Available Thumbnails:</h4>
+        <div class="thumbnail-options">
+          <div class="thumbnail-option">
+            <img id="thumbDefault" src="" alt="Default Thumbnail">
+            <button class="btn btn-success" id="downloadDefault">
+              <i class="fas fa-download"></i> Default
+            </button>
           </div>
-          <p>Shorten long URLs and create easy-to-share links</p>
-          <input type="text" id="longUrl" placeholder="Paste your link here">
-          <div class="progress-bar">
-            <div class="progress" id="urlProgress"></div>
+          <div class="thumbnail-option">
+            <img id="thumbHQ" src="" alt="HQ Thumbnail">
+            <button class="btn btn-success" id="downloadHQ">
+              <i class="fas fa-download"></i> High Quality
+            </button>
           </div>
-          <button class="btn btn-primary" onclick="shortenUrl()"><i class="fas fa-compress-alt"></i> Shorten Link</button>
-          <div class="tool-result" id="shortUrlResult">
-            <p>Shortened URL:</p>
-            <div style="display: flex; gap: 10px; margin-top: 10px;">
-              <input type="text" id="shortUrl" readonly>
-              <button class="btn btn-primary" onclick="copyUrl()"><i class="fas fa-copy"></i> Copy</button>
-            </div>
+          <div class="thumbnail-option">
+            <img id="thumbMQ" src="" alt="MQ Thumbnail">
+            <button class="btn btn-success" id="downloadMQ">
+              <i class="fas fa-download"></i> Medium Quality
+            </button>
           </div>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <div class="card-icon">
-              <i class="fas fa-file-pdf"></i>
-            </div>
-            <h3>Text to PDF Converter</h3>
-          </div>
-          <p>Convert any text content to a downloadable PDF file</p>
-          <textarea id="pdfText" rows="4" placeholder="Write your text here"></textarea>
-          <button class="btn btn-primary" onclick="downloadPDF()"><i class="fas fa-download"></i> Download PDF</button>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <div class="card-icon">
-              <i class="fas fa-image"></i>
-            </div>
-            <h3>Image Resizer</h3>
-          </div>
-          <p>Resize your images without losing quality</p>
-          <input type="file" id="imgUpload" accept="image/*">
-          
-          <div class="ratio-lock">
-            <input type="checkbox" id="maintainRatio" checked>
-            <label for="maintainRatio">Maintain aspect ratio</label>
-          </div>
-          
-          <div class="dimension-inputs">
-            <div>
-              <label for="imgWidth">Width (px)</label>
-              <input type="number" id="imgWidth" placeholder="Width" min="1">
-            </div>
-            <div>
-              <label for="imgHeight">Height (px)</label>
-              <input type="number" id="imgHeight" placeholder="Height" min="1">
-            </div>
-          </div>
-          
-          <button class="btn btn-primary" onclick="resizeImage()"><i class="fas fa-expand-alt"></i> Resize Image</button>
-          <canvas id="canvas" style="display:none;"></canvas>
-          
-          <div class="tool-result" id="resizeResult">
-            <p>Resized Image:</p>
-            <img id="resizedImg" src="" style="max-width: 100%; border-radius: 8px; margin-top: 10px; display: none;">
-            <a href="#" class="btn btn-success" id="downloadResized" style="margin-top: 10px; display: none;">
-              <i class="fas fa-download"></i> Download Resized Image
-            </a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <div class="card-icon">
-              <i class="fab fa-instagram"></i>
-            </div>
-            <h3>Instagram DP Downloader</h3>
-          </div>
-          <p>Download Instagram profile pictures in high quality</p>
-          <input type="text" id="instaUser" placeholder="Enter Instagram Username">
-          <button class="btn btn-primary" onclick="downloadDP()"><i class="fas fa-download"></i> Download DP</button>
-          <p class="tool-tip">Note: This is a demo. In a real application, this would require a backend service.</p>
-          <div class="tool-result" id="dpResult">
-            <img id="dpImage" src="" style="max-width: 100%; border-radius: 8px; margin-top: 10px;">
-            <a href="#" class="btn btn-success" id="downloadDpBtn" style="margin-top: 10px;">
-              <i class="fas fa-download"></i> Download Image
-            </a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <div class="card-icon">
-              <i class="fab fa-youtube"></i>
-            </div>
-            <h3>YouTube Thumbnail Downloader</h3>
-          </div>
-          <p>Get high-quality thumbnails from any YouTube video</p>
-          <input type="text" id="ytLink" placeholder="Enter YouTube video URL">
-          <button class="btn btn-primary" onclick="getThumbnail()"><i class="fas fa-download"></i> Get Thumbnail</button>
-          <div class="tool-result" id="thumbnailResult">
-            <img id="thumbnailImg" src="" style="max-width: 100%; border-radius: 8px; margin-top: 10px;">
-            <div style="display: flex; gap: 10px; margin-top: 10px;">
-              <a href="#" class="btn btn-success" id="downloadThumbnail"><i class="fas fa-download"></i> Download</a>
-              <a href="#" class="btn btn-primary" id="viewThumbnail" target="_blank"><i class="fas fa-external-link-alt"></i> View Full Size</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <div class="card-icon">
-              <i class="fas fa-language"></i>
-            </div>
-            <h3>Language Translator</h3>
-          </div>
-          <p>Translate text between multiple languages</p>
-          <textarea id="translateText" rows="3" placeholder="Text to translate"></textarea>
-          <div style="display: flex; gap: 10px; margin: 10px 0;">
-            <select id="sourceLang" style="width: 48%;">
-              <option value="auto">Detect Language</option>
-              <option value="en">English</option>
-              <option value="es">Spanish</option>
-              <option value="fr">French</option>
-              <option value="de">German</option>
-              <option value="ja">Japanese</option>
-            </select>
-            <select id="targetLang" style="width: 48%;">
-              <option value="en">English</option>
-              <option value="es">Spanish</option>
-              <option value="fr">French</option>
-              <option value="de">German</option>
-              <option value="ja">Japanese</option>
-            </select>
-          </div>
-          <button class="btn btn-primary" onclick="translateText()"><i class="fas fa-exchange-alt"></i> Translate</button>
-          <div class="tool-result" id="translationResult">
-            <p>Translation:</p>
-            <div id="translatedText" style="padding: 10px; background: #f8f9fa; border-radius: 6px; margin-top: 10px;"></div>
-            <button class="btn btn-primary" onclick="copyTranslation()" style="margin-top: 10px;">
-              <i class="fas fa-copy"></i> Copy Translation
+          <div class="thumbnail-option">
+            <img id="thumbSD" src="" alt="SD Thumbnail">
+            <button class="btn btn-success" id="downloadSD">
+              <i class="fas fa-download"></i> Standard
             </button>
           </div>
         </div>
       </div>
-    </section>
-
-    <!-- Forum Section -->
-    <section id="forum">
-      <h2 class="section-title"><i class="fas fa-users"></i> Community Forum</h2>
-      <div class="card">
-        <h3>Ask a Question</h3>
-        <input type="text" id="qTitle" placeholder="Question Title">
-        <textarea id="qBody" placeholder="Write your question..."></textarea>
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-          <div>
-            <span class="tag">#help</span>
-            <span class="tag">#tools</span>
-            <span class="tag">#question</span>
-          </div>
-          <button class="btn btn-primary" onclick="postQuestion()"><i class="fas fa-paper-plane"></i> Post Question</button>
-        </div>
-      </div>
       
-      <h3 style="margin: 30px 0 15px;">Recent Questions</h3>
-      <div id="questionsList"></div>
-    </section>
-
+      <div class="instructions">
+        <h4>How to use this tool:</h4>
+        <ol>
+          <li>Go to YouTube and copy the URL of the video you want</li>
+          <li>Paste the URL in the input field above</li>
+          <li>Click the "Get Thumbnail" button</li>
+          <li>Choose from the available thumbnail quality options</li>
+          <li>Click the download button for your preferred quality</li>
+        </ol>
+      </div>
+    </div>
   </div>
-
-  <footer>
-    <div class="footer-container">
-      <div class="footer-col">
-        <h4>ToolHub</h4>
-        <p>Your all-in-one platform for free online tools and an active community of developers and creators.</p>
-        <div class="social-links">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-linkedin-in"></i></a>
-          <a href="#"><i class="fab fa-github"></i></a>
-        </div>
-      </div>
-      
-      <div class="footer-col">
-        <h4>Tools</h4>
-        <ul>
-          <li><a href="#">Link Shortener</a></li>
-          <li><a href="#">PDF Converter</a></li>
-          <li><a href="#">Image Resizer</a></li>
-          <li><a href="#">Instagram Tools</a></li>
-          <li><a href="#">YouTube Tools</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-col">
-        <h4>Community</h4>
-        <ul>
-          <li><a href="#">Forum</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#">Contributors</a></li>
-          <li><a href="#">Documentation</a></li>
-          <li><a href="#">API</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-col">
-        <h4>Support</h4>
-        <ul>
-          <li><a href="#">Help Center</a></li>
-          <li><a href="#">FAQ</a></li>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms of Service</a></li>
-        </ul>
-      </div>
-    </div>
-    
-    <div class="copyright">
-      <p>&copy; 2023 ToolHub. All rights reserved.</p>
-    </div>
-  </footer>
 
   <div class="notification" id="notification">Operation completed successfully!</div>
 
   <script>
-    // Mobile menu toggle
-    document.getElementById('mobileMenuBtn').addEventListener('click', function() {
-      document.getElementById('mainNav').classList.toggle('active');
-    });
-    
     // Show notification function
     function showNotification(message, isError = false) {
       const notification = document.getElementById('notification');
       notification.textContent = message;
-      notification.style.background = isError ? '#e74c3c' : '#2ecc71';
+      notification.className = isError ? 'notification error' : 'notification';
       notification.classList.add('show');
       
       setTimeout(() => {
@@ -793,318 +325,130 @@
       }, 3000);
     }
     
-    // Simple Link Shortener (Demo)
-    function shortenUrl() {
-      let url = document.getElementById('longUrl').value;
+    // Extract YouTube video ID from various URL formats
+    function extractVideoId(url) {
+      if (!url) return null;
       
-      if(!url) {
-        showNotification('Please enter a URL to shorten', true);
-        return;
-      }
+      // Remove any extra spaces
+      url = url.trim();
       
-      if(!url.startsWith('http')) {
-        url = 'https://' + url;
-      }
+      // Regular expressions for different YouTube URL formats
+      const patterns = [
+        /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/v\/|youtube\.com\/shorts\/)([^&?#\/]+)/,
+        /^([A-Za-z0-9_-]{11})$/
+      ];
       
-      // Show progress bar animation
-      const progressBar = document.getElementById('urlProgress');
-      let width = 0;
-      const interval = setInterval(() => {
-        if (width >= 100) {
-          clearInterval(interval);
-          document.getElementById('shortUrlResult').classList.add('active');
-          const shortCode = Math.random().toString(36).substring(2, 8);
-          document.getElementById('shortUrl').value = "https://toolhub.link/" + shortCode;
-          showNotification('URL shortened successfully!');
-        } else {
-          width += 5;
-          progressBar.style.width = width + '%';
+      for (const pattern of patterns) {
+        const match = url.match(pattern);
+        if (match && match[1]) {
+          return match[1];
         }
-      }, 30);
-    }
-    
-    function copyUrl() {
-      const copyText = document.getElementById("shortUrl");
-      copyText.select();
-      document.execCommand("copy");
-      showNotification('URL copied to clipboard!');
-    }
-
-    // Text to PDF (using window.print)
-    function downloadPDF() {
-      let text = document.getElementById('pdfText').value;
-      if (!text) {
-        showNotification('Please enter some text first', true);
-        return;
       }
       
-      let win = window.open('', '', 'height=500,width=800');
-      win.document.write('<html><head><title>Document</title>');
-      win.document.write('<style>body{font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;}</style>');
-      win.document.write('</head><body>');
-      win.document.write('<pre>' + text + '</pre>');
-      win.document.write('</body></html>');
-      win.document.close();
-      
-      setTimeout(function() {
-        win.print();
-        showNotification('PDF generated successfully!');
-      }, 250);
+      return null;
     }
-
-    // Image Resizer with dimension inputs
-    let originalWidth, originalHeight, aspectRatio;
     
-    document.getElementById('imgUpload').addEventListener('change', function(e) {
-      const file = e.target.files[0];
-      if (!file) return;
-      
-      const img = new Image();
-      const reader = new FileReader();
-      
-      reader.onload = function(e) {
-        img.src = e.target.result;
-        
-        img.onload = function() {
-          originalWidth = img.width;
-          originalHeight = img.height;
-          aspectRatio = originalWidth / originalHeight;
-          
-          document.getElementById('imgWidth').value = originalWidth;
-          document.getElementById('imgHeight').value = originalHeight;
-          
-          // Show preview
-          const resizeResult = document.getElementById('resizeResult');
-          const resizedImg = document.getElementById('resizedImg');
-          resizedImg.src = e.target.result;
-          resizedImg.style.display = 'block';
-          resizeResult.classList.add('active');
-        };
-      };
-      
-      reader.readAsDataURL(file);
-    });
-    
-    // Maintain aspect ratio when changing dimensions
-    document.getElementById('imgWidth').addEventListener('input', function() {
-      if (document.getElementById('maintainRatio').checked && aspectRatio) {
-        document.getElementById('imgHeight').value = Math.round(this.value / aspectRatio);
-      }
-    });
-    
-    document.getElementById('imgHeight').addEventListener('input', function() {
-      if (document.getElementById('maintainRatio').checked && aspectRatio) {
-        document.getElementById('imgWidth').value = Math.round(this.value * aspectRatio);
-      }
-    });
-    
-    function resizeImage() {
-      const file = document.getElementById('imgUpload').files[0];
-      const width = parseInt(document.getElementById('imgWidth').value) || 200;
-      const height = parseInt(document.getElementById('imgHeight').value) || 200;
-      
-      if (!file) {
-        showNotification('Please select an image first', true);
-        return;
-      }
-      
-      const img = new Image();
-      const reader = new FileReader();
-      
-      reader.onload = function(e) {
-        img.src = e.target.result;
-        
-        img.onload = function() {
-          const canvas = document.getElementById('canvas');
-          const ctx = canvas.getContext('2d');
-          canvas.width = width;
-          canvas.height = height;
-          
-          // Use high-quality image rendering
-          ctx.imageSmoothingEnabled = true;
-          ctx.imageSmoothingQuality = 'high';
-          ctx.drawImage(img, 0, 0, width, height);
-          
-          // Create download link
-          const link = document.createElement('a');
-          link.download = "resized_image.png";
-          link.href = canvas.toDataURL('image/png');
-          
-          // Update preview and download button
-          document.getElementById('resizedImg').src = link.href;
-          document.getElementById('downloadResized').href = link.href;
-          document.getElementById('downloadResized').style.display = 'inline-block';
-          document.getElementById('resizeResult').classList.add('active');
-          
-          showNotification('Image resized successfully!');
-        };
-      };
-      
-      reader.readAsDataURL(file);
-    }
-
-    // Instagram DP Downloader (Demo)
-    function downloadDP() {
-      const username = document.getElementById('instaUser').value;
-      if (!username) {
-        showNotification('Please enter a username', true);
-        return;
-      }
-      
-      // This is just a demo - in a real app, you would need a backend API
-      document.getElementById('dpResult').classList.add('active');
-      
-      // Create a placeholder image
-      const canvas = document.createElement('canvas');
-      canvas.width = 300;
-      canvas.height = 300;
-      const ctx = canvas.getContext('2d');
-      
-      // Draw background
-      ctx.fillStyle = '#3498db';
-      ctx.fillRect(0, 0, 300, 300);
-      
-      // Draw text
-      ctx.fillStyle = 'white';
-      ctx.font = 'bold 20px Arial';
-      ctx.textAlign = 'center';
-      ctx.fillText('@' + username, 150, 150);
-      
-      // Set image and download link
-      const dataUrl = canvas.toDataURL('image/png');
-      document.getElementById('dpImage').src = dataUrl;
-      document.getElementById('downloadDpBtn').href = dataUrl;
-      
-      showNotification('Profile picture generated for demo purposes');
-    }
-
-    // YouTube Thumbnail
+    // YouTube Thumbnail Downloader
     function getThumbnail() {
       let url = document.getElementById('ytLink').value;
+      
       if (!url) {
         showNotification('Please enter a YouTube URL', true);
         return;
       }
       
-      let videoId = null;
+      const videoId = extractVideoId(url);
       
-      // Handle different YouTube URL formats
-      if (url.includes('youtube.com/watch?v=')) {
-        videoId = url.split('v=')[1];
-        const ampersandPosition = videoId.indexOf('&');
-        if (ampersandPosition !== -1) {
-          videoId = videoId.substring(0, ampersandPosition);
-        }
-      } else if (url.includes('youtu.be/')) {
-        videoId = url.split('youtu.be/')[1];
-        const questionMarkPosition = videoId.indexOf('?');
-        if (questionMarkPosition !== -1) {
-          videoId = videoId.substring(0, questionMarkPosition);
-        }
-      }
-      
-      if (videoId) {
-        document.getElementById('thumbnailResult').classList.add('active');
-        const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-        document.getElementById('thumbnailImg').src = thumbnailUrl;
-        document.getElementById('downloadThumbnail').href = thumbnailUrl;
-        document.getElementById('viewThumbnail').href = thumbnailUrl;
-        showNotification('Thumbnail loaded successfully!');
-      } else {
+      if (!videoId) {
         showNotification('Please enter a valid YouTube URL', true);
-      }
-    }
-    
-    // Language Translator (Demo)
-    function translateText() {
-      const text = document.getElementById('translateText').value;
-      if (!text) {
-        showNotification('Please enter some text to translate', true);
         return;
       }
       
-      // This is a demo - in a real app, you would use a translation API
-      document.getElementById('translationResult').classList.add('active');
-      document.getElementById('translatedText').textContent = "[Translated] " + text;
-      showNotification('Text translated (demo mode)');
+      // Generate thumbnail URLs for different qualities
+      const thumbnails = {
+        default: `https://img.youtube.com/vi/${videoId}/default.jpg`,
+        hq: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
+        mq: `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`,
+        sd: `https://img.youtube.com/vi/${videoId}/sddefault.jpg`,
+        max: `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
+      };
+      
+      // Set image sources
+      document.getElementById('thumbDefault').src = thumbnails.default;
+      document.getElementById('thumbHQ').src = thumbnails.hq;
+      document.getElementById('thumbMQ').src = thumbnails.mq;
+      
+      // Try to use maxres first, fallback to sd if not available
+      const sdThumb = document.getElementById('thumbSD');
+      const maxResImg = new Image();
+      maxResImg.onload = function() {
+        sdThumb.src = thumbnails.max;
+      };
+      maxResImg.onerror = function() {
+        sdThumb.src = thumbnails.sd;
+      };
+      maxResImg.src = thumbnails.max;
+      
+      // Set download links
+      document.getElementById('downloadDefault').onclick = function() {
+        downloadImage(thumbnails.default, `yt_thumb_${videoId}_default.jpg`);
+      };
+      
+      document.getElementById('downloadHQ').onclick = function() {
+        downloadImage(thumbnails.hq, `yt_thumb_${videoId}_hq.jpg`);
+      };
+      
+      document.getElementById('downloadMQ').onclick = function() {
+        downloadImage(thumbnails.mq, `yt_thumb_${videoId}_mq.jpg`);
+      };
+      
+      document.getElementById('downloadSD').onclick = function() {
+        // Determine which image is actually displayed (maxres or sd)
+        const finalUrl = sdThumb.src.includes('maxresdefault') ? thumbnails.max : thumbnails.sd;
+        const quality = sdThumb.src.includes('maxresdefault') ? 'max' : 'sd';
+        downloadImage(finalUrl, `yt_thumb_${videoId}_${quality}.jpg`);
+      };
+      
+      // Show the result section
+      document.getElementById('thumbnailResult').classList.add('active');
+      
+      showNotification('Thumbnails loaded successfully!');
     }
     
-    function copyTranslation() {
-      const translationText = document.getElementById('translatedText').textContent;
-      navigator.clipboard.writeText(translationText).then(() => {
-        showNotification('Translation copied to clipboard!');
-      });
-    }
-
-    // Forum (Local Storage Demo)
-    function postQuestion() {
-      let title = document.getElementById('qTitle').value;
-      let body = document.getElementById('qBody').value;
+    // Download image function
+    function downloadImage(url, filename) {
+      // Create a temporary anchor element
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
       
-      if(title && body){
-        let div = document.createElement('div');
-        div.className = "question";
-        
-        const now = new Date();
-        const dateStr = now.toLocaleDateString() + ' ' + now.toLocaleTimeString();
-        
-        div.innerHTML = `
-          <div class="question-header">
-            <span class="question-user">You</span>
-            <span class="question-date">${dateStr}</span>
-          </div>
-          <h4>${title}</h4>
-          <p>${body}</p>
-          <div class="question-actions">
-            <button class="action-btn"><i class="far fa-thumbs-up"></i> Like</button>
-            <button class="action-btn"><i class="far fa-comment"></i> Comment</button>
-            <button class="action-btn"><i class="far fa-share-square"></i> Share</button>
-          </div>
-        `;
-        
-        document.getElementById('questionsList').prepend(div);
-        document.getElementById('qTitle').value = "";
-        document.getElementById('qBody').value = "";
-        
-        showNotification('Question posted successfully!');
-      } else {
-        showNotification('Please fill both title and question body', true);
+      showNotification(`Downloading ${filename}`);
+    }
+    
+    // Allow pressing Enter to submit
+    document.getElementById('ytLink').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        getThumbnail();
       }
-    }
+    });
     
-    // Add some demo questions on load
+    // Add example URLs for testing
+    const exampleUrls = [
+      "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "https://youtu.be/dQw4w9WgXcQ",
+      "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      "https://www.youtube.com/v/dQw4w9WgXcQ",
+      "https://www.youtube.com/shorts/dQw4w9WgXcQ",
+      "dQw4w9WgXcQ" // Just the video ID
+    ];
+    
+    // Fill the input with a random example on load
     window.onload = function() {
-      const demoQuestions = [
-        {title: "How to use the PDF converter?", body: "I'm trying to convert a long document but it's not working properly. Any tips?"},
-        {title: "Image quality after resizing", body: "Does the image resizer maintain the original quality? What's the best format to use?"},
-        {title: "Welcome to the community!", body: "Hello everyone! Just joined this platform and excited to be here. What's your favorite tool?"}
-      ];
-      
-      const questionsList = document.getElementById('questionsList');
-      
-      demoQuestions.forEach(q => {
-        let div = document.createElement('div');
-        div.className = "question";
-        
-        const now = new Date();
-        const dateStr = now.toLocaleDateString() + ' ' + now.toLocaleTimeString();
-        
-        div.innerHTML = `
-          <div class="question-header">
-            <span class="question-user">User${Math.floor(Math.random() * 1000)}</span>
-            <span class="question-date">${dateStr}</span>
-          </div>
-          <h4>${q.title}</h4>
-          <p>${q.body}</p>
-          <div class="question-actions">
-            <button class="action-btn"><i class="far fa-thumbs-up"></i> Like (${Math.floor(Math.random() * 20)})</button>
-            <button class="action-btn"><i class="far fa-comment"></i> Comment (${Math.floor(Math.random() * 10)})</button>
-            <button class="action-btn"><i class="far fa-share-square"></i> Share</button>
-          </div>
-        `;
-        
-        questionsList.appendChild(div);
-      });
+      const randomUrl = exampleUrls[Math.floor(Math.random() * exampleUrls.length)];
+      document.getElementById('ytLink').value = randomUrl;
     };
   </script>
 </body>
