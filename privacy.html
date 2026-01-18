@@ -227,27 +227,29 @@
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 
 <script>
-  // ✅ Firebase config
+  // ✅ Firebase config (NEW PROJECT: Jokerludogroup)
   const firebaseConfig = {
-    apiKey: "AIzaSyCwdlnLXcXauh3_YmY6cwswqzcieMOHI0Y",
-    authDomain: "ludogroup-a530a.firebaseapp.com",
-    projectId: "ludogroup-a530a",
-    storageBucket: "ludogroup-a530a.appspot.com",
-    messagingSenderId: "838421084676",
-    appId: "1:838421084676:web:9e02670e280eafcd86d351"
+    apiKey: "AIzaSyAMhdxU4pDqby11Ymixup2aCoEY5eZ3e7M",
+    authDomain: "jokerludogroup-a8c97.firebaseapp.com",
+    projectId: "jokerludogroup-a8c97",
+    storageBucket: "jokerludogroup-a8c97.firebasestorage.app",
+    messagingSenderId: "1083106195650",
+    appId: "1:1083106195650:web:fae27e9bb0798e96f4235b"
   };
 
   if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
   }
+
   const auth = firebase.auth();
 
-  // ✅ Allowed Admin Email
-  const ADMIN_EMAIL = "rchaurasiyaself1@gmail.com";
+  // ✅ Allowed Admin Email (UPDATED)
+  const ADMIN_EMAIL = "rchaurasiyaself@gmail.com";
 
   // ✅ Login Form Submit
   document.getElementById("adminLoginForm").addEventListener("submit", async (e) => {
     e.preventDefault();
+
     const email = document.getElementById("adminEmail").value;
     const password = document.getElementById("adminPassword").value;
     const loginStatus = document.getElementById("loginStatus");
@@ -259,9 +261,8 @@
 
       if (user.email === ADMIN_EMAIL) {
         loginStatus.innerHTML = "✅ Logged in as Admin. Redirecting...";
-        logoutBtn.style.display = "block"; // 👈 ab logout button visible hoga
+        logoutBtn.style.display = "block";
 
-        // 🔥 Redirect after 1s
         setTimeout(() => {
           window.location.href = "admin.html";
         }, 1000);
@@ -278,7 +279,6 @@
   // ✅ Auth State Protection
   auth.onAuthStateChanged((user) => {
     if (user && user.email === ADMIN_EMAIL) {
-      // Agar already login hai toh direct admin.html bhej do
       if (window.location.pathname.includes("privacy.html")) {
         window.location.href = "admin.html";
       }
@@ -292,6 +292,7 @@
     document.getElementById("logoutBtn").style.display = "none";
   });
 </script>
+
   <footer>
     <div class="footer-links">
       <a href="index.html">Home</a>
