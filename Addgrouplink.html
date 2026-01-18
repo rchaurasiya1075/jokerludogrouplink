@@ -1,371 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Add Your Ludo Group - JokerLudo | Submit WhatsApp Group 2026</title>
-
-  <meta name="description" content="Add your Ludo WhatsApp group to JokerLudo. Free submission for Ludo King, Star, Betting, Earning groups. Get 1000+ members instantly!" />
-  <meta name="keywords" content="add ludo whatsapp group, submit ludo group link, ludo group submission" />
-  <meta name="theme-color" content="#ff6b6b" />
-  
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Ludo Group - JokerLudo 🔥</title>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    
-    :root {
-      --coral: #ff6b6b;
-      --gradient-1: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 50%, #a78bfa 100%);
-      --gradient-success: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
-      --glass: rgba(255,255,255,0.95);
-      --shadow: 0 20px 40px rgba(255,107,107,0.2);
-      --text-dark: #1e293b;
-      --text-light: #64748b;
-    }
-
-    * { transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important; }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(-45deg, #f093fb 0%, #f5576c 25%, #4facfe 50%, #00f2fe 100%);
-      background-size: 400% 400%;
-      animation: gradientShift 20s ease infinite;
-      min-height: 100vh;
-      color: var(--text-dark);
-      overflow-x: hidden;
-    }
-
-    @keyframes gradientShift {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
-
-    /* 🔥 HEADER (SAME) */
-    .header {
-      position: fixed; top: 0; left: 0; width: 100%; height: 70px;
-      background: rgba(255,255,255,0.97); backdrop-filter: blur(30px);
-      border-bottom: 1px solid rgba(255,255,255,0.4); z-index: 1000;
-      padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    }
-
-    .logo-section { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-    .logo-icon {
-      width: 42px; height: 42px; background: var(--gradient-1); border-radius: 12px;
-      display: flex; align-items: center; justify-content: center; font-size: 20px; color: white;
-      box-shadow: 0 8px 25px rgba(255,107,107,0.4);
-    }
-    .logo-text {
-      font-size: 22px; font-weight: 800; background: var(--gradient-1);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
-
-    .hamburger {
-      display: none; background: none; border: none; font-size: 24px; color: var(--text-dark);
-      cursor: pointer; padding: 8px; border-radius: 8px; width: 48px; height: 48px;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .hamburger:hover { background: rgba(255,107,107,0.1); }
-
-    .nav-menu { display: flex; list-style: none; gap: 12px; align-items: center; }
-    .nav-link {
-      color: var(--text-dark); text-decoration: none; font-weight: 600; font-size: 15px;
-      padding: 12px 20px; border-radius: 25px; background: rgba(255,255,255,0.8);
-      backdrop-filter: blur(15px); box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    }
-    .nav-link:hover, .nav-link.active {
-      background: var(--gradient-1); color: white !important;
-      transform: translateY(-2px) scale(1.02); box-shadow: 0 12px 35px rgba(255,107,107,0.5);
-    }
-
-    /* MOBILE MENU (SAME) */
-    .mobile-menu {
-      position: fixed; top: 0; right: -100%; width: 280px; height: 100vh;
-      background: rgba(255,255,255,0.98); backdrop-filter: blur(30px);
-      box-shadow: -10px 0 40px rgba(0,0,0,0.2); z-index: 999;
-      padding: 80px 0 2rem 0; transition: right 0.4s ease;
-    }
-    .mobile-menu.active { right: 0; }
-    .mobile-menu ul { list-style: none; padding: 0 1.5rem; }
-    .mobile-nav-link {
-      display: flex; align-items: center; gap: 15px; padding: 18px 20px; margin-bottom: 10px;
-      background: rgba(255,255,255,0.7); border-radius: 20px; text-decoration: none;
-      font-weight: 600; font-size: 16px; color: var(--text-dark);
-    }
-    .mobile-nav-link:hover, .mobile-nav-link.active {
-      background: var(--gradient-1); color: white; transform: translateX(8px);
-    }
-    .overlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.5); opacity: 0; visibility: hidden; z-index: 998;
-      transition: all 0.4s ease;
-    }
-    .overlay.active { opacity: 1; visibility: visible; }
-
-    .main-content {
-      margin-top: 80px; padding: 1.5rem 1.5rem 4rem; max-width: 1200px;
-      margin-left: auto; margin-right: auto;
-    }
-
-    /* 🔥 COMPACT HERO */
-    .hero-section {
-      text-align: center; padding: 2.5rem 1.5rem; background: var(--glass);
-      backdrop-filter: blur(30px); border-radius: 24px; box-shadow: var(--shadow);
-      border: 1px solid rgba(255,255,255,0.3); margin-bottom: 2rem;
-    }
-    .hero-title {
-      font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 900; background: var(--gradient-1);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem;
-    }
-    .hero-subtitle { font-size: 1.1rem; color: var(--text-light); margin: 0 auto 2rem; }
-
-    /* 🔥 COMPACT FORM */
-    .form-section {
-      background: var(--glass); backdrop-filter: blur(30px); border-radius: 24px;
-      padding: 2rem; border: 1px solid rgba(255,255,255,0.3); margin-bottom: 2rem;
-      box-shadow: var(--shadow);
-    }
-    .form-title {
-      text-align: center; font-size: 1.8rem; font-weight: 800; background: var(--gradient-1);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1.5rem;
-    }
-    .form-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-    .form-group label {
-      display: block; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-dark);
-    }
-    .form-group input, .form-group select, .form-group textarea {
-      width: 100%; padding: 14px 16px; border: 2px solid rgba(255,255,255,0.3);
-      border-radius: 12px; background: rgba(255,255,255,0.9); font-size: 16px;
-      transition: all 0.3s ease; color: var(--text-dark);
-    }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-      outline: none; border-color: var(--coral); box-shadow: 0 0 0 3px rgba(255,107,107,0.1);
-      transform: translateY(-1px);
-    }
-    .form-group textarea { resize: vertical; min-height: 100px; }
-
-    .submit-btn {
-      width: 100%; background: var(--gradient-success); color: white; padding: 16px;
-      border: none; border-radius: 16px; font-size: 16px; font-weight: 800; cursor: pointer;
-      box-shadow: 0 15px 40px rgba(0,255,136,0.4); display: flex; align-items: center;
-      justify-content: center; gap: 10px; text-transform: uppercase;
-    }
-    .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 25px 50px rgba(0,255,136,0.6); }
-
-    .success-message {
-      padding: 16px; border-radius: 12px; margin-top: 1.5rem; text-align: center;
-      font-weight: 600; background: rgba(0,255,136,0.2); color: #00cc6a;
-      border: 2px solid rgba(0,255,136,0.3); display: none;
-    }
-
-    /* 🔥 COMPACT RULES */
-    .rules-section {
-      background: var(--glass); backdrop-filter: blur(25px); border-radius: 20px;
-      padding: 2rem; border: 1px solid rgba(255,255,255,0.3);
-    }
-    .rules-title {
-      font-size: 1.5rem; font-weight: 800; color: var(--text-dark); margin-bottom: 1.5rem;
-      text-align: center;
-    }
-    .rules-list {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;
-    }
-    .rule-item {
-      padding: 1rem; background: rgba(255,255,255,0.5); border-radius: 12px;
-      border-left: 4px solid var(--gradient-1);
-    }
-    .rule-item strong { color: var(--coral); display: block; margin-bottom: 0.3rem; }
-
-    /* 🔥 FOOTER */
-    .footer {
-      background: rgba(0,0,0,0.9); backdrop-filter: blur(30px); padding: 2rem 1.5rem 1.5rem;
-      color: white; margin-top: 2rem;
-    }
-    .footer-content {
-      max-width: 1200px; margin: 0 auto; display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; text-align: center;
-    }
-    .footer-section h3 {
-      color: #00ff88; font-size: 1.1rem; font-weight: 800; margin-bottom: 1rem;
-    }
-    .footer-section a {
-      color: rgba(255,255,255,0.8); text-decoration: none; display: block;
-      margin-bottom: 0.5rem;
-    }
-    .footer-section a:hover { color: #00ff88; }
-    .footer-bottom {
-      text-align: center; margin-top: 1.5rem; padding-top: 1rem;
-      border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.6);
-      font-size: 13px;
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      .hamburger { display: flex !important; } .nav-menu { display: none !important; }
-      .main-content { margin-top: 75px; padding: 1rem 1rem 4rem; }
-      .form-grid { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 480px) {
-      .logo-text { font-size: 20px; } .header { padding: 0 1rem; height: 65px; }
-      .logo-icon { width: 38px; height: 38px; font-size: 18px; }
-    }
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+    body { font-family: 'Inter', sans-serif; }
   </style>
 </head>
-<body>
-  <!-- HEADER (SAME) -->
-  <header class="header">
-    <a href="index.html" class="logo-section">
-      <div class="logo-icon">🎮</div><span class="logo-text">JokerLudo</span>
-    </a>
-    <ul class="nav-menu">
-      <li><a href="index.html" class="nav-link">🏠 Home</a></li>
-      <li><a href="join.html" class="nav-link">👥 Join Groups</a></li>
-      <li><a href="Addgrouplink.html" class="nav-link active">➕ Add Group</a></li>
-      <li><a href="rules.html" class="nav-link">📜 Rules</a></li>
-      <li><a href="contact.html" class="nav-link">📧 Contact</a></li>
-    </ul>
-    <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
-  </header>
+<body class="bg-gradient-to-br from-purple-500 via-pink-500 to-red-500 min-h-screen p-4 md:p-8">
+  <div class="max-w-2xl mx-auto">
+    
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h1 class="text-4xl md:text-6xl font-black bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent mb-4">
+        ➕ Add Your Group
+      </h1>
+      <p class="text-xl md:text-2xl text-white/90 font-bold">Instant Live on Join Groups Page!</p>
+    </div>
 
-  <!-- MOBILE MENU -->
-  <div class="overlay" id="overlay"></div>
-  <nav class="mobile-menu" id="mobileMenu">
-    <ul>
-      <li><a href="index.html" class="mobile-nav-link">🏠 Home</a></li>
-      <li><a href="join.html" class="mobile-nav-link">👥 Join Groups</a></li>
-      <li><a href="Addgrouplink.html" class="mobile-nav-link active">➕ Add Group</a></li>
-      <li><a href="rules.html" class="mobile-nav-link">📜 Rules</a></li>
-      <li><a href="contact.html" class="mobile-nav-link">📧 Contact</a></li>
-    </ul>
-  </nav>
-
-  <main class="main-content">
-    <!-- HERO -->
-    <section class="hero-section">
-      <h1 class="hero-title">➕ Add Your Group</h1>
-      <p class="hero-subtitle">
-        Submit FREE! Your group will be LIVE instantly on Join Groups page.
-      </p>
-    </section>
-
-    <!-- FORM - DIRECT ADD -->
-    <section class="form-section">
-      <h2 class="form-title">📝 Add Group Instantly</h2>
+    <!-- Form -->
+    <div class="bg-white/20 backdrop-blur-xl rounded-3xl p-6 md:p-12 border border-white/40 shadow-2xl">
       <form id="groupForm">
-        <div class="form-grid">
-          <div class="form-group">
-            <label>📛 Group Name</label>
-            <input type="text" id="groupName" placeholder="Ludo King Cash League" required>
+        <div class="space-y-6">
+          <div>
+            <label class="block text-white font-bold text-xl mb-4">📛 Group Name</label>
+            <input type="text" id="groupName" required placeholder="Ludo King Cash League" 
+                   class="w-full p-5 rounded-2xl text-xl bg-white/50 backdrop-blur-xl border-2 border-white/30 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/50">
           </div>
-          <div class="form-group">
-            <label>🏷️ Category</label>
-            <select id="groupCategory" required>
-              <option value="">Select</option>
-              <option value="Ludo King">🎲 Ludo King</option>
-              <option value="Ludo Star">⭐ Ludo Star</option>
-              <option value="Betting">💰 Betting</option>
-              <option value="Earning">💵 Earning</option>
-            </select>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-white font-bold text-xl mb-4">🏷️ Category</label>
+              <select id="groupCategory" required class="w-full p-5 rounded-2xl text-xl bg-white/50 backdrop-blur-xl border-2 border-white/30 focus:border-yellow-400">
+                <option value="">Select Category</option>
+                <option value="Ludo King">🎲 Ludo King</option>
+                <option value="Ludo Star">⭐ Ludo Star</option>
+                <option value="Betting">💰 Betting</option>
+                <option value="Earning">💵 Earning</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-white font-bold text-xl mb-4">👥 Members</label>
+              <input type="number" id="members" min="10" required placeholder="150" 
+                     class="w-full p-5 rounded-2xl text-xl bg-white/50 backdrop-blur-xl border-2 border-white/30 focus:border-yellow-400">
+            </div>
           </div>
-          <div class="form-group">
-            <label>🔗 WhatsApp Link</label>
-            <input type="url" id="groupLink" placeholder="https://chat.whatsapp.com/..." required>
+
+          <div>
+            <label class="block text-white font-bold text-xl mb-4">🔗 WhatsApp Link</label>
+            <input type="url" id="groupLink" required placeholder="https://chat.whatsapp.com/..." 
+                   class="w-full p-5 rounded-2xl text-xl bg-white/50 backdrop-blur-xl border-2 border-white/30 focus:border-yellow-400">
           </div>
-          <div class="form-group">
-            <label>👥 Members</label>
-            <input type="number" id="members" placeholder="150" min="50" required>
+
+          <div>
+            <label class="block text-white font-bold text-xl mb-4">📄 Description</label>
+            <textarea id="groupDesc" required rows="4" placeholder="Daily tournaments, Paytm payouts, 24/7 active..." 
+                      class="w-full p-5 rounded-2xl text-xl bg-white/50 backdrop-blur-xl border-2 border-white/30 focus:border-yellow-400 resize-vertical"></textarea>
           </div>
-          <div class="form-group">
-            <label>📄 Description</label>
-            <textarea id="groupDesc" placeholder="Daily tournaments, Paytm payouts..." required></textarea>
-          </div>
-        </div>
-        <button type="submit" class="submit-btn">
-          <i class="fas fa-bolt"></i> Add to Live Groups NOW
-        </button>
-        <div id="successMsg" class="success-message">
-          ✅ Group added successfully! Now LIVE on <a href="join.html">Join Groups</a> page!
+
+          <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white py-6 px-8 rounded-3xl font-black text-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:-translate-y-2">
+            <i class="fas fa-bolt mr-3"></i>🚀 Add LIVE Instantly!
+          </button>
         </div>
       </form>
-    </section>
 
-    <!-- RULES -->
-    <section class="rules-section">
-      <h2 class="rules-title">📋 Quick Rules</h2>
-      <div class="rules-list">
-        <div class="rule-item"><strong>✅ Active Groups</strong> 50+ members required</div>
-        <div class="rule-item"><strong>✅ Valid Links</strong> Working WhatsApp links only</div>
-        <div class="rule-item"><strong>✅ Ludo Only</strong> Ludo King/Star/Betting groups</div>
-        <div class="rule-item"><strong>⚡ Instant Live</strong> No approval needed</div>
-        <div class="rule-item"><strong>🎁 100% FREE</strong> Get 1000+ members instantly</div>
-      </div>
-    </section>
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-section">
-        <h3>🎮 JokerLudo</h3>
-        <p style="color: rgba(255,255,255,0.8); font-size: 14px;">#1 Ludo WhatsApp Groups Platform</p>
-      </div>
-      <div class="footer-section">
-        <h3>📱 Quick Links</h3>
-        <a href="index.html">🏠 Home</a>
-        <a href="join.html">👥 Join Groups</a>
-        <a href="Addgrouplink.html">➕ Add Group</a>
+      <!-- Success Message -->
+      <div id="successMsg" class="mt-8 p-8 bg-emerald-500/30 backdrop-blur-xl rounded-3xl border-2 border-emerald-400/50 hidden">
+        <div class="text-center">
+          <div class="w-24 h-24 bg-emerald-400/30 rounded-3xl flex items-center justify-center mx-auto mb-6 backdrop-blur-xl">
+            <i class="fas fa-check text-4xl text-emerald-400"></i>
+          </div>
+          <h2 class="text-3xl font-black text-white mb-4">✅ SUCCESS!</h2>
+          <p class="text-xl text-white/90 mb-6">Your group is now <strong class="text-emerald-300">LIVE</strong> on Join Groups page!</p>
+          <a href="join.html" class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-2xl font-bold text-xl shadow-xl hover:shadow-2xl transition-all">
+            👥 View Live Groups
+          </a>
+        </div>
       </div>
     </div>
-    <div class="footer-bottom">© 2026 JokerLudo. Instant Groups Live!</div>
-  </footer>
+  </div>
 
+  <!-- YOUR FIREBASE CONFIG -->
   <script>
-    // MOBILE MENU
-    document.getElementById('hamburger').onclick = () => {
-      document.getElementById('mobileMenu').classList.toggle('active');
-      document.getElementById('overlay').classList.toggle('active');
+    const firebaseConfig = {
+      apiKey: "AIzaSyAMhdxU4pDqby11Ymixup2aCoEY5eZ3e7M",
+      authDomain: "jokerludogroup-a8c97.firebaseapp.com",
+      projectId: "jokerludogroup-a8c97",
+      storageBucket: "jokerludogroup-a8c97.appspot.com",
+      messagingSenderId: "1083106195650",
+      appId: "1:1083106195650:web:fae27e9bb0798e96f4235b"
     };
-    document.getElementById('overlay').onclick = () => {
-      document.getElementById('mobileMenu').classList.remove('active');
-      document.getElementById('overlay').classList.remove('active');
-    };
-    document.querySelectorAll('.mobile-nav-link').forEach(link => {
-      link.onclick = () => {
-        document.getElementById('mobileMenu').classList.remove('active');
-        document.getElementById('overlay').classList.remove('active');
-      };
-    });
 
-    // FORM - DIRECT ADD TO JOIN.HTML (SIMULATION)
-    document.getElementById('groupForm').onsubmit = function(e) {
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // Form Submit
+    document.getElementById('groupForm').onsubmit = async (e) => {
       e.preventDefault();
-      const btn = document.querySelector('.submit-btn');
-      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Adding Live...';
       
-      // Simulate instant add
-      setTimeout(() => {
-        btn.innerHTML = '<i class="fas fa-bolt"></i> Add to Live Groups NOW';
-        document.getElementById('successMsg').style.display = 'block';
-        this.reset();
-        // Scroll to success
-        document.getElementById('successMsg').scrollIntoView({ behavior: 'smooth' });
-        
-        // Simulate localStorage add (for demo)
-        const groups = JSON.parse(localStorage.getItem('ludoGroups') || '[]');
-        groups.push({
+      const btn = document.getElementById('submitBtn');
+      const successMsg = document.getElementById('successMsg');
+      
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-3"></i>Adding to Firebase LIVE...';
+      
+      try {
+        const groupData = {
           name: document.getElementById('groupName').value,
           category: document.getElementById('groupCategory').value,
           link: document.getElementById('groupLink').value,
-          members: document.getElementById('members').value,
-          desc: document.getElementById('groupDesc').value
-        });
-        localStorage.setItem('ludoGroups', JSON.stringify(groups));
-      }, 1500);
+          members: parseInt(document.getElementById('members').value),
+          description: document.getElementById('groupDesc').value,
+          status: 'live',  // ✅ INSTANT LIVE
+          timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        };
+
+        // 🔥 ADD TO FIRESTORE - ludoGroups collection
+        await db.collection('ludoGroups').add(groupData);
+        
+        // Success
+        btn.style.display = 'none';
+        successMsg.classList.remove('hidden');
+        document.getElementById('groupForm').reset();
+        
+      } catch (error) {
+        console.error('Error:', error);
+        btn.innerHTML = '❌ Error - Try Again';
+        btn.disabled = false;
+        alert('Error: ' + error.message);
+      }
     };
   </script>
 </body>
