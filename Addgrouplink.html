@@ -1,165 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BetLink Hub - Premium Betting Groups</title>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Ludo/Betting Group</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #f8fafc;
-    }
-
-    .dark { background-color: #0f172a; }
-
-    .btn-primary {
-      background: linear-gradient(67.5deg, #4f46e5, #4338ca);
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 6px rgba(79, 70, 229, 0.1);
-    }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 20px 25px -5px rgba(79,70,229,.15);
-    }
-
-    .group-card {
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 6px -1px rgba(0,0,0,.1);
-    }
-    .group-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 25px -5px rgba(0,0,0,.15);
-    }
-  </style>
 </head>
-
-<body class="antialiased">
-
-<!-- HEADER -->
-<header class="bg-white dark:bg-gray-900 shadow-sm">
-  <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-    <h1 class="text-xl font-bold text-gray-900 dark:text-white">
-      BetLink Hub
-    </h1>
-
-    <button class="btn-primary text-white px-4 py-2 rounded-lg text-sm">
-      Add Your Group
-    </button>
+<body class="bg-gradient-to-br from-indigo-50 to-purple-50 min-h-screen py-12">
+  
+  <div class="max-w-md mx-auto bg-white rounded-2xl shadow-xl p-8">
+    <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">➕ Add Group</h1>
+    
+    <form id="groupForm" class="space-y-4">
+      <input id="name" required placeholder="Group Name *" 
+             class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500">
+      
+      <input id="link" required placeholder="WhatsApp/Telegram Link *" 
+             class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500">
+      
+      <select id="type" required class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500">
+        <option value="">Select Type</option>
+        <option value="Ludo">Ludo</option>
+        <option value="Betting">Betting</option>
+        <option value="Cricket">Cricket</option>
+      </select>
+      
+      <textarea id="desc" placeholder="Description (Optional)" rows="3"
+                class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500"></textarea>
+      
+      <div class="grid grid-cols-2 gap-4">
+        <label class="flex items-center p-3 border rounded-xl">
+          <input type="checkbox" value="WhatsApp" class="platform mr-2 w-4 h-4" checked> WhatsApp
+        </label>
+        <label class="flex items-center p-3 border rounded-xl">
+          <input type="checkbox" value="Telegram" class="platform mr-2 w-4 h-4"> Telegram
+        </label>
+      </div>
+      
+      <button type="submit" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all">
+        🚀 Submit Group Instantly
+      </button>
+    </form>
+    
+    <p class="text-center mt-6 text-gray-500 text-sm">
+      ✅ Group will appear on <a href="join.html" class="text-indigo-600 font-bold">Join Page</a> immediately!
+    </p>
   </div>
-</header>
 
-<!-- HERO -->
-<section class="py-20 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900 text-center">
-  <h2 class="text-4xl font-bold text-gray-900 dark:text-white">
-    Premium Betting Groups
-  </h2>
-  <p class="mt-4 text-gray-600 dark:text-gray-300">
-    Verified WhatsApp & Telegram groups
-  </p>
-</section>
-
-<!-- GROUPS -->
-<section class="py-16 bg-white dark:bg-gray-900">
-  <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-8">
-
-    <div class="group-card bg-white dark:bg-gray-800 rounded-xl p-6">
-      <h3 class="text-lg font-bold text-gray-900 dark:text-white">
-        VIP Betting Club
-      </h3>
-      <p class="text-gray-600 dark:text-gray-300 mt-2">
-        Premium football betting tips
-      </p>
-      <button class="btn-primary w-full mt-4 py-2 text-white rounded-lg">
-        Join Group
-      </button>
-    </div>
-
-    <div class="group-card bg-white dark:bg-gray-800 rounded-xl p-6">
-      <h3 class="text-lg font-bold text-gray-900 dark:text-white">
-        Elite Predictors
-      </h3>
-      <p class="text-gray-600 dark:text-gray-300 mt-2">
-        Tennis & Basketball experts
-      </p>
-      <button class="btn-primary w-full mt-4 py-2 text-white rounded-lg">
-        Join Group
-      </button>
-    </div>
-
-    <div class="group-card bg-white dark:bg-gray-800 rounded-xl p-6">
-      <h3 class="text-lg font-bold text-gray-900 dark:text-white">
-        Sure Wins Only
-      </h3>
-      <p class="text-gray-600 dark:text-gray-300 mt-2">
-        High accuracy predictions
-      </p>
-      <button class="btn-primary w-full mt-4 py-2 text-white rounded-lg">
-        Join Group
-      </button>
-    </div>
-
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="bg-white dark:bg-gray-900 border-t py-8 text-center">
-  <p class="text-gray-600 dark:text-gray-400 text-sm">
-    © 2025 BetLink Hub. All rights reserved.
-  </p>
-</footer>
-
-<!-- DARK MODE -->
-<button id="darkToggle" class="fixed bottom-6 right-6 bg-white dark:bg-gray-800 p-3 rounded-full shadow">
-  🌙
-</button>
-
-<script>
-  const toggle = document.getElementById('darkToggle');
-  toggle.addEventListener('click', () => {
-    document.documentElement.classList.toggle('dark');
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  
+  <script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyCwdlnLXcXauh3_YmY6cwswqzcieMOHI0Y", // Your new config
+    authDomain: "ludogroup-a530a.firebaseapp.com",
+    projectId: "ludogroup-a530a",
+    storageBucket: "ludogroup-a530a.appspot.com",
+    messagingSenderId: "838421084676",
+    appId: "1:838421084676:web:9e02670e280eafcd86d351"
+  };
+  
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+  
+  document.getElementById('groupForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const name = document.getElementById('name').value.trim();
+    const link = document.getElementById('link').value.trim();
+    const type = document.getElementById('type').value;
+    const desc = document.getElementById('desc').value.trim();
+    const platforms = Array.from(document.querySelectorAll('.platform:checked')).map(cb => cb.value);
+    
+    try {
+      // 🚀 DIRECT SAVE - NO APPROVAL NEEDED
+      await db.collection('Groups').add({
+        name, link, type, 
+        platforms, 
+        description: desc || '',
+        status: 'approved', // ✅ DIRECT APPROVED
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      });
+      
+      alert('✅ Group added successfully! Check Join page.');
+      window.location.href = 'join.html';
+    } catch (error) {
+      alert('❌ Error: ' + error.message);
+    }
   });
-document.getElementById("groupForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-
-  const adminNumber = "91XXXXXXXXXX"; // 🔴 apna WhatsApp number
-
-  const name = document.getElementById("name").value.trim();
-  const link = document.getElementById("link").value.trim();
-  const groupType = document.getElementById("groupType").value;
-  const description = document.getElementById("description").value.trim();
-
-  const platforms = Array.from(
-    document.querySelectorAll(".platform:checked")
-  ).map(cb => cb.value).join(", ");
-
-  if (!name || !link || !groupType) {
-    alert("Please fill all required fields");
-    return;
-  }
-
-  const message = 
-`🆕 New Group Submission
-
-📛 Group Name: ${name}
-🔗 Group Link: ${link}
-🎮 Game Type: ${groupType}
-📱 Platform: ${platforms || "N/A"}
-📝 Description: ${description || "N/A"}
-
-✅ Please approve this group`;
-
-  const whatsappURL =
-    "https://wa.me/" + adminNumber + "?text=" + encodeURIComponent(message);
-
-  window.open(whatsappURL, "_blank");
-
-  this.reset();
-});
-</script>
-
+  </script>
 </body>
 </html>
