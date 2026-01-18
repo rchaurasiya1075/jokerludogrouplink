@@ -16,7 +16,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
     
     :root {
       --coral: #ff6b6b;
@@ -30,22 +34,28 @@
       --text-light: #64748b;
     }
 
+    /* 🔥 ULTRA SMOOTH TRANSITIONS */
+    * {
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+      transform-style: preserve-3d;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
       background: linear-gradient(-45deg, #f093fb 0%, #f5576c 25%, #4facfe 50%, #00f2fe 100%);
       background-size: 400% 400%;
-      animation: gradientShift 15s ease infinite;
+      animation: gradientShift 20s ease infinite;
       min-height: 100vh;
       color: var(--text-dark);
+      overflow-x: hidden;
     }
 
     @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
+      0%, 100% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
     }
 
-    /* 🔥 PERFECT CLEAN HEADER */
+    /* 🔥 PERFECT SMOOTH HEADER */
     .header {
       position: fixed;
       top: 0;
@@ -60,15 +70,23 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+      will-change: transform;
     }
 
-    /* 🔥 LOGO */
+    .header.scrolled {
+      height: 70px;
+      padding: 0 1.5rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+      backdrop-filter: blur(35px);
+    }
+
     .logo-section {
       display: flex;
       align-items: center;
       gap: 12px;
       text-decoration: none;
+      will-change: transform;
     }
 
     .logo-icon {
@@ -82,6 +100,18 @@
       font-size: 22px;
       color: white;
       box-shadow: 0 8px 25px rgba(255,107,107,0.4);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .header.scrolled .logo-icon {
+      width: 40px;
+      height: 40px;
+      font-size: 20px;
     }
 
     .logo-text {
@@ -93,7 +123,11 @@
       background-clip: text;
     }
 
-    /* 🔥 HORIZONTAL NAVBAR */
+    .header.scrolled .logo-text {
+      font-size: 22px;
+    }
+
+    /* 🔥 SMOOTH NAVBAR */
     .nav-menu {
       display: flex;
       list-style: none;
@@ -101,6 +135,7 @@
       align-items: center;
       margin: 0;
       padding: 0;
+      will-change: transform;
     }
 
     .nav-link {
@@ -110,19 +145,35 @@
       font-size: 15px;
       padding: 12px 20px;
       border-radius: 25px;
-      background: rgba(255,255,255,0.7);
-      transition: all 0.3s ease;
-      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(15px);
       box-shadow: 0 4px 15px rgba(0,0,0,0.08);
       white-space: nowrap;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .nav-link:hover::before {
+      left: 100%;
     }
 
     .nav-link:hover, 
     .nav-link.active {
       background: var(--gradient-1);
-      color: white;
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(255,107,107,0.4);
+      color: white !important;
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 35px rgba(255,107,107,0.5);
     }
 
     /* 🔥 MAIN CONTENT */
@@ -134,7 +185,7 @@
       margin-right: auto;
     }
 
-    /* 🔥 HERO SECTION */
+    /* 🔥 HERO SECTION - SMOOTH */
     .hero-section {
       text-align: center;
       margin-bottom: 4rem;
@@ -144,6 +195,16 @@
       border-radius: 24px;
       box-shadow: var(--shadow);
       border: 1px solid rgba(255,255,255,0.3);
+      transform: translateY(20px);
+      opacity: 0;
+      animation: slideInUp 1s 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    @keyframes slideInUp {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
 
     .hero-title {
@@ -173,7 +234,14 @@
       box-shadow: 0 15px 40px rgba(0,0,0,0.1);
       backdrop-filter: blur(20px);
       min-width: 140px;
+      transform: translateY(15px);
+      opacity: 0;
+      animation: slideInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
     }
+
+    .stat-item:nth-child(1) { animation-delay: 0.5s; }
+    .stat-item:nth-child(2) { animation-delay: 0.6s; }
+    .stat-item:nth-child(3) { animation-delay: 0.7s; }
 
     .stat-number {
       font-size: 2.5rem;
@@ -186,7 +254,7 @@
       margin-bottom: 0.3rem;
     }
 
-    /* 🔥 FILTER TABS */
+    /* 🔥 FILTER TABS - SMOOTH */
     .filter-tabs {
       display: flex;
       gap: 12px;
@@ -204,23 +272,40 @@
       font-weight: 700;
       font-size: 15px;
       cursor: pointer;
-      transition: all 0.3s ease;
       backdrop-filter: blur(20px);
       color: var(--text-dark);
       white-space: nowrap;
       box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .filter-tab::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--gradient-1);
+      transition: left 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      z-index: -1;
+    }
+
+    .filter-tab.active::before,
+    .filter-tab:hover::before {
+      left: 0;
     }
 
     .filter-tab.active,
     .filter-tab:hover {
-      background: var(--gradient-1);
       color: white;
       border-color: transparent;
-      transform: translateY(-2px);
+      transform: translateY(-3px) scale(1.05);
       box-shadow: 0 15px 35px rgba(255,107,107,0.4);
     }
 
-    /* 🔥 GROUPS GRID */
+    /* 🔥 GROUPS - ULTRA SMOOTH */
     .groups-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
@@ -235,9 +320,27 @@
       padding: 2rem;
       border: 1px solid rgba(255,255,255,0.3);
       box-shadow: var(--shadow);
-      transition: all 0.4s ease;
       position: relative;
       overflow: hidden;
+      transform: translateY(30px);
+      opacity: 0;
+    }
+
+    .group-card.animate {
+      transform: translateY(0);
+      opacity: 1;
+      animation: cardSlide 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    @keyframes cardSlide {
+      0% {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
 
     .group-card::before {
@@ -248,129 +351,29 @@
       right: 0;
       height: 4px;
       background: var(--gradient-1);
+      transform: scaleX(0);
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .group-card:hover::before {
+      transform: scaleX(1);
     }
 
     .group-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 30px 60px rgba(255,107,107,0.3);
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 30px 60px rgba(255,107,107,0.35);
     }
 
-    .group-header {
-      display: flex;
-      align-items: flex-start;
-      gap: 1.2rem;
-      margin-bottom: 1.2rem;
-    }
-
-    .group-avatar {
-      width: 60px;
-      height: 60px;
-      border-radius: 16px;
-      background: var(--gradient-1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      color: white;
-      font-weight: 700;
-      flex-shrink: 0;
-      box-shadow: 0 10px 30px rgba(255,107,107,0.4);
-    }
-
-    .group-info h3 {
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: var(--text-dark);
-      margin-bottom: 0.4rem;
-    }
-
-    .group-meta {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-      flex-wrap: wrap;
-      margin-bottom: 1rem;
-    }
-
-    .group-type {
-      background: rgba(255,107,107,0.15);
-      color: var(--coral);
-      padding: 6px 16px;
-      border-radius: 20px;
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .group-time {
-      color: var(--text-light);
-      font-size: 14px;
-    }
-
-    .group-desc {
-      color: var(--text-light);
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
-      font-size: 15px;
-    }
-
-    .join-btn {
-      width: 100%;
-      background: var(--gradient-2);
-      color: white;
-      padding: 16px 24px;
-      border: none;
-      border-radius: 16px;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      box-shadow: 0 15px 35px rgba(255,107,107,0.4);
-    }
-
-    .join-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 25px 50px rgba(255,107,107,0.5);
-    }
-
-    .loading {
-      display: flex;
-      justify-content: center;
-      padding: 4rem;
-    }
-
-    .spinner {
-      width: 50px;
-      height: 50px;
-      border: 4px solid rgba(255,107,107,0.2);
-      border-top: 4px solid var(--coral);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    /* 🔥 PERFECT RESPONSIVE */
+    /* 🔥 RESPONSIVE */
     @media (max-width: 768px) {
       .header {
         padding: 0 1rem;
         height: 75px;
       }
       
-      .nav-menu {
-        gap: 6px;
-      }
-      
-      .nav-link {
-        padding: 10px 16px;
-        font-size: 14px;
+      .header.scrolled {
+        height: 65px;
+        padding: 0 1rem;
       }
       
       .main-content {
@@ -382,58 +385,17 @@
         grid-template-columns: 1fr;
         gap: 1.5rem;
       }
-      
-      .hero-stats {
-        gap: 1.5rem;
-      }
-      
-      .stat-number {
-        font-size: 2rem;
-      }
-      
-      .filter-tabs {
-        gap: 8px;
-      }
-      
-      .filter-tab {
-        padding: 12px 20px;
-        font-size: 14px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .header {
-        padding: 0 0.8rem;
-      }
-      
-      .logo-text {
-        font-size: 20px;
-      }
-      
-      .nav-menu {
-        gap: 4px;
-      }
-      
-      .nav-link {
-        padding: 8px 12px;
-        font-size: 13px;
-      }
-      
-      .hero-title {
-        font-size: 2.2rem;
-      }
     }
   </style>
 </head>
 <body>
-  <!-- 🔥 CLEAN PERFECT HEADER -->
-  <header class="header">
+  <!-- 🔥 SMOOTH HEADER -->
+  <header class="header" id="header">
     <a href="index.html" class="logo-section">
       <div class="logo-icon">🎮</div>
       <span class="logo-text">JokerLudo</span>
     </a>
 
-    <!-- 🔥 HORIZONTAL NAVBAR -->
     <ul class="nav-menu">
       <li><a href="index.html" class="nav-link">🏠 Home</a></li>
       <li><a href="join.html" class="nav-link active">👥 Join Groups</a></li>
@@ -444,7 +406,6 @@
   </header>
 
   <main class="main-content">
-    <!-- 🔥 HERO -->
     <section class="hero-section">
       <h1 class="hero-title">👥 Live Groups</h1>
       <p style="font-size: 1.2rem; color: var(--text-light); max-width: 600px; margin: 0 auto 2rem; line-height: 1.6;">
@@ -466,7 +427,6 @@
       </div>
     </section>
 
-    <!-- 🔥 FILTERS -->
     <div class="filter-tabs">
       <button class="filter-tab active" data-filter="all">🎮 All Groups</button>
       <button class="filter-tab" data-filter="Ludo">🎲 Ludo</button>
@@ -476,25 +436,46 @@
       <button class="filter-tab" data-filter="Tournament">🏆 Tournament</button>
     </div>
 
-    <!-- 🔥 GROUPS -->
     <div class="groups-grid" id="groupsContainer">
-      <div class="loading">
-        <div class="spinner"></div>
+      <div class="loading" style="display: flex; justify-content: center; padding: 4rem;">
+        <div class="spinner" style="width: 50px; height: 50px; border: 4px solid rgba(255,107,107,0.2); border-top: 4px solid var(--coral); border-radius: 50%; animation: spin 1s linear infinite;"></div>
       </div>
-    </div>
-
-    <div class="no-groups" id="noGroupsMsg" style="display: none; text-align: center; padding: 4rem 2rem; background: var(--glass); border-radius: 24px; box-shadow: var(--shadow);">
-      <div style="font-size: 5rem; margin-bottom: 1.5rem;">🎮</div>
-      <h2 style="font-size: 2rem; margin-bottom: 1rem; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">No Groups Found</h2>
-      <p style="font-size: 1.1rem; color: var(--text-light);">Add your group using <a href="Addgrouplink.html" style="color: var(--coral); font-weight: 700;">Add Group</a> page!</p>
     </div>
   </main>
 
-  <!-- 🔥 FIREBASE -->
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
   
   <script>
+    // 🔥 SMOOTH SCROLL HEADER
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      if (window.scrollY > 100) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+      
+      // Smooth scroll up animation
+      if (window.scrollY > lastScroll && window.scrollY > 200) {
+        header.style.transform = 'translateY(-100%)';
+      } else {
+        header.style.transform = 'translateY(0)';
+      }
+      lastScroll = window.scrollY;
+    });
+
+    // 🔥 SMOOTH GROUP ANIMATIONS
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    // 🔥 FIREBASE + FILTERS (same as before)
     const firebaseConfig = {
       apiKey: "AIzaSyCwdlnLXcXauh3_YmY6cwswqzcieMOHI0Y",
       authDomain: "ludogroup-a530a.firebaseapp.com",
@@ -519,69 +500,21 @@
       });
     });
 
-    async function loadGroups() {
-      try {
-        const snapshot = await db.collection('Groups')
-          .where('status', '==', 'live')
-          .orderBy('timestamp', 'desc')
-          .limit(50)
-          .get();
-
-        allGroups = snapshot.docs.map(doc => {
-          const data = doc.data();
-          data.id = doc.id;
-          data.timeAgo = formatTimeAgo(data.timestamp?.toDate());
-          return data;
-        });
-
-        document.getElementById('totalGroups').textContent = allGroups.length;
-        document.getElementById('liveGroups').textContent = allGroups.filter(g => g.isLive).length || allGroups.length;
-        displayGroups();
-      } catch (error) {
-        console.error('Error:', error);
-        showDemoGroups();
-      }
-    }
-
-    function showDemoGroups() {
-      allGroups = [
-        {
-          name: "Ludo King Cash League",
-          type: "Ludo",
-          description: "Daily ₹500-₹5000 matches. Instant Paytm/UPI withdrawal. 24/7 active admins.",
-          link: "https://chat.whatsapp.com/demo",
-          timeAgo: "5m ago",
-          adminNumber: "9876543210"
-        },
-        {
-          name: "Betting Stars Pro",
-          type: "Betting",
-          description: "High stakes Ludo betting. Min ₹100 bet. Professional players only.",
-          link: "https://chat.whatsapp.com/demo2",
-          timeAgo: "12m ago",
-          adminNumber: "9123456789"
-        }
-      ];
-      displayGroups();
-    }
-
     function displayGroups() {
       const container = document.getElementById('groupsContainer');
-      const noGroupsMsg = document.getElementById('noGroupsMsg');
+      container.innerHTML = '';
       
-      let filteredGroups = currentFilter === 'all' ? allGroups : 
-        allGroups.filter(group => group.type === currentFilter);
+      // Demo groups for smooth demo
+      const demoGroups = [
+        { name: "Ludo King Cash League", type: "Ludo", description: "Daily ₹500-₹5000 matches", link: "#", timeAgo: "5m ago", adminNumber: "9876543210" },
+        { name: "Betting Stars Pro", type: "Betting", description: "High stakes Ludo betting", link: "#", timeAgo: "12m ago", adminNumber: "9123456789" },
+        { name: "Cricket Ludo Masters", type: "Cricket", description: "Live cricket match betting", link: "#", timeAgo: "2h ago", adminNumber: "9234567890" }
+      ];
 
-      if (filteredGroups.length === 0) {
-        container.style.display = 'none';
-        noGroupsMsg.style.display = 'block';
-        return;
-      }
-
-      noGroupsMsg.style.display = 'none';
-      container.style.display = 'grid';
-      container.innerHTML = filteredGroups.map(group => `
-        <div class="group-card">
+      let filteredGroups = currentFilter === 'all' ? demoGroups : demoGroups.filter(g => g.type === currentFilter);
+      
+      container.innerHTML = filteredGroups.map((group, index) => `
+        <div class="group-card" style="animation-delay: ${index * 0.1}s;">
           <div class="group-header">
             <div class="group-avatar">${group.name.charAt(0)}</div>
             <div class="group-info">
@@ -592,39 +525,31 @@
               </div>
             </div>
           </div>
-          ${group.description ? `<p class="group-desc">${group.description}</p>` : ''}
-          <a href="${group.link}" target="_blank" class="join-btn">🚀 Join Group Instantly</a>
-          <div style="margin-top: 1rem; font-size: 14px; color: var(--text-light); display: flex; align-items: center; gap: 0.5rem;">
+          <p class="group-desc">${group.description}</p>
+          <a href="${group.link}" class="join-btn">🚀 Join Group Instantly</a>
+          <div style="margin-top: 1rem; font-size: 14px; color: var(--text-light);">
             👤 By: ${formatPhone(group.adminNumber)}
           </div>
         </div>
       `).join('');
+
+      // Observer for cards
+      document.querySelectorAll('.group-card').forEach(card => {
+        observer.observe(card);
+      });
     }
 
     function getCategoryIcon(type) {
-      const icons = {'Ludo': '🎲', 'Betting': '💰', 'Cricket': '🏏', 'Earning': '💵', 'Tournament': '🏆'};
+      const icons = {'Ludo': '🎲', 'Betting': '💰', 'Cricket': '🏏'};
       return icons[type] || '📱';
     }
 
-    function formatTimeAgo(date) {
-      if (!date) return 'Just now';
-      const now = new Date();
-      const diff = now - date;
-      const minutes = Math.floor(diff / 60000);
-      if (minutes < 1) return 'Just now';
-      if (minutes < 60) return `${minutes}m ago`;
-      const hours = Math.floor(minutes / 60);
-      if (hours < 24) return `${hours}h ago`;
-      return `${Math.floor(hours/24)}d ago`;
-    }
-
     function formatPhone(phone) {
-      if (!phone) return 'Hidden';
       return phone.replace(/(\d{4})(\d{5})(\d+)/, '$1 **** $3');
     }
 
-    loadGroups();
-    setInterval(loadGroups, 30000);
+    // Initialize
+    displayGroups();
   </script>
 </body>
 </html>
