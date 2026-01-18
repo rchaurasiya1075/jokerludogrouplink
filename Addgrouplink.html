@@ -122,6 +122,43 @@
   toggle.addEventListener('click', () => {
     document.documentElement.classList.toggle('dark');
   });
+document.getElementById("groupForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const adminNumber = "91XXXXXXXXXX"; // 🔴 apna WhatsApp number
+
+  const name = document.getElementById("name").value.trim();
+  const link = document.getElementById("link").value.trim();
+  const groupType = document.getElementById("groupType").value;
+  const description = document.getElementById("description").value.trim();
+
+  const platforms = Array.from(
+    document.querySelectorAll(".platform:checked")
+  ).map(cb => cb.value).join(", ");
+
+  if (!name || !link || !groupType) {
+    alert("Please fill all required fields");
+    return;
+  }
+
+  const message = 
+`🆕 New Group Submission
+
+📛 Group Name: ${name}
+🔗 Group Link: ${link}
+🎮 Game Type: ${groupType}
+📱 Platform: ${platforms || "N/A"}
+📝 Description: ${description || "N/A"}
+
+✅ Please approve this group`;
+
+  const whatsappURL =
+    "https://wa.me/" + adminNumber + "?text=" + encodeURIComponent(message);
+
+  window.open(whatsappURL, "_blank");
+
+  this.reset();
+});
 </script>
 
 </body>
