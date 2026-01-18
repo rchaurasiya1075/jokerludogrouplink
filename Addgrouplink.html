@@ -3,34 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Add Ludo Group - JokerLudo 🔥</title>
+  <title>Add Ludo Group - JokerLudo</title>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
-    body { font-family: 'Inter', sans-serif; }
-  </style>
 </head>
 <body class="bg-gradient-to-br from-purple-500 via-pink-500 to-red-500 min-h-screen p-4 md:p-8">
   <div class="max-w-2xl mx-auto">
-    
-    <!-- Header -->
     <div class="text-center mb-12">
-      <h1 class="text-4xl md:text-6xl font-black bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent mb-4">
-        ➕ Add Your Group
-      </h1>
+      <h1 class="text-4xl md:text-6xl font-black bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent mb-4">➕ Add Your Group</h1>
       <p class="text-xl md:text-2xl text-white/90 font-bold">Instant Live on Join Groups Page!</p>
     </div>
 
-    <!-- Form -->
     <div class="bg-white/20 backdrop-blur-xl rounded-3xl p-6 md:p-12 border border-white/40 shadow-2xl">
       <form id="groupForm">
         <div class="space-y-6">
           <div>
             <label class="block text-white font-bold text-xl mb-4">📛 Group Name</label>
-            <input type="text" id="groupName" required placeholder="Ludo King Cash League" 
-                   class="w-full p-5 rounded-2xl text-xl bg-white/50 backdrop-blur-xl border-2 border-white/30 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/50">
+            <input type="text" id="groupName" required placeholder="Ludo King Cash League" class="w-full p-5 rounded-2xl text-xl bg-white/50 backdrop-blur-xl border-2 border-white/30 focus:border-yellow-400">
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -46,47 +36,53 @@
             </div>
             <div>
               <label class="block text-white font-bold text-xl mb-4">👥 Members</label>
-              <input type="number" id="members" min="10" required placeholder="150" 
-                     class="w-full p-5 rounded-2xl text-xl bg-white/50 backdrop-blur-xl border-2 border-white/30 focus:border-yellow-400">
+              <input type="number" id="members" min="10" required placeholder="150" class="w-full p-5 rounded-2xl text-xl bg-white/50 backdrop-blur-xl border-2 border-white/30 focus:border-yellow-400">
             </div>
           </div>
 
           <div>
             <label class="block text-white font-bold text-xl mb-4">🔗 WhatsApp Link</label>
-            <input type="url" id="groupLink" required placeholder="https://chat.whatsapp.com/..." 
-                   class="w-full p-5 rounded-2xl text-xl bg-white/50 backdrop-blur-xl border-2 border-white/30 focus:border-yellow-400">
+            <input type="url" id="groupLink" required placeholder="https://chat.whatsapp.com/..." class="w-full p-5 rounded-2xl text-xl bg-white/50 backdrop-blur-xl border-2 border-white/30 focus:border-yellow-400">
           </div>
 
           <div>
             <label class="block text-white font-bold text-xl mb-4">📄 Description</label>
-            <textarea id="groupDesc" required rows="4" placeholder="Daily tournaments, Paytm payouts, 24/7 active..." 
-                      class="w-full p-5 rounded-2xl text-xl bg-white/50 backdrop-blur-xl border-2 border-white/30 focus:border-yellow-400 resize-vertical"></textarea>
+            <textarea id="groupDesc" required rows="4" placeholder="Daily tournaments, Paytm payouts, 24/7 active..." class="w-full p-5 rounded-2xl text-xl bg-white/50 backdrop-blur-xl border-2 border-white/30 focus:border-yellow-400 resize-vertical"></textarea>
           </div>
 
           <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white py-6 px-8 rounded-3xl font-black text-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:-translate-y-2">
-            <i class="fas fa-bolt mr-3"></i>🚀 Add LIVE Instantly!
+            🚀 Add LIVE Instantly!
           </button>
         </div>
       </form>
 
-      <!-- Success Message -->
       <div id="successMsg" class="mt-8 p-8 bg-emerald-500/30 backdrop-blur-xl rounded-3xl border-2 border-emerald-400/50 hidden">
         <div class="text-center">
-          <div class="w-24 h-24 bg-emerald-400/30 rounded-3xl flex items-center justify-center mx-auto mb-6 backdrop-blur-xl">
+          <div class="w-24 h-24 bg-emerald-400/30 rounded-3xl flex items-center justify-center mx-auto mb-6">
             <i class="fas fa-check text-4xl text-emerald-400"></i>
           </div>
           <h2 class="text-3xl font-black text-white mb-4">✅ SUCCESS!</h2>
-          <p class="text-xl text-white/90 mb-6">Your group is now <strong class="text-emerald-300">LIVE</strong> on Join Groups page!</p>
+          <p class="text-xl text-white/90 mb-6">Your group is now <strong class="text-emerald-300">LIVE</strong> on Join Groups!</p>
           <a href="join.html" class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-2xl font-bold text-xl shadow-xl hover:shadow-2xl transition-all">
             👥 View Live Groups
           </a>
         </div>
       </div>
+
+      <div id="errorMsg" class="mt-8 p-8 bg-red-500/30 backdrop-blur-xl rounded-3xl border-2 border-red-400/50 hidden">
+        <div class="text-center">
+          <div class="w-24 h-24 bg-red-400/30 rounded-3xl flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-exclamation-triangle text-4xl text-red-400"></i>
+          </div>
+          <h2 class="text-3xl font-black text-white mb-4">❌ Error</h2>
+          <p id="errorText" class="text-xl text-white/90 mb-6">Check console (F12) for details</p>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- YOUR FIREBASE CONFIG -->
   <script>
+    // YOUR PERFECT CONFIG
     const firebaseConfig = {
       apiKey: "AIzaSyAMhdxU4pDqby11Ymixup2aCoEY5eZ3e7M",
       authDomain: "jokerludogroup-a8c97.firebaseapp.com",
@@ -96,20 +92,23 @@
       appId: "1:1083106195650:web:fae27e9bb0798e96f4235b"
     };
 
-    // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    // Form Submit
     document.getElementById('groupForm').onsubmit = async (e) => {
       e.preventDefault();
       
       const btn = document.getElementById('submitBtn');
       const successMsg = document.getElementById('successMsg');
+      const errorMsg = document.getElementById('errorMsg');
+      const errorText = document.getElementById('errorText');
+      
+      successMsg.classList.add('hidden');
+      errorMsg.classList.add('hidden');
       
       btn.disabled = true;
-      btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-3"></i>Adding to Firebase LIVE...';
-      
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-3"></i>Adding LIVE...';
+
       try {
         const groupData = {
           name: document.getElementById('groupName').value,
@@ -117,23 +116,23 @@
           link: document.getElementById('groupLink').value,
           members: parseInt(document.getElementById('members').value),
           description: document.getElementById('groupDesc').value,
-          status: 'live',  // ✅ INSTANT LIVE
+          status: 'live',
           timestamp: firebase.firestore.FieldValue.serverTimestamp()
         };
 
-        // 🔥 ADD TO FIRESTORE - ludoGroups collection
+        console.log('📤 Adding:', groupData);
         await db.collection('ludoGroups').add(groupData);
         
-        // Success
+        console.log('✅ SUCCESS!');
         btn.style.display = 'none';
         successMsg.classList.remove('hidden');
-        document.getElementById('groupForm').reset();
         
       } catch (error) {
-        console.error('Error:', error);
-        btn.innerHTML = '❌ Error - Try Again';
+        console.error('❌ ERROR:', error);
+        errorText.textContent = error.message;
+        errorMsg.classList.remove('hidden');
+        btn.innerHTML = '❌ Try Again';
         btn.disabled = false;
-        alert('Error: ' + error.message);
       }
     };
   </script>
