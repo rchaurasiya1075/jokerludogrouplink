@@ -1,167 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>Admin Dashboard | JokerLudo Group</title>
-<meta name="robots" content="noindex, nofollow">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-<style>
-body{
-  font-family:Poppins,sans-serif;
-  background:#f4f6fb;
-  margin:0;
-  padding:20px;
-}
-h1{text-align:center;color:#2d2e52}
-table{
-  width:100%;
-  border-collapse:collapse;
-  margin-top:30px;
-  background:#fff;
-  box-shadow:0 10px 30px rgba(0,0,0,.1)
-}
-th,td{
-  padding:12px;
-  border:1px solid #ddd;
-  text-align:left;
-  font-size:14px
-}
-th{background:#2d2e52;color:#fff}
-.btn{
-  padding:6px 12px;
-  border:none;
-  border-radius:6px;
-  cursor:pointer;
-  font-weight:600
-}
-.approve{background:#28a745;color:#fff}
-.delete{background:#dc3545;color:#fff}
-.logout{
-  background:#fd7e14;
-  color:#fff;
-  padding:10px 16px;
-  border:none;
-  border-radius:8px;
-  cursor:pointer;
-  display:block;
-  margin:20px auto;
-}
-.status-approved{color:#28a745;font-weight:600}
-.status-pending{color:#dc3545;font-weight:600}
-</style>
+  <title>Admin Panel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<body class="bg-gray-100 min-h-screen p-8">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-4xl font-bold mb-8">🔧 Admin Panel</h1>
+    
+    <div id="groupsList" class="space-y-4">
+      <!-- Admin groups load here -->
+    </div>
+  </div>
 
-<body>
-
-<h1>🎲 JokerLudo Admin Dashboard</h1>
-<button class="logout" id="logoutBtn">🚪 Logout</button>
-
-<table>
-<thead>
-<tr>
-  <th>Name</th>
-  <th>Type</th>
-  <th>Platform</th>
-  <th>Status</th>
-  <th>Action</th>
-</tr>
-</thead>
-<tbody id="groupList">
-<tr><td colspan="5">Loading groups...</td></tr>
-</tbody>
-</table>
-
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-
-<script>
-const firebaseConfig = {
-  apiKey: "AIzaSyAMhdxU4pDqby11Ymixup2aCoEY5eZ3e7M",
-  authDomain: "jokerludogroup-a8c97.firebaseapp.com",
-  projectId: "jokerludogroup-a8c97"
-};
-
-if(!firebase.apps.length){
+  <!-- Firebase + Auth -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  
+  <script>
+  const firebaseConfig = { /* Same config */ };
   firebase.initializeApp(firebaseConfig);
-}
-
-const auth = firebase.auth();
-const db = firebase.firestore();
-const ADMIN_EMAIL = "rchaurasiyaself@gmail.com";
-const list = document.getElementById("groupList");
-
-/* 🔐 AUTH CHECK */
-auth.onAuthStateChanged(user=>{
-  if(!user || user.email !== ADMIN_EMAIL){
-    alert("Unauthorized");
-    window.location.href="admin-login.html";
-  }else{
-    loadGroups();
-  }
-});
-
-/* 🔥 LOAD GROUPS */
-function loadGroups(){
-  db.collection("Groups")
-    .orderBy("timestamp","desc")
-    .onSnapshot(snapshot=>{
-      list.innerHTML="";
-      if(snapshot.empty){
-        list.innerHTML="<tr><td colspan='5'>No groups found</td></tr>";
-        return;
-      }
-
-      snapshot.forEach(doc=>{
-        const g = doc.data();
-        const tr = document.createElement("tr");
-
-        tr.innerHTML = `
-          <td>${g.name || "-"}</td>
-          <td>${g.type || "-"}</td>
-          <td>${(g.platforms||[]).join(", ")}</td>
-          <td class="${g.status==='approved'?'status-approved':'status-pending'}">
-            ${g.status || "pending"}
-          </td>
-          <td>
-            ${g.status!=="approved" ?
-              `<button class="btn approve" onclick="approveGroup('${doc.id}')">Approve</button>`
-              : ""
-            }
-            <button class="btn delete" onclick="deleteGroup('${doc.id}')">Delete</button>
-          </td>
-        `;
-        list.appendChild(tr);
-      });
-    });
-}
-
-/* ✅ APPROVE */
-function approveGroup(id){
-  if(confirm("Approve this group?")){
-    db.collection("Groups").doc(id).update({
-      status:"approved"
-    });
-  }
-}
-
-/* ❌ DELETE */
-function deleteGroup(id){
-  if(confirm("Delete this group permanently?")){
-    db.collection("Groups").doc(id).delete();
-  }
-}
-
-/* 🚪 LOGOUT */
-document.getElementById("logoutBtn").onclick=()=>{
-  auth.signOut().then(()=>{
-    window.location.href="admin-login.html";
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+  const ADMIN_EMAIL = "rchaurasiyaself@gmail.com";
+  
+  auth.onAuthStateChanged(user => {
+    if (!user || user.email !== ADMIN_EMAIL) window.location.href = 'login.html';
+    else loadAdminGroups();
   });
-};
-</script>
-
+  
+  async function loadAdminGroups() {
+    const groupsList = document.getElementById('groupsList');
+    const snapshot = await db.collection('Groups').orderBy('timestamp', 'desc').get();
+    
+    groupsList.innerHTML = snapshot.empty ? '<p>No groups</p>' : '';
+    
+    snapshot.forEach(doc => {
+      const group = doc.data();
+      const div = document.createElement('div');
+      div.className = 'bg-white p-6 rounded-lg shadow';
+      div.innerHTML = `
+        <h3 class="font-bold text-xl">${group.name}</h3>
+        <p>${group.link}</p>
+        <p>Type: ${group.type}</p>
+        <div class="flex gap-2 mt-4">
+          <button onclick="editGroup('${doc.id}')" class="bg-blue-500 text-white px-4 py-2 rounded">Edit</button>
+          <button onclick="deleteGroup('${doc.id}')" class="bg-red-500 text-white px-4 py-2 rounded">Delete</button>
+        </div>
+      `;
+      groupsList.appendChild(div);
+    });
+  }
+  
+  window.deleteGroup = async id => {
+    if (confirm('Delete this group?')) {
+      await db.collection('Groups').doc(id).delete();
+      loadAdminGroups();
+    }
+  };
+  
+  window.editGroup = id => {
+    const newLink = prompt('Edit link:');
+    if (newLink) {
+      db.collection('Groups').doc(id).update({ link: newLink });
+      loadAdminGroups();
+    }
+  };
+  </script>
 </body>
 </html>
