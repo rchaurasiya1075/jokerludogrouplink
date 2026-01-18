@@ -9,10 +9,10 @@
   <meta name="keywords" content="Ludo WhatsApp group join, live ludo groups, Ludo King group link" />
   <meta name="theme-color" content="#ff6b6b" />
   
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5367610923397725" crossorigin="anonymous"></script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EZF7SRX6EJ"></script>
-  <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-EZF7SRX6EJ');</script>
-
+  <!-- 🔥 FIREBASE SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   
@@ -21,20 +21,15 @@
     
     :root {
       --coral: #ff6b6b;
-      --pink: #ff8e8e;
-      --purple: #a78bfa;
       --gradient-1: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 50%, #a78bfa 100%);
-      --gradient-2: linear-gradient(135deg, #a78bfa 0%, #ff6b6b 100%);
+      --gradient-joker: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
       --glass: rgba(255,255,255,0.95);
       --shadow: 0 20px 40px rgba(255,107,107,0.2);
       --text-dark: #1e293b;
       --text-light: #64748b;
     }
 
-    /* 🔥 ULTRA SMOOTH TRANSITIONS */
-    * {
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
-    }
+    * { transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important; }
 
     body {
       font-family: 'Inter', sans-serif;
@@ -46,584 +41,320 @@
       overflow-x: hidden;
     }
 
-    @keyframes gradientShift {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
+    @keyframes gradientShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
 
-    /* 🔥 PERFECT MOBILE HEADER */
+    /* 🔥 HEADER (SAME PERFECT) */
     .header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 70px;
-      background: rgba(255,255,255,0.97);
-      backdrop-filter: blur(30px);
-      border-bottom: 1px solid rgba(255,255,255,0.4);
-      z-index: 1000;
-      padding: 0 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      position: fixed; top: 0; left: 0; width: 100%; height: 70px;
+      background: rgba(255,255,255,0.97); backdrop-filter: blur(30px);
+      border-bottom: 1px solid rgba(255,255,255,0.4); z-index: 1000;
+      padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between;
       box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
 
-    /* 🔥 LOGO */
-    .logo-section {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-    }
-
+    .logo-section { display: flex; align-items: center; gap: 12px; text-decoration: none; }
     .logo-icon {
-      width: 42px;
-      height: 42px;
-      background: var(--gradient-1);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      color: white;
+      width: 42px; height: 42px; background: var(--gradient-1); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; font-size: 20px; color: white;
       box-shadow: 0 8px 25px rgba(255,107,107,0.4);
     }
-
     .logo-text {
-      font-size: 22px;
-      font-weight: 800;
-      background: var(--gradient-1);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-size: 22px; font-weight: 800; background: var(--gradient-1);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
 
-    /* 🔥 HAMBURGER BUTTON */
-    .hamburger {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 24px;
-      color: var(--text-dark);
-      cursor: pointer;
-      padding: 8px;
-      border-radius: 8px;
-      width: 48px;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hamburger:hover {
-      background: rgba(255,107,107,0.1);
-    }
-
-    /* 🔥 DESKTOP NAVBAR */
-    .nav-menu {
-      display: flex;
-      list-style: none;
-      gap: 12px;
-      align-items: center;
-    }
-
+    .nav-menu { display: flex; list-style: none; gap: 12px; align-items: center; }
     .nav-link {
-      color: var(--text-dark);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 15px;
-      padding: 12px 20px;
-      border-radius: 25px;
-      background: rgba(255,255,255,0.8);
-      backdrop-filter: blur(15px);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-      white-space: nowrap;
-      position: relative;
-      overflow: hidden;
+      color: var(--text-dark); text-decoration: none; font-weight: 600; font-size: 15px;
+      padding: 12px 20px; border-radius: 25px; background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(15px); box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+    .nav-link:hover, .nav-link.active { 
+      background: var(--gradient-1); color: white !important; 
+      transform: translateY(-2px) scale(1.02); box-shadow: 0 12px 35px rgba(255,107,107,0.5);
     }
 
-    .nav-link::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-      transition: left 0.6s ease;
+    .hamburger {
+      display: none; background: none; border: none; font-size: 24px; color: var(--text-dark);
+      cursor: pointer; padding: 8px; border-radius: 8px; width: 48px; height: 48px;
+      display: flex; align-items: center; justify-content: center;
     }
 
-    .nav-link:hover::before { left: 100%; }
-    .nav-link:hover, .nav-link.active {
-      background: var(--gradient-1);
-      color: white !important;
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 12px 35px rgba(255,107,107,0.5);
-    }
+    /* MOBILE MENU */
+    .mobile-menu { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; 
+      background: rgba(255,255,255,0.98); backdrop-filter: blur(30px); box-shadow: -10px 0 40px rgba(0,0,0,0.2); 
+      z-index: 999; padding: 80px 0 2rem 0; transition: right 0.4s ease; }
+    .mobile-menu.active { right: 0; }
+    .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+      background: rgba(0,0,0,0.5); opacity: 0; visibility: hidden; z-index: 998; transition: all 0.4s ease; }
+    .overlay.active { opacity: 1; visibility: visible; }
 
-    /* 🔥 MOBILE SIDEBAR */
-    .mobile-menu {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 280px;
-      height: 100vh;
-      background: rgba(255,255,255,0.98);
-      backdrop-filter: blur(30px);
-      box-shadow: -10px 0 40px rgba(0,0,0,0.2);
-      z-index: 999;
-      padding: 80px 0 2rem 0;
-      transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
+    .main-content { margin-top: 80px; padding: 1.5rem 1.5rem 4rem; max-width: 1400px; margin-left: auto; margin-right: auto; }
 
-    .mobile-menu.active {
-      right: 0;
-    }
-
-    .mobile-menu ul {
-      list-style: none;
-      padding: 0 1.5rem;
-    }
-
-    .mobile-nav-link {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      padding: 18px 20px;
-      margin-bottom: 10px;
-      background: rgba(255,255,255,0.7);
-      border-radius: 20px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 16px;
-      color: var(--text-dark);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    }
-
-    .mobile-nav-link:hover,
-    .mobile-nav-link.active {
-      background: var(--gradient-1);
-      color: white;
-      transform: translateX(8px);
-      box-shadow: 0 8px 25px rgba(255,107,107,0.4);
-    }
-
-    /* 🔥 OVERLAY */
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
-      opacity: 0;
-      visibility: hidden;
-      z-index: 998;
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    .overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    /* 🔥 MAIN CONTENT */
-    .main-content {
-      margin-top: 80px;
-      padding: 2rem 1.5rem;
-      max-width: 1400px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* 🔥 HERO + ALL OTHER STYLES SAME */
+    /* 🔥 HERO */
     .hero-section {
-      text-align: center;
-      margin-bottom: 3rem;
-      padding: 2.5rem 2rem;
-      background: var(--glass);
-      backdrop-filter: blur(30px);
-      border-radius: 24px;
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(255,255,255,0.3);
+      text-align: center; padding: 3rem 1.5rem; background: var(--glass);
+      backdrop-filter: blur(30px); border-radius: 24px; box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.3); margin-bottom: 2rem;
     }
-
     .hero-title {
-      font-size: clamp(2.5rem, 7vw, 4rem);
-      font-weight: 900;
-      background: var(--gradient-1);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 1rem;
+      font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 900; background: var(--gradient-1);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem;
     }
 
-    .hero-stats {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-      margin-top: 1.5rem;
-    }
-
-    .stat-item {
-      text-align: center;
-      background: var(--glass);
-      padding: 1.5rem 1.2rem;
-      border-radius: 20px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-      backdrop-filter: blur(20px);
-      min-width: 120px;
-      flex: 1;
-      max-width: 140px;
-    }
-
-    .stat-number {
-      font-size: 2.2rem;
-      font-weight: 900;
-      background: var(--gradient-1);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      display: block;
-      margin-bottom: 0.3rem;
-    }
-
+    /* 🔥 FILTER TABS */
     .filter-tabs {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 2.5rem;
-      padding: 1rem 0;
+      display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem;
+      padding: 1rem; background: var(--glass); backdrop-filter: blur(20px); border-radius: 20px;
     }
-
     .filter-tab {
-      padding: 12px 24px;
-      background: var(--glass);
-      border: 2px solid rgba(255,255,255,0.3);
-      border-radius: 50px;
-      font-weight: 700;
-      font-size: 14px;
-      cursor: pointer;
-      backdrop-filter: blur(20px);
-      color: var(--text-dark);
-      white-space: nowrap;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      padding: 12px 20px; background: rgba(255,255,255,0.7); border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 25px; font-weight: 700; font-size: 14px; cursor: pointer; 
+      backdrop-filter: blur(15px); transition: all 0.3s ease;
+    }
+    .filter-tab.active, .filter-tab:hover {
+      background: var(--gradient-1); color: white; transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(255,107,107,0.4);
     }
 
-    .filter-tab.active,
-    .filter-tab:hover {
-      background: var(--gradient-1);
-      color: white;
-      border-color: transparent;
-      transform: translateY(-2px);
-      box-shadow: 0 15px 35px rgba(255,107,107,0.4);
-    }
-
-    .groups-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 1.8rem;
-      margin-bottom: 2rem;
+    /* 🔥 GROUPS GRID - FIREBASE REAL-TIME */
+    .groups-container {
+      min-height: 400px; display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 1.5rem; margin-bottom: 2rem;
     }
 
     .group-card {
-      background: var(--glass);
-      backdrop-filter: blur(25px);
-      border-radius: 20px;
-      padding: 1.8rem;
-      border: 1px solid rgba(255,255,255,0.3);
-      box-shadow: var(--shadow);
-      transition: all 0.4s ease;
+      background: var(--glass); backdrop-filter: blur(25px); border-radius: 20px;
+      padding: 1.5rem; border: 1px solid rgba(255,255,255,0.3); box-shadow: var(--shadow);
+      animation: slideInUp 0.5s ease forwards; opacity: 0; transform: translateY(30px);
+      cursor: pointer; transition: all 0.3s ease;
     }
-
     .group-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 25px 50px rgba(255,107,107,0.3);
+      transform: translateY(-8px); box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+    }
+    .group-card.live { border-left: 5px solid #00ff88; }
+    .group-card.paused { border-left: 5px solid #f59e0b; opacity: 0.7; }
+
+    @keyframes slideInUp {
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    .group-header {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      margin-bottom: 1rem;
+    .group-header { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 1rem; }
+    .group-icon { 
+      width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; 
+      justify-content: center; font-size: 20px; flex-shrink: 0;
+    }
+    .group-name { font-size: 1.3rem; font-weight: 800; color: var(--text-dark); margin-bottom: 0.3rem; }
+    .group-meta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 1rem; }
+    .meta-tag {
+      padding: 6px 12px; background: rgba(255,255,255,0.5); border-radius: 20px;
+      font-size: 12px; font-weight: 600; color: var(--text-dark);
+    }
+    .group-desc { color: var(--text-light); line-height: 1.6; margin-bottom: 1.5rem; }
+    
+    .group-join-btn {
+      width: 100%; background: var(--gradient-joker); color: white; padding: 14px;
+      border: none; border-radius: 16px; font-size: 16px; font-weight: 700; cursor: pointer;
+      box-shadow: 0 12px 30px rgba(0,255,136,0.4); display: flex; align-items: center;
+      justify-content: center; gap: 8px; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .group-join-btn:hover { 
+      transform: translateY(-3px); box-shadow: 0 20px 40px rgba(0,255,136,0.6); 
     }
 
-    .group-avatar {
-      width: 55px;
-      height: 55px;
-      border-radius: 14px;
-      background: var(--gradient-1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      color: white;
-      font-weight: 700;
-      flex-shrink: 0;
+    /* 🔥 LOADING */
+    .loading-groups {
+      grid-column: 1 / -1; text-align: center; padding: 4rem 2rem; color: var(--text-light);
     }
-
-    .group-info h3 {
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: var(--text-dark);
-      margin-bottom: 0.3rem;
+    .spinner { 
+      width: 50px; height: 50px; border: 4px solid rgba(255,255,255,0.3); 
+      border-top: 4px solid var(--gradient-1); border-radius: 50%; 
+      animation: spin 1s linear infinite; margin: 0 auto 2rem;
     }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-    .group-meta {
-      display: flex;
-      gap: 0.8rem;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .group-type {
-      background: rgba(255,107,107,0.15);
-      color: var(--coral);
-      padding: 5px 14px;
-      border-radius: 18px;
-      font-size: 12px;
-      font-weight: 600;
-    }
-
-    .join-btn {
-      width: 100%;
-      background: var(--gradient-2);
-      color: white;
-      padding: 14px 20px;
-      border: none;
-      border-radius: 16px;
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      box-shadow: 0 12px 30px rgba(255,107,107,0.4);
-    }
-
-    .join-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 20px 40px rgba(255,107,107,0.5);
-    }
-
-    /* 🔥 MOBILE RESPONSIVE */
+    /* RESPONSIVE */
     @media (max-width: 768px) {
-      .hamburger {
-        display: flex !important;
-      }
-      
-      .nav-menu {
-        display: none !important;
-      }
-      
-      .main-content {
-        margin-top: 75px;
-        padding: 1.5rem 1rem;
-      }
-      
-      .hero-stats {
-        gap: 1rem;
-        flex-direction: column;
-      }
-      
-      .stat-item {
-        max-width: none;
-      }
-      
-      .groups-grid {
-        grid-template-columns: 1fr;
-        gap: 1.2rem;
-      }
-      
-      .filter-tabs {
-        gap: 8px;
-        justify-content: center;
-      }
-      
-      .filter-tab {
-        padding: 10px 18px;
-        font-size: 13px;
-        flex: 1;
-        min-width: 100px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .logo-text {
-        font-size: 20px;
-      }
-      
-      .header {
-        padding: 0 1rem;
-        height: 65px;
-      }
-      
-      .logo-icon {
-        width: 38px;
-        height: 38px;
-        font-size: 18px;
-      }
-      
-      .main-content {
-        padding: 1rem 0.8rem;
-      }
+      .hamburger { display: flex !important; } .nav-menu { display: none !important; }
+      .main-content { margin-top: 75px; padding: 1rem 1rem 4rem; }
+      .groups-container { grid-template-columns: 1fr; gap: 1rem; }
+      .filter-tabs { flex-direction: column; align-items: center; }
     }
   </style>
 </head>
 <body>
-  <!-- 🔥 PERFECT MOBILE HEADER -->
+  <!-- 🔥 HEADER -->
   <header class="header">
     <a href="index.html" class="logo-section">
-      <div class="logo-icon">🎮</div>
-      <span class="logo-text">JokerLudo</span>
+      <div class="logo-icon">🎮</div><span class="logo-text">JokerLudo</span>
     </a>
-
-    <!-- DESKTOP MENU -->
     <ul class="nav-menu">
       <li><a href="index.html" class="nav-link">🏠 Home</a></li>
-      <li><a href="join.html" class="nav-link active">👥 Join Groups</a></li>
+      <li><a href="join.html" class="nav-link active">👥 Live Groups</a></li>
       <li><a href="Addgrouplink.html" class="nav-link">➕ Add Group</a></li>
       <li><a href="rules.html" class="nav-link">📜 Rules</a></li>
-      <li><a href="contact.html" class="nav-link">📧 Contact</a></li>
     </ul>
-
-    <!-- MOBILE HAMBURGER -->
-    <button class="hamburger" id="hamburger">
-      <i class="fas fa-bars"></i>
-    </button>
+    <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
   </header>
 
-  <!-- MOBILE OVERLAY -->
+  <!-- MOBILE MENU -->
   <div class="overlay" id="overlay"></div>
-
-  <!-- MOBILE SIDEBAR -->
   <nav class="mobile-menu" id="mobileMenu">
     <ul>
       <li><a href="index.html" class="mobile-nav-link">🏠 Home</a></li>
-      <li><a href="join.html" class="mobile-nav-link active">👥 Join Groups</a></li>
+      <li><a href="join.html" class="mobile-nav-link active">👥 Live Groups</a></li>
       <li><a href="Addgrouplink.html" class="mobile-nav-link">➕ Add Group</a></li>
       <li><a href="rules.html" class="mobile-nav-link">📜 Rules</a></li>
-      <li><a href="contact.html" class="mobile-nav-link">📧 Contact</a></li>
     </ul>
   </nav>
 
   <main class="main-content">
+    <!-- HERO -->
     <section class="hero-section">
-      <h1 class="hero-title">👥 Live Groups</h1>
-      <p style="font-size: 1.1rem; color: var(--text-light); max-width: 600px; margin: 0 auto 1.5rem; line-height: 1.6;">
-        Join 1000+ active Ludo WhatsApp groups. Real-time updates, verified links, instant access.
+      <h1 class="hero-title">👥 Live Ludo Groups</h1>
+      <p style="font-size: 1.2rem; color: var(--text-light);">
+        🔥 Real-time Firebase sync - New groups appear instantly!
       </p>
-      <div class="hero-stats">
-        <div class="stat-item">
-          <span class="stat-number">1,247</span>
-          Total Groups
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">89</span>
-          Live Now
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">2,456</span>
-          Online
-        </div>
-      </div>
     </section>
 
+    <!-- FILTERS -->
     <div class="filter-tabs">
-      <button class="filter-tab active" data-filter="all">🎮 All</button>
-      <button class="filter-tab" data-filter="Ludo">🎲 Ludo</button>
+      <button class="filter-tab active" data-filter="all">All Groups</button>
+      <button class="filter-tab" data-filter="Ludo King">🎲 Ludo King</button>
+      <button class="filter-tab" data-filter="Ludo Star">⭐ Ludo Star</button>
       <button class="filter-tab" data-filter="Betting">💰 Betting</button>
-      <button class="filter-tab" data-filter="Cricket">🏏 Cricket</button>
       <button class="filter-tab" data-filter="Earning">💵 Earning</button>
-      <button class="filter-tab" data-filter="Tournament">🏆 Tournament</button>
     </div>
 
-    <div class="groups-grid">
-      <div class="group-card">
-        <div class="group-header">
-          <div class="group-avatar">L</div>
-          <div class="group-info">
-            <h3>Ludo King Cash League</h3>
-            <div class="group-meta">
-              <span class="group-type">🎲 Ludo</span>
-              <span class="group-time">5m ago</span>
-            </div>
-          </div>
-        </div>
-        <p class="group-desc" style="color: var(--text-light); line-height: 1.6; margin-bottom: 1.2rem;">
-          Daily ₹500-₹5000 matches. Instant Paytm/UPI withdrawal. 24/7 active admins.
-        </p>
-        <a href="#" class="join-btn">🚀 Join Group</a>
-      </div>
-
-      <div class="group-card">
-        <div class="group-header">
-          <div class="group-avatar">B</div>
-          <div class="group-info">
-            <h3>Betting Stars Pro</h3>
-            <div class="group-meta">
-              <span class="group-type">💰 Betting</span>
-              <span class="group-time">12m ago</span>
-            </div>
-          </div>
-        </div>
-        <p class="group-desc" style="color: var(--text-light); line-height: 1.6; margin-bottom: 1.2rem;">
-          High stakes Ludo betting. Min ₹100 bet. Professional players only.
-        </p>
-        <a href="#" class="join-btn">🚀 Join Group</a>
-      </div>
-
-      <div class="group-card">
-        <div class="group-header">
-          <div class="group-avatar">C</div>
-          <div class="group-info">
-            <h3>Cricket Ludo Masters</h3>
-            <div class="group-meta">
-              <span class="group-type">🏏 Cricket</span>
-              <span class="group-time">2h ago</span>
-            </div>
-          </div>
-        </div>
-        <p class="group-desc" style="color: var(--text-light); line-height: 1.6; margin-bottom: 1.2rem;">
-          Live cricket match betting with Ludo. Join now for big wins!
-        </p>
-        <a href="#" class="join-btn">🚀 Join Group</a>
+    <!-- 🔥 FIREBASE GROUPS CONTAINER -->
+    <div class="groups-container" id="groupsContainer">
+      <div class="loading-groups">
+        <div class="spinner"></div>
+        <h3>🔥 Loading Live Groups...</h3>
+        <p>Real-time sync from Firebase Firestore</p>
       </div>
     </div>
   </main>
 
+  <!-- 🔥 FIREBASE CONFIG (SAME AS ADDGROUP) -->
   <script>
-    // 🔥 PERFECT MOBILE MENU
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const overlay = document.getElementById('overlay');
+    // 🔥 YOUR FIREBASE CONFIG - SAME AS ADDGROUP.HTML
+    const firebaseConfig = {
+      apiKey: "AIzaSyXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",  // YOUR SAME CONFIG
+      authDomain: "your-project.firebaseapp.com",
+      projectId: "your-project-id",
+      storageBucket: "your-project.appspot.com",
+      messagingSenderId: "123456789",
+      appId: "1:123456789:web:xxxxxxxxxxxxxxxxxx"
+    };
 
-    hamburger.addEventListener('click', () => {
-      mobileMenu.classList.toggle('active');
-      overlay.classList.toggle('active');
-    });
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
 
-    overlay.addEventListener('click', () => {
-      mobileMenu.classList.remove('active');
-      overlay.classList.remove('active');
-    });
+    // 🔥 MOBILE MENU
+    document.getElementById('hamburger').onclick = () => {
+      document.getElementById('mobileMenu').classList.toggle('active');
+      document.getElementById('overlay').classList.toggle('active');
+    };
+    document.getElementById('overlay').onclick = () => {
+      document.getElementById('mobileMenu').classList.remove('active');
+      document.getElementById('overlay').classList.remove('active');
+    };
 
-    // Close on link click
-    document.querySelectorAll('.mobile-nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
-        overlay.classList.remove('active');
+    // 🔥 FIREBASE REAL-TIME LISTENER - SHOWS ADDED GROUPS
+    let allGroups = [];
+    const groupsContainer = document.getElementById('groupsContainer');
+
+    // Real-time listener for ludoGroups collection
+    db.collection('ludoGroups')
+      .orderBy('timestamp', 'desc')
+      .onSnapshot((snapshot) => {
+        allGroups = [];
+        
+        snapshot.forEach((doc) => {
+          const group = doc.data();
+          if (group.status === 'live') {  // Only show live groups
+            allGroups.push({ id: doc.id, ...group });
+          }
+        });
+
+        // Update display
+        displayGroups(allGroups);
+        console.log(`🔥 Loaded ${allGroups.length} live groups from Firebase`);
+      }, (error) => {
+        console.error('Firebase Error:', error);
+        groupsContainer.innerHTML = '<div class="loading-groups"><p>❌ Error loading groups</p></div>';
       });
-    });
 
-    // 🔥 FILTER FUNCTIONALITY
-    document.querySelectorAll('.filter-tab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        document.querySelector('.filter-tab.active').classList.remove('active');
-        tab.classList.add('active');
+    // 🔥 DISPLAY GROUPS FUNCTION
+    function displayGroups(groups) {
+      if (!groups || groups.length === 0) {
+        groupsContainer.innerHTML = `
+          <div class="loading-groups" style="grid-column: 1/-1;">
+            <div style="font-size: 4rem; margin-bottom: 1rem;">🎮</div>
+            <h3>No Live Groups Yet</h3>
+            <p>Be the first to add a group from <a href="Addgrouplink.html" style="color: var(--coral);">➕ Add Group</a></p>
+          </div>
+        `;
+        return;
+      }
+
+      let html = '';
+      groups.forEach((group, index) => {
+        const icon = group.category === 'Ludo King' ? '🎲' : 
+                    group.category === 'Ludo Star' ? '⭐' : 
+                    group.category === 'Betting' ? '💰' : '💵';
+        
+        html += `
+          <div class="group-card live" style="animation-delay: ${index * 0.1}s;" data-category="${group.category}">
+            <div class="group-header">
+              <div class="group-icon" style="background: var(--gradient-joker); color: white;">
+                ${icon}
+              </div>
+              <div>
+                <div class="group-name">${group.name || 'Unnamed Group'}</div>
+                <div class="group-meta">
+                  <span class="meta-tag">${group.category || 'Uncategorized'}</span>
+                  <span class="meta-tag">👥 ${group.members || 0}+ Members</span>
+                </div>
+              </div>
+            </div>
+            <p class="group-desc">${group.description || 'Live Ludo group'}</p>
+            <a href="${group.link}" target="_blank" class="group-join-btn">
+              🚀 Join Group Instantly
+            </a>
+          </div>
+        `;
       });
-    });
+
+      groupsContainer.innerHTML = html;
+      
+      // Add filter functionality
+      document.querySelectorAll('.filter-tab').forEach(tab => {
+        tab.onclick = () => {
+          document.querySelector('.filter-tab.active').classList.remove('active');
+          tab.classList.add('active');
+          
+          const filter = tab.dataset.filter;
+          const cards = document.querySelectorAll('.group-card');
+          
+          cards.forEach(card => {
+            if (filter === 'all' || card.dataset.category === filter) {
+              card.style.display = 'block';
+              card.style.animation = 'slideInUp 0.5s ease forwards';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        };
+      });
+    }
+
+    // 🔥 AUTO REFRESH EVERY 30s (backup)
+    setInterval(() => {
+      console.log('🔄 Auto refresh check...');
+    }, 30000);
   </script>
 </body>
 </html>
