@@ -8,66 +8,221 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
   <style>
-    body { font-family: Arial, sans-serif; background:#f9f9f9; margin:0; padding:20px; }
-    .container { max-width:1000px; margin:auto; background:white; padding:20px; border-radius:12px; box-shadow:0 2px 10px rgba(0,0,0,0.1);}
-    h2 { text-align:center; color:#333; }
+    * { box-sizing: border-box; }
+    body { 
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+      margin: 0; 
+      padding: 20px; 
+      min-height: 100vh;
+    }
+    .container { 
+      max-width: 1200px; 
+      margin: auto; 
+      background: rgba(255,255,255,0.95); 
+      padding: 30px; 
+      border-radius: 20px; 
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      backdrop-filter: blur(10px);
+    }
+    .header { 
+      text-align: center; 
+      margin-bottom: 30px; 
+      color: #2c3e50;
+    }
+    .header h1 { 
+      font-size: 2.5em; 
+      margin: 0; 
+      background: linear-gradient(45deg, #667eea, #764ba2); 
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .logout { 
+      background: linear-gradient(45deg, #ff6b6b, #ee5a52); 
+      margin-bottom: 20px; 
+      float: right; 
+      padding: 12px 24px; 
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    .logout:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(255,107,107,0.3); }
+    
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 40px; }
+    @media (max-width: 768px) { .form-grid { grid-template-columns: 1fr; } }
+    
     input, select, textarea {
-      width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:8px;
+      width: 100%; 
+      padding: 15px; 
+      margin: 8px 0; 
+      border: 2px solid #e1e8ed; 
+      border-radius: 12px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      background: rgba(255,255,255,0.8);
     }
+    input:focus, select:focus, textarea:focus {
+      outline: none; 
+      border-color: #667eea; 
+      box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
+      transform: translateY(-2px);
+    }
+    
+    .checkbox-group { 
+      display: flex; 
+      flex-wrap: wrap; 
+      gap: 15px; 
+      margin: 15px 0; 
+    }
+    .checkbox-group label { 
+      display: flex; 
+      align-items: center; 
+      gap: 8px; 
+      cursor: pointer; 
+      padding: 10px 15px; 
+      border-radius: 8px; 
+      background: rgba(102,126,234,0.1);
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+    .checkbox-group label:hover { background: rgba(102,126,234,0.2); }
+    
     button {
-      padding:8px 12px; background:#007bff; color:white; border:none; border-radius:6px; cursor:pointer;
+      padding: 15px 30px; 
+      background: linear-gradient(45deg, #667eea, #764ba2); 
+      color: white; 
+      border: none; 
+      border-radius: 12px; 
+      cursor: pointer; 
+      font-size: 16px; 
+      font-weight: 600;
+      transition: all 0.3s ease;
+      margin: 5px;
     }
-    button:hover { background:#0056b3; }
-    .logout { background:#dc3545; margin-top:15px; float:right; }
-    table { width:100%; border-collapse:collapse; margin-top:20px; }
-    table, th, td { border:1px solid #ccc; }
-    th, td { padding:10px; text-align:left; }
-    th { background:#f1f1f1; }
-    .actions button { margin-right:5px; }
+    button:hover:not(:disabled) { 
+      transform: translateY(-3px); 
+      box-shadow: 0 15px 30px rgba(102,126,234,0.4); 
+    }
+    button:disabled { 
+      background: #ccc; 
+      cursor: not-allowed; 
+      transform: none; 
+    }
+    
+    .loading { background: linear-gradient(45deg, #28a745, #20c997) !important; }
+    .cancel { background: linear-gradient(45deg, #6c757d, #495057) !important; }
+    
+    table { 
+      width: 100%; 
+      border-collapse: collapse; 
+      margin-top: 20px; 
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    th { 
+      background: linear-gradient(45deg, #667eea, #764ba2); 
+      color: white; 
+      padding: 20px; 
+      text-align: left; 
+      font-weight: 600;
+    }
+    td { 
+      padding: 20px; 
+      border-bottom: 1px solid #eee; 
+    }
+    tr:hover { background: rgba(102,126,234,0.05); }
+    
+    .status-active { color: #28a745; font-weight: bold; }
+    .status-inactive { color: #dc3545; font-weight: bold; }
+    
+    .actions button { 
+      padding: 8px 12px; 
+      margin: 0 5px 0 0; 
+      font-size: 14px; 
+    }
+    .actions .edit { background: linear-gradient(45deg, #17a2b8, #138496); }
+    .actions .delete { background: linear-gradient(45deg, #dc3545, #c82333); }
+    
+    .message { 
+      padding: 15px 20px; 
+      border-radius: 12px; 
+      margin: 20px 0; 
+      font-weight: 500;
+    }
+    .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+    .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+    
+    #loadingMsg { 
+      text-align: center; 
+      padding: 40px; 
+      color: #666; 
+      font-size: 18px;
+    }
+    
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    .spinner { display: inline-block; width: 20px; height: 20px; border: 3px solid rgba(255,255,255,0.3); border-radius: 50%; border-top-color: #fff; animation: spin 1s ease-in-out infinite; }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <button class="logout" onclick="logout()">Logout</button>
-  <h2>📌 Admin Panel - Manage Groups</h2>
+  <button class="logout" onclick="logoutApp()" id="logoutBtn">🚪 Logout</button>
+  <div class="header">
+    <h1>📌 Admin Panel - Group Manager</h1>
+    <p>Complete control over your gaming groups</p>
+  </div>
+  
+  <div id="loadingMsg">🔄 Initializing Admin Panel... <span class="spinner"></span></div>
+  <div id="errorMsg" class="message error" style="display:none;"></div>
 
-  <!-- Add Group Form -->
-  <form id="groupForm">
-    <input type="text" id="name" placeholder="Group Name" required>
-    <input type="url" id="link" placeholder="Group Link (WhatsApp/Telegram)" required>
+  <!-- Admin Form -->
+  <div class="form-section">
+    <h3 id="formTitle">➕ Add New Group</h3>
+    <form id="groupForm">
+      <div class="form-grid">
+        <div>
+          <input type="text" id="name" placeholder="📛 Group Name" maxlength="100" required>
+          <input type="url" id="link" placeholder="🔗 WhatsApp/Telegram Link" maxlength="500" required>
+        </div>
+        <div>
+          <select id="groupType" required>
+            <option value="">🎮 Select Game Type</option>
+            <option value="Cricket">🏏 Cricket</option>
+            <option value="Football">⚽ Football</option>
+            <option value="Tennis">🎾 Tennis</option>
+            <option value="Ludo">🎲 Ludo</option>
+            <option value="Other">📌 Other Games</option>
+          </select>
+          <textarea id="description" placeholder="📝 Short Description (Optional)" maxlength="500"></textarea>
+        </div>
+      </div>
+      
+      <label>📱 Platforms</label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" class="platform" value="WhatsApp" checked> 📱 WhatsApp</label>
+        <label><input type="checkbox" class="platform" value="Telegram"> 💬 Telegram</label>
+        <label><input type="checkbox" class="platform" value="Facebook"> 📘 Facebook</label>
+        <label><input type="checkbox" class="platform" value="Other"> 🌐 Other</label>
+      </div>
+      
+      <button type="submit" id="submitBtn">➕ Add New Group</button>
+      <button type="button" id="cancelBtn" class="cancel" onclick="cancelEdit()" style="display:none;">❌ Cancel Edit</button>
+    </form>
+  </div>
 
-    <label>Group Type</label>
-    <select id="groupType" required>
-      <option value="">-- Select --</option>
-      <option value="Cricket">🏏 Cricket</option>
-      <option value="Football">⚽ Football</option>
-      <option value="Tennis">🎾 Tennis</option>
-      <option value="Ludo">🎲 Ludo</option>
-      <option value="Other">📌 Other</option>
-    </select>
-
-    <label>Platforms</label><br>
-    <input type="checkbox" class="platform" value="WhatsApp"> WhatsApp
-    <input type="checkbox" class="platform" value="Telegram"> Telegram
-    <input type="checkbox" class="platform" value="Facebook"> Facebook
-    <input type="checkbox" class="platform" value="Other"> Other
-    <br><br>
-
-    <textarea id="description" placeholder="Short Description"></textarea>
-    <button type="submit" id="submitBtn">Submit Group</button>
-  </form>
-
-  <!-- Groups List -->
-  <h3>📋 Groups List</h3>
+  <!-- Groups Table -->
+  <h3>📊 Groups Dashboard (<span id="groupsCount">0</span>)</h3>
   <table>
     <thead>
       <tr>
         <th>📛 Name</th>
         <th>🔗 Link</th>
-        <th>🏷 Type</th>
+        <th>🏷️ Game Type</th>
         <th>📱 Platforms</th>
         <th>📝 Description</th>
+        <th>Status</th>
+        <th>Date Added</th>
         <th>⚙️ Actions</th>
       </tr>
     </thead>
@@ -76,7 +231,7 @@
 </div>
 
 <script>
-  // Firebase Config
+  // 🔥 SECURE FIREBASE CONFIG - DON'T EXPOSE IN PRODUCTION
   const firebaseConfig = {
     apiKey: "AIzaSyCwdlnLXcXauh3_YmY6cwswqzcieMOHI0Y",
     authDomain: "ludogroup-a530a.firebaseapp.com",
@@ -86,134 +241,226 @@
     appId: "1:838421084676:web:9e02670e280eafcd86d351"
   };
 
-  if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-  }
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
   const auth = firebase.auth();
   const db = firebase.firestore();
 
-  // ✅ Protect Page
-  auth.onAuthStateChanged(user => {
-    if (!user) {
-      window.location.href = "privacy.html";
-    }
-  });
+  // 🔥 STATE MANAGEMENT
+  let editingId = null;
+  let authChecked = false;
+  let unsubscribeAuth = null;
+  let unsubscribeGroups = null;
 
-  // 🔓 Logout
-  function logout() {
+  // 🔒 UTILITY FUNCTIONS
+  const sanitizeInput = (str) => {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML.replace(/[^\w\s😀-🙏🀄🎯🎮📱📛🔗⚽🏏🎾🎲]/g, '').trim().substring(0, 100);
+  };
+
+  const showMessage = (msg, type = 'error') => {
+    const msgDiv = document.getElementById('errorMsg');
+    msgDiv.textContent = msg;
+    msgDiv.className = `message ${type}`;
+    msgDiv.style.display = 'block';
+    setTimeout(() => msgDiv.style.display = 'none', 5000);
+  };
+
+  const setLoading = (loading = true) => {
+    const btn = document.getElementById('submitBtn');
+    if (loading) {
+      btn.disabled = true;
+      btn.innerHTML = '⏳ Processing... <span class="spinner"></span>';
+      btn.classList.add('loading');
+    } else {
+      btn.disabled = false;
+      btn.innerHTML = editingId ? '✅ Update Group' : '➕ Add New Group';
+      btn.classList.remove('loading');
+    }
+  };
+
+  // 🔐 ADMIN AUTHENTICATION
+  const initAuth = async () => {
+    unsubscribeAuth = auth.onAuthStateChanged(async (user) => {
+      if (authChecked) return;
+      authChecked = true;
+      
+      document.getElementById('loadingMsg').style.display = 'none';
+
+      if (!user) {
+        window.location.href = "privacy.html";
+        return;
+      }
+
+      try {
+        // 🔥 CHECK ADMIN PRIVILEGES
+        const adminDoc = await db.collection('admins').doc(user.uid).get();
+        if (!adminDoc.exists) {
+          showMessage('🚫 Access Denied: Admin privileges required!');
+          setTimeout(() => logoutApp(), 2000);
+          return;
+        }
+        
+        // ✅ ADMIN APPROVED - LOAD DASHBOARD
+        document.querySelector('.form-section').style.display = 'block';
+        renderGroups();
+        showMessage('✅ Welcome Admin! Dashboard loaded.', 'success');
+        
+      } catch (error) {
+        showMessage('❌ Auth Error: ' + error.message);
+        logoutApp();
+      }
+    });
+  };
+
+  // 🚪 SECURE LOGOUT
+  const logoutApp = () => {
+    if (unsubscribeAuth) unsubscribeAuth();
+    if (unsubscribeGroups) unsubscribeGroups();
     auth.signOut().then(() => {
       window.location.href = "privacy.html";
+    }).catch(() => {
+      window.location.href = "privacy.html";
     });
-  }
+  };
 
-  // 📌 Add Group
-  document.getElementById("groupForm").addEventListener("submit", async (e) => {
+  // 📝 FORM MANAGEMENT
+  const resetForm = () => {
+    document.getElementById('groupForm').reset();
+    document.querySelector('.platform[value="WhatsApp"]').checked = true;
+    document.getElementById('formTitle').textContent = '➕ Add New Group';
+    document.getElementById('submitBtn').textContent = '➕ Add New Group';
+    document.getElementById('cancelBtn').style.display = 'none';
+    editingId = null;
+  };
+
+  const cancelEdit = () => resetForm();
+
+  // ➕ MAIN FORM SUBMISSION
+  document.getElementById('groupForm').addEventListener('submit', async (e) => {
     e.preventDefault();
+    setLoading(true);
 
-    const name = document.getElementById("name").value.trim();
-    const link = document.getElementById("link").value.trim();
-    const groupType = document.getElementById("groupType").value;
-    const description = document.getElementById("description").value.trim();
-    const platforms = Array.from(document.querySelectorAll(".platform:checked")).map(cb => cb.value);
+    const name = sanitizeInput(document.getElementById('name').value);
+    const link = sanitizeInput(document.getElementById('link').value);
+    const groupType = document.getElementById('groupType').value;
+    const description = sanitizeInput(document.getElementById('description').value);
+    const platforms = Array.from(document.querySelectorAll('.platform:checked')).map(cb => cb.value);
 
-    if (!name || !link || !groupType || platforms.length === 0) {
-      alert("⚠️ Please fill all required fields");
+    if (!name || !link || !groupType || !platforms.length) {
+      showMessage('⚠️ Please fill all required fields correctly!');
+      setLoading(false);
       return;
     }
 
     try {
-      document.getElementById("submitBtn").innerText = "Submitting...";
-
-      await db.collection("Groups").add({
-        name,
-        link,
-        type: groupType,
-        platforms,
-        description,
-        status: "active",
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-      });
-
-      alert("✅ Group added successfully!");
-      document.getElementById("groupForm").reset();
-      document.getElementById("submitBtn").innerText = "Submit Group";
-
+      if (editingId) {
+        // UPDATE GROUP
+        await db.collection('Groups').doc(editingId).update({
+          name, link, type: groupType, platforms, description,
+          updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        showMessage('✅ Group updated successfully!');
+      } else {
+        // ADD NEW GROUP
+        await db.collection('Groups').add({
+          name, link, type: groupType, platforms, description,
+          status: 'active',
+          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        showMessage('✅ New group added successfully!');
+      }
+      resetForm();
     } catch (error) {
-      alert("❌ Error: " + error.message);
-      document.getElementById("submitBtn").innerText = "Submit Group";
+      showMessage('❌ Database Error: ' + error.message);
+    } finally {
+      setLoading(false);
     }
   });
 
-  // 📋 Fetch Groups List
-  const groupsTable = document.getElementById("groupsTable");
-
-  function renderGroups() {
-    db.collection("Groups").orderBy("timestamp", "desc").onSnapshot(snapshot => {
-      groupsTable.innerHTML = "";
-      snapshot.forEach(doc => {
-        const g = doc.data();
-        const row = `
-          <tr>
-            <td>${g.name}</td>
-            <td><a href="${g.link}" target="_blank">Open Link</a></td>
-            <td>${g.type}</td>
-            <td>${g.platforms ? g.platforms.join(", ") : ""}</td>
-            <td>${g.description || ""}</td>
+  // 📊 RENDER GROUPS TABLE
+  const renderGroups = () => {
+    const tbody = document.getElementById('groupsTable');
+    unsubscribeGroups = db.collection('Groups')
+      .orderBy('createdAt', 'desc')
+      .limit(100)
+      .onSnapshot(snapshot => {
+        tbody.innerHTML = '';
+        const count = snapshot.size;
+        document.getElementById('groupsCount').textContent = count;
+        
+        snapshot.forEach(doc => {
+          const group = doc.data();
+          const date = group.createdAt ? group.createdAt.toDate().toLocaleDateString() : 'N/A';
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td><strong>${group.name || 'Unnamed'}</strong></td>
+            <td><a href="${group.link}" target="_blank" rel="noopener noreferrer">🔗 Open</a></td>
+            <td>${group.type || 'Unknown'}</td>
+            <td>${(group.platforms || []).join(' • ')}</td>
+            <td>${group.description || '-'}</td>
+            <td><span class="status-${group.status || 'unknown'}">${group.status?.toUpperCase() || 'UNKNOWN'}</span></td>
+            <td>${date}</td>
             <td class="actions">
-              <button onclick="editGroup('${doc.id}', '${g.name}', '${g.link}', '${g.type}', '${(g.platforms || []).join(",")}', '${g.description || ""}')">✏️ Edit</button>
-              <button onclick="deleteGroup('${doc.id}')">🗑️ Delete</button>
+              <button class="edit" onclick="editGroup('${doc.id}')" title="Edit Group">✏️</button>
+              <button class="delete" onclick="deleteGroup('${doc.id}')" title="Delete Group">🗑️</button>
             </td>
-          </tr>
-        `;
-        groupsTable.innerHTML += row;
+          `;
+          tbody.appendChild(row);
+        });
+      }, error => {
+        showMessage('❌ Failed to load groups: ' + error.message);
       });
+  };
+
+  // ✏️ EDIT GROUP
+  window.editGroup = async (id) => {
+    editingId = id;
+    const doc = await db.collection('Groups').doc(id).get();
+    if (!doc.exists) return showMessage('❌ Group not found!');
+    
+    const group = doc.data();
+    document.getElementById('name').value = group.name || '';
+    document.getElementById('link').value = group.link || '';
+    document.getElementById('groupType').value = group.type || '';
+    document.getElementById('description').value = group.description || '';
+    
+    // Set platforms
+    document.querySelectorAll('.platform').forEach(cb => {
+      cb.checked = (group.platforms || []).includes(cb.value);
     });
-  }
-  renderGroups();
+    
+    document.getElementById('formTitle').textContent = '✏️ Edit Group';
+    document.getElementById('submitBtn').textContent = '✅ Update Group';
+    document.getElementById('cancelBtn').style.display = 'inline-block';
+    
+    // Scroll to form
+    document.querySelector('.form-section').scrollIntoView({ behavior: 'smooth' });
+  };
 
-  // ✏️ Edit Group
-  function editGroup(id, name, link, type, platforms, description) {
-    document.getElementById("name").value = name;
-    document.getElementById("link").value = link;
-    document.getElementById("groupType").value = type;
-    document.getElementById("description").value = description;
-
-    document.querySelectorAll(".platform").forEach(cb => {
-      cb.checked = platforms.includes(cb.value);
-    });
-
-    document.getElementById("submitBtn").innerText = "Update Group";
-    document.getElementById("groupForm").onsubmit = async (e) => {
-      e.preventDefault();
-      const newName = document.getElementById("name").value.trim();
-      const newLink = document.getElementById("link").value.trim();
-      const newType = document.getElementById("groupType").value;
-      const newDesc = document.getElementById("description").value.trim();
-      const newPlatforms = Array.from(document.querySelectorAll(".platform:checked")).map(cb => cb.value);
-
-      await db.collection("Groups").doc(id).update({
-        name: newName,
-        link: newLink,
-        type: newType,
-        description: newDesc,
-        platforms: newPlatforms
-      });
-
-      alert("✅ Group updated!");
-      document.getElementById("groupForm").reset();
-      document.getElementById("submitBtn").innerText = "Submit Group";
-      document.getElementById("groupForm").onsubmit = null;
-    };
-  }
-
-  // 🗑️ Delete Group
-  async function deleteGroup(id) {
-    if (confirm("⚠️ Are you sure you want to delete this group?")) {
-      await db.collection("Groups").doc(id).delete();
-      alert("🗑️ Group deleted");
+  // 🗑️ DELETE GROUP
+  window.deleteGroup = async (id) => {
+    if (!confirm('⚠️ Delete this group permanently? This cannot be undone!')) return;
+    
+    try {
+      await db.collection('Groups').doc(id).delete();
+      showMessage('🗑️ Group deleted successfully!');
+    } catch (error) {
+      showMessage('❌ Delete failed: ' + error.message);
     }
-  }
-</script>
+  };
 
+  // 🚀 INITIALIZE APP
+  document.querySelector('.form-section').style.display = 'none';
+  initAuth();
+
+  // 🧹 CLEANUP
+  window.addEventListener('beforeunload', () => {
+    if (unsubscribeAuth) unsubscribeAuth();
+    if (unsubscribeGroups) unsubscribeGroups();
+  });
+</script>
 </body>
 </html>
