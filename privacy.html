@@ -227,7 +227,7 @@
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 
 <script>
-  // ✅ Firebase config (NEW PROJECT: Jokerludogroup)
+  // 🔥 Firebase config (Jokerludogroup - NEW PROJECT)
   const firebaseConfig = {
     apiKey: "AIzaSyAMhdxU4pDqby11Ymixup2aCoEY5eZ3e7M",
     authDomain: "jokerludogroup-a8c97.firebaseapp.com",
@@ -243,14 +243,14 @@
 
   const auth = firebase.auth();
 
-  // ✅ Allowed Admin Email (UPDATED)
+  // ✅ ONLY THIS EMAIL IS ADMIN
   const ADMIN_EMAIL = "rchaurasiyaself@gmail.com";
 
-  // ✅ Login Form Submit
+  // 🔐 Admin Login
   document.getElementById("adminLoginForm").addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const email = document.getElementById("adminEmail").value;
+    const email = document.getElementById("adminEmail").value.trim();
     const password = document.getElementById("adminPassword").value;
     const loginStatus = document.getElementById("loginStatus");
     const logoutBtn = document.getElementById("logoutBtn");
@@ -260,15 +260,14 @@
       const user = userCredential.user;
 
       if (user.email === ADMIN_EMAIL) {
-        loginStatus.innerHTML = "✅ Logged in as Admin. Redirecting...";
+        loginStatus.innerHTML = "✅ Admin login successful. Redirecting...";
         logoutBtn.style.display = "block";
 
         setTimeout(() => {
           window.location.href = "admin.html";
         }, 1000);
-
       } else {
-        loginStatus.innerHTML = "⛔ Not Authorized";
+        loginStatus.innerHTML = "⛔ You are not authorized";
         await auth.signOut();
       }
     } catch (error) {
@@ -276,7 +275,7 @@
     }
   });
 
-  // ✅ Auth State Protection
+  // 🔄 Already Logged-in Protection
   auth.onAuthStateChanged((user) => {
     if (user && user.email === ADMIN_EMAIL) {
       if (window.location.pathname.includes("privacy.html")) {
@@ -285,13 +284,39 @@
     }
   });
 
-  // ✅ Logout
+  // 🚪 Logout
   document.getElementById("logoutBtn").addEventListener("click", async () => {
     await auth.signOut();
     document.getElementById("loginStatus").innerHTML = "✅ Logged out";
     document.getElementById("logoutBtn").style.display = "none";
   });
+
+  // 🔑 Forgot Password (RESET)
+  document.getElementById("forgotPasswordLink").addEventListener("click", async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById("adminEmail").value.trim();
+    const loginStatus = document.getElementById("loginStatus");
+
+    if (!email) {
+      loginStatus.innerHTML = "⚠️ Please enter your email first";
+      return;
+    }
+
+    try {
+      await auth.sendPasswordResetEmail(email);
+      loginStatus.innerHTML = "✅ Password reset link sent to your email";
+    } catch (error) {
+      loginStatus.innerHTML = "⚠️ " + error.message;
+    }
+  });
 </script>
+   <p style="margin-top:10px;">
+  <a href="#" id="forgotPasswordLink" style="color:blue; cursor:pointer;">
+    Forgot Password?
+  </a>
+</p>
+
 
   <footer>
     <div class="footer-links">
