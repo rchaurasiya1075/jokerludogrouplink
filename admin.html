@@ -231,7 +231,7 @@
 </div>
 
 <script>
-  // 🔥 SECURE FIREBASE CONFIG - DON'T EXPOSE IN PRODUCTION
+  // 🔥 FIREBASE CONFIG (UNCHANGED)
   const firebaseConfig = {
     apiKey: "AIzaSyCwdlnLXcXauh3_YmY6cwswqzcieMOHI0Y",
     authDomain: "ludogroup-a530a.firebaseapp.com",
@@ -241,226 +241,189 @@
     appId: "1:838421084676:web:9e02670e280eafcd86d351"
   };
 
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+  // ✅ SAFE INIT
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
+
   const auth = firebase.auth();
   const db = firebase.firestore();
 
-  // 🔥 STATE MANAGEMENT
   let editingId = null;
-  let authChecked = false;
-  let unsubscribeAuth = null;
   let unsubscribeGroups = null;
 
-  // 🔒 UTILITY FUNCTIONS
-  const sanitizeInput = (str) => {
-    const div = document.createElement('div');
-    div.textContent = str;
-    return div.innerHTML.replace(/[^\w\s😀-🙏🀄🎯🎮📱📛🔗⚽🏏🎾🎲]/g, '').trim().substring(0, 100);
+  // 🔒 SAFE TEXT SANITIZER (URL KE LIYE NAHI)
+  const cleanText = (str) =>
+    str.replace(/[<>]/g, "").trim().substring(0, 200);
+
+  const showMessage = (msg, type = "error") => {
+    const box = document.getElementById("errorMsg");
+    box.textContent = msg;
+    box.className = `message ${type}`;
+    box.style.display = "block";
+    setTimeout(() => box.style.display = "none", 4000);
   };
 
-  const showMessage = (msg, type = 'error') => {
-    const msgDiv = document.getElementById('errorMsg');
-    msgDiv.textContent = msg;
-    msgDiv.className = `message ${type}`;
-    msgDiv.style.display = 'block';
-    setTimeout(() => msgDiv.style.display = 'none', 5000);
-  };
+  // 🔐 AUTH CHECK
+  auth.onAuthStateChanged(async (user) => {
+    document.getElementById("loadingMsg").style.display = "none";
 
-  const setLoading = (loading = true) => {
-    const btn = document.getElementById('submitBtn');
-    if (loading) {
-      btn.disabled = true;
-      btn.innerHTML = '⏳ Processing... <span class="spinner"></span>';
-      btn.classList.add('loading');
-    } else {
-      btn.disabled = false;
-      btn.innerHTML = editingId ? '✅ Update Group' : '➕ Add New Group';
-      btn.classList.remove('loading');
-    }
-  };
-
-  // 🔐 ADMIN AUTHENTICATION
-  const initAuth = async () => {
-    unsubscribeAuth = auth.onAuthStateChanged(async (user) => {
-      if (authChecked) return;
-      authChecked = true;
-      
-      document.getElementById('loadingMsg').style.display = 'none';
-
-      if (!user) {
-        window.location.href = "privacy.html";
-        return;
-      }
-
-      try {
-        // 🔥 CHECK ADMIN PRIVILEGES
-        const adminDoc = await db.collection('admins').doc(user.uid).get();
-        if (!adminDoc.exists) {
-          showMessage('🚫 Access Denied: Admin privileges required!');
-          setTimeout(() => logoutApp(), 2000);
-          return;
-        }
-        
-        // ✅ ADMIN APPROVED - LOAD DASHBOARD
-        document.querySelector('.form-section').style.display = 'block';
-        renderGroups();
-        showMessage('✅ Welcome Admin! Dashboard loaded.', 'success');
-        
-      } catch (error) {
-        showMessage('❌ Auth Error: ' + error.message);
-        logoutApp();
-      }
-    });
-  };
-
-  // 🚪 SECURE LOGOUT
-  const logoutApp = () => {
-    if (unsubscribeAuth) unsubscribeAuth();
-    if (unsubscribeGroups) unsubscribeGroups();
-    auth.signOut().then(() => {
-      window.location.href = "privacy.html";
-    }).catch(() => {
-      window.location.href = "privacy.html";
-    });
-  };
-
-  // 📝 FORM MANAGEMENT
-  const resetForm = () => {
-    document.getElementById('groupForm').reset();
-    document.querySelector('.platform[value="WhatsApp"]').checked = true;
-    document.getElementById('formTitle').textContent = '➕ Add New Group';
-    document.getElementById('submitBtn').textContent = '➕ Add New Group';
-    document.getElementById('cancelBtn').style.display = 'none';
-    editingId = null;
-  };
-
-  const cancelEdit = () => resetForm();
-
-  // ➕ MAIN FORM SUBMISSION
-  document.getElementById('groupForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    setLoading(true);
-
-    const name = sanitizeInput(document.getElementById('name').value);
-    const link = sanitizeInput(document.getElementById('link').value);
-    const groupType = document.getElementById('groupType').value;
-    const description = sanitizeInput(document.getElementById('description').value);
-    const platforms = Array.from(document.querySelectorAll('.platform:checked')).map(cb => cb.value);
-
-    if (!name || !link || !groupType || !platforms.length) {
-      showMessage('⚠️ Please fill all required fields correctly!');
-      setLoading(false);
+    if (!user) {
+      location.href = "privacy.html";
       return;
     }
 
     try {
+      const adminSnap = await db.collection("admins").doc(user.uid).get();
+      if (!adminSnap.exists) {
+        showMessage("🚫 Admin access required");
+        auth.signOut();
+        return;
+      }
+
+      document.querySelector(".form-section").style.display = "block";
+      loadGroups();
+      showMessage("✅ Admin panel loaded", "success");
+    } catch (err) {
+      showMessage(err.message);
+      auth.signOut();
+    }
+  });
+
+  // ➕ ADD / UPDATE GROUP
+  document.getElementById("groupForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const name = cleanText(nameInput.value);
+    const link = linkInput.value.trim(); // ❗ URL NOT sanitized
+    const groupType = groupTypeInput.value;
+    const description = cleanText(descriptionInput.value);
+    const platforms = [...document.querySelectorAll(".platform:checked")].map(p => p.value);
+
+    if (!name || !link || !groupType || !platforms.length) {
+      showMessage("⚠️ Fill all required fields");
+      return;
+    }
+
+    const data = {
+      name,
+      link,
+      type: groupType,
+      platforms,
+      description,
+      status: "active",
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    };
+
+    try {
       if (editingId) {
-        // UPDATE GROUP
-        await db.collection('Groups').doc(editingId).update({
-          name, link, type: groupType, platforms, description,
-          updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-        });
-        showMessage('✅ Group updated successfully!');
+        await db.collection("Groups").doc(editingId).update(data);
+        showMessage("✅ Group updated", "success");
       } else {
-        // ADD NEW GROUP
-        await db.collection('Groups').add({
-          name, link, type: groupType, platforms, description,
-          status: 'active',
-          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-          updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+        await db.collection("Groups").add({
+          ...data,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
         });
-        showMessage('✅ New group added successfully!');
+        showMessage("✅ Group added", "success");
       }
       resetForm();
-    } catch (error) {
-      showMessage('❌ Database Error: ' + error.message);
-    } finally {
-      setLoading(false);
+    } catch (err) {
+      showMessage(err.message);
     }
   });
 
-  // 📊 RENDER GROUPS TABLE
-  const renderGroups = () => {
-    const tbody = document.getElementById('groupsTable');
-    unsubscribeGroups = db.collection('Groups')
-      .orderBy('createdAt', 'desc')
-      .limit(100)
+  // 📊 LOAD GROUPS (FIXED ORDER ISSUE)
+  function loadGroups() {
+    const tbody = document.getElementById("groupsTable");
+
+    unsubscribeGroups = db.collection("Groups")
+      .orderBy("updatedAt", "desc")
       .onSnapshot(snapshot => {
-        tbody.innerHTML = '';
-        const count = snapshot.size;
-        document.getElementById('groupsCount').textContent = count;
-        
+        tbody.innerHTML = "";
+        groupsCount.textContent = snapshot.size;
+
         snapshot.forEach(doc => {
-          const group = doc.data();
-          const date = group.createdAt ? group.createdAt.toDate().toLocaleDateString() : 'N/A';
-          const row = document.createElement('tr');
-          row.innerHTML = `
-            <td><strong>${group.name || 'Unnamed'}</strong></td>
-            <td><a href="${group.link}" target="_blank" rel="noopener noreferrer">🔗 Open</a></td>
-            <td>${group.type || 'Unknown'}</td>
-            <td>${(group.platforms || []).join(' • ')}</td>
-            <td>${group.description || '-'}</td>
-            <td><span class="status-${group.status || 'unknown'}">${group.status?.toUpperCase() || 'UNKNOWN'}</span></td>
-            <td>${date}</td>
-            <td class="actions">
-              <button class="edit" onclick="editGroup('${doc.id}')" title="Edit Group">✏️</button>
-              <button class="delete" onclick="deleteGroup('${doc.id}')" title="Delete Group">🗑️</button>
-            </td>
+          const g = doc.data();
+          const date =
+            g.createdAt?.toDate().toLocaleDateString() ||
+            g.updatedAt?.toDate().toLocaleDateString() ||
+            "N/A";
+
+          tbody.innerHTML += `
+            <tr>
+              <td><strong>${g.name}</strong></td>
+              <td><a href="${g.link}" target="_blank">🔗 Open</a></td>
+              <td>${g.type}</td>
+              <td>${(g.platforms || []).join(" • ")}</td>
+              <td>${g.description || "-"}</td>
+              <td><b>${(g.status || "active").toUpperCase()}</b></td>
+              <td>${date}</td>
+              <td class="actions">
+                <button class="edit" onclick="editGroup('${doc.id}')">✏️</button>
+                <button class="delete" onclick="deleteGroup('${doc.id}')">🗑️</button>
+              </td>
+            </tr>
           `;
-          tbody.appendChild(row);
         });
-      }, error => {
-        showMessage('❌ Failed to load groups: ' + error.message);
-      });
-  };
+      }, err => showMessage(err.message));
+  }
 
-  // ✏️ EDIT GROUP
+  // ✏️ EDIT
   window.editGroup = async (id) => {
+    const snap = await db.collection("Groups").doc(id).get();
+    if (!snap.exists) return;
+
+    const g = snap.data();
     editingId = id;
-    const doc = await db.collection('Groups').doc(id).get();
-    if (!doc.exists) return showMessage('❌ Group not found!');
-    
-    const group = doc.data();
-    document.getElementById('name').value = group.name || '';
-    document.getElementById('link').value = group.link || '';
-    document.getElementById('groupType').value = group.type || '';
-    document.getElementById('description').value = group.description || '';
-    
-    // Set platforms
-    document.querySelectorAll('.platform').forEach(cb => {
-      cb.checked = (group.platforms || []).includes(cb.value);
+
+    nameInput.value = g.name;
+    linkInput.value = g.link;
+    groupTypeInput.value = g.type;
+    descriptionInput.value = g.description || "";
+
+    document.querySelectorAll(".platform").forEach(cb => {
+      cb.checked = (g.platforms || []).includes(cb.value);
     });
-    
-    document.getElementById('formTitle').textContent = '✏️ Edit Group';
-    document.getElementById('submitBtn').textContent = '✅ Update Group';
-    document.getElementById('cancelBtn').style.display = 'inline-block';
-    
-    // Scroll to form
-    document.querySelector('.form-section').scrollIntoView({ behavior: 'smooth' });
+
+    formTitle.textContent = "✏️ Edit Group";
+    submitBtn.textContent = "✅ Update Group";
+    cancelBtn.style.display = "inline-block";
   };
 
-  // 🗑️ DELETE GROUP
+  // 🗑️ DELETE
   window.deleteGroup = async (id) => {
-    if (!confirm('⚠️ Delete this group permanently? This cannot be undone!')) return;
-    
-    try {
-      await db.collection('Groups').doc(id).delete();
-      showMessage('🗑️ Group deleted successfully!');
-    } catch (error) {
-      showMessage('❌ Delete failed: ' + error.message);
-    }
+    if (!confirm("Delete this group?")) return;
+    await db.collection("Groups").doc(id).delete();
+    showMessage("🗑️ Group deleted", "success");
   };
 
-  // 🚀 INITIALIZE APP
-  document.querySelector('.form-section').style.display = 'none';
-  initAuth();
+  // 🔄 RESET
+  function resetForm() {
+    groupForm.reset();
+    document.querySelector('.platform[value="WhatsApp"]').checked = true;
+    editingId = null;
+    cancelBtn.style.display = "none";
+    submitBtn.textContent = "➕ Add New Group";
+    formTitle.textContent = "➕ Add New Group";
+  }
 
-  // 🧹 CLEANUP
-  window.addEventListener('beforeunload', () => {
-    if (unsubscribeAuth) unsubscribeAuth();
-    if (unsubscribeGroups) unsubscribeGroups();
-  });
+  function cancelEdit() {
+    resetForm();
+  }
+
+  function logoutApp() {
+    auth.signOut().then(() => location.href = "privacy.html");
+  }
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
