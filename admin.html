@@ -1,467 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Panel - Manage Groups</title>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-  <style>
-    * { box-sizing: border-box; }
-    body { 
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-      margin: 0; 
-      padding: 20px; 
-      min-height: 100vh;
-    }
-    .container { 
-      max-width: 1200px; 
-      margin: auto; 
-      background: rgba(255,255,255,0.95); 
-      padding: 30px; 
-      border-radius: 20px; 
-      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-      backdrop-filter: blur(10px);
-    }
-    .header { 
-      text-align: center; 
-      margin-bottom: 30px; 
-      color: #2c3e50;
-    }
-    .header h1 { 
-      font-size: 2.5em; 
-      margin: 0; 
-      background: linear-gradient(45deg, #667eea, #764ba2); 
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .logout { 
-      background: linear-gradient(45deg, #ff6b6b, #ee5a52); 
-      margin-bottom: 20px; 
-      float: right; 
-      padding: 12px 24px; 
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-    .logout:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(255,107,107,0.3); }
-    
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 40px; }
-    @media (max-width: 768px) { .form-grid { grid-template-columns: 1fr; } }
-    
-    input, select, textarea {
-      width: 100%; 
-      padding: 15px; 
-      margin: 8px 0; 
-      border: 2px solid #e1e8ed; 
-      border-radius: 12px;
-      font-size: 16px;
-      transition: all 0.3s ease;
-      background: rgba(255,255,255,0.8);
-    }
-    input:focus, select:focus, textarea:focus {
-      outline: none; 
-      border-color: #667eea; 
-      box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
-      transform: translateY(-2px);
-    }
-    
-    .checkbox-group { 
-      display: flex; 
-      flex-wrap: wrap; 
-      gap: 15px; 
-      margin: 15px 0; 
-    }
-    .checkbox-group label { 
-      display: flex; 
-      align-items: center; 
-      gap: 8px; 
-      cursor: pointer; 
-      padding: 10px 15px; 
-      border-radius: 8px; 
-      background: rgba(102,126,234,0.1);
-      transition: all 0.3s ease;
-      font-weight: 500;
-    }
-    .checkbox-group label:hover { background: rgba(102,126,234,0.2); }
-    
-    button {
-      padding: 15px 30px; 
-      background: linear-gradient(45deg, #667eea, #764ba2); 
-      color: white; 
-      border: none; 
-      border-radius: 12px; 
-      cursor: pointer; 
-      font-size: 16px; 
-      font-weight: 600;
-      transition: all 0.3s ease;
-      margin: 5px;
-    }
-    button:hover:not(:disabled) { 
-      transform: translateY(-3px); 
-      box-shadow: 0 15px 30px rgba(102,126,234,0.4); 
-    }
-    button:disabled { 
-      background: #ccc; 
-      cursor: not-allowed; 
-      transform: none; 
-    }
-    
-    .loading { background: linear-gradient(45deg, #28a745, #20c997) !important; }
-    .cancel { background: linear-gradient(45deg, #6c757d, #495057) !important; }
-    
-    table { 
-      width: 100%; 
-      border-collapse: collapse; 
-      margin-top: 20px; 
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
-    th { 
-      background: linear-gradient(45deg, #667eea, #764ba2); 
-      color: white; 
-      padding: 20px; 
-      text-align: left; 
-      font-weight: 600;
-    }
-    td { 
-      padding: 20px; 
-      border-bottom: 1px solid #eee; 
-    }
-    tr:hover { background: rgba(102,126,234,0.05); }
-    
-    .status-active { color: #28a745; font-weight: bold; }
-    .status-inactive { color: #dc3545; font-weight: bold; }
-    
-    .actions button { 
-      padding: 8px 12px; 
-      margin: 0 5px 0 0; 
-      font-size: 14px; 
-    }
-    .actions .edit { background: linear-gradient(45deg, #17a2b8, #138496); }
-    .actions .delete { background: linear-gradient(45deg, #dc3545, #c82333); }
-    
-    .message { 
-      padding: 15px 20px; 
-      border-radius: 12px; 
-      margin: 20px 0; 
-      font-weight: 500;
-    }
-    .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
-    .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-    
-    #loadingMsg { 
-      text-align: center; 
-      padding: 40px; 
-      color: #666; 
-      font-size: 18px;
-    }
-    
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    .spinner { display: inline-block; width: 20px; height: 20px; border: 3px solid rgba(255,255,255,0.3); border-radius: 50%; border-top-color: #fff; animation: spin 1s ease-in-out infinite; }
-  </style>
+<meta charset="UTF-8">
+<title>Admin Dashboard | JokerLudo Group</title>
+<meta name="robots" content="noindex, nofollow">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+body{
+  font-family:Poppins,sans-serif;
+  background:#f4f6fb;
+  margin:0;
+  padding:20px;
+}
+h1{text-align:center;color:#2d2e52}
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:30px;
+  background:#fff;
+  box-shadow:0 10px 30px rgba(0,0,0,.1)
+}
+th,td{
+  padding:12px;
+  border:1px solid #ddd;
+  text-align:left;
+  font-size:14px
+}
+th{background:#2d2e52;color:#fff}
+.btn{
+  padding:6px 12px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  font-weight:600
+}
+.approve{background:#28a745;color:#fff}
+.delete{background:#dc3545;color:#fff}
+.logout{
+  background:#fd7e14;
+  color:#fff;
+  padding:10px 16px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  display:block;
+  margin:20px auto;
+}
+.status-approved{color:#28a745;font-weight:600}
+.status-pending{color:#dc3545;font-weight:600}
+</style>
 </head>
+
 <body>
 
-<div class="container">
-  <button class="logout" onclick="logoutApp()" id="logoutBtn">🚪 Logout</button>
-  <div class="header">
-    <h1>📌 Admin Panel - Group Manager</h1>
-    <p>Complete control over your gaming groups</p>
-  </div>
-  
-  <div id="loadingMsg">🔄 Initializing Admin Panel... <span class="spinner"></span></div>
-  <div id="errorMsg" class="message error" style="display:none;"></div>
+<h1>🎲 JokerLudo Admin Dashboard</h1>
+<button class="logout" id="logoutBtn">🚪 Logout</button>
 
-  <!-- Admin Form -->
-  <div class="form-section">
-    <h3 id="formTitle">➕ Add New Group</h3>
-    <form id="groupForm">
-      <div class="form-grid">
-        <div>
-          <input type="text" id="name" placeholder="📛 Group Name" maxlength="100" required>
-          <input type="url" id="link" placeholder="🔗 WhatsApp/Telegram Link" maxlength="500" required>
-        </div>
-        <div>
-          <select id="groupType" required>
-            <option value="">🎮 Select Game Type</option>
-            <option value="Cricket">🏏 Cricket</option>
-            <option value="Football">⚽ Football</option>
-            <option value="Tennis">🎾 Tennis</option>
-            <option value="Ludo">🎲 Ludo</option>
-            <option value="Other">📌 Other Games</option>
-          </select>
-          <textarea id="description" placeholder="📝 Short Description (Optional)" maxlength="500"></textarea>
-        </div>
-      </div>
-      
-      <label>📱 Platforms</label>
-      <div class="checkbox-group">
-        <label><input type="checkbox" class="platform" value="WhatsApp" checked> 📱 WhatsApp</label>
-        <label><input type="checkbox" class="platform" value="Telegram"> 💬 Telegram</label>
-        <label><input type="checkbox" class="platform" value="Facebook"> 📘 Facebook</label>
-        <label><input type="checkbox" class="platform" value="Other"> 🌐 Other</label>
-      </div>
-      
-      <button type="submit" id="submitBtn">➕ Add New Group</button>
-      <button type="button" id="cancelBtn" class="cancel" onclick="cancelEdit()" style="display:none;">❌ Cancel Edit</button>
-    </form>
-  </div>
+<table>
+<thead>
+<tr>
+  <th>Name</th>
+  <th>Type</th>
+  <th>Platform</th>
+  <th>Status</th>
+  <th>Action</th>
+</tr>
+</thead>
+<tbody id="groupList">
+<tr><td colspan="5">Loading groups...</td></tr>
+</tbody>
+</table>
 
-  <!-- Groups Table -->
-  <h3>📊 Groups Dashboard (<span id="groupsCount">0</span>)</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>📛 Name</th>
-        <th>🔗 Link</th>
-        <th>🏷️ Game Type</th>
-        <th>📱 Platforms</th>
-        <th>📝 Description</th>
-        <th>Status</th>
-        <th>Date Added</th>
-        <th>⚙️ Actions</th>
-      </tr>
-    </thead>
-    <tbody id="groupsTable"></tbody>
-  </table>
-</div>
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
 <script>
-  // 🔥 FIREBASE CONFIG (UNCHANGED)
-  const firebaseConfig = {
-    apiKey: "AIzaSyCwdlnLXcXauh3_YmY6cwswqzcieMOHI0Y",
-    authDomain: "ludogroup-a530a.firebaseapp.com",
-    projectId: "ludogroup-a530a",
-    storageBucket: "ludogroup-a530a.appspot.com",
-    messagingSenderId: "838421084676",
-    appId: "1:838421084676:web:9e02670e280eafcd86d351"
-  };
+const firebaseConfig = {
+  apiKey: "AIzaSyAMhdxU4pDqby11Ymixup2aCoEY5eZ3e7M",
+  authDomain: "jokerludogroup-a8c97.firebaseapp.com",
+  projectId: "jokerludogroup-a8c97"
+};
 
-  // ✅ SAFE INIT
-  if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
+if(!firebase.apps.length){
+  firebase.initializeApp(firebaseConfig);
+}
+
+const auth = firebase.auth();
+const db = firebase.firestore();
+const ADMIN_EMAIL = "rchaurasiyaself@gmail.com";
+const list = document.getElementById("groupList");
+
+/* 🔐 AUTH CHECK */
+auth.onAuthStateChanged(user=>{
+  if(!user || user.email !== ADMIN_EMAIL){
+    alert("Unauthorized");
+    window.location.href="admin-login.html";
+  }else{
+    loadGroups();
   }
+});
 
-  const auth = firebase.auth();
-  const db = firebase.firestore();
-
-  let editingId = null;
-  let unsubscribeGroups = null;
-
-  // 🔒 SAFE TEXT SANITIZER (URL KE LIYE NAHI)
-  const cleanText = (str) =>
-    str.replace(/[<>]/g, "").trim().substring(0, 200);
-
-  const showMessage = (msg, type = "error") => {
-    const box = document.getElementById("errorMsg");
-    box.textContent = msg;
-    box.className = `message ${type}`;
-    box.style.display = "block";
-    setTimeout(() => box.style.display = "none", 4000);
-  };
-
-  // 🔐 AUTH CHECK
-  auth.onAuthStateChanged(async (user) => {
-    document.getElementById("loadingMsg").style.display = "none";
-
-    if (!user) {
-      location.href = "privacy.html";
-      return;
-    }
-
-    try {
-      const adminSnap = await db.collection("admins").doc(user.uid).get();
-      if (!adminSnap.exists) {
-        showMessage("🚫 Admin access required");
-        auth.signOut();
+/* 🔥 LOAD GROUPS */
+function loadGroups(){
+  db.collection("Groups")
+    .orderBy("timestamp","desc")
+    .onSnapshot(snapshot=>{
+      list.innerHTML="";
+      if(snapshot.empty){
+        list.innerHTML="<tr><td colspan='5'>No groups found</td></tr>";
         return;
       }
 
-      document.querySelector(".form-section").style.display = "block";
-      loadGroups();
-      showMessage("✅ Admin panel loaded", "success");
-    } catch (err) {
-      showMessage(err.message);
-      auth.signOut();
-    }
-  });
+      snapshot.forEach(doc=>{
+        const g = doc.data();
+        const tr = document.createElement("tr");
 
-  // ➕ ADD / UPDATE GROUP
-  document.getElementById("groupForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const name = cleanText(nameInput.value);
-    const link = linkInput.value.trim(); // ❗ URL NOT sanitized
-    const groupType = groupTypeInput.value;
-    const description = cleanText(descriptionInput.value);
-    const platforms = [...document.querySelectorAll(".platform:checked")].map(p => p.value);
-
-    if (!name || !link || !groupType || !platforms.length) {
-      showMessage("⚠️ Fill all required fields");
-      return;
-    }
-
-    const data = {
-      name,
-      link,
-      type: groupType,
-      platforms,
-      description,
-      status: "active",
-      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-    };
-
-    try {
-      if (editingId) {
-        await db.collection("Groups").doc(editingId).update(data);
-        showMessage("✅ Group updated", "success");
-      } else {
-        await db.collection("Groups").add({
-          ...data,
-          createdAt: firebase.firestore.FieldValue.serverTimestamp()
-        });
-        showMessage("✅ Group added", "success");
-      }
-      resetForm();
-    } catch (err) {
-      showMessage(err.message);
-    }
-  });
-
-  // 📊 LOAD GROUPS (FIXED ORDER ISSUE)
-  function loadGroups() {
-    const tbody = document.getElementById("groupsTable");
-
-    unsubscribeGroups = db.collection("Groups")
-      .orderBy("updatedAt", "desc")
-      .onSnapshot(snapshot => {
-        tbody.innerHTML = "";
-        groupsCount.textContent = snapshot.size;
-
-        snapshot.forEach(doc => {
-          const g = doc.data();
-          const date =
-            g.createdAt?.toDate().toLocaleDateString() ||
-            g.updatedAt?.toDate().toLocaleDateString() ||
-            "N/A";
-
-          tbody.innerHTML += `
-            <tr>
-              <td><strong>${g.name}</strong></td>
-              <td><a href="${g.link}" target="_blank">🔗 Open</a></td>
-              <td>${g.type}</td>
-              <td>${(g.platforms || []).join(" • ")}</td>
-              <td>${g.description || "-"}</td>
-              <td><b>${(g.status || "active").toUpperCase()}</b></td>
-              <td>${date}</td>
-              <td class="actions">
-                <button class="edit" onclick="editGroup('${doc.id}')">✏️</button>
-                <button class="delete" onclick="deleteGroup('${doc.id}')">🗑️</button>
-              </td>
-            </tr>
-          `;
-        });
-      }, err => showMessage(err.message));
-  }
-
-  // ✏️ EDIT
-  window.editGroup = async (id) => {
-    const snap = await db.collection("Groups").doc(id).get();
-    if (!snap.exists) return;
-
-    const g = snap.data();
-    editingId = id;
-
-    nameInput.value = g.name;
-    linkInput.value = g.link;
-    groupTypeInput.value = g.type;
-    descriptionInput.value = g.description || "";
-
-    document.querySelectorAll(".platform").forEach(cb => {
-      cb.checked = (g.platforms || []).includes(cb.value);
+        tr.innerHTML = `
+          <td>${g.name || "-"}</td>
+          <td>${g.type || "-"}</td>
+          <td>${(g.platforms||[]).join(", ")}</td>
+          <td class="${g.status==='approved'?'status-approved':'status-pending'}">
+            ${g.status || "pending"}
+          </td>
+          <td>
+            ${g.status!=="approved" ?
+              `<button class="btn approve" onclick="approveGroup('${doc.id}')">Approve</button>`
+              : ""
+            }
+            <button class="btn delete" onclick="deleteGroup('${doc.id}')">Delete</button>
+          </td>
+        `;
+        list.appendChild(tr);
+      });
     });
+}
 
-    formTitle.textContent = "✏️ Edit Group";
-    submitBtn.textContent = "✅ Update Group";
-    cancelBtn.style.display = "inline-block";
-  };
-
-  // 🗑️ DELETE
-  window.deleteGroup = async (id) => {
-    if (!confirm("Delete this group?")) return;
-    await db.collection("Groups").doc(id).delete();
-    showMessage("🗑️ Group deleted", "success");
-  };
-
-  // 🔄 RESET
-  function resetForm() {
-    groupForm.reset();
-    document.querySelector('.platform[value="WhatsApp"]').checked = true;
-    editingId = null;
-    cancelBtn.style.display = "none";
-    submitBtn.textContent = "➕ Add New Group";
-    formTitle.textContent = "➕ Add New Group";
+/* ✅ APPROVE */
+function approveGroup(id){
+  if(confirm("Approve this group?")){
+    db.collection("Groups").doc(id).update({
+      status:"approved"
+    });
   }
+}
 
-  function cancelEdit() {
-    resetForm();
+/* ❌ DELETE */
+function deleteGroup(id){
+  if(confirm("Delete this group permanently?")){
+    db.collection("Groups").doc(id).delete();
   }
+}
 
-  function logoutApp() {
-    auth.signOut().then(() => location.href = "privacy.html");
-  }
-
-  document.getElementById("groupForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-
-  const adminNumber = "91XXXXXXXXXX"; // 🔴 apna WhatsApp number
-
-  const name = document.getElementById("name").value.trim();
-  const link = document.getElementById("link").value.trim();
-  const groupType = document.getElementById("groupType").value;
-  const description = document.getElementById("description").value.trim();
-
-  const platforms = Array.from(
-    document.querySelectorAll(".platform:checked")
-  ).map(cb => cb.value).join(", ");
-
-  if (!name || !link || !groupType) {
-    alert("Please fill all required fields");
-    return;
-  }
-
-  const message = 
-`🆕 New Group Submission
-
-📛 Group Name: ${name}
-🔗 Group Link: ${link}
-🎮 Game Type: ${groupType}
-📱 Platform: ${platforms || "N/A"}
-📝 Description: ${description || "N/A"}
-
-✅ Please approve this group`;
-
-  const whatsappURL =
-    "https://wa.me/" + adminNumber + "?text=" + encodeURIComponent(message);
-
-  window.open(whatsappURL, "_blank");
-
-  this.reset();
-});
+/* 🚪 LOGOUT */
+document.getElementById("logoutBtn").onclick=()=>{
+  auth.signOut().then(()=>{
+    window.location.href="admin-login.html";
+  });
+};
 </script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
