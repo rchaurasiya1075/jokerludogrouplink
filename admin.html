@@ -1,72 +1,158 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Admin Panel</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - JokerLudo</title>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 min-h-screen p-8">
-  <div class="max-w-4xl mx-auto">
-    <h1 class="text-4xl font-bold mb-8">🔧 Admin Panel</h1>
-    
-    <div id="groupsList" class="space-y-4">
-      <!-- Admin groups load here -->
+<body class="bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 min-h-screen p-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-12">
+      <div>
+        <h1 class="text-4xl lg:text-6xl font-black bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">🔧 Admin Dashboard</h1>
+        <p class="text-2xl text-gray-600 font-bold" id="adminEmail">Enter Admin Email</p>
+      </div>
+      <button onclick="logout()" class="bg-gradient-to-r from-red-500 to-red-600 text-white px-12 py-6 rounded-3xl font-black text-xl shadow-2xl hover:shadow-3xl">🚪 Logout</button>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+      <div class="bg-white/90 p-8 rounded-3xl shadow-2xl border">
+        <div class="flex items-center">
+          <div class="p-5 bg-emerald-500 rounded-2xl mr-6"><i class="fas fa-list text-3xl text-white"></i></div>
+          <div><p class="text-gray-600 font-bold text-sm">Total Groups</p><p class="text-4xl font-black text-gray-900" id="totalGroups">0</p></div>
+        </div>
+      </div>
+      <div class="bg-white/90 p-8 rounded-3xl shadow-2xl border">
+        <div class="flex items-center">
+          <div class="p-5 bg-blue-500 rounded-2xl mr-6"><i class="fas fa-play text-3xl text-white"></i></div>
+          <div><p class="text-gray-600 font-bold text-sm">Live Groups</p><p class="text-4xl font-black text-gray-900" id="liveGroups">0</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white/90 rounded-3xl shadow-3xl border overflow-hidden">
+      <div class="p-8 border-b bg-gradient-to-r from-indigo-50 to-purple-50">
+        <div class="flex flex-col lg:flex-row gap-6 items-center">
+          <h2 class="text-4xl font-black text-gray-900 flex-1">📱 All Groups</h2>
+          <input id="searchInput" type="text" placeholder="🔍 Search groups..." class="w-full lg:w-96 px-6 py-4 border-2 border-gray-200 rounded-3xl text-xl focus:border-indigo-500 shadow-lg">
+        </div>
+      </div>
+      <div id="groupsList" class="divide-y divide-gray-100">
+        <div class="p-20 text-center text-gray-400">
+          <i class="fas fa-spinner fa-spin text-5xl mb-8 mx-auto"></i>
+          <h3 class="text-3xl font-bold mb-4">Loading Groups...</h3>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- Firebase + Auth -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-  
   <script>
-  const firebaseConfig = { /* Same config */ };
-  firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
-  const db = firebase.firestore();
-  const ADMIN_EMAIL = "rchaurasiyaself@gmail.com";
-  
-  auth.onAuthStateChanged(user => {
-    if (!user || user.email !== ADMIN_EMAIL) window.location.href = 'login.html';
-    else loadAdminGroups();
-  });
-  
-  async function loadAdminGroups() {
-    const groupsList = document.getElementById('groupsList');
-    const snapshot = await db.collection('Groups').orderBy('timestamp', 'desc').get();
-    
-    groupsList.innerHTML = snapshot.empty ? '<p>No groups</p>' : '';
-    
-    snapshot.forEach(doc => {
-      const group = doc.data();
-      const div = document.createElement('div');
-      div.className = 'bg-white p-6 rounded-lg shadow';
-      div.innerHTML = `
-        <h3 class="font-bold text-xl">${group.name}</h3>
-        <p>${group.link}</p>
-        <p>Type: ${group.type}</p>
-        <div class="flex gap-2 mt-4">
-          <button onclick="editGroup('${doc.id}')" class="bg-blue-500 text-white px-4 py-2 rounded">Edit</button>
-          <button onclick="deleteGroup('${doc.id}')" class="bg-red-500 text-white px-4 py-2 rounded">Delete</button>
-        </div>
-      `;
-      groupsList.appendChild(div);
-    });
-  }
-  
-  window.deleteGroup = async id => {
-    if (confirm('Delete this group?')) {
-      await db.collection('Groups').doc(id).delete();
-      loadAdminGroups();
+    const firebaseConfig = {
+      apiKey: "AIzaSyAMhdxU4pDqby11Ymixup2aCoEY5eZ3e7M",
+      authDomain: "jokerludogroup-a8c97.firebaseapp.com",
+      projectId: "jokerludogroup-a8c97",
+      storageBucket: "jokerludogroup-a8c97.appspot.com",
+      messagingSenderId: "1083106195650",
+      appId: "1:1083106195650:web:fae27e9bb0798e96f4235b"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    const ADMIN_EMAILS = ['rchaurasiyaself@gmail.com']; // YOUR EMAIL
+
+    function checkAdminAccess() {
+      const email = prompt('Admin Email:');
+      if (ADMIN_EMAILS.includes(email)) {
+        document.getElementById('adminEmail').textContent = `Admin: ${email}`;
+        loadGroups();
+        return true;
+      } else {
+        alert('❌ Admin access denied!');
+        window.location.href = 'join.html';
+        return false;
+      }
     }
-  };
-  
-  window.editGroup = id => {
-    const newLink = prompt('Edit link:');
-    if (newLink) {
-      db.collection('Groups').doc(id).update({ link: newLink });
-      loadAdminGroups();
+
+    function loadGroups() {
+      db.collection('ludoGroups').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
+        renderGroups(snapshot.docs);
+        updateStats(snapshot.docs);
+      });
     }
-  };
+
+    function renderGroups(docs) {
+      const container = document.getElementById('groupsList');
+      if (!docs.length) {
+        container.innerHTML = '<div class="p-20 text-center"><h3 class="text-3xl font-bold text-gray-500">No Groups</h3></div>';
+        return;
+      }
+
+      container.innerHTML = docs.map(doc => {
+        const group = doc.data();
+        const status = group.status || 'live';
+        return `
+          <div class="p-8 hover:bg-gray-50 group-row">
+            <div class="lg:grid lg:grid-cols-3 lg:gap-8">
+              <div class="lg:col-span-2">
+                <h3 class="text-3xl font-black text-gray-900 mb-4">${group.name}</h3>
+                <div class="flex flex-wrap gap-4 mb-6">
+                  <span class="px-6 py-3 bg-indigo-100 text-indigo-800 font-bold rounded-2xl text-xl">${group.category}</span>
+                  <span class="px-6 py-3 bg-green-100 text-green-800 font-bold rounded-2xl text-xl">👥 ${group.members || 0}+</span>
+                </div>
+                <p class="text-xl text-gray-600">${group.description}</p>
+              </div>
+              <div class="flex flex-col sm:flex-row gap-4 pt-8 lg:pt-0 lg:border-l lg:pl-8 lg:border-gray-200">
+                <span class="px-8 py-4 ${status === 'live' ? 'bg-emerald-100 text-emerald-800' : 'bg-yellow-100 text-yellow-800'} font-bold rounded-2xl text-xl">
+                  ${status === 'live' ? '✅ LIVE' : '⏸️ PAUSED'}
+                </span>
+                <a href="${group.link}" target="_blank" class="flex-1 bg-emerald-500 text-white px-8 py-4 rounded-2xl font-bold text-xl text-center shadow-xl hover:shadow-2xl">🔗 Test Link</a>
+                <button onclick="toggleStatus('${doc.id}')" class="px-8 py-4 ${status === 'live' ? 'bg-yellow-500 hover:bg-yellow-600' : 'bg-emerald-500 hover:bg-emerald-600'} text-white font-bold rounded-2xl shadow-xl hover:shadow-2xl text-xl">
+                  ${status === 'live' ? '⏸️ Pause' : '▶️ Live'}
+                </button>
+                <button onclick="deleteGroup('${doc.id}')" class="px-8 py-4 bg-red-500 hover:bg-red-600 text-white font-bold rounded-2xl shadow-xl hover:shadow-2xl text-xl">🗑️ Delete</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    window.toggleStatus = async (id) => {
+      const groupSnap = await db.collection('ludoGroups').doc(id).get();
+      const currentStatus = groupSnap.data().status || 'live';
+      const newStatus = currentStatus === 'live' ? 'paused' : 'live';
+      
+      if (confirm(`Set to ${newStatus.toUpperCase()}?`)) {
+        await db.collection('ludoGroups').doc(id).update({ status: newStatus });
+      }
+    };
+
+    window.deleteGroup = async (id) => {
+      if (confirm('Delete permanently?')) {
+        await db.collection('ludoGroups').doc(id).delete();
+      }
+    };
+
+    window.logout = () => window.location.href = 'join.html';
+
+    document.getElementById('searchInput').oninput = (e) => {
+      const term = e.target.value.toLowerCase();
+      document.querySelectorAll('.group-row').forEach(row => {
+        row.style.display = row.textContent.toLowerCase().includes(term) ? 'block' : 'none';
+      });
+    };
+
+    function updateStats(docs) {
+      const total = docs.length;
+      const live = docs.filter(doc => doc.data().status === 'live').length;
+      document.getElementById('totalGroups').textContent = total;
+      document.getElementById('liveGroups').textContent = live;
+    }
+
+    checkAdminAccess();
   </script>
 </body>
 </html>
