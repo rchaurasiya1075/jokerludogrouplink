@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-  <title>लूडो किंग व्हाट्सएप ग्रुप लिंक 2026 | 1200+ Active - JokerLudo</title>
-  <meta name="description" content="✅ 1200+ लाइव लूडो किंग व्हाट्सएप ग्रुप लिंक 2026। कैश टूर्नामेंट फ्री जॉइन!">
+  <!-- 🔥 SEO TITLE -->
+  <title>लूडो ग्रुप लिंक ऐड करें 2026 | फ्री लूडो किंग ग्रुप सबमिट - JokerLudo</title>
+  <meta name="description" content="✅ अपना लूडो किंग व्हाट्सएप ग्रुप 30 सेकंड में LIVE करें। फ्री सबमिशन!">
   
   <!-- 🔥 DARK GAMING THEME -->
   <meta charset="UTF-8">
@@ -11,6 +12,10 @@
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  
+  <!-- 🔥 FIREBASE v10 -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 </head>
 
 <body>
@@ -23,7 +28,7 @@
     <ul class="nav-menu">
       <li><a href="index.html" class="nav-link">🏠 होम</a></li>
       <li><a href="join.html" class="nav-link">👥 लाइव ग्रुप</a></li>
-      <li><a href="Addgrouplink.html" class="nav-link">➕ ऐड करें</a></li>
+      <li><a href="Addgrouplink.html" class="nav-link active">➕ ऐड करें</a></li>
       <li><a href="privacy.html" class="nav-link">🔐 प्राइवेसी</a></li>
       <li><a href="contact.html" class="nav-link">📧 संपर्क</a></li>
     </ul>
@@ -36,67 +41,103 @@
     <ul>
       <li><a href="index.html" class="mobile-nav-link">🏠 होम</a></li>
       <li><a href="join.html" class="mobile-nav-link">👥 लाइव ग्रुप</a></li>
-      <li><a href="Addgrouplink.html" class="mobile-nav-link">➕ ऐड करें</a></li>
+      <li><a href="Addgrouplink.html" class="mobile-nav-link active">➕ ऐड करें</a></li>
       <li><a href="privacy.html" class="mobile-nav-link">🔐 प्राइवेसी</a></li>
       <li><a href="contact.html" class="mobile-nav-link">📧 संपर्क</a></li>
     </ul>
   </nav>
 
-  <!-- 🔥 MAIN CONTENT -->
+  <!-- 🔥 MAIN FORM -->
   <main class="main-content">
+    <!-- 🔥 HERO SECTION -->
     <section class="hero-section">
-      <h1 class="hero-title">🃏 लूडो किंग व्हाट्सएप ग्रुप</h1>
-      <p class="hero-subtitle">1200+ LIVE Groups | Daily Cash Tournaments 🔥</p>
-      <div class="cta-buttons">
-        <a href="https://chat.whatsapp.com/ClCV55QM0Ta6dHcA3Pei2I" class="cta-primary">
-          🚀 Official Joker Group
-        </a>
-        <a href="join.html" class="cta-primary">👥 All Groups</a>
-      </div>
+      <h1 class="hero-title">➕ अपना ग्रुप LIVE करें</h1>
+      <p class="hero-subtitle">30 सेकंड में 1200+ active directory में list 🔥</p>
     </section>
 
-    <!-- 🔥 NEON STATS CARD -->
-    <div class="stats-section">
-      <div class="stats-grid">
-        <div class="stat-item">
-          <span class="stat-number" id="totalGroups">1,247</span>
-          <div>Total Groups</div>
+    <!-- 🔥 NEON FORM CARD -->
+    <div class="form-container">
+      <form id="groupForm">
+        <div class="form-group">
+          <label class="form-label">📛 ग्रुप का नाम</label>
+          <input type="text" id="groupName" required placeholder="लूडो किंग कैश लीग" class="form-input">
         </div>
-        <div class="stat-item">
-          <span class="stat-number" id="liveGroups">89</span>
-          <div>Live Now</div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">🏷️ कैटेगरी</label>
+            <select id="groupCategory" required class="form-input">
+              <option value="">कैटेगरी चुनें</option>
+              <option value="Ludo King">🎲 लूडो किंग</option>
+              <option value="Ludo Star">⭐ लूडो स्टार</option>
+              <option value="Cash Tournament">🏆 कैश टूर्नामेंट</option>
+              <option value="Prize Groups">💰 प्राइज ग्रुप</option>
+              <option value="VIP Ludo">👑 VIP लूडो</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">👥 मेंबर्स</label>
+            <input type="number" id="members" min="10" max="5000" required placeholder="150" class="form-input">
+          </div>
         </div>
-        <div class="stat-item">
-          <span class="stat-number" id="onlinePlayers">2,456</span>
-          <div>Online</div>
+
+        <div class="form-group">
+          <label class="form-label">🔗 व्हाट्सएप लिंक</label>
+          <input type="url" id="groupLink" required placeholder="https://chat.whatsapp.com/ABC123..." class="form-input">
         </div>
+
+        <div class="form-group">
+          <label class="form-label">📄 विवरण</label>
+          <textarea id="groupDesc" required rows="4" maxlength="200" placeholder="रोजाना टूर्नामेंट, Paytm पेमेंट..." class="form-input"></textarea>
+        </div>
+
+        <button type="submit" id="submitBtn" class="submit-btn">
+          🚀 अभी LIVE ऐड करें!
+        </button>
+      </form>
+
+      <!-- 🔥 SUCCESS MESSAGE -->
+      <div id="successMsg" class="message success hidden">
+        <i class="fas fa-check-circle"></i>
+        <h2>✅ सफल!</h2>
+        <p>आपका ग्रुप LIVE हो गया! 👥</p>
+        <a href="join.html" class="btn-secondary">सभी ग्रुप देखें</a>
+      </div>
+
+      <!-- 🔥 ERROR MESSAGE -->
+      <div id="errorMsg" class="message error hidden">
+        <i class="fas fa-exclamation-triangle"></i>
+        <h2>❌ त्रुटि</h2>
+        <p id="errorText">कृपया सभी फील्ड भरें</p>
       </div>
     </div>
   </main>
 
   <!-- 🔥 NEON FAB -->
-  <a href="Addgrouplink.html" class="add-cta">➕</a>
+  <a href="join.html" class="add-cta" title="लाइव ग्रुप">👥</a>
 
   <!-- 🔥 DARK FOOTER -->
   <footer class="footer">
     <div class="footer-content">
       <div class="footer-section">
         <h3>🃏 JOKERLUDO</h3>
-        <p>#1 Ludo WhatsApp Groups | India</p>
+        <p>#1 लूडो व्हाट्सएप ग्रुप | India</p>
       </div>
       <div class="footer-section">
-        <h3>Quick Links</h3>
-        <a href="index.html">🏠 Home</a>
-        <a href="join.html">👥 Groups</a>
-        <a href="Addgrouplink.html">➕ Add</a>
+        <h3>क्विक लिंक</h3>
+        <a href="index.html">🏠 होम</a>
+        <a href="join.html">👥 ग्रुप</a>
+        <a href="Addgrouplink.html">➕ ऐड करें</a>
+      </div>
+      <div class="footer-section">
+        <h3>संपर्क</h3>
+        <a href="https://chat.whatsapp.com/ClCV55QM0Ta6dHcA3Pei2I">ऑफिशियल WA</a>
       </div>
     </div>
   </footer>
 
-  <!-- 🔥 DARK JOKER CSS - MAJA AAYEGA 🔥 -->
+  <!-- 🔥 DARK JOKER CSS - FULL GAMING VIBE 🔥 -->
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap');
-    
     * {
       margin: 0;
       padding: 0;
@@ -111,7 +152,7 @@
       position: relative;
     }
 
-    /* 🔥 NEON PARTICLES BACKGROUND */
+    /* 🔥 NEON PARTICLES */
     body::before {
       content: '';
       position: fixed;
@@ -122,14 +163,12 @@
       background-image: 
         radial-gradient(2px 2px at 20px 30px, #ff0080, transparent),
         radial-gradient(2px 2px at 40px 70px, #00ff88, transparent),
-        radial-gradient(1px 1px at 90px 40px, #ffff00, transparent),
-        radial-gradient(1px 1px at 130px 80px, #ff0080, transparent),
-        radial-gradient(2px 2px at 160px 30px, #00ff88, transparent);
+        radial-gradient(1px 1px at 90px 40px, #ffff00, transparent);
       background-repeat: repeat;
       background-size: 200px 100px;
       animation: float 20s infinite linear;
       z-index: -1;
-      opacity: 0.3;
+      opacity: 0.4;
     }
 
     @keyframes float {
@@ -137,7 +176,7 @@
       100% { transform: translateY(-20px) rotate(360deg); }
     }
 
-    /* 🔥 HEADER - GLASSMORPHISM */
+    /* 🔥 HEADER */
     .header {
       position: fixed;
       top: 0;
@@ -155,276 +194,118 @@
       box-shadow: 0 8px 32px rgba(255, 0, 128, 0.3);
     }
 
-    .logo-section {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      text-decoration: none;
-    }
-
+    .logo-section { display: flex; align-items: center; gap: 15px; text-decoration: none; }
     .logo-icon {
-      width: 50px;
-      height: 50px;
-      background: linear-gradient(45deg, #ff0080, #00ff88, #ffff00);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      box-shadow: 0 0 30px #ff0080;
-      animation: pulse 2s infinite;
+      width: 50px; height: 50px; background: linear-gradient(45deg, #ff0080, #00ff88);
+      border-radius: 12px; display: flex; align-items: center; justify-content: center;
+      font-size: 24px; box-shadow: 0 0 30px #ff0080; animation: pulse 2s infinite;
     }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-
+    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
     .logo-text {
-      font-family: 'Orbitron', monospace;
-      font-size: 28px;
-      font-weight: 900;
-      background: linear-gradient(45deg, #ff0080, #00ff88);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 20px #ff0080;
+      font-family: 'Orbitron', monospace; font-size: 28px; font-weight: 900;
+      background: linear-gradient(45deg, #ff0080, #00ff88); -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; text-shadow: 0 0 20px #ff0080;
     }
 
-    .nav-menu {
-      display: flex;
-      list-style: none;
-      gap: 20px;
-      align-items: center;
-    }
-
+    .nav-menu { display: flex; list-style: none; gap: 20px; align-items: center; }
     .nav-link {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 16px;
-      padding: 12px 24px;
-      border-radius: 25px;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 0, 128, 0.3);
+      color: #fff; text-decoration: none; font-weight: 600; font-size: 16px;
+      padding: 12px 24px; border-radius: 25px; background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px); border: 1px solid rgba(255,0,128,0.3);
       transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
     }
-
     .nav-link:hover, .nav-link.active {
-      background: linear-gradient(45deg, #ff0080, #00ff88);
-      box-shadow: 0 0 30px #ff0080;
+      background: linear-gradient(45deg, #ff0080, #00ff88); box-shadow: 0 0 30px #ff0080;
       transform: translateY(-3px);
     }
 
     /* 🔥 MOBILE */
-    .hamburger {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 24px;
-      color: #fff;
-      cursor: pointer;
-      padding: 10px;
-      border-radius: 10px;
-      border: 1px solid #ff0080;
-    }
-
-    .mobile-menu {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 300px;
-      height: 100vh;
-      background: rgba(10, 10, 10, 0.98);
-      backdrop-filter: blur(20px);
-      z-index: 999;
-      padding: 100px 0 2rem 0;
-      transition: right 0.4s ease;
-    }
-
+    .hamburger { display: none; background: none; border: none; font-size: 24px; color: #fff; cursor: pointer; padding: 10px; border-radius: 10px; border: 1px solid #ff0080; }
+    .mobile-menu { position: fixed; top: 0; right: -100%; width: 300px; height: 100vh; background: rgba(10,10,10,0.98); backdrop-filter: blur(20px); z-index: 999; padding: 100px 0 2rem 0; transition: right 0.4s ease; }
     .mobile-menu.active { right: 0; }
     .mobile-nav-link {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      padding: 20px 25px;
-      margin-bottom: 10px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 18px;
-      color: #fff;
-      border: 1px solid #ff0080;
-      transition: all 0.3s ease;
+      display: flex; align-items: center; gap: 15px; padding: 20px 25px; margin-bottom: 10px;
+      background: rgba(255,255,255,0.1); border-radius: 20px; text-decoration: none;
+      font-weight: 700; font-size: 18px; color: #fff; border: 1px solid #ff0080;
     }
-
-    .mobile-nav-link:hover {
-      background: linear-gradient(45deg, #ff0080, #00ff88);
-      box-shadow: 0 0 30px #ff0080;
-      transform: translateX(10px);
-    }
-
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      opacity: 0;
-      visibility: hidden;
-      z-index: 998;
-      transition: all 0.4s ease;
-    }
-
-    .overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
+    .mobile-nav-link:hover { background: linear-gradient(45deg, #ff0080, #00ff88); box-shadow: 0 0 30px #ff0080; transform: translateX(10px); }
+    .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); opacity: 0; visibility: hidden; z-index: 998; transition: all 0.4s ease; }
+    .overlay.active { opacity: 1; visibility: visible; }
 
     /* 🔥 MAIN */
-    .main-content {
-      margin-top: 90px;
-      padding: 2rem 2rem 4rem;
-      max-width: 1400px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
+    .main-content { margin-top: 90px; padding: 2rem; max-width: 600px; margin: 0 auto; }
     .hero-section {
-      text-align: center;
-      padding: 4rem 2rem;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(30px);
-      border-radius: 30px;
-      border: 1px solid rgba(255, 0, 128, 0.3);
-      box-shadow: 0 20px 60px rgba(255, 0, 128, 0.2);
-      margin-bottom: 3rem;
+      text-align: center; padding: 4rem 2rem; background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(30px); border-radius: 30px; border: 1px solid rgba(255,0,128,0.3);
+      box-shadow: 0 20px 60px rgba(255,0,128,0.2); margin-bottom: 3rem;
     }
-
     .hero-title {
-      font-family: 'Orbitron', monospace;
-      font-size: clamp(3rem, 8vw, 6rem);
-      font-weight: 900;
-      background: linear-gradient(45deg, #ff0080, #00ff88, #ffff00);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 40px #ff0080;
-      margin-bottom: 1.5rem;
+      font-family: 'Orbitron', monospace; font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 900;
+      background: linear-gradient(45deg, #ff0080, #00ff88, #ffff00); -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; text-shadow: 0 0 40px #ff0080; margin-bottom: 1.5rem;
       animation: glow 2s ease-in-out infinite alternate;
     }
+    @keyframes glow { from { filter: drop-shadow(0 0 20px #ff0080); } to { filter: drop-shadow(0 0 40px #ff0080); } }
+    .hero-subtitle { font-size: 1.3rem; color: #ccc; margin-bottom: 0; font-weight: 300; }
 
-    @keyframes glow {
-      from { filter: drop-shadow(0 0 20px #ff0080); }
-      to { filter: drop-shadow(0 0 40px #ff0080); }
+    /* 🔥 FORM */
+    .form-container {
+      background: rgba(255,255,255,0.05); backdrop-filter: blur(30px); border-radius: 30px;
+      border: 1px solid rgba(255,0,128,0.3); padding: 3rem; box-shadow: 0 30px 80px rgba(255,0,128,0.2);
     }
-
-    .hero-subtitle {
-      font-size: 1.5rem;
-      color: #ccc;
-      margin-bottom: 2.5rem;
-      font-weight: 300;
+    .form-group { margin-bottom: 2rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+    .form-label {
+      display: block; font-family: 'Orbitron', monospace; font-size: 1.1rem; font-weight: 700;
+      color: #00ff88; margin-bottom: 1rem; text-shadow: 0 0 10px #00ff88;
     }
-
-    .cta-buttons {
-      display: flex;
-      gap: 1.5rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .cta-primary {
-      background: linear-gradient(45deg, #ff0080, #00ff88);
-      color: #fff;
-      padding: 18px 40px;
-      border: none;
-      border-radius: 30px;
-      font-size: 18px;
-      font-weight: 800;
-      cursor: pointer;
-      box-shadow: 0 15px 40px rgba(255, 0, 128, 0.4);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-family: 'Orbitron', monospace;
-      position: relative;
-      overflow: hidden;
+    .form-input {
+      width: 100%; padding: 18px 20px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,0,128,0.4);
+      border-radius: 20px; color: #fff; font-size: 16px; backdrop-filter: blur(10px);
       transition: all 0.3s ease;
     }
+    .form-input:focus {
+      outline: none; border-color: #ff0080; box-shadow: 0 0 20px rgba(255,0,128,0.5);
+      transform: translateY(-2px);
+    }
+    .form-input::placeholder { color: rgba(255,255,255,0.6); }
 
-    .cta-primary:hover {
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 25px 60px rgba(255, 0, 128, 0.6);
+    .submit-btn {
+      width: 100%; background: linear-gradient(45deg, #ff0080, #00ff88); color: #fff;
+      padding: 20px; border: none; border-radius: 25px; font-size: 20px; font-weight: 800;
+      font-family: 'Orbitron', monospace; cursor: pointer; box-shadow: 0 15px 40px rgba(255,0,128,0.4);
+      transition: all 0.3s ease; position: relative; overflow: hidden;
+    }
+    .submit-btn:hover {
+      transform: translateY(-5px); box-shadow: 0 25px 60px rgba(255,0,128,0.6);
+    }
+    .submit-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+
+    /* 🔥 MESSAGES */
+    .message {
+      text-align: center; padding: 3rem 2rem; border-radius: 25px; margin-top: 2rem;
+      backdrop-filter: blur(20px); animation: slideUp 0.5s ease;
+    }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .message.success { background: rgba(0,255,136,0.2); border: 1px solid #00ff88; }
+    .message.error { background: rgba(255,0,128,0.2); border: 1px solid #ff0080; }
+    .message.hidden { display: none; }
+    .message i { font-size: 4rem; margin-bottom: 1rem; }
+    .message h2 { font-family: 'Orbitron', monospace; font-size: 2rem; margin-bottom: 1rem; }
+    .btn-secondary {
+      background: linear-gradient(45deg, #00ff88, #ffff00); color: #000; padding: 15px 30px;
+      border: none; border-radius: 25px; font-weight: 700; text-decoration: none;
+      display: inline-block; margin-top: 1rem; box-shadow: 0 10px 30px rgba(0,255,136,0.4);
     }
 
-    /* 🔥 STATS */
-    .stats-section {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(20px);
-      border-radius: 25px;
-      padding: 2rem;
-      border: 1px solid rgba(255, 0, 128, 0.3);
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .stats-section:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 30px 80px rgba(255, 0, 128, 0.4);
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 2rem;
-      text-align: center;
-    }
-
-    .stat-item {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 1.5rem;
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(0, 255, 136, 0.3);
-    }
-
-    .stat-number {
-      font-family: 'Orbitron', monospace;
-      font-size: 3rem;
-      font-weight: 900;
-      background: linear-gradient(45deg, #00ff88, #ffff00);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-
-    /* 🔥 FAB BUTTON */
+    /* 🔥 FAB */
     .add-cta {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      width: 70px;
-      height: 70px;
-      background: linear-gradient(45deg, #ff0080, #00ff88);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 30px;
-      color: #fff;
-      box-shadow: 0 20px 50px rgba(255, 0, 128, 0.5);
-      z-index: 9999;
-      cursor: pointer;
-      text-decoration: none;
-      border: none;
-      animation: bounce 2s infinite;
+      position: fixed; bottom: 30px; right: 30px; width: 70px; height: 70px;
+      background: linear-gradient(45deg, #ff0080, #00ff88); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 30px;
+      box-shadow: 0 20px 50px rgba(255,0,128,0.5); z-index: 9999; cursor: pointer;
+      text-decoration: none; animation: bounce 2s infinite;
     }
-
     @keyframes bounce {
       0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
       40% { transform: translateY(-10px); }
@@ -432,99 +313,88 @@
     }
 
     /* 🔥 FOOTER */
-    .footer {
-      background: rgba(0, 0, 0, 0.95);
-      backdrop-filter: blur(20px);
-      padding: 3rem 2rem 2rem;
-      color: #fff;
-      margin-top: 4rem;
-      border-top: 1px solid #ff0080;
-    }
-
-    .footer-content {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      text-align: center;
-    }
-
-    .footer-section h3 {
-      font-family: 'Orbitron', monospace;
-      color: #00ff88;
-      font-size: 1.5rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-      text-shadow: 0 0 20px #00ff88;
-    }
-
-    .footer-section a {
-      color: rgba(255, 255, 255, 0.8);
-      text-decoration: none;
-      display: block;
-      margin-bottom: 0.8rem;
-      transition: all 0.3s ease;
-    }
-
-    .footer-section a:hover {
-      color: #ff0080;
-      text-shadow: 0 0 15px #ff0080;
-    }
+    .footer { background: rgba(0,0,0,0.95); backdrop-filter: blur(20px); padding: 3rem 2rem 2rem; border-top: 1px solid #ff0080; margin-top: 4rem; }
+    .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; text-align: center; }
+    .footer-section h3 { font-family: 'Orbitron', monospace; color: #00ff88; font-size: 1.3rem; font-weight: 800; margin-bottom: 1rem; text-shadow: 0 0 15px #00ff88; }
+    .footer-section a { color: rgba(255,255,255,0.8); text-decoration: none; display: block; margin-bottom: 0.5rem; transition: all 0.3s ease; }
+    .footer-section a:hover { color: #ff0080; text-shadow: 0 0 15px #ff0080; }
 
     /* 🔥 RESPONSIVE */
     @media (max-width: 768px) {
       .hamburger { display: flex !important; }
       .nav-menu { display: none !important; }
       .main-content { margin-top: 85px; padding: 1rem; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .form-row { grid-template-columns: 1fr; }
       .add-cta { bottom: 20px; right: 20px; width: 60px; height: 60px; font-size: 24px; }
-    }
-
-    @media (max-width: 480px) {
-      .logo-text { font-size: 24px; }
-      .header { padding: 0 1rem; height: 75px; }
-      .logo-icon { width: 45px; height: 45px; font-size: 20px; }
     }
   </style>
 
-  <!-- 🔥 JAVASCRIPT -->
+  <!-- 🔥 FIREBASE + FORM SCRIPT -->
   <script>
     // Mobile Menu
     document.getElementById('hamburger').onclick = () => {
       document.getElementById('mobileMenu').classList.toggle('active');
       document.getElementById('overlay').classList.toggle('active');
     };
-    
     document.getElementById('overlay').onclick = () => {
       document.getElementById('mobileMenu').classList.remove('active');
       document.getElementById('overlay').classList.remove('active');
     };
 
-    // Stats Animation
-    function animateStats() {
-      const stats = [
-        { el: 'totalGroups', end: 1247 },
-        { el: 'liveGroups', end: 89 },
-        { el: 'onlinePlayers', end: 2456 }
-      ];
-      stats.forEach(stat => {
-        const element = document.getElementById(stat.el);
-        let start = 0;
-        const increment = stat.end / 100;
-        const timer = setInterval(() => {
-          start += increment;
-          if (start >= stat.end) {
-            element.textContent = stat.end.toLocaleString();
-            clearInterval(timer);
-          } else {
-            element.textContent = Math.floor(start).toLocaleString();
-          }
-        }, 20);
-      });
-    }
-    
-    window.addEventListener('load', () => setTimeout(animateStats, 800));
+    // Firebase Config
+    const firebaseConfig = {
+      apiKey: "AIzaSyAMhdxU4pDqby11Ymixup2aCoEY5eZ3e7M",
+      authDomain: "jokerludogroup-a8c97.firebaseapp.com",
+      projectId: "jokerludogroup-a8c97",
+      storageBucket: "jokerludogroup-a8c97.appspot.com",
+      messagingSenderId: "1083106195650",
+      appId: "1:1083106195650:web:fae27e9bb0798e96f4235b"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // Form Submit
+    document.getElementById('groupForm').onsubmit = async (e) => {
+      e.preventDefault();
+      
+      const btn = document.getElementById('submitBtn');
+      const successMsg = document.getElementById('successMsg');
+      const errorMsg = document.getElementById('errorMsg');
+      
+      // Hide messages
+      successMsg.classList.add('hidden');
+      errorMsg.classList.add('hidden');
+      
+      // Loading state
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-3"></i>LIVE हो रहा है...';
+
+      try {
+        const groupData = {
+          name: document.getElementById('groupName').value,
+          category: document.getElementById('groupCategory').value,
+          link: document.getElementById('groupLink').value,
+          members: parseInt(document.getElementById('members').value),
+          description: document.getElementById('groupDesc').value,
+          status: 'live',
+          timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        };
+
+        await db.collection('ludoGroups').add(groupData);
+        
+        // Success
+        btn.style.display = 'none';
+        successMsg.classList.remove('hidden');
+        
+      } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('errorText').textContent = 'कृपया सभी फील्ड सही भरें';
+        errorMsg.classList.remove('hidden');
+        btn.innerHTML = '🔄 फिर कोशिश करें';
+        btn.disabled = false;
+      }
+    };
   </script>
 </body>
 </html>
