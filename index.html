@@ -21,177 +21,163 @@
 
 <body class="bg-gradient-to-br from-gray-900 via-black to-gray-900 min-h-screen text-white overflow-x-hidden">
   
-  <!-- 🔥 NEON JOKER HEADER -->
-  <header class="bg-black/95 backdrop-blur-xl border-b border-pink-500/50 shadow-2xl sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center py-5">
-        <a href="/index.html" class="flex items-center space-x-3 group">
-          <div class="w-16 h-16 bg-gradient-to-r from-pink-500 to-green-400 rounded-2xl flex items-center justify-center shadow-2xl group-hover:scale-110 transition-all duration-300">
-            <i class="fas fa-dice text-3xl text-black"></i>
-          </div>
-          <h1 class="text-3xl md:text-4xl orbitron font-black bg-gradient-to-r from-pink-400 to-green-400 bg-clip-text text-transparent drop-shadow-lg">JokerLudo</h1>
+  <!-- 🔥 MOBILE PERFECT HEADER -->
+  <header class="bg-black/95 backdrop-blur-xl border-b border-pink-500/50 shadow-2xl sticky top-0 z-50 px-4 py-4">
+    <div class="max-w-4xl mx-auto flex justify-between items-center">
+      <a href="/index.html" class="flex items-center space-x-2 group">
+        <div class="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-r from-pink-500 to-green-400 rounded-xl flex items-center justify-center shadow-xl group-hover:scale-110 transition-all">
+          <i class="fas fa-dice text-xl md:text-2xl text-black"></i>
+        </div>
+        <h1 class="text-xl md:text-3xl orbitron font-black bg-gradient-to-r from-pink-400 to-green-400 bg-clip-text text-transparent">JokerLudo</h1>
+      </a>
+      
+      <div class="flex items-center space-x-2">
+        <!-- 🔥 OFFICIAL JOKER GROUP LINK -->
+        <a href="https://chat.whatsapp.com/ClCV55QM0Ta6dHcA3Pei2I" target="_blank" 
+           class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-emerald-600 text-black px-4 py-2 rounded-xl font-bold text-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all">
+          <i class="fab fa-whatsapp"></i> Official
         </a>
         
-        <nav class="hidden md:flex space-x-2">
-          <a href="/index.html" class="px-6 py-4 font-bold rounded-2xl bg-gradient-to-r from-pink-500 to-green-400 text-black shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all">🏠 होम</a>
-          <a href="/join.html" class="px-6 py-4 font-bold rounded-2xl bg-white/10 backdrop-blur-sm border border-pink-500/30 hover:bg-pink-500/20 hover:border-pink-500/50 transition-all">👥 लाइव ग्रुप</a>
-          <a href="/Addgrouplink.html" class="px-6 py-4 font-bold rounded-2xl bg-white/10 backdrop-blur-sm border border-pink-500/30 hover:bg-pink-500/20 hover:border-pink-500/50 transition-all">➕ ऐड करें</a>
+        <nav class="hidden md:flex space-x-1">
+          <a href="/join.html" class="px-4 py-2 font-bold rounded-xl bg-white/10 backdrop-blur-sm border border-pink-500/30 hover:bg-pink-500/20">👥 ग्रुप</a>
+          <a href="/Addgrouplink.html" class="px-4 py-2 font-bold rounded-xl bg-white/10 backdrop-blur-sm border border-pink-500/30 hover:bg-pink-500/20">➕ ऐड</a>
         </nav>
         
-        <button class="md:hidden p-4 rounded-2xl bg-white/10 backdrop-blur-sm border border-pink-500/50 hover:bg-pink-500/20" onclick="toggleMenu()">
-          <i class="fas fa-bars text-2xl"></i>
+        <button class="md:hidden p-2 rounded-xl bg-white/10 backdrop-blur-sm border border-pink-500/50 hover:bg-pink-500/20" onclick="toggleMenu()">
+          <i class="fas fa-bars text-xl"></i>
         </button>
       </div>
     </div>
   </header>
 
   <!-- 🔥 MOBILE MENU -->
-  <div id="mobileMenu" class="md:hidden fixed top-0 right-0 w-64 h-full bg-black/95 backdrop-blur-xl border-l border-pink-500/50 z-40 transform translate-x-full transition-transform duration-300">
-    <div class="p-8">
-      <div class="flex justify-end mb-8">
-        <button onclick="toggleMenu()" class="p-2 hover:bg-pink-500/20 rounded-xl">
-          <i class="fas fa-times text-xl"></i>
-        </button>
+  <div id="mobileMenu" class="md:hidden fixed top-0 right-0 w-72 h-full bg-black/95 backdrop-blur-xl border-l border-pink-500/50 z-40 transform translate-x-full transition-transform">
+    <div class="p-6 h-full flex flex-col justify-between">
+      <div>
+        <div class="flex justify-end mb-8">
+          <button onclick="toggleMenu()" class="p-2 hover:bg-pink-500/20 rounded-xl">
+            <i class="fas fa-times text-2xl"></i>
+          </button>
+        </div>
+        <nav class="space-y-4">
+          <!-- 🔥 PROMINENT JOKER GROUP LINK -->
+          <a href="https://chat.whatsapp.com/ClCV55QM0Ta6dHcA3Pei2I" target="_blank" 
+             class="block p-5 bg-gradient-to-r from-green-500 to-emerald-600 text-black rounded-2xl font-bold text-lg shadow-2xl hover:shadow-green-500/50 hover:-translate-y-2 transition-all text-center">
+            📱 Official Joker Group
+          </a>
+          <a href="/join.html" class="block p-5 rounded-2xl bg-white/10 backdrop-blur-sm border border-pink-500/30 hover:bg-pink-500/20 font-bold text-lg">👥 लाइव ग्रुप</a>
+          <a href="/Addgrouplink.html" class="block p-5 rounded-2xl bg-white/10 backdrop-blur-sm border border-pink-500/30 hover:bg-pink-500/20 font-bold text-lg">➕ ग्रुप ऐड करें</a>
+        </nav>
       </div>
-      <nav class="space-y-4">
-        <a href="/index.html" class="block p-6 rounded-2xl bg-gradient-to-r from-pink-500 to-green-400 text-black font-bold shadow-xl">🏠 होम</a>
-        <a href="/join.html" class="block p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-pink-500/30 hover:bg-pink-500/20 font-bold">👥 लाइव ग्रुप</a>
-        <a href="/Addgrouplink.html" class="block p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-pink-500/30 hover:bg-pink-500/20 font-bold">➕ ऐड करें</a>
-      </nav>
     </div>
   </div>
 
   <!-- 🔥 OVERLAY -->
-  <div id="overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-30 hidden md:hidden" onclick="toggleMenu()"></div>
+  <div id="overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-30 hidden md:hidden" onclick="toggleMenu()"></div>
 
-  <!-- 🔥 HERO SECTION -->
-  <section class="pt-24 pb-32 text-center">
-    <div class="max-w-6xl mx-auto px-4">
-      <h1 class="text-6xl md:text-8xl orbitron font-black mb-8 bg-gradient-to-r from-pink-400 via-green-400 to-yellow-400 bg-clip-text text-transparent drop-shadow-2xl animate-pulse">
+  <!-- 🔥 MOBILE PERFECT HERO -->
+  <section class="pt-20 pb-16 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <!-- 🔥 RESPONSIVE TITLE -->
+      <h1 class="text-4xl sm:text-5xl md:text-7xl orbitron font-black mb-6 bg-gradient-to-r from-pink-400 via-green-400 to-yellow-400 bg-clip-text text-transparent drop-shadow-2xl leading-tight">
         🃏 JokerLudo
       </h1>
-      <p class="text-2xl md:text-4xl font-bold text-white/90 mb-12 orbitron tracking-wider drop-shadow-lg">
+      
+      <p class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white/90 mb-8 sm:mb-12 orbitron tracking-wider drop-shadow-lg max-w-2xl mx-auto px-2 leading-relaxed">
         भारत का #1 लूडो व्हाट्सएप ग्रुप डायरेक्टरी
       </p>
-      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-20">
-        <div class="group">
-          <div class="w-24 h-24 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl group-hover:scale-110 transition-all duration-300">
-            <i class="fas fa-users text-3xl text-black"></i>
+      
+      <!-- 🔥 MOBILE STATS CARDS -->
+      <div class="grid grid-cols-2 gap-4 sm:gap-6 mb-12 max-w-2xl mx-auto">
+        <div class="group p-6 bg-black/60 backdrop-blur-xl rounded-2xl border border-pink-500/30">
+          <div class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-xl group-hover:scale-110">
+            <i class="fas fa-users text-xl sm:text-2xl text-black"></i>
           </div>
-          <h3 class="text-3xl orbitron font-black text-white mb-4">1200+ Live Groups</h3>
-          <p class="text-xl text-white/70">लूडो किंग, कैश टूर्नामेंट, VIP Groups</p>
+          <h3 class="text-2xl sm:text-3xl orbitron font-black text-white mb-2">1200+</h3>
+          <p class="text-sm sm:text-base text-white/70">Live Groups</p>
         </div>
-        <div class="group">
-          <div class="w-24 h-24 bg-gradient-to-r from-pink-500 to-green-400 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl group-hover:scale-110 transition-all duration-300">
-            <i class="fas fa-plus text-3xl text-black"></i>
+        <div class="group p-6 bg-black/60 backdrop-blur-xl rounded-2xl border border-pink-500/30">
+          <div class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-pink-500 to-green-400 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-xl group-hover:scale-110">
+            <i class="fas fa-bolt text-xl sm:text-2xl text-black"></i>
           </div>
-          <h3 class="text-3xl orbitron font-black text-white mb-4">30 Sec Add Group</h3>
-          <p class="text-xl text-white/70">फ्री में अपना ग्रुप instant live करें</p>
+          <h3 class="text-2xl sm:text-3xl orbitron font-black text-white mb-2">30 Sec</h3>
+          <p class="text-sm sm:text-base text-white/70">Add Group</p>
         </div>
       </div>
       
-      <!-- 🔥 CTA BUTTONS -->
-      <div class="flex flex-col sm:flex-row gap-6 justify-center items-center max-w-2xl mx-auto">
-        <a href="/join.html" class="px-12 py-8 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-black font-black text-2xl rounded-3xl shadow-2xl hover:shadow-emerald-500/50 hover:-translate-y-3 transition-all duration-500 orbitron tracking-wider">
+      <!-- 🔥 STACKED CTAs FOR MOBILE -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-2xl mx-auto">
+        <a href="/join.html" class="flex-1 px-6 py-4 sm:px-8 sm:py-6 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-black font-black text-lg sm:text-xl rounded-2xl shadow-2xl hover:shadow-emerald-500/50 hover:-translate-y-2 transition-all orbitron tracking-wider text-center">
           👥 सभी ग्रुप देखें
         </a>
-        <a href="/Addgrouplink.html" class="px-12 py-8 bg-gradient-to-r from-pink-500 to-green-400 hover:from-pink-600 hover:to-green-500 text-black font-black text-2xl rounded-3xl shadow-2xl hover:shadow-pink-500/50 hover:-translate-y-3 transition-all duration-500 orbitron tracking-wider">
+        <a href="/Addgrouplink.html" class="flex-1 px-6 py-4 sm:px-8 sm:py-6 bg-gradient-to-r from-pink-500 to-green-400 hover:from-pink-600 hover:to-green-500 text-black font-bold text-lg sm:text-xl rounded-2xl shadow-2xl hover:shadow-pink-500/50 hover:-translate-y-2 transition-all orbitron tracking-wider text-center">
           ➕ ग्रुप ऐड करें
         </a>
       </div>
     </div>
   </section>
 
-  <!-- 🔥 STATS SECTION -->
-  <section class="py-24 bg-black/50 backdrop-blur-xl border-y border-pink-500/20">
-    <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-5xl md:text-6xl orbitron font-black text-center mb-20 bg-gradient-to-r from-pink-400 to-green-400 bg-clip-text text-transparent drop-shadow-2xl">
+  <!-- 🔥 MOBILE STATS -->
+  <section class="py-16 px-4 bg-black/70 backdrop-blur-xl border-y border-pink-500/20">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl sm:text-4xl md:text-5xl orbitron font-black text-center mb-12 bg-gradient-to-r from-pink-400 to-green-400 bg-clip-text text-transparent drop-shadow-2xl">
         🔥 Live Stats
       </h2>
-      <div class="grid md:grid-cols-4 gap-8 text-center">
-        <div class="group">
-          <div class="text-6xl orbitron font-black text-green-400 mb-4 drop-shadow-2xl group-hover:scale-110 transition-all">1,247</div>
-          <p class="text-xl text-white/80 orbitron">Total Groups</p>
+      <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div class="group p-6">
+          <div class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl orbitron font-black text-green-400 mb-3 drop-shadow-xl group-hover:scale-110">1,247</div>
+          <p class="text-base sm:text-lg text-white/80 orbitron">Total Groups</p>
         </div>
-        <div class="group">
-          <div class="text-6xl orbitron font-black text-pink-400 mb-4 drop-shadow-2xl group-hover:scale-110 transition-all">89</div>
-          <p class="text-xl text-white/80 orbitron">Live Now</p>
+        <div class="group p-6">
+          <div class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl orbitron font-black text-pink-400 mb-3 drop-shadow-xl group-hover:scale-110">89</div>
+          <p class="text-base sm:text-lg text-white/80 orbitron">Live Now</p>
         </div>
-        <div class="group">
-          <div class="text-6xl orbitron font-black text-yellow-400 mb-4 drop-shadow-2xl group-hover:scale-110 transition-all">2,456</div>
-          <p class="text-xl text-white/80 orbitron">Online Players</p>
+        <div class="group p-6">
+          <div class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl orbitron font-black text-yellow-400 mb-3 drop-shadow-xl group-hover:scale-110">2,456</div>
+          <p class="text-base sm:text-lg text-white/80 orbitron">Online</p>
         </div>
-        <div class="group">
-          <div class="text-6xl orbitron font-black text-purple-400 mb-4 drop-shadow-2xl group-hover:scale-110 transition-all">₹5.2Cr+</div>
-          <p class="text-xl text-white/80 orbitron">Daily Payouts</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 🔥 FEATURES SECTION -->
-  <section class="py-32">
-    <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-5xl md:text-6xl orbitron font-black text-center mb-20 bg-gradient-to-r from-pink-400 to-green-400 bg-clip-text text-transparent drop-shadow-2xl">
-        🎮 क्यों चुनें JokerLudo?
-      </h2>
-      <div class="grid md:grid-cols-3 gap-12">
-        <div class="group text-center p-12 bg-black/50 backdrop-blur-xl rounded-3xl border border-pink-500/30 hover:bg-pink-500/10 hover:border-pink-500/60 transition-all duration-500 hover:-translate-y-6">
-          <div class="w-24 h-24 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl group-hover:scale-110 transition-all">
-            <i class="fas fa-bolt text-3xl text-black"></i>
-          </div>
-          <h3 class="text-3xl orbitron font-black text-white mb-6">Instant Live</h3>
-          <p class="text-xl text-white/80 leading-relaxed">30 सेकंड में आपका ग्रुप 1200+ active directory में list हो जाएगा</p>
-        </div>
-        <div class="group text-center p-12 bg-black/50 backdrop-blur-xl rounded-3xl border border-pink-500/30 hover:bg-pink-500/10 hover:border-pink-500/60 transition-all duration-500 hover:-translate-y-6">
-          <div class="w-24 h-24 bg-gradient-to-r from-purple-500 to-pink-600 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl group-hover:scale-110 transition-all">
-            <i class="fas fa-filter text-3xl text-white"></i>
-          </div>
-          <h3 class="text-3xl orbitron font-black text-white mb-6">Smart Filters</h3>
-          <p class="text-xl text-white/80 leading-relaxed">लूडो किंग, कैश, VIP - सभी कैटेगरी के अनुसार instant filter</p>
-        </div>
-        <div class="group text-center p-12 bg-black/50 backdrop-blur-xl rounded-3xl border border-pink-500/30 hover:bg-pink-500/10 hover:border-pink-500/60 transition-all duration-500 hover:-translate-y-6">
-          <div class="w-24 h-24 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl group-hover:scale-110 transition-all">
-            <i class="fas fa-trophy text-3xl text-black"></i>
-          </div>
-          <h3 class="text-3xl orbitron font-black text-white mb-6">Top Groups</h3>
-          <p class="text-xl text-white/80 leading-relaxed">सबसे active groups सबसे ऊपर। Real-time sorting + members count</p>
+        <div class="group p-6">
+          <div class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl orbitron font-black text-purple-400 mb-3 drop-shadow-xl group-hover:scale-110">₹5.2Cr+</div>
+          <p class="text-base sm:text-lg text-white/80 orbitron">Payouts</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- 🔥 FAB BUTTON -->
-  <a href="/join.html" class="fixed bottom-8 right-8 w-20 h-20 bg-gradient-to-r from-pink-500 to-green-400 rounded-full flex items-center justify-center text-3xl shadow-2xl hover:shadow-pink-500/50 hover:-translate-y-2 transition-all duration-300 z-50 border-4 border-white/20 animate-bounce" title="Live Groups">
-    👥
+  <a href="https://chat.whatsapp.com/ClCV55QM0Ta6dHcA3Pei2I" target="_blank" 
+     class="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-2xl sm:text-3xl shadow-2xl hover:shadow-green-500/50 hover:-translate-y-2 transition-all z-50 border-4 border-white/20 animate-pulse" 
+     title="Official Joker Group">
+    📱
   </a>
 
-  <!-- 🔥 FOOTER -->
-  <footer class="bg-black/95 backdrop-blur-2xl border-t border-pink-500/30 py-16 mt-24">
-    <div class="max-w-7xl mx-auto px-4 text-center">
-      <div class="grid md:grid-cols-3 gap-12 mb-12">
+  <!-- 🔥 MOBILE FOOTER -->
+  <footer class="bg-black/95 backdrop-blur-2xl border-t border-pink-500/30 py-12 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
         <div>
-          <h3 class="text-4xl orbitron font-black bg-gradient-to-r from-pink-400 to-green-400 bg-clip-text text-transparent mb-6 drop-shadow-2xl">🃏 JokerLudo</h3>
-          <p class="text-white/70 text-lg leading-relaxed">#1 लूडो व्हाट्सएप ग्रुप डायरेक्टरी। 1200+ live groups। फ्री submission।</p>
+          <h3 class="text-3xl md:text-4xl orbitron font-black bg-gradient-to-r from-pink-400 to-green-400 bg-clip-text text-transparent mb-4">🃏 JokerLudo</h3>
+          <p class="text-white/70 text-base leading-relaxed max-w-md mx-auto">#1 लूडो व्हाट्सएप ग्रुप। 1200+ live groups। फ्री submission।</p>
         </div>
-        <div>
-          <h4 class="text-2xl orbitron font-bold text-green-400 mb-8 drop-shadow-lg">क्विक लिंक</h4>
-          <div class="space-y-4 text-left">
-            <a href="/index.html" class="block text-white/80 hover:text-pink-400 text-xl font-bold transition-all hover:translate-x-4">🏠 होम</a>
-            <a href="/join.html" class="block text-white/80 hover:text-pink-400 text-xl font-bold transition-all hover:translate-x-4">👥 लाइव ग्रुप</a>
-            <a href="/Addgrouplink.html" class="block text-white/80 hover:text-pink-400 text-xl font-bold transition-all hover:translate-x-4">➕ ग्रुप ऐड करें</a>
+        <div class="text-left md:text-center">
+          <h4 class="text-xl md:text-2xl orbitron font-bold text-green-400 mb-6 drop-shadow-lg">क्विक लिंक</h4>
+          <div class="space-y-3">
+            <a href="/index.html" class="block text-white/80 hover:text-pink-400 text-lg font-bold transition-all hover:translate-x-2">🏠 होम</a>
+            <a href="/join.html" class="block text-white/80 hover:text-pink-400 text-lg font-bold transition-all hover:translate-x-2">👥 लाइव ग्रुप</a>
+            <a href="/Addgrouplink.html" class="block text-white/80 hover:text-pink-400 text-lg font-bold transition-all hover:translate-x-2">➕ ऐड करें</a>
           </div>
         </div>
-        <div>
-          <h4 class="text-2xl orbitron font-bold text-green-400 mb-8 drop-shadow-lg">संपर्क</h4>
-          <a href="https://chat.whatsapp.com/ClCV55QM0Ta6dHcA3Pei2I" target="_blank" class="inline-flex items-center gap-4 bg-gradient-to-r from-green-500 to-emerald-600 text-black px-8 py-6 rounded-3xl font-black text-xl shadow-2xl hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-            <i class="fab fa-whatsapp text-2xl"></i>
-            ऑफिशियल व्हाट्सएप
+        <div class="text-center">
+          <h4 class="text-xl md:text-2xl orbitron font-bold text-green-400 mb-6 drop-shadow-lg">ऑफिशियल ग्रुप</h4>
+          <a href="https://chat.whatsapp.com/ClCV55QM0Ta6dHcA3Pei2I" target="_blank" 
+             class="inline-flex items-center gap-3 bg-gradient-to-r from-green-500 to-emerald-600 text-black px-6 py-4 rounded-2xl font-black text-lg shadow-2xl hover:shadow-xl hover:-translate-y-2 transition-all mx-auto">
+            <i class="fab fa-whatsapp text-xl"></i>
+            जॉइन करें
           </a>
         </div>
       </div>
-      <div class="border-t border-pink-500/30 pt-8 text-white/50 text-lg font-bold orbitron tracking-wider">
-        © 2026 JokerLudo. सभी अधिकार सुरक्षित। | Made with ❤️ in India
+      <div class="border-t border-pink-500/30 pt-6 text-white/60 text-lg font-bold orbitron tracking-wider">
+        © 2026 JokerLudo. सभी अधिकार सुरक्षित।
       </div>
     </div>
   </footer>
@@ -205,57 +191,30 @@
       overlay.classList.toggle('hidden');
     }
 
-    // 🔥 Stats Counter Animation
+    // 🔥 Stats Animation (Mobile Optimized)
     function animateStats() {
-      const stats = [
-        { el: '.text-6xl:nth-child(1)', end: 1247 },
-        { el: '.text-6xl:nth-child(2)', end: 89 },
-        { el: '.text-6xl:nth-child(3)', end: 2456 },
-        { el: '.text-6xl:nth-child(4)', end: 520 }
-      ];
+      const stats = [1247, 89, 2456, 520];
+      const elements = document.querySelectorAll('.text-3xl, .text-4xl, .text-5xl, .text-6xl');
       
-      stats.forEach(stat => {
-        const element = document.querySelector(stat.el);
-        if (element) {
-          let start = 0;
-          const increment = stat.end / 100;
-          const timer = setInterval(() => {
-            start += increment;
-            if (start >= stat.end) {
-              element.textContent = stat.end.toLocaleString();
-              clearInterval(timer);
-            } else {
-              element.textContent = Math.floor(start).toLocaleString();
-            }
-          }, 30);
-        }
+      elements.forEach((el, index) => {
+        let start = 0;
+        const end = stats[index];
+        const increment = end / 80;
+        const timer = setInterval(() => {
+          start += increment;
+          if (start >= end) {
+            el.textContent = end.toLocaleString();
+            clearInterval(timer);
+          } else {
+            el.textContent = Math.floor(start).toLocaleString();
+          }
+        }, 40);
       });
     }
 
-    // 🔥 Intersection Observer for Animations
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          animateStats();
-          observer.unobserve(entry.target);
-        }
-      });
-    });
-
-    // 🔥 Start animations when stats section visible
+    // 🔥 Load animations
     window.addEventListener('load', () => {
-      const statsSection = document.querySelector('section.py-24');
-      if (statsSection) observer.observe(statsSection);
-      
-      // Add scroll-triggered animations
-      document.querySelectorAll('.group').forEach(el => {
-        el.addEventListener('mouseenter', () => {
-          el.style.transform = 'translateY(-10px)';
-        });
-        el.addEventListener('mouseleave', () => {
-          el.style.transform = 'translateY(0)';
-        });
-      });
+      setTimeout(animateStats, 500);
     });
   </script>
 </body>
