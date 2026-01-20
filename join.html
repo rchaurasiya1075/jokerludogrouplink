@@ -14,45 +14,51 @@
   </style>
 </head>
 <body class="bg-gradient-to-br from-indigo-50 via-white to-purple-50">
-  <!-- HEADER - CLICKABLE HOME -->
+  <!-- NAVBAR -->
   <header class="bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 text-white shadow-2xl sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center py-4">
-        <!-- CLICKABLE LOGO + TITLE = HOME -->
-        <a href="/join" class="flex items-center space-x-3 cursor-pointer group hover:scale-105 transition-all">
-          <div class="w-16 h-16 bg-yellow-400 rounded-2xl flex items-center justify-center shadow-2xl group-hover:rotate-12 transition-all">
+        <!-- TITLE = HOME -->
+        <a href="/index.html" class="flex items-center space-x-3 cursor-pointer group hover:scale-105 transition-all">
+          <div class="w-16 h-16 bg-yellow-400 rounded-2xl flex items-center justify-center shadow-2xl group-hover:rotate-12">
             <i class="fas fa-dice text-3xl text-purple-900 font-bold"></i>
           </div>
           <div>
-            <h1 class="text-3xl md:text-4xl font-black group-hover:text-yellow-300 transition-all">JokerLudo</h1>
+            <h1 class="text-3xl md:text-4xl font-black group-hover:text-yellow-300">JokerLudo</h1>
             <p class="text-xs opacity-90">10K+ Active Groups</p>
           </div>
         </a>
         
-        <nav class="hidden md:flex space-x-8">
-          <a href="/join" class="text-xl font-bold text-yellow-300 border-b-4 border-yellow-300 pb-1">👥 Live Groups</a>
-          <a href="/addgrouplink" class="text-xl font-bold hover:text-yellow-300 px-4 py-2 rounded-xl hover:bg-white/20 transition-all">➕ Add Group</a>
-          <a href="/admin" class="text-xl font-bold hover:text-yellow-300 px-4 py-2 rounded-xl hover:bg-white/20 transition-all">🔧 Admin</a>
+        <!-- DESKTOP NAV -->
+        <nav class="hidden md:flex space-x-1">
+          <a href="/index.html" class="nav-link px-4 py-3 font-bold text-lg rounded-xl hover:bg-white/20">🏠 Home</a>
+          <a href="/privacy.html" class="nav-link px-4 py-3 font-bold text-lg rounded-xl hover:bg-white/20">🔐 Privacy</a>
+          <a href="/Addgrouplink.html" class="nav-link px-4 py-3 font-bold text-lg rounded-xl hover:bg-white/20">➕ Add Group</a>
+          <a href="/contact.html" class="nav-link px-4 py-3 font-bold text-lg rounded-xl hover:bg-white/20">📞 Contact</a>
+          <a href="/join.html" class="nav-link-active px-4 py-3 font-bold text-lg bg-yellow-300 text-purple-900 rounded-xl shadow-lg">👥 Join Groups</a>
         </nav>
-        <button class="md:hidden p-2 rounded-xl hover:bg-white/20 transition-all" onclick="toggleMobileMenu()">
+        
+        <!-- MOBILE MENU -->
+        <button class="md:hidden p-3 rounded-2xl hover:bg-white/20" onclick="toggleMobileMenu()">
           <i class="fas fa-bars text-2xl" id="mobileMenuIcon"></i>
         </button>
       </div>
       
-      <!-- MOBILE MENU -->
-      <div id="mobileMenu" class="md:hidden bg-white/95 backdrop-blur-xl rounded-3xl p-6 mb-4 space-y-4 shadow-2xl hidden border border-white/50">
-        <a href="/join" class="block p-4 text-xl font-bold text-yellow-600 bg-yellow-100 rounded-2xl text-center shadow-lg">👥 Live Groups</a>
-        <a href="/addgrouplink" class="block p-4 text-xl font-bold text-purple-600 bg-purple-100 rounded-2xl text-center shadow-lg hover:bg-purple-200">➕ Add Group</a>
-        <a href="/admin" class="block p-4 text-xl font-bold text-gray-800 bg-gray-100 rounded-2xl text-center shadow-lg hover:bg-gray-200">🔧 Admin</a>
+      <div id="mobileMenu" class="md:hidden bg-white/95 backdrop-blur-xl rounded-3xl p-6 mb-4 space-y-3 shadow-2xl hidden border border-white/50">
+        <a href="/index.html" class="mobile-nav block p-4 text-xl font-bold text-gray-800 bg-gray-100 rounded-2xl text-center shadow-md hover:bg-gray-200">🏠 Home</a>
+        <a href="/privacy.html" class="mobile-nav block p-4 text-xl font-bold text-gray-800 bg-gray-100 rounded-2xl text-center shadow-md hover:bg-gray-200">🔐 Privacy</a>
+        <a href="/Addgrouplink.html" class="mobile-nav block p-4 text-xl font-bold text-emerald-700 bg-emerald-100 rounded-2xl text-center shadow-md hover:bg-emerald-200">➕ Add Group</a>
+        <a href="/contact.html" class="mobile-nav block p-4 text-xl font-bold text-gray-800 bg-gray-100 rounded-2xl text-center shadow-md hover:bg-gray-200">📞 Contact</a>
+        <a href="/join.html" class="mobile-nav-active block p-4 text-xl font-bold text-purple-900 bg-yellow-300 rounded-2xl text-center shadow-lg">👥 Join Groups</a>
       </div>
     </div>
   </header>
 
-  <!-- MAIN CONTENT -->
+  <!-- MAIN -->
   <main class="py-12 px-4">
     <div class="max-w-7xl mx-auto">
       <!-- STATS -->
-      <div class="text-center mb-20">
+      <div class="text-center mb-16">
         <div class="inline-flex items-center gap-4 px-8 py-6 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 backdrop-blur-xl rounded-3xl text-white font-black text-4xl shadow-3xl mb-8">
           <i class="fas fa-fire text-5xl"></i>
           <div>
@@ -62,70 +68,68 @@
         </div>
       </div>
 
-      <!-- CATEGORY FILTERS - MOBILE FRIENDLY -->
-      <div class="flex flex-wrap gap-3 justify-center mb-16 px-2">
-        <button class="filter-btn px-6 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-2xl shadow-xl hover:shadow-2xl text-lg active md:text-xl min-w-[140px]" data-filter="all">
+      <!-- FILTERS -->
+      <div class="flex flex-wrap gap-3 justify-center mb-12 px-2">
+        <button class="filter-btn px-5 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-xl shadow-xl hover:shadow-2xl text-base active md:text-lg min-w-[120px]" data-filter="all">
           <i class="fas fa-th mr-1"></i>All
         </button>
-        <button class="filter-btn px-6 py-4 bg-white/80 text-gray-800 font-bold rounded-2xl shadow-xl hover:shadow-2xl text-lg border border-purple-200 hover:border-purple-400 md:text-xl min-w-[140px]" data-filter="Ludo King">
+        <button class="filter-btn px-5 py-3 bg-white/80 text-gray-800 font-bold rounded-xl shadow-xl hover:shadow-2xl text-base border border-purple-200 hover:border-purple-400 md:text-lg min-w-[120px]" data-filter="Ludo King">
           <i class="fas fa-dice mr-1"></i>🎲 Ludo King
         </button>
-        <button class="filter-btn px-6 py-4 bg-white/80 text-gray-800 font-bold rounded-2xl shadow-xl hover:shadow-2xl text-lg border border-purple-200 hover:border-purple-400 md:text-xl min-w-[140px]" data-filter="Ludo Star">
+        <button class="filter-btn px-5 py-3 bg-white/80 text-gray-800 font-bold rounded-xl shadow-xl hover:shadow-2xl text-base border border-purple-200 hover:border-purple-400 md:text-lg min-w-[120px]" data-filter="Ludo Star">
           <i class="fas fa-star mr-1"></i>⭐ Ludo Star
         </button>
-        <button class="filter-btn px-6 py-4 bg-white/80 text-gray-800 font-bold rounded-2xl shadow-xl hover:shadow-2xl text-lg border border-purple-200 hover:border-purple-400 md:text-xl min-w-[120px]" data-filter="Betting">
+        <button class="filter-btn px-5 py-3 bg-white/80 text-gray-800 font-bold rounded-xl shadow-xl hover:shadow-2xl text-base border border-purple-200 hover:border-purple-400 md:text-lg min-w-[100px]" data-filter="Betting">
           <i class="fas fa-coins mr-1"></i>💰 Betting
         </button>
-        <button class="filter-btn px-6 py-4 bg-white/80 text-gray-800 font-bold rounded-2xl shadow-xl hover:shadow-2xl text-lg border border-purple-200 hover:border-purple-400 md:text-xl min-w-[120px]" data-filter="Earning">
+        <button class="filter-btn px-5 py-3 bg-white/80 text-gray-800 font-bold rounded-xl shadow-xl hover:shadow-2xl text-base border border-purple-200 hover:border-purple-400 md:text-lg min-w-[100px]" data-filter="Earning">
           <i class="fas fa-dollar-sign mr-1"></i>💵 Earning
         </button>
       </div>
 
-      <!-- GROUPS GRID - MOBILE 1 PER SCREEN -->
-      <div id="groupsContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 mb-20">
-        <div class="col-span-full flex flex-col items-center justify-center py-24 text-gray-600 sm:py-32">
-          <div class="w-24 h-24 sm:w-32 sm:h-32 border-4 border-gray-300 border-t-purple-500 rounded-full animate-spin mx-auto mb-8"></div>
-          <h2 class="text-3xl sm:text-5xl font-black mb-6">🔥 Loading Live Groups...</h2>
-          <p class="text-xl font-semibold">Real-time sync from Firebase</p>
-        </div>
+      <!-- 🔥 COMPACT GROUPS - MULTIPLE PER SCREEN -->
+      <div id="groupsContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 mb-16">
+        <!-- Loading will be replaced -->
       </div>
 
-      <!-- ADD GROUP CTA -->
+      <!-- CTA -->
       <div class="text-center">
-        <a href="/addgrouplink" class="inline-flex items-center gap-4 px-12 py-6 sm:px-16 sm:py-8 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-black text-xl sm:text-2xl rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:-translate-y-2">
-          <i class="fas fa-plus text-2xl sm:text-3xl"></i>
-          ➕ Add Your Group FREE
+        <a href="/Addgrouplink.html" class="inline-flex items-center gap-3 px-12 py-5 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-black text-xl rounded-3xl shadow-2xl hover:shadow-3xl transition-all hover:-translate-y-2">
+          <i class="fas fa-plus text-2xl"></i>➕ Add Your Group FREE
         </a>
       </div>
     </div>
   </main>
 
   <!-- FOOTER -->
-  <footer class="bg-gradient-to-r from-gray-900 to-black text-white py-12 mt-20 border-t-4 border-purple-600">
+  <footer class="bg-gradient-to-r from-gray-900 to-black text-white py-12 mt-16 border-t-4 border-purple-600">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid md:grid-cols-4 gap-8">
-        <div class="md:col-span-2">
+        <div>
           <div class="flex items-center space-x-3 mb-6">
             <i class="fas fa-dice text-4xl text-yellow-400"></i>
             <h3 class="text-2xl font-black">JokerLudo</h3>
           </div>
-          <p class="text-gray-400 text-lg">Best Ludo WhatsApp Groups - Join & Play Now!</p>
+          <p class="text-gray-400 text-lg">Best Ludo WhatsApp Groups</p>
         </div>
         <div>
           <h4 class="text-xl font-bold mb-6">Quick Links</h4>
           <ul class="space-y-3">
-            <li><a href="/join" class="text-gray-400 hover:text-white flex items-center"><i class="fas fa-groups mr-2 text-yellow-400"></i>👥 Live Groups</a></li>
-            <li><a href="/addgrouplink" class="text-gray-400 hover:text-white flex items-center"><i class="fas fa-plus mr-2 text-emerald-400"></i>➕ Add Group</a></li>
-            <li><a href="/admin" class="text-gray-400 hover:text-white flex items-center"><i class="fas fa-cog mr-2 text-blue-400"></i>🔧 Admin</a></li>
+            <li><a href="/index.html" class="text-gray-400 hover:text-white flex items-center"><i class="fas fa-home mr-2"></i>🏠 Home</a></li>
+            <li><a href="/join.html" class="text-gray-400 hover:text-white flex items-center"><i class="fas fa-groups mr-2 text-yellow-400"></i>👥 Join Groups</a></li>
+            <li><a href="/Addgrouplink.html" class="text-gray-400 hover:text-white flex items-center"><i class="fas fa-plus mr-2 text-emerald-400"></i>➕ Add Group</a></li>
           </ul>
         </div>
-        <div class="md:col-span-2">
-          <h4 class="text-xl font-bold mb-6">Join 10K+ Active Players Daily!</h4>
-          <div class="flex space-x-4">
-            <a href="#" class="w-14 h-14 bg-purple-600 hover:bg-purple-700 rounded-2xl flex items-center justify-center text-xl transition-all"><i class="fab fa-whatsapp"></i></a>
-            <a href="#" class="w-14 h-14 bg-blue-600 hover:bg-blue-700 rounded-2xl flex items-center justify-center text-xl transition-all"><i class="fab fa-telegram"></i></a>
-            <a href="#" class="w-14 h-14 bg-gray-700 hover:bg-gray-600 rounded-2xl flex items-center justify-center text-xl transition-all"><i class="fab fa-instagram"></i></a>
-          </div>
+        <div>
+          <h4 class="text-xl font-bold mb-6">Legal</h4>
+          <ul class="space-y-3">
+            <li><a href="/privacy.html" class="text-gray-400 hover:text-white flex items-center"><i class="fas fa-shield-alt mr-2"></i>🔐 Privacy</a></li>
+            <li><a href="/contact.html" class="text-gray-400 hover:text-white flex items-center"><i class="fas fa-phone mr-2"></i>📞 Contact</a></li>
+          </ul>
+        </div>
+        <div class="flex space-x-4">
+          <a href="#" class="w-14 h-14 bg-purple-600 hover:bg-purple-700 rounded-2xl flex items-center justify-center text-xl transition-all"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" class="w-14 h-14 bg-blue-600 hover:bg-blue-700 rounded-2xl flex items-center justify-center text-xl transition-all"><i class="fab fa-telegram"></i></a>
         </div>
       </div>
       <div class="border-t border-gray-700 pt-8 mt-12 text-center">
@@ -135,7 +139,6 @@
   </footer>
 
   <script>
-    // Mobile menu toggle
     function toggleMobileMenu() {
       const menu = document.getElementById('mobileMenu');
       const icon = document.getElementById('mobileMenuIcon');
@@ -144,7 +147,7 @@
       icon.classList.toggle('fa-times');
     }
 
-    // Firebase Config
+    // Firebase
     const firebaseConfig = {
       apiKey: "AIzaSyAMhdxU4pDqby11Ymixup2aCoEY5eZ3e7M",
       authDomain: "jokerludogroup-a8c97.firebaseapp.com",
@@ -160,24 +163,14 @@
     let allGroups = [];
     let currentFilter = 'all';
 
-    // 🔥 PERFECT REAL-TIME LISTENER
+    // Real-time data
     db.collection('ludoGroups')
       .where('status', '==', 'live')
       .orderBy('timestamp', 'desc')
       .onSnapshot((snapshot) => {
-        console.log('✅ Loaded:', snapshot.size, 'live groups');
         allGroups = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
         document.getElementById('liveCount').textContent = `${allGroups.length} Live Groups`;
         applyFilter(currentFilter);
-      }, (error) => {
-        console.error('Error:', error);
-        document.getElementById('groupsContainer').innerHTML = `
-          <div class="col-span-full text-center py-20 text-red-600">
-            <i class="fas fa-exclamation-triangle text-6xl mb-6"></i>
-            <h2 class="text-4xl font-black mb-4">Connection Error</h2>
-            <button onclick="location.reload()" class="px-12 py-4 bg-purple-600 text-white font-bold text-xl rounded-3xl shadow-xl hover:shadow-2xl">🔄 Retry</button>
-          </div>
-        `;
       });
 
     function applyFilter(filter) {
@@ -191,14 +184,13 @@
       
       if (!groups.length) {
         container.innerHTML = `
-          <div class="col-span-full text-center py-24 sm:py-32">
-            <div class="w-48 h-48 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-12 shadow-2xl">
-              <i class="fas fa-groups text-7xl text-white"></i>
+          <div class="col-span-full text-center py-20">
+            <div class="w-32 h-32 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-8 shadow-2xl">
+              <i class="fas fa-groups text-5xl text-white"></i>
             </div>
-            <h2 class="text-4xl sm:text-6xl font-black mb-8 text-gray-800">No ${currentFilter === 'all' ? 'Live' : currentFilter} Groups</h2>
-            <p class="text-2xl mb-12 text-gray-600">Be first to add ${currentFilter === 'all' ? 'WhatsApp group' : currentFilter}!</p>
-            <a href="/addgrouplink" class="px-12 py-6 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-black text-2xl rounded-3xl shadow-2xl hover:shadow-3xl hover:-translate-y-2 transition-all">
-              ➕ Add FREE
+            <h2 class="text-4xl font-black mb-6 text-gray-800">No ${currentFilter === 'all' ? 'Live Groups' : currentFilter} Groups</h2>
+            <a href="/Addgrouplink.html" class="px-12 py-4 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-black text-xl rounded-3xl shadow-2xl hover:shadow-3xl hover:-translate-y-2 transition-all">
+              ➕ Add FREE Group
             </a>
           </div>
         `;
@@ -208,39 +200,41 @@
       const icons = { 'Ludo King': '🎲', 'Ludo Star': '⭐', 'Betting': '💰', 'Earning': '💵' };
       
       container.innerHTML = groups.map(group => `
-        <div class="group-card bg-white/90 backdrop-blur-xl rounded-3xl p-6 sm:p-8 border border-gray-200/50 shadow-2xl hover:shadow-3xl hover:-translate-y-3 transition-all duration-300 cursor-pointer" data-category="${group.category}">
-          <div class="flex items-start gap-4 sm:gap-6 mb-6 sm:mb-8">
-            <div class="p-4 sm:p-6 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl sm:rounded-3xl text-3xl sm:text-4xl font-bold flex-shrink-0 shadow-xl">
-              ${icons[group.category] || '🎮'}
-            </div>
-            <div class="flex-1 min-w-0">
-              <h3 class="text-xl sm:text-2xl md:text-3xl font-black text-gray-900 mb-3 sm:mb-4 line-clamp-2">${group.name}</h3>
-              <div class="flex flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6">
-                <span class="px-4 py-2 sm:px-5 sm:py-3 bg-gradient-to-r from-purple-500 to-pink-500 backdrop-blur-xl rounded-xl sm:rounded-2xl font-bold text-lg sm:text-xl text-white shadow-lg">${group.category}</span>
-                <span class="px-4 py-2 sm:px-5 sm:py-3 bg-emerald-500/90 backdrop-blur-xl rounded-xl sm:rounded-2xl font-bold text-lg sm:text-xl text-white shadow-lg">👥 ${group.members || 0}+ Members</span>
+        <div class="group-card bg-white/90 backdrop-blur-xl rounded-2xl p-4 sm:p-6 border border-gray-200/50 shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all group" data-category="${group.category}">
+          <!-- 🔥 GROUP NAME + JOIN BUTTON ON TOP -->
+          <div class="flex items-start justify-between mb-4 sm:mb-6">
+            <div class="flex items-center gap-3 flex-1 min-w-0">
+              <div class="p-2 sm:p-3 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-xl text-2xl sm:text-3xl font-bold flex-shrink-0 shadow-lg">
+                ${icons[group.category] || '🎮'}
               </div>
-              <p class="text-gray-700 text-base sm:text-lg leading-relaxed line-clamp-3">${group.description}</p>
+              <h3 class="text-lg sm:text-xl md:text-2xl font-black text-gray-900 line-clamp-1 flex-1 pr-2">${group.name}</h3>
             </div>
+            <!-- 🔥 JOIN BUTTON -->
+            <a href="${group.link}" target="_blank" class="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-xl font-bold text-sm sm:text-base shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 whitespace-nowrap">
+              🚀 Join Group
+            </a>
           </div>
-          <a href="${group.link}" target="_blank" class="block w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white py-4 sm:py-6 px-6 sm:px-8 rounded-2xl sm:rounded-3xl font-bold text-lg sm:text-xl text-center shadow-2xl hover:shadow-3xl transition-all duration-300 hover:-translate-y-2">
-            🚀 Join WhatsApp Group Instantly
-          </a>
+          
+          <!-- 🔥 DESCRIPTION BELOW -->
+          <div class="space-y-2">
+            <div class="flex items-center gap-2 text-sm sm:text-base mb-3">
+              <span class="px-3 py-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg font-bold text-xs sm:text-sm shadow-md">${group.category}</span>
+              <span class="text-gray-700 font-semibold">👥 ${group.members || 0}+ Members</span>
+            </div>
+            <p class="text-gray-700 text-sm sm:text-base leading-relaxed line-clamp-3">${group.description}</p>
+          </div>
         </div>
       `).join('');
 
-      // 🔥 CATEGORY FILTER BUTTONS - MOBILE PERFECT
+      // Filter buttons
       document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.onclick = () => {
-          // Remove active from all
           document.querySelectorAll('.filter-btn').forEach(b => {
             b.classList.remove('active', 'bg-gradient-to-r', 'from-purple-500', 'to-pink-500', 'text-white');
             b.classList.add('bg-white/80', 'text-gray-800', 'border', 'border-purple-200');
           });
-          
-          // Active clicked button
           btn.classList.add('active', 'bg-gradient-to-r', 'from-purple-500', 'to-pink-500', 'text-white');
           btn.classList.remove('bg-white/80', 'text-gray-800', 'border', 'border-purple-200');
-          
           applyFilter(btn.dataset.filter);
         };
       });
@@ -249,9 +243,9 @@
     // Close mobile menu on link click
     document.querySelectorAll('a[href]').forEach(link => {
       link.addEventListener('click', () => {
-        document.getElementById('mobileMenu').classList.add('hidden');
-        document.getElementById('mobileMenuIcon').classList.remove('fa-times');
-        document.getElementById('mobileMenuIcon').classList.add('fa-bars');
+        document.getElementById('mobileMenu')?.classList.add('hidden');
+        document.getElementById('mobileMenuIcon')?.classList.remove('fa-times');
+        document.getElementById('mobileMenuIcon')?.classList.add('fa-bars');
       });
     });
   </script>
