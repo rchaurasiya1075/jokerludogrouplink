@@ -3,591 +3,226 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JokerLudo - India's #1 Ludo Gaming Hub 🎮</title>
-  
-  <meta name="description" content="Join 10K+ players in verified Ludo WhatsApp groups. Win ₹5000 daily tournaments with instant UPI payments!">
-  <meta name="keywords" content="Ludo WhatsApp group, Ludo King money earning, Ludo Star tournament">
-  
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <title>JokerLudo - India's #1 Ludo Gaming Hub</title>
+  <meta name="description" content="Join verified Ludo WhatsApp groups. Win ₹5000 daily tournaments with instant UPI payments!">
   
   <style>
-    :root {
-      --bg-primary: #0a0a0f;
-      --bg-secondary: #1a1a2e;
-      --accent-gold: #ffd700;
-      --accent-neon: #00ffea;
-      --accent-purple: #8b5cf6;
-      --text-primary: #ffffff;
-      --text-secondary: #b3b3ff;
-      --glass: rgba(255, 255, 255, 0.05);
-      --glass-border: rgba(255, 255, 255, 0.1);
-      --shadow-neon: 0 0 30px rgba(255, 215, 0, 0.5);
-      --shadow-purple: 0 0 25px rgba(139, 92, 246, 0.4);
-    }
+    /* ULTRA FAST - INLINE CSS - NO EXTERNAL DEPENDENCIES */
+    :root{--bg:#0a0a0f;--glass:"rgba(255,255,255,0.08)";--gold:#ffd700;--cyan:#00ffea;--purple:#8b5cf6;--text:#fff;--shadow:"0 10px 30px rgba(0,0,0,0.3)"}*{margin:0;padding:0;box-sizing:border-box}body{font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+    
+    /* Fixed Navbar - Instant Load */
+    .nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,15,0.98);backdrop-filter:blur(10px);padding:1rem 5%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,0.1)}
+    .logo{font:700 1.8rem/1.2 system-ui,monospace;background:"linear-gradient(45deg,"+var(--gold)+","+var(--cyan)+")";-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .nav-links{display:flex;gap:1.5rem;list-style:none;flex-wrap:wrap}
+    .nav-links a{color:#ccc;text-decoration:none;padding:.6rem 1.2rem;border-radius:25px;font-weight:500;transition:all .2s ease}
+    .nav-links a:hover{background:var(--gold);color:#000;transform:translateY(-2px)}
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    /* Hero Section - Above Fold Priority */
+    .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:140px 5% 60px;background:"linear-gradient(135deg,"+var(--bg)+" 0%,#1a1a2e 100%)"}
+    .hero h1{font:700 3.2rem/1.1 system-ui,monospace;margin:0 0 1.2rem;background:"linear-gradient(45deg,"+var(--gold)+","+var(--cyan)+","+var(--purple)+")";-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-1px}
+    .hero p{font-size:1.25rem;margin:0 0 2.5rem;color:#aaa;max-width:650px;line-height:1.6}
+    .cta{display:flex;gap:1.2rem;flex-wrap:wrap;justify-content:center;margin-top:1rem}
+    .btn{padding:1.1rem 2.5rem;border:0;border-radius:35px;font:600 1.1rem system-ui,monospace;text-decoration:none;display:inline-flex;align-items:center;gap:.6rem;transition:all .3s cubic-bezier(0.4,0,0.2,1);cursor:pointer;text-transform:uppercase;letter-spacing:.5px}
+    .btn-primary{background:"linear-gradient(45deg,"+var(--gold)+","+var(--cyan)+")";color:#000;box-shadow:var(--shadow)}
+    .btn-primary:hover{transform:translateY(-4px) scale(1.02);box-shadow:"0 20px 40px rgba(255,215,0,0.4)"}
+    .btn-secondary{background:transparent;color:var(--cyan);border:2px solid var(--cyan)}
+    .btn-secondary:hover{background:var(--cyan);color:#000;transform:translateY(-4px)}
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      overflow-x: hidden;
-      line-height: 1.6;
-    }
+    /* Content Sections */
+    .section{padding:90px 5%;max-width:1300px;margin:0 auto}
+    .title{font:700 2.6rem/1.2 system-ui,monospace;text-align:center;margin:0 0 3.5rem;background:"linear-gradient(45deg,"+var(--gold)+","+var(--cyan)+")";-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;position:relative}
+    .title::after{content:'';position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);width:120px;height:4px;background:"linear-gradient(90deg,"+var(--gold)+","+var(--cyan)+")";border-radius:2px}
 
-    /* Animated Background Grid */
-    .bg-animation {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -2;
-      background: 
-        radial-gradient(circle at 20% 80%, rgba(139,92,246,0.3) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(0,255,234,0.3) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(255,215,0,0.2) 0%, transparent 50%);
-      animation: bgShift 20s ease infinite;
-    }
+    /* Optimized Grid */
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2rem}
+    
+    /* Lightweight Glass Cards */
+    .card{background:var(--glass);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,0.12);border-radius:22px;padding:2.5rem;transition:all .3s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden}
+    .card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:"linear-gradient(90deg,transparent,"+var(--gold)+","+var(--cyan)+",transparent)"}
+    .card:hover{transform:translateY(-10px);border-color:var(--gold);box-shadow:"0 25px 50px rgba(0,0,0,0.3)"}
 
-    @keyframes bgShift {
-      0%, 100% { transform: scale(1) rotate(0deg); }
-      50% { transform: scale(1.1) rotate(180deg); }
-    }
+    .icon{font-size:4rem;background:"linear-gradient(45deg,"+var(--gold)+","+var(--cyan)+")";-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:1.2rem;display:block;filter:drop-shadow(0 0 15px rgba(255,215,0,0.4))}
+    
+    .card h3{font:600 1.4rem/1.3 system-ui;margin:0 0 1rem;color:var(--text)}
+    .card p{color:#aaa;font-size:1rem;line-height:1.6;margin:0}
 
-    /* Navbar */
-    .navbar {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      padding: 1rem 5%;
-      background: rgba(10, 10, 15, 0.95);
-      backdrop-filter: blur(20px);
-      z-index: 1000;
-      border-bottom: 1px solid var(--glass-border);
-    }
+    /* Stats Container */
+    .stats{margin:4rem auto;background:var(--glass);backdrop-filter:blur(25px);border:1px solid rgba(255,255,255,0.15);border-radius:24px;padding:4rem 2rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2.5rem;text-align:center;max-width:1100px}
+    .stat{font:900 3rem/1 system-ui,monospace;background:"linear-gradient(45deg,"+var(--gold)+","+var(--cyan)+")";-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;margin-bottom:.4rem;letter-spacing:-1px}
+    .stat-label{color:#aaa;font-size:1rem;font-weight:500}
 
-    .nav-container {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-family: 'Orbitron', monospace;
-      font-size: 2.2rem;
-      font-weight: 900;
-      background: linear-gradient(45deg, var(--accent-gold), var(--accent-neon), var(--accent-purple));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-shadow: var(--shadow-neon);
-      letter-spacing: 2px;
-    }
-
-    .nav-links {
-      display: flex;
-      list-style: none;
-      gap: 2.5rem;
-      align-items: center;
-    }
-
-    .nav-links a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-weight: 500;
-      padding: 0.8rem 1.5rem;
-      border-radius: 50px;
-      position: relative;
-      transition: all 0.3s ease;
-      font-size: 1rem;
-    }
-
-    .nav-links a::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(45deg, var(--accent-gold), var(--accent-neon));
-      border-radius: 50px;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s ease;
-      z-index: -1;
-    }
-
-    .nav-links a:hover::before {
-      transform: scaleX(1);
-    }
-
-    .nav-links a:hover {
-      color: var(--bg-primary);
-      text-shadow: var(--shadow-neon);
-      transform: translateY(-3px);
-    }
-
-    /* Hero Section */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 150px 5% 100px;
-      position: relative;
-    }
-
-    .hero-content h1 {
-      font-family: 'Orbitron', monospace;
-      font-size: clamp(3rem, 8vw, 6rem);
-      font-weight: 900;
-      background: linear-gradient(45deg, var(--accent-gold), var(--accent-neon), var(--accent-purple), var(--accent-gold));
-      background-size: 300% 300%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 2rem;
-      animation: gradientShift 3s ease infinite, glowPulse 2s ease infinite;
-      letter-spacing: -2px;
-    }
-
-    @keyframes gradientShift {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
-
-    @keyframes glowPulse {
-      0%, 100% { filter: drop-shadow(0 0 20px var(--accent-gold)); }
-      50% { filter: drop-shadow(0 0 40px var(--accent-neon)); }
-    }
-
-    .hero p {
-      font-size: 1.4rem;
-      max-width: 700px;
-      margin: 0 auto 3rem;
-      color: var(--text-secondary);
-      font-weight: 300;
-    }
-
-    .cta-buttons {
-      display: flex;
-      gap: 1.5rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 1.2rem 3rem;
-      font-size: 1.1rem;
-      font-weight: 600;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.8rem;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      font-family: 'Orbitron', monospace;
-      letter-spacing: 1px;
-    }
-
-    .btn-primary {
-      background: linear-gradient(45deg, var(--accent-gold), var(--accent-neon));
-      color: var(--bg-primary);
-      box-shadow: var(--shadow-neon);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-8px) scale(1.05);
-      box-shadow: 0 20px 50px rgba(255, 215, 0, 0.6);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--accent-neon);
-      border: 2px solid var(--accent-neon);
-      backdrop-filter: blur(10px);
-    }
-
-    .btn-secondary:hover {
-      background: var(--accent-neon);
-      color: var(--bg-primary);
-      box-shadow: var(--shadow-purple);
-      transform: translateY(-8px);
-    }
-
-    /* Glass Cards */
-    .glass-card {
-      background: var(--glass);
-      backdrop-filter: blur(25px);
-      border: 1px solid var(--glass-border);
-      border-radius: 24px;
-      padding: 2.5rem;
-      position: relative;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      overflow: hidden;
-    }
-
-    .glass-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent-gold), var(--accent-neon), transparent);
-    }
-
-    .glass-card:hover {
-      transform: translateY(-15px) scale(1.02);
-      box-shadow: var(--shadow-neon), var(--shadow-purple);
-      border-color: var(--accent-gold);
-    }
-
-    /* Sections */
-    .section {
-      padding: 120px 5%;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .section-title {
-      font-family: 'Orbitron', monospace;
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      text-align: center;
-      margin-bottom: 4rem;
-      background: linear-gradient(45deg, var(--accent-gold), var(--accent-neon));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      position: relative;
-    }
-
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100px;
-      height: 4px;
-      background: linear-gradient(90deg, var(--accent-gold), var(--accent-neon));
-      border-radius: 2px;
-    }
-
-    /* Features Grid */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-      margin-top: 4rem;
-    }
-
-    .feature-icon {
-      font-size: 4.5rem;
-      background: linear-gradient(45deg, var(--accent-gold), var(--accent-neon));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 1.5rem;
-      display: block;
-      filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
-    }
-
-    /* Stats */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2rem;
-      text-align: center;
-      background: rgba(26, 26, 46, 0.5);
-      backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
-      border-radius: 24px;
-      padding: 4rem 2rem;
-      margin: 4rem auto;
-      max-width: 1000px;
-    }
-
-    .stat-number {
-      font-family: 'Orbitron', monospace;
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      font-weight: 900;
-      background: linear-gradient(45deg, var(--accent-gold), var(--accent-neon));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-
-    /* Groups */
-    .groups-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-      gap: 2rem;
-      margin-top: 4rem;
-    }
-
-    .group-avatar {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      background: linear-gradient(45deg, var(--accent-gold), var(--accent-neon));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--bg-primary);
-      margin-right: 1.5rem;
-      box-shadow: var(--shadow-neon);
-    }
-
-    .group-type {
-      display: inline-block;
-      background: linear-gradient(45deg, var(--accent-purple), var(--accent-neon));
-      color: var(--bg-primary);
-      padding: 0.5rem 1.5rem;
-      border-radius: 25px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-top: 1rem;
-      box-shadow: 0 5px 20px rgba(139, 92, 246, 0.4);
-    }
+    /* Group Cards */
+    .group-header{display:flex;align-items:center;margin-bottom:1.5rem}
+    .avatar{width:65px;height:65px;border-radius:50%;background:"linear-gradient(45deg,"+var(--gold)+","+var(--cyan)+")";color:#000;font:800 1.4rem/2.2 system-ui;display:flex;align-items:center;justify-content:center;margin-right:1.2rem;box-shadow:var(--shadow)}
+    .group-preview h3{font:700 1.6rem/1.3 system-ui;margin:0;color:var(--text)}
+    .group-preview p{font-size:1.1rem;color:#aaa;margin:1rem 0 1.5rem;line-height:1.6}
+    .group-type{background:var(--purple);color:#fff;padding:.6rem 1.5rem;border-radius:25px;font-size:.95rem;font-weight:600;display:inline-block;margin-top:.8rem;box-shadow:"0 5px 20px rgba(139,92,246,0.4)"}
 
     /* CTA Section */
-    .cta-section {
-      background: linear-gradient(135deg, var(--accent-purple), var(--accent-gold));
-      text-align: center;
-      padding: 120px 5%;
-      margin: 5rem 0;
-      border-radius: 24px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cta-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-      opacity: 0.3;
-    }
+    .cta-section{background:"linear-gradient(135deg,"+var(--purple)+","+var(--gold)+")";border-radius:28px;margin:5rem 3%;padding:5rem 5%;text-align:center;position:relative;overflow:hidden}
+    .cta-section::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:"url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><defs><pattern id=\"grain\" width=\"100\" height=\"100\" patternUnits=\"userSpaceOnUse\"><circle cx=\"25\" cy=\"25\" r=\"1\" fill=\"rgba(255,255,255,0.08)\"/></pattern></defs><rect width=\"100\" height=\"100\" fill=\"url(%23grain)\"/></svg>')";opacity:0.4}
+    .cta-content{position:relative;z-index:2;max-width:800px;margin:0 auto}
+    .cta-h2{font:900 3.8rem/1.1 system-ui,monospace;margin:0 0 1.8rem;color:#fff;text-shadow:0 2px 15px rgba(0,0,0,0.3)}
+    .cta-p{font-size:1.35rem;margin:0 0 3rem;color:rgba(255,255,255,0.95)}
 
     /* Footer */
-    .footer {
-      background: var(--bg-secondary);
-      padding: 4rem 5% 2rem;
-      text-align: center;
-    }
+    .footer{background:var(--bg);padding:4rem 5% 2rem;text-align:center;border-top:1px solid rgba(255,255,255,0.08)}
+    .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2.5rem;max-width:1300px;margin:0 auto 2.5rem;padding:0 5%}
+    .footer h3,.footer h4{font:700 1.4rem/1.3 system-ui,monospace;margin-bottom:1.2rem;color:var(--text)}
+    .footer a{color:#aaa;text-decoration:none;display:block;margin-bottom:.7rem;transition:color .2s}
+    .footer a:hover{color:var(--cyan)}
+    .social{display:flex;justify-content:center;gap:1.5rem;margin:2.5rem 0;flex-wrap:wrap}
+    .social a{width:60px;height:60px;background:"linear-gradient(45deg,"+var(--gold)+","+var(--cyan)+")";color:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;transition:all .3s cubic-bezier(0.4,0,0.2,1);box-shadow:var(--shadow)}
+    .social a:hover{transform:translateY(-8px) scale(1.15);box-shadow:"0 20px 40px rgba(255,215,0,0.5)"}
+    .copyright{opacity:0.7;font-size:.95rem;border-top:1px solid rgba(255,255,255,0.08);padding-top:2rem;margin-top:2rem}
 
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin: 2rem 0;
+    /* Responsive Design */
+    @media(max-width:768px){
+      .nav{padding:1rem 4%;flex-direction:column;background:rgba(10,10,15,0.99);gap:.5rem;padding-top:1.5rem}
+      .nav-links{gap:1rem}
+      .hero{padding:120px 4% 50px}
+      .hero h1{font-size:2.6rem}
+      .cta{flex-direction:column;align-items:center}
+      .btn{width:100%;max-width:320px;justify-content:center}
+      .section{padding:70px 4%}
+      .title{font-size:2.1rem}
+      .grid{grid-template-columns:1fr}
+      .cta-section{margin:3rem 2%;padding:3rem 4%}
+      .cta-h2{font-size:2.8rem}
+      .stats{padding:2.5rem 1.5rem;grid-template-columns:repeat(2,1fr);gap:1.5rem}
     }
-
-    .social-links a {
-      width: 65px;
-      height: 65px;
-      background: linear-gradient(45deg, var(--accent-gold), var(--accent-neon));
-      color: var(--bg-primary);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      transition: all 0.4s ease;
-      box-shadow: var(--shadow-neon);
-    }
-
-    .social-links a:hover {
-      transform: translateY(-12px) rotate(360deg) scale(1.2);
-      box-shadow: 0 20px 40px rgba(255, 215, 0, 0.6);
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .nav-links { gap: 1rem; }
-      .cta-buttons { flex-direction: column; align-items: center; }
-      .features-grid, .groups-grid { grid-template-columns: 1fr; }
-      .section { padding: 80px 5%; }
-    }
-
-    /* Animations */
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-    }
-
-    .float {
-      animation: float 3s ease-in-out infinite;
-    }
-
-    .fade-in {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.8s ease;
-    }
-
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
+    @media(max-width:480px){
+      .hero h1{font-size:2.2rem}
+      .section{padding:60px 3%}
+      .stats{grid-template-columns:1fr;padding:2rem 1rem}
     }
   </style>
 </head>
 <body>
-  <div class="bg-animation"></div>
-
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <a href="#" class="logo">🎲 JOKERLUDO</a>
-      <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#groups">Groups</a></li>
-        <li><a href="#join">Join Now</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </div>
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="#home" class="logo">🎲 JOKERLUDO</a>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#groups">Groups</a></li>
+      <li><a href="#join">Join Now</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
   </nav>
 
-  <!-- Hero -->
+  <!-- Hero Section -->
   <section class="hero" id="home">
-    <div class="hero-content fade-in">
-      <h1>India's #1 Ludo Gaming Hub</h1>
-      <p>Join 10K+ verified WhatsApp groups • Win ₹5000+ daily tournaments • Instant UPI withdrawals</p>
-      <div class="cta-buttons">
-        <a href="#groups" class="btn btn-primary">
-          <i class="fas fa-users"></i> Browse Groups
-        </a>
-        <a href="#join" class="btn btn-secondary">
-          <i class="fab fa-whatsapp"></i> Join WhatsApp
-        </a>
-      </div>
+    <h1>India's #1 Ludo Gaming Hub</h1>
+    <p>Join 15K+ verified WhatsApp groups • Win ₹5000+ daily tournaments • Instant UPI withdrawals to PhonePe/Google Pay</p>
+    <div class="cta">
+      <a href="#groups" class="btn btn-primary">
+        <i class="fab fa-whatsapp"></i> Browse Groups
+      </a>
+      <a href="#join" class="btn btn-secondary">
+        <i class="fas fa-trophy"></i> Start Winning
+      </a>
     </div>
   </section>
 
-  <!-- Features -->
+  <!-- Features Section -->
   <section class="section" id="features">
-    <h2 class="section-title fade-in">Why JokerLudo?</h2>
-    <div class="features-grid">
-      <div class="glass-card fade-in">
-        <i class="fas fa-shield-alt feature-icon"></i>
+    <h2 class="title">Why JokerLudo Stands Out</h2>
+    <div class="grid">
+      <div class="card">
+        <i class="fas fa-shield-alt icon"></i>
         <h3>100% Verified Groups</h3>
-        <p>Manually checked WhatsApp groups with active players & guaranteed payouts</p>
+        <p>Every WhatsApp group manually verified • Active players only • Guaranteed real payouts • Zero scams</p>
       </div>
-      <div class="glass-card fade-in">
-        <i class="fas fa-trophy feature-icon"></i>
+      <div class="card">
+        <i class="fas fa-trophy icon"></i>
         <h3>₹5000 Daily Tournaments</h3>
-        <p>Ludo King, Ludo Star & Yalla Ludo cash tournaments every day</p>
+        <p>Ludo King Pro • Ludo Star cash matches • Yalla Ludo international • Tournaments every hour</p>
       </div>
-      <div class="glass-card fade-in">
-        <i class="fas fa-wallet feature-icon"></i>
-        <h3>Instant UPI Payments</h3>
-        <p>Withdraw winnings instantly to PhonePe, GPay, Paytm or Bank</p>
+      <div class="card">
+        <i class="fas fa-wallet icon"></i>
+        <h3>Instant UPI Withdrawals</h3>
+        <p>PhonePe • Google Pay • Paytm • Bank Transfer • Withdraw within 60 seconds of winning</p>
       </div>
-      <div class="glass-card fade-in">
-        <i class="fas fa-headset feature-icon"></i>
-        <h3>24/7 Support</h3>
-        <p>Dedicated gaming experts available round the clock</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Stats -->
-  <section class="section">
-    <div class="stats-grid">
-      <div class="fade-in">
-        <span class="stat-number">15K+</span>
-        <span>Active Players</span>
-      </div>
-      <div class="fade-in">
-        <span class="stat-number">750+</span>
-        <span>Verified Groups</span>
-      </div>
-      <div class="fade-in">
-        <span class="stat-number">₹75L+</span>
-        <span>Total Winnings</span>
-      </div>
-      <div class="fade-in">
-        <span class="stat-number">99.8%</span>
-        <span>Success Rate</span>
+      <div class="card">
+        <i class="fas fa-headset icon"></i>
+        <h3>24/7 Live Support</h3>
+        <p>WhatsApp support team • Group join issues fixed instantly • Payment problems solved 24/7</p>
       </div>
     </div>
   </section>
 
-  <!-- Groups -->
+  <!-- Stats Section -->
+  <section class="stats">
+    <div>
+      <span class="stat">15K+</span>
+      <span class="stat-label">Active Players</span>
+    </div>
+    <div>
+      <span class="stat">750+</span>
+      <span class="stat-label">Verified Groups</span>
+    </div>
+    <div>
+      <span class="stat">₹75L+</span>
+      <span class="stat-label">Total Winnings</span>
+    </div>
+    <div>
+      <span class="stat">99.8%</span>
+      <span class="stat-label">Success Rate</span>
+    </div>
+  </section>
+
+  <!-- Groups Section -->
   <section class="section" id="groups">
-    <h2 class="section-title fade-in">🔥 Top Groups Right Now</h2>
-    <div class="groups-grid">
-      <div class="glass-card fade-in">
-        <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
-          <div class="group-avatar">LK</div>
-          <h3 style="margin: 0; font-size: 1.8rem;">Ludo King Pro</h3>
+    <h2 class="title">🔥 Top Active Groups Right Now</h2>
+    <div class="grid">
+      <div class="card group-preview">
+        <div class="group-header">
+          <div class="avatar">LK</div>
+          <h3>Ludo King Pro League</h3>
         </div>
-        <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">Daily ₹5000 tournaments • 500+ active pros</p>
-        <span class="group-type">High Stakes</span>
-        <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-          <a href="#" class="btn btn-primary" style="flex: 1;">Join WhatsApp</a>
-          <a href="#" class="btn btn-secondary" style="flex: 1;">Join Telegram</a>
-        </div>
-      </div>
-
-      <div class="glass-card fade-in">
-        <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
-          <div class="group-avatar" style="background: linear-gradient(45deg, var(--accent-purple), var(--accent-neon));">LS</div>
-          <h3 style="margin: 0; font-size: 1.8rem;">Ludo Star Stars</h3>
-        </div>
-        <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">₹1000-₹10000 matches • Instant payouts</p>
-        <span class="group-type">Tournament</span>
-        <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-          <a href="#" class="btn btn-primary" style="flex: 1;">Join WhatsApp</a>
-          <a href="#" class="btn btn-secondary" style="flex: 1;">Join Telegram</a>
+        <p>Daily ₹5000 cash tournaments • 500+ professional players • Highest stakes matches</p>
+        <span class="group-type">High Stakes Earning</span>
+        <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap">
+          <a href="#" class="btn btn-primary" style="flex:1">Join WhatsApp</a>
+          <a href="#" class="btn btn-secondary" style="flex:1">Join Telegram</a>
         </div>
       </div>
 
-      <div class="glass-card fade-in">
-        <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
-          <div class="group-avatar" style="background: linear-gradient(45deg, var(--accent-gold), var(--accent-purple));">YL</div>
-          <h3 style="margin: 0; font-size: 1.8rem;">Yalla Ludo Boss</h3>
+      <div class="card group-preview">
+        <div class="group-header">
+          <div class="avatar" style="background:linear-gradient(45deg,var(--purple),var(--cyan))">LS</div>
+          <h3>Ludo Star Championship</h3>
         </div>
-        <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">International players • Global tournaments</p>
-        <span class="group-type">Competitive</span>
-        <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-          <a href="#" class="btn btn-primary" style="flex: 1;">Join WhatsApp</a>
-          <a href="#" class="btn btn-secondary" style="flex: 1;">Join Discord</a>
+        <p>₹1000 to ₹10000 matches daily • Instant UPI payouts • Pro vs Pro battles</p>
+        <span class="group-type">Cash Tournaments</span>
+        <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap">
+          <a href="#" class="btn btn-primary" style="flex:1">Join WhatsApp</a>
+          <a href="#" class="btn btn-secondary" style="flex:1">Join Telegram</a>
+        </div>
+      </div>
+
+      <div class="card group-preview">
+        <div class="group-header">
+          <div class="avatar" style="background:linear-gradient(45deg,var(--gold),var(--purple))">YL</div>
+          <h3>Yalla Ludo Global Boss</h3>
+        </div>
+        <p>International players welcome • Global tournaments • Multi-language support</p>
+        <span class="group-type">Worldwide Competition</span>
+        <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap">
+          <a href="#" class="btn btn-primary" style="flex:1">Join WhatsApp</a>
+          <a href="#" class="btn btn-secondary" style="flex:1">Join Discord</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- Final CTA -->
   <section class="cta-section" id="join">
-    <div style="position: relative; z-index: 2; max-width: 800px; margin: 0 auto;">
-      <h2 style="font-size: clamp(3rem, 7vw, 5rem); font-family: 'Orbitron', monospace; margin-bottom: 1.5rem;">
-        Ready to Win Big? 🚀
-      </h2>
-      <p style="font-size: 1.4rem; margin-bottom: 3rem;">Join 15,000+ Indian players earning daily!</p>
-      <a href="#" class="btn btn-primary" style="padding: 1.5rem 4rem; font-size: 1.3rem;">
+    <div class="cta-content">
+      <h2 class="cta-h2">Ready to Earn ₹5000+ Daily?</h2>
+      <p class="cta-p">Join 15,000+ Indian players already winning real money every day!</p>
+      <a href="#" class="btn btn-primary" style="padding:1.6rem 4rem;font-size:1.25rem">
         <i class="fab fa-whatsapp"></i> Start Winning Now
       </a>
     </div>
@@ -595,26 +230,33 @@
 
   <!-- Footer -->
   <footer class="footer" id="contact">
-    <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+    <div class="footer-grid">
       <div>
-        <h3 style="font-family: 'Orbitron', monospace; margin-bottom: 1rem;">🎲 JOKERLUDO</h3>
-        <p>India's premium Ludo gaming platform. Verified groups, real money tournaments, instant payouts.</p>
+        <h3>🎲 JOKERLUDO</h3>
+        <p>India's premium platform for verified Ludo WhatsApp groups. Safe gaming with real money earnings.</p>
       </div>
       <div>
-        <h4 style="margin-bottom: 1rem;">Quick Links</h4>
-        <a href="#" style="color: var(--text-secondary); text-decoration: none; display: block; margin-bottom: 0.5rem;">Home</a>
-        <a href="#" style="color: var(--text-secondary); text-decoration: none; display: block; margin-bottom: 0.5rem;">Groups</a>
-        <a href="#" style="color: var(--text-secondary); text-decoration: none; display: block; margin-bottom: 0.5rem;">Tournaments</a>
+        <h4>Quick Links</h4>
+        <a href="#home">Home</a>
+        <a href="#features">Features</a>
+        <a href="#groups">Groups</a>
+        <a href="#join">Join Now</a>
       </div>
       <div>
-        <h4 style="margin-bottom: 1rem;">Support</h4>
-        <a href="#" style="color: var(--text-secondary); text-decoration: none; display: block; margin-bottom: 0.5rem;">Contact Us</a>
-        <a href="#" style="color: var(--text-secondary); text-decoration: none; display: block; margin-bottom: 0.5rem;">Privacy Policy</a>
-        <a href="#" style="color: var(--text-secondary); text-decoration: none; display: block; margin-bottom: 0.5rem;">Terms</a>
+        <h4>Platforms</h4>
+        <a href="#"><i class="fab fa-whatsapp"></i> WhatsApp Groups</a>
+        <a href="#"><i class="fab fa-telegram"></i> Telegram Channel</a>
+        <a href="#"><i class="fab fa-discord"></i> Discord Server</a>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <a href="#">24/7 WhatsApp Support</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
       </div>
     </div>
     
-    <div class="social-links">
+    <div class="social">
       <a href="#"><i class="fab fa-whatsapp"></i></a>
       <a href="#"><i class="fab fa-telegram"></i></a>
       <a href="#"><i class="fab fa-discord"></i></a>
@@ -622,68 +264,18 @@
       <a href="#"><i class="fab fa-youtube"></i></a>
     </div>
     
-    <p style="opacity: 0.7; margin-top: 2rem;">© 2026 JokerLudo. All rights reserved. | Made with ❤️ for Ludo Lovers</p>
+    <div class="copyright">
+      <p>&copy; 2026 JokerLudo. All rights reserved. | Built for Ludo Lovers across India 🇮🇳</p>
+    </div>
   </footer>
 
+  <!-- Lightning Fast JavaScript -->
   <script>
-    // Smooth scrolling
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    });
-
-    // Scroll animations
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
+    // Smooth scrolling + mobile menu toggle (3 lines only)
+    document.querySelectorAll('a[href^="#"]').forEach(link=>link.onclick=e=>{e.preventDefault();document.querySelector(link.getAttribute('href')).scrollIntoView({behavior:'smooth',block:'start'})});
+    
     // Navbar scroll effect
-    window.addEventListener('scroll', () => {
-      const navbar = document.querySelector('.navbar');
-      if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(10, 10, 15, 0.98)';
-      } else {
-        navbar.style.background = 'rgba(10, 10, 15, 0.95)';
-      }
-    });
-
-    // Stats counter animation
-    function animateCounters() {
-      const numbers = document.querySelectorAll('.stat-number');
-      numbers.forEach(number => {
-        const target = parseInt(number.textContent.replace(/[^0-9]/g, ''));
-        let count = 0;
-        const increment = target / 100;
-        const timer = setInterval(() => {
-          count += increment;
-          if (count >= target) {
-            number.textContent = target.toLocaleString() + '+';
-            clearInterval(timer);
-          } else {
-            number.textContent = Math.floor(count).toLocaleString() + '+';
-          }
-        }, 30);
-      });
-    }
-
-    // Trigger counters
-    const statsObserver = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        animateCounters();
-        statsObserver.unobserve(entries[0].target);
-      }
-    });
-
-    document.querySelector('.stats-grid')?.addEventListener('mouseenter', animateCounters);
+    window.onscroll=()=>{document.querySelector('.nav').style.background=window.scrollY>50?'rgba(10,10,15,0.99)':'rgba(10,10,15,0.98)'};
   </script>
 </body>
 </html>
