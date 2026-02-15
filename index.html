@@ -3,80 +3,77 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JokerLudo - Best Ludo WhatsApp Groups | Play & Earn Real Money</title>
+  <title>JokerLudo - India's #1 Ludo Gaming Hub 🎮</title>
   
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Join verified Ludo WhatsApp groups on JokerLudo. Play Ludo King, Ludo Star, earn real money daily. Trusted gaming communities with secure payments.">
-  <meta name="keywords" content="Ludo WhatsApp group, JokerLudo, Ludo King money, earn Ludo, WhatsApp gaming group, Ludo tournament">
+  <meta name="description" content="Join 10K+ players in verified Ludo WhatsApp groups. Win ₹5000 daily tournaments with instant UPI payments!">
+  <meta name="keywords" content="Ludo WhatsApp group, Ludo King money earning, Ludo Star tournament">
   
-  <!-- Open Graph -->
-  <meta property="og:title" content="JokerLudo - Verified Ludo WhatsApp Groups">
-  <meta property="og:description" content="Join trusted Ludo WhatsApp groups. Play, earn money, tournaments daily!">
-  <meta property="og:image" content="https://ludogrouplink.com/WhatsApp%20Image%202025-07-27%20at%2010.45.50.jpeg">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
-  <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <link rel="icon" href="/WhatsApp%20Image%202025-07-27%20at%2010.45.50.jpeg" type="image/jpeg">
-
   <style>
     :root {
-      --primary: #2d2e52;
-      --secondary: #ffde59;
-      --accent: #00d4ff;
-      --dark: #1a1b35;
-      --light: #f5f7fa;
-      --white: #fff;
-      --success: #2ecc71;
-      --danger: #e74c3c;
-      --glass-bg: rgba(255, 255, 255, 0.1);
-      --glass-border: rgba(255, 255, 255, 0.2);
-      --neon-glow: 0 0 20px rgba(255, 222, 89, 0.6);
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #1a1a2e;
+      --accent-gold: #ffd700;
+      --accent-neon: #00ffea;
+      --accent-purple: #8b5cf6;
+      --text-primary: #ffffff;
+      --text-secondary: #b3b3ff;
+      --glass: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --shadow-neon: 0 0 30px rgba(255, 215, 0, 0.5);
+      --shadow-purple: 0 0 25px rgba(139, 92, 246, 0.4);
     }
 
-    [data-theme="light"] {
-      --primary: #1e3a8a;
-      --secondary: #f59e0b;
-      --dark: #f8fafc;
-      --light: #0f172a;
-      --white: #f1f5f9;
-      --glass-bg: rgba(0, 0, 0, 0.1);
-      --glass-border: rgba(0, 0, 0, 0.2);
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Poppins', sans-serif;
-      line-height: 1.6;
-      color: #333;
+      background: var(--bg-primary);
+      color: var(--text-primary);
       overflow-x: hidden;
-      transition: all 0.3s ease;
+      line-height: 1.6;
     }
 
-    /* Particle Canvas */
-    #particles-js {
+    /* Animated Background Grid */
+    .bg-animation {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: -1;
+      z-index: -2;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(139,92,246,0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0,255,234,0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(255,215,0,0.2) 0%, transparent 50%);
+      animation: bgShift 20s ease infinite;
     }
 
-    /* Header */
+    @keyframes bgShift {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.1) rotate(180deg); }
+    }
+
+    /* Navbar */
     .navbar {
-      background: rgba(45, 46, 82, 0.95);
-      backdrop-filter: blur(20px);
-      padding: 1rem 2rem;
       position: fixed;
       top: 0;
       width: 100%;
+      padding: 1rem 5%;
+      background: rgba(10, 10, 15, 0.95);
+      backdrop-filter: blur(20px);
       z-index: 1000;
       border-bottom: 1px solid var(--glass-border);
     }
 
     .nav-container {
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
@@ -84,171 +81,162 @@
     }
 
     .logo {
-      font-size: 2rem;
-      font-weight: 700;
-      background: linear-gradient(45deg, var(--secondary), var(--accent));
+      font-family: 'Orbitron', monospace;
+      font-size: 2.2rem;
+      font-weight: 900;
+      background: linear-gradient(45deg, var(--accent-gold), var(--accent-neon), var(--accent-purple));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      text-shadow: var(--neon-glow);
-      text-decoration: none;
+      text-shadow: var(--shadow-neon);
+      letter-spacing: 2px;
     }
 
     .nav-links {
       display: flex;
       list-style: none;
-      gap: 2rem;
+      gap: 2.5rem;
       align-items: center;
     }
 
     .nav-links a {
-      color: var(--white);
+      color: var(--text-secondary);
       text-decoration: none;
       font-weight: 500;
-      padding: 0.5rem 1rem;
-      border-radius: 25px;
-      transition: all 0.3s;
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
       position: relative;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+    }
+
+    .nav-links a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, var(--accent-gold), var(--accent-neon));
+      border-radius: 50px;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+      z-index: -1;
+    }
+
+    .nav-links a:hover::before {
+      transform: scaleX(1);
     }
 
     .nav-links a:hover {
-      background: var(--secondary);
-      color: var(--primary);
-      transform: translateY(-2px);
-      box-shadow: var(--neon-glow);
-    }
-
-    .theme-toggle {
-      background: rgba(255, 255, 255, 0.2);
-      border: 2px solid var(--glass-border);
-      color: var(--white);
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 1.2rem;
-      transition: all 0.3s;
-    }
-
-    .theme-toggle:hover {
-      background: var(--secondary);
-      box-shadow: var(--neon-glow);
-      transform: scale(1.1);
+      color: var(--bg-primary);
+      text-shadow: var(--shadow-neon);
+      transform: translateY(-3px);
     }
 
     /* Hero Section */
     .hero {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
-      color: white;
-      padding: 140px 2rem 80px;
-      text-align: center;
-      position: relative;
       min-height: 100vh;
       display: flex;
       align-items: center;
-    }
-
-    .hero-content {
-      max-width: 800px;
-      margin: 0 auto;
+      justify-content: center;
+      text-align: center;
+      padding: 150px 5% 100px;
       position: relative;
-      z-index: 2;
     }
 
-    .hero h1 {
-      font-size: clamp(2.5rem, 5vw, 4.5rem);
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-      background: linear-gradient(45deg, var(--secondary), var(--accent), var(--white));
+    .hero-content h1 {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 900;
+      background: linear-gradient(45deg, var(--accent-gold), var(--accent-neon), var(--accent-purple), var(--accent-gold));
+      background-size: 300% 300%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      text-shadow: var(--neon-glow);
-      animation: glow 2s ease-in-out infinite alternate;
+      margin-bottom: 2rem;
+      animation: gradientShift 3s ease infinite, glowPulse 2s ease infinite;
+      letter-spacing: -2px;
     }
 
-    @keyframes glow {
-      from { filter: drop-shadow(0 0 20px var(--secondary)); }
-      to { filter: drop-shadow(0 0 30px var(--accent)); }
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { filter: drop-shadow(0 0 20px var(--accent-gold)); }
+      50% { filter: drop-shadow(0 0 40px var(--accent-neon)); }
     }
 
     .hero p {
-      font-size: 1.3rem;
-      margin-bottom: 2rem;
-      opacity: 0.95;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      font-size: 1.4rem;
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      color: var(--text-secondary);
+      font-weight: 300;
     }
 
     .cta-buttons {
       display: flex;
-      gap: 1rem;
+      gap: 1.5rem;
       justify-content: center;
       flex-wrap: wrap;
     }
 
     .btn {
-      padding: 1rem 2rem;
+      padding: 1.2rem 3rem;
+      font-size: 1.1rem;
+      font-weight: 600;
       border: none;
       border-radius: 50px;
-      font-weight: 600;
-      font-size: 1.1rem;
+      cursor: pointer;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      transition: all 0.3s;
-      cursor: pointer;
-      backdrop-filter: blur(10px);
+      gap: 0.8rem;
       position: relative;
       overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      font-family: 'Orbitron', monospace;
+      letter-spacing: 1px;
     }
-
-    .btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      transition: left 0.5s;
-    }
-
-    .btn:hover::before { left: 100%; }
 
     .btn-primary {
-      background: linear-gradient(45deg, var(--secondary), var(--accent));
-      color: var(--primary);
-      box-shadow: var(--neon-glow);
+      background: linear-gradient(45deg, var(--accent-gold), var(--accent-neon));
+      color: var(--bg-primary);
+      box-shadow: var(--shadow-neon);
     }
 
     .btn-primary:hover {
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 20px 40px rgba(255,222,89,0.6);
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 20px 50px rgba(255, 215, 0, 0.6);
     }
 
     .btn-secondary {
-      background: var(--glass-bg);
-      color: var(--white);
-      border: 2px solid var(--glass-border);
+      background: transparent;
+      color: var(--accent-neon);
+      border: 2px solid var(--accent-neon);
+      backdrop-filter: blur(10px);
     }
 
     .btn-secondary:hover {
-      background: var(--white);
-      color: var(--primary);
-      box-shadow: var(--neon-glow);
+      background: var(--accent-neon);
+      color: var(--bg-primary);
+      box-shadow: var(--shadow-purple);
+      transform: translateY(-8px);
     }
 
-    /* Glassmorphism Cards */
+    /* Glass Cards */
     .glass-card {
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
+      background: var(--glass);
+      backdrop-filter: blur(25px);
       border: 1px solid var(--glass-border);
-      border-radius: 20px;
+      border-radius: 24px;
       padding: 2.5rem;
-      text-align: center;
-      transition: all 0.3s;
       position: relative;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       overflow: hidden;
     }
 
@@ -259,216 +247,204 @@
       left: 0;
       right: 0;
       height: 1px;
-      background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+      background: linear-gradient(90deg, transparent, var(--accent-gold), var(--accent-neon), transparent);
     }
 
     .glass-card:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 25px 50px rgba(0,0,0,0.2);
-      border-color: var(--secondary);
+      transform: translateY(-15px) scale(1.02);
+      box-shadow: var(--shadow-neon), var(--shadow-purple);
+      border-color: var(--accent-gold);
     }
 
-    /* Features Section */
-    .features {
-      padding: 80px 2rem;
-      background: var(--light);
-      position: relative;
-    }
-
-    .container {
-      max-width: 1200px;
+    /* Sections */
+    .section {
+      padding: 120px 5%;
+      max-width: 1400px;
       margin: 0 auto;
     }
 
     .section-title {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(2.5rem, 5vw, 4rem);
       text-align: center;
-      font-size: 2.5rem;
-      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      margin-bottom: 4rem;
+      background: linear-gradient(45deg, var(--accent-gold), var(--accent-neon));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      margin-bottom: 3rem;
-      text-shadow: var(--neon-glow);
+      position: relative;
     }
 
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-gold), var(--accent-neon));
+      border-radius: 2px;
+    }
+
+    /* Features Grid */
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 2rem;
+      margin-top: 4rem;
     }
 
     .feature-icon {
-      font-size: 4rem;
-      background: linear-gradient(45deg, var(--secondary), var(--accent));
+      font-size: 4.5rem;
+      background: linear-gradient(45deg, var(--accent-gold), var(--accent-neon));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       margin-bottom: 1.5rem;
-      filter: drop-shadow(0 0 15px rgba(255,222,89,0.5));
+      display: block;
+      filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
     }
 
-    .feature-card h3 {
-      font-size: 1.5rem;
-      color: var(--primary);
-      margin-bottom: 1rem;
-    }
-
-    /* Stats Section */
-    .stats {
-      background: linear-gradient(135deg, var(--primary), var(--dark));
-      color: white;
-      padding: 60px 2rem;
-      position: relative;
-    }
-
+    /* Stats */
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 2rem;
       text-align: center;
+      background: rgba(26, 26, 46, 0.5);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 4rem 2rem;
+      margin: 4rem auto;
+      max-width: 1000px;
     }
 
     .stat-number {
-      font-size: 3.5rem;
-      font-weight: 700;
-      background: linear-gradient(45deg, var(--secondary), var(--accent));
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 900;
+      background: linear-gradient(45deg, var(--accent-gold), var(--accent-neon));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       display: block;
-      text-shadow: var(--neon-glow);
-    }
-
-    /* Groups Preview */
-    .groups-preview {
-      padding: 80px 2rem;
-      background: var(--light);
-    }
-
-    .groups-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-
-    .group-preview {
-      backdrop-filter: blur(15px);
-      border: 1px solid var(--glass-border);
-      transition: all 0.3s;
-    }
-
-    .group-header {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-
-    .group-avatar {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: linear-gradient(45deg, var(--secondary), var(--accent));
-      color: var(--primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      font-size: 1.3rem;
-      margin-right: 1rem;
-      box-shadow: var(--neon-glow);
-    }
-
-    .group-preview h4 {
-      color: var(--primary);
       margin-bottom: 0.5rem;
     }
 
+    /* Groups */
+    .groups-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+
+    .group-avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, var(--accent-gold), var(--accent-neon));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--bg-primary);
+      margin-right: 1.5rem;
+      box-shadow: var(--shadow-neon);
+    }
+
     .group-type {
-      background: linear-gradient(45deg, var(--secondary), var(--accent));
-      color: var(--primary);
-      padding: 0.4rem 1.2rem;
+      display: inline-block;
+      background: linear-gradient(45deg, var(--accent-purple), var(--accent-neon));
+      color: var(--bg-primary);
+      padding: 0.5rem 1.5rem;
       border-radius: 25px;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 600;
-      box-shadow: 0 4px 15px rgba(255,222,89,0.4);
+      margin-top: 1rem;
+      box-shadow: 0 5px 20px rgba(139, 92, 246, 0.4);
     }
 
     /* CTA Section */
     .cta-section {
-      background: linear-gradient(135deg, var(--success), #27ae60);
-      color: white;
-      padding: 80px 2rem;
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-gold));
       text-align: center;
+      padding: 120px 5%;
+      margin: 5rem 0;
+      border-radius: 24px;
       position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      opacity: 0.3;
     }
 
     /* Footer */
-    footer {
-      background: var(--dark);
-      color: var(--white);
-      padding: 3rem 2rem 1.5rem;
+    .footer {
+      background: var(--bg-secondary);
+      padding: 4rem 5% 2rem;
       text-align: center;
-    }
-
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      margin-bottom: 2rem;
     }
 
     .social-links {
       display: flex;
       justify-content: center;
-      gap: 1rem;
+      gap: 1.5rem;
       margin: 2rem 0;
     }
 
     .social-links a {
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(45deg, var(--secondary), var(--accent));
-      color: var(--primary);
+      width: 65px;
+      height: 65px;
+      background: linear-gradient(45deg, var(--accent-gold), var(--accent-neon));
+      color: var(--bg-primary);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.4rem;
-      transition: all 0.3s;
-      box-shadow: var(--neon-glow);
+      font-size: 1.5rem;
+      transition: all 0.4s ease;
+      box-shadow: var(--shadow-neon);
     }
 
     .social-links a:hover {
-      transform: translateY(-8px) scale(1.15);
-      box-shadow: 0 15px 35px rgba(255,222,89,0.6);
+      transform: translateY(-12px) rotate(360deg) scale(1.2);
+      box-shadow: 0 20px 40px rgba(255, 215, 0, 0.6);
     }
 
     /* Responsive */
     @media (max-width: 768px) {
-      .nav-links { gap: 1rem; flex-wrap: wrap; }
+      .nav-links { gap: 1rem; }
       .cta-buttons { flex-direction: column; align-items: center; }
-      .stats-grid, .footer-content { grid-template-columns: 1fr; }
-      .hero { padding: 120px 1rem 60px; }
+      .features-grid, .groups-grid { grid-template-columns: 1fr; }
+      .section { padding: 80px 5%; }
     }
 
     /* Animations */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
     }
 
-    .animate {
-      animation: fadeInUp 0.8s ease forwards;
+    .float {
+      animation: float 3s ease-in-out infinite;
     }
 
-    /* Scroll animations */
     .fade-in {
       opacity: 0;
-      transform: translateY(50px);
-      transition: all 0.6s ease;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
     }
 
     .fade-in.visible {
@@ -477,175 +453,164 @@
     }
   </style>
 </head>
-<body data-theme="dark">
-  <!-- Particle Background -->
-  <div id="particles-js"></div>
+<body>
+  <div class="bg-animation"></div>
 
-  <!-- Navigation -->
+  <!-- Navbar -->
   <nav class="navbar">
     <div class="nav-container">
-      <a href="index.html" class="logo">🎲 JokerLudo</a>
+      <a href="#" class="logo">🎲 JOKERLUDO</a>
       <ul class="nav-links">
         <li><a href="#home">Home</a></li>
         <li><a href="#features">Features</a></li>
         <li><a href="#groups">Groups</a></li>
+        <li><a href="#join">Join Now</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li class="theme-toggle" id="themeToggle" title="Toggle Theme">
-          <i class="fas fa-moon"></i>
-        </li>
       </ul>
     </div>
   </nav>
 
-  <!-- Hero Section -->
+  <!-- Hero -->
   <section class="hero" id="home">
-    <div class="hero-content">
-      <h1 class="animate">Join Verified Ludo WhatsApp Groups</h1>
-      <p class="animate" style="animation-delay: 0.2s;">Play Ludo King, Ludo Star & earn real money daily with trusted gaming communities. Secure, verified groups with instant withdrawals!</p>
-      <div class="cta-buttons animate" style="animation-delay: 0.4s;">
+    <div class="hero-content fade-in">
+      <h1>India's #1 Ludo Gaming Hub</h1>
+      <p>Join 10K+ verified WhatsApp groups • Win ₹5000+ daily tournaments • Instant UPI withdrawals</p>
+      <div class="cta-buttons">
         <a href="#groups" class="btn btn-primary">
           <i class="fas fa-users"></i> Browse Groups
         </a>
-        <a href="#addgroup" class="btn btn-secondary">
-          <i class="fas fa-plus"></i> Add Your Group
+        <a href="#join" class="btn btn-secondary">
+          <i class="fab fa-whatsapp"></i> Join WhatsApp
         </a>
       </div>
     </div>
   </section>
 
   <!-- Features -->
-  <section class="features" id="features">
-    <div class="container">
-      <h2 class="section-title animate">Why Choose JokerLudo?</h2>
-      <div class="features-grid">
-        <div class="glass-card feature-card animate fade-in" style="animation-delay: 0.1s;">
-          <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
-          <h3>✅ Verified Groups</h3>
-          <p>All groups manually verified for safety, active members & real payouts. No scams!</p>
-        </div>
-        <div class="glass-card feature-card animate fade-in" style="animation-delay: 0.2s;">
-          <div class="feature-icon"><i class="fas fa-trophy"></i></div>
-          <h3>🏆 Daily Tournaments</h3>
-          <p>Compete in Ludo King tournaments, win cash prizes & exclusive rewards daily.</p>
-        </div>
-        <div class="glass-card feature-card animate fade-in" style="animation-delay: 0.3s;">
-          <div class="feature-icon"><i class="fas fa-wallet"></i></div>
-          <h3>💰 Instant Withdrawals</h3>
-          <p>UPI, Paytm, Bank transfer. Withdraw winnings instantly without delays.</p>
-        </div>
-        <div class="glass-card feature-card animate fade-in" style="animation-delay: 0.4s;">
-          <div class="feature-icon"><i class="fas fa-headset"></i></div>
-          <h3>🛡️ 24/7 Support</h3>
-          <p>Dedicated support team available round the clock. Join issues resolved instantly.</p>
-        </div>
+  <section class="section" id="features">
+    <h2 class="section-title fade-in">Why JokerLudo?</h2>
+    <div class="features-grid">
+      <div class="glass-card fade-in">
+        <i class="fas fa-shield-alt feature-icon"></i>
+        <h3>100% Verified Groups</h3>
+        <p>Manually checked WhatsApp groups with active players & guaranteed payouts</p>
+      </div>
+      <div class="glass-card fade-in">
+        <i class="fas fa-trophy feature-icon"></i>
+        <h3>₹5000 Daily Tournaments</h3>
+        <p>Ludo King, Ludo Star & Yalla Ludo cash tournaments every day</p>
+      </div>
+      <div class="glass-card fade-in">
+        <i class="fas fa-wallet feature-icon"></i>
+        <h3>Instant UPI Payments</h3>
+        <p>Withdraw winnings instantly to PhonePe, GPay, Paytm or Bank</p>
+      </div>
+      <div class="glass-card fade-in">
+        <i class="fas fa-headset feature-icon"></i>
+        <h3>24/7 Support</h3>
+        <p>Dedicated gaming experts available round the clock</p>
       </div>
     </div>
   </section>
 
   <!-- Stats -->
-  <section class="stats">
-    <div class="container">
-      <div class="stats-grid">
-        <div class="animate fade-in" style="animation-delay: 0.1s;">
-          <span class="stat-number">10K+</span>
-          <span class="stat-label">Active Members</span>
-        </div>
-        <div class="animate fade-in" style="animation-delay: 0.2s;">
-          <span class="stat-number">500+</span>
-          <span class="stat-label">Verified Groups</span>
-        </div>
-        <div class="animate fade-in" style="animation-delay: 0.3s;">
-          <span class="stat-number">₹50L+</span>
-          <span class="stat-label">Total Winnings</span>
-        </div>
-        <div class="animate fade-in" style="animation-delay: 0.4s;">
-          <span class="stat-number">99.9%</span>
-          <span class="stat-label">Success Rate</span>
-        </div>
+  <section class="section">
+    <div class="stats-grid">
+      <div class="fade-in">
+        <span class="stat-number">15K+</span>
+        <span>Active Players</span>
+      </div>
+      <div class="fade-in">
+        <span class="stat-number">750+</span>
+        <span>Verified Groups</span>
+      </div>
+      <div class="fade-in">
+        <span class="stat-number">₹75L+</span>
+        <span>Total Winnings</span>
+      </div>
+      <div class="fade-in">
+        <span class="stat-number">99.8%</span>
+        <span>Success Rate</span>
       </div>
     </div>
   </section>
 
-  <!-- Groups Preview -->
-  <section class="groups-preview" id="groups">
-    <div class="container">
-      <h2 class="section-title animate">Popular Groups</h2>
-      <div class="groups-grid">
-        <div class="group-preview glass-card animate fade-in" style="animation-delay: 0.1s;">
-          <div class="group-header">
-            <div class="group-avatar">LK</div>
-            <h4>Ludo King Pro</h4>
-          </div>
-          <p>Professional Ludo King players. Daily ₹5000 tournaments.</p>
-          <span class="group-type">Earning Money</span>
-          <div style="margin-top: 1.5rem;">
-            <a href="#" class="btn btn-primary" style="width: 100%;">Join WhatsApp</a>
-            <a href="#" class="btn btn-secondary" style="width: 100%; margin-top: 0.5rem;">Join Telegram</a>
-          </div>
+  <!-- Groups -->
+  <section class="section" id="groups">
+    <h2 class="section-title fade-in">🔥 Top Groups Right Now</h2>
+    <div class="groups-grid">
+      <div class="glass-card fade-in">
+        <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
+          <div class="group-avatar">LK</div>
+          <h3 style="margin: 0; font-size: 1.8rem;">Ludo King Pro</h3>
         </div>
-        <div class="group-preview glass-card animate fade-in" style="animation-delay: 0.2s;">
-          <div class="group-header">
-            <div class="group-avatar">LS</div>
-            <h4>Ludo Star Stars</h4>
-          </div>
-          <p>High stakes Ludo Star matches. Instant UPI withdrawals.</p>
-          <span class="group-type">Tournament</span>
-          <div style="margin-top: 1.5rem;">
-            <a href="#" class="btn btn-primary" style="width: 100%;">Join WhatsApp</a>
-            <a href="#" class="btn btn-secondary" style="width: 100%; margin-top: 0.5rem;">Join Telegram</a>
-          </div>
+        <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">Daily ₹5000 tournaments • 500+ active pros</p>
+        <span class="group-type">High Stakes</span>
+        <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="#" class="btn btn-primary" style="flex: 1;">Join WhatsApp</a>
+          <a href="#" class="btn btn-secondary" style="flex: 1;">Join Telegram</a>
         </div>
-        <div class="group-preview glass-card animate fade-in" style="animation-delay: 0.3s;">
-          <div class="group-header">
-            <div class="group-avatar">Y</div>
-            <h4>Yalla Ludo Boss</h4>
-          </div>
-          <p>International Yalla Ludo players. Global tournaments daily.</p>
-          <span class="group-type">Competitive</span>
-          <div style="margin-top: 1.5rem;">
-            <a href="#" class="btn btn-primary" style="width: 100%;">Join WhatsApp</a>
-            <a href="#" class="btn btn-secondary" style="width: 100%; margin-top: 0.5rem;">Join Discord</a>
-          </div>
+      </div>
+
+      <div class="glass-card fade-in">
+        <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
+          <div class="group-avatar" style="background: linear-gradient(45deg, var(--accent-purple), var(--accent-neon));">LS</div>
+          <h3 style="margin: 0; font-size: 1.8rem;">Ludo Star Stars</h3>
+        </div>
+        <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">₹1000-₹10000 matches • Instant payouts</p>
+        <span class="group-type">Tournament</span>
+        <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="#" class="btn btn-primary" style="flex: 1;">Join WhatsApp</a>
+          <a href="#" class="btn btn-secondary" style="flex: 1;">Join Telegram</a>
+        </div>
+      </div>
+
+      <div class="glass-card fade-in">
+        <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
+          <div class="group-avatar" style="background: linear-gradient(45deg, var(--accent-gold), var(--accent-purple));">YL</div>
+          <h3 style="margin: 0; font-size: 1.8rem;">Yalla Ludo Boss</h3>
+        </div>
+        <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">International players • Global tournaments</p>
+        <span class="group-type">Competitive</span>
+        <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="#" class="btn btn-primary" style="flex: 1;">Join WhatsApp</a>
+          <a href="#" class="btn btn-secondary" style="flex: 1;">Join Discord</a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="cta-section" id="addgroup">
-    <div class="container">
-      <h2 style="font-size: 3rem; margin-bottom: 1.5rem; text-shadow: 0 2px 10px rgba(0,0,0,0.3);">Ready to Play & Earn?</h2>
-      <p style="font-size: 1.3rem; margin-bottom: 2rem; opacity: 0.95;">Join 10,000+ players winning daily!</p>
-      <a href="#" class="btn btn-primary" style="padding: 1.5rem 3rem; font-size: 1.3rem;">
-        <i class="fas fa-rocket"></i> Start Winning Now
+  <section class="cta-section" id="join">
+    <div style="position: relative; z-index: 2; max-width: 800px; margin: 0 auto;">
+      <h2 style="font-size: clamp(3rem, 7vw, 5rem); font-family: 'Orbitron', monospace; margin-bottom: 1.5rem;">
+        Ready to Win Big? 🚀
+      </h2>
+      <p style="font-size: 1.4rem; margin-bottom: 3rem;">Join 15,000+ Indian players earning daily!</p>
+      <a href="#" class="btn btn-primary" style="padding: 1.5rem 4rem; font-size: 1.3rem;">
+        <i class="fab fa-whatsapp"></i> Start Winning Now
       </a>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer id="contact">
-    <div class="footer-content">
-      <div class="footer-section">
-        <h3>🎲 JokerLudo</h3>
-        <p>India's #1 platform for verified Ludo WhatsApp groups. Safe gaming, real earnings!</p>
+  <footer class="footer" id="contact">
+    <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+      <div>
+        <h3 style="font-family: 'Orbitron', monospace; margin-bottom: 1rem;">🎲 JOKERLUDO</h3>
+        <p>India's premium Ludo gaming platform. Verified groups, real money tournaments, instant payouts.</p>
       </div>
-      <div class="footer-section">
-        <h3>Quick Links</h3>
-        <a href="#home">Home</a>
-        <a href="#features">Features</a>
-        <a href="#groups">Groups</a>
-        <a href="#contact">Contact</a>
+      <div>
+        <h4 style="margin-bottom: 1rem;">Quick Links</h4>
+        <a href="#" style="color: var(--text-secondary); text-decoration: none; display: block; margin-bottom: 0.5rem;">Home</a>
+        <a href="#" style="color: var(--text-secondary); text-decoration: none; display: block; margin-bottom: 0.5rem;">Groups</a>
+        <a href="#" style="color: var(--text-secondary); text-decoration: none; display: block; margin-bottom: 0.5rem;">Tournaments</a>
       </div>
-      <div class="footer-section">
-        <h3>Platforms</h3>
-        <a href="#"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-        <a href="#"><i class="fab fa-telegram"></i> Telegram</a>
-        <a href="#"><i class="fab fa-discord"></i> Discord</a>
-      </div>
-      <div class="footer-section">
-        <h3>Follow Us</h3>
-        <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
-        <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
+      <div>
+        <h4 style="margin-bottom: 1rem;">Support</h4>
+        <a href="#" style="color: var(--text-secondary); text-decoration: none; display: block; margin-bottom: 0.5rem;">Contact Us</a>
+        <a href="#" style="color: var(--text-secondary); text-decoration: none; display: block; margin-bottom: 0.5rem;">Privacy Policy</a>
+        <a href="#" style="color: var(--text-secondary); text-decoration: none; display: block; margin-bottom: 0.5rem;">Terms</a>
       </div>
     </div>
     
@@ -654,64 +619,19 @@
       <a href="#"><i class="fab fa-telegram"></i></a>
       <a href="#"><i class="fab fa-discord"></i></a>
       <a href="#"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
     </div>
     
-    <div class="copyright" style="opacity: 0.8; padding-top: 2rem;">
-      <p>&copy; 2026 JokerLudo Group. All rights reserved. | Made with ❤️ for Ludo lovers</p>
-    </div>
+    <p style="opacity: 0.7; margin-top: 2rem;">© 2026 JokerLudo. All rights reserved. | Made with ❤️ for Ludo Lovers</p>
   </footer>
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
-    // Particles.js initialization with neon gaming theme
-    particlesJS('particles-js', {
-      particles: {
-        number: { value: 80, density: { enable: true, value_area: 800 } },
-        color: { value: ['#ffde59', '#00d4ff', '#2ecc71', '#ff6b6b'] },
-        shape: { type: 'circle' },
-        opacity: { value: 0.5, random: true },
-        size: { value: 3, random: true },
-        line_linked: { enable: true, distance: 150, color: '#ffde59', opacity: 0.4, width: 1 },
-        move: { enable: true, speed: 2, direction: 'none', random: false, straight: false }
-      },
-      interactivity: {
-        detect_on: 'canvas',
-        events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' } },
-        modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
-      },
-      retina_detect: true
-    });
-
-    // Theme Toggle
-    const themeToggle = document.getElementById('themeToggle');
-    const body = document.body;
-    
-    themeToggle.addEventListener('click', () => {
-      const currentTheme = body.getAttribute('data-theme');
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      body.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
-      
-      themeToggle.innerHTML = newTheme === 'dark' ? 
-        '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-    });
-
-    // Load saved theme
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    body.setAttribute('data-theme', savedTheme);
-    themeToggle.innerHTML = savedTheme === 'dark' ? 
-      '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-
-    // Smooth scrolling for anchor links
+    // Smooth scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
+      anchor.addEventListener('click', function(e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
 
@@ -722,51 +642,48 @@
           entry.target.classList.add('visible');
         }
       });
-    });
+    }, { threshold: 0.1 });
 
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
     // Navbar scroll effect
     window.addEventListener('scroll', () => {
       const navbar = document.querySelector('.navbar');
-      if (window.scrollY > 100) {
-        navbar.style.background = 'rgba(45, 46, 82, 0.98)';
+      if (window.scrollY > 50) {
+        navbar.style.background = 'rgba(10, 10, 15, 0.98)';
       } else {
-        navbar.style.background = 'rgba(45, 46, 82, 0.95)';
+        navbar.style.background = 'rgba(10, 10, 15, 0.95)';
       }
     });
 
-    // Counter animation for stats
+    // Stats counter animation
     function animateCounters() {
-      const counters = document.querySelectorAll('.stat-number');
-      counters.forEach(counter => {
-        const target = counter.textContent;
-        const count = +target.replace(/[^0-9]/g, '');
-        const speed = 200;
-        let current = 0;
+      const numbers = document.querySelectorAll('.stat-number');
+      numbers.forEach(number => {
+        const target = parseInt(number.textContent.replace(/[^0-9]/g, ''));
+        let count = 0;
+        const increment = target / 100;
         const timer = setInterval(() => {
-          current += speed;
-          if (current >= count) {
-            counter.textContent = target;
+          count += increment;
+          if (count >= target) {
+            number.textContent = target.toLocaleString() + '+';
             clearInterval(timer);
           } else {
-            counter.textContent = current.toLocaleString() + (target.includes('+') ? '+' : '%');
+            number.textContent = Math.floor(count).toLocaleString() + '+';
           }
-        }, 20);
+        }, 30);
       });
     }
 
-    // Trigger counters when stats section is visible
+    // Trigger counters
     const statsObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          animateCounters();
-          statsObserver.unobserve(entry.target);
-        }
-      });
+      if (entries[0].isIntersecting) {
+        animateCounters();
+        statsObserver.unobserve(entries[0].target);
+      }
     });
 
-    statsObserver.observe(document.querySelector('.stats'));
+    document.querySelector('.stats-grid')?.addEventListener('mouseenter', animateCounters);
   </script>
 </body>
 </html>
