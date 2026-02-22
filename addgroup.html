@@ -12,11 +12,6 @@
 <header>
   <div class="container navbar">
     <div class="logo">🃏 Joker Ludo</div>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="ludo.html">Ludo Groups</a>
-      <a href="Whatsappludogrouplink.html">WhatsApp</a>
-    </div>
   </div>
 </header>
 
@@ -24,47 +19,61 @@
   <div class="container" style="max-width:600px;">
 
     <h2 style="text-align:center;">List Your Group</h2>
-    <p style="text-align:center; margin-bottom:30px;">
-      Submit your group and grow your members.
-    </p>
 
     <div class="card">
 
-      <form>
+      <input type="text" id="groupName" placeholder="Enter Group Name"
+      style="width:100%; padding:12px; margin-bottom:15px; border-radius:8px; border:none;">
 
-        <input type="text" placeholder="Enter Group Name"
-        style="width:100%; padding:12px; margin-bottom:15px; border-radius:8px; border:none;">
+      <input type="text" id="groupLink" placeholder="Enter Original Group Link"
+      style="width:100%; padding:12px; margin-bottom:20px; border-radius:8px; border:none;">
 
-        <input type="text" placeholder="Enter Original Group Link (Telegram/WhatsApp)"
-        style="width:100%; padding:12px; margin-bottom:20px; border-radius:8px; border:none;">
-
-        <button type="button" class="btn" style="width:100%;">
-          Generate & Get Share Link
-        </button>
-
-      </form>
+      <button onclick="generateLink()" class="btn" style="width:100%;">
+        Generate Share Link
+      </button>
 
     </div>
 
-    <!-- Share Instruction Box -->
-    <div class="card" style="margin-top:30px; background:#141414;">
-      <h3>How Listing Works?</h3>
-      <p style="font-size:14px; line-height:1.6;">
-        1️⃣ Submit your group details.<br><br>
-        2️⃣ You will receive a special Joker Ludo share link.<br><br>
-        3️⃣ Share that generated link.<br><br>
-        4️⃣ Only after real visitors click your link, your group will be listed publicly.
-      </p>
+    <!-- Result Box -->
+    <div id="resultBox" class="card" style="margin-top:30px; display:none;">
+      <h3>Your Share Link</h3>
+      <p id="generatedLink" style="word-break:break-all;"></p>
+      <button onclick="copyLink()" class="btn" style="width:100%; margin-top:10px;">
+        Copy Link
+      </button>
     </div>
 
   </div>
 </section>
 
-<footer>
-  <div class="container">
-    <p>© 2026 Joker Ludo – All Rights Reserved</p>
-  </div>
-</footer>
+<script>
+
+function generateLink() {
+
+  const name = document.getElementById("groupName").value;
+  const link = document.getElementById("groupLink").value;
+
+  if(name === "" || link === "") {
+    alert("Please fill all fields");
+    return;
+  }
+
+  // simple unique ID generate
+  const uniqueId = Math.random().toString(36).substring(2,10);
+
+  const generatedURL = window.location.origin + "/join.html?id=" + uniqueId;
+
+  document.getElementById("generatedLink").innerText = generatedURL;
+  document.getElementById("resultBox").style.display = "block";
+}
+
+function copyLink() {
+  const text = document.getElementById("generatedLink").innerText;
+  navigator.clipboard.writeText(text);
+  alert("Link Copied Successfully!");
+}
+
+</script>
 
 </body>
 </html>
