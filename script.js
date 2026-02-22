@@ -1,3 +1,4 @@
+import { db } from "./firebase.js";
 const toggle = document.getElementById("menuToggle");
 const menu = document.getElementById("mobileMenu");
 
