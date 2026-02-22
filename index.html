@@ -1,245 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joker Ludo Group - Discover & Join Best WhatsApp, Telegram & Gaming Groups</title>
-    <meta name="description" content="Browse and join the best Ludo, Gaming, Earning, Social Media Growth, and Study groups. Submit your own group for free!">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Joker Ludo Group – Join Trusted Gaming Communities</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <nav class="navbar">
-                <a href="index.html" class="logo">
-                    <span class="logo-icon">🎲</span>
-                    <span class="logo-text">Joker Ludo Group</span>
-                </a>
-                
-                <button class="mobile-toggle" id="mobileToggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                
-                <ul class="nav-menu" id="navMenu">
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="#categories">Categories</a></li>
-                    <li><a href="submit.html">Submit Group</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="rules.html">Rules</a></li>
-                </ul>
-                
-                <div class="nav-actions">
-                    <a href="submit.html" class="btn btn-primary">+ Add Group</a>
-                </div>
-            </nav>
-        </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Discover & Join <span class="highlight">Best Groups</span> Online</h1>
-                <p>Browse thousands of WhatsApp, Telegram & Gaming groups. Find your community and start connecting today!</p>
-                
-                <div class="search-box">
-                    <div class="search-input-wrapper">
-                        <i class="fas fa-search"></i>
-                        <input type="text" id="searchInput" placeholder="Search groups, categories...">
-                    </div>
-                    <button class="btn btn-primary" onclick="searchGroups()">Search</button>
-                </div>
-                
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number">500+</span>
-                        <span class="stat-label">Active Groups</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">50K+</span>
-                        <span class="stat-label">Members</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">5</span>
-                        <span class="stat-label">Categories</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ================= HEADER ================= -->
+<header class="header">
+  <div class="container nav">
+    <div class="logo">🎲 Joker Ludo Group</div>
 
-    <!-- Categories Section -->
-    <section class="categories" id="categories">
-        <div class="container">
-            <div class="section-header">
-                <h2>Browse Categories</h2>
-                <p>Find groups that match your interests</p>
-            </div>
-            
-            <div class="category-grid">
-                <a href="ludo.html" class="category-card">
-                    <div class="category-icon">🎲</div>
-                    <h3>Ludo Groups</h3>
-                    <p>Join Ludo tournaments, matches & gaming communities</p>
-                    <span class="group-count">120+ Groups</span>
-                </a>
-                
-                <a href="gaming.html" class="category-card">
-                    <div class="category-icon">🎮</div>
-                    <h3>Gaming Groups</h3>
-                    <p>Connect with gamers, find teammates & join tournaments</p>
-                    <span class="group-count">150+ Groups</span>
-                </a>
-                
-                <a href="earning.html" class="category-card">
-                    <div class="category-icon">💰</div>
-                    <h3>Earning Groups</h3>
-                    <p>Discover legitimate online earning opportunities & tips</p>
-                    <span class="group-count">80+ Groups</span>
-                </a>
-                
-                <a href="social-media.html" class="category-card">
-                    <div class="category-icon">📈</div>
-                    <h3>Social Media Growth</h3>
-                    <p>Grow your followers & engagement legitimately</p>
-                    <span class="group-count">90+ Groups</span>
-                </a>
-                
-                <a href="study.html" class="category-card">
-                    <div class="category-icon">📚</div>
-                    <h3>Study & Community</h3>
-                    <p>Study groups, educational resources & communities</p>
-                    <span class="group-count">60+ Groups</span>
-                </a>
-            </div>
-        </div>
-    </section>
+    <nav class="menu">
+      <a href="#">Home</a>
+      <a href="#">Categories</a>
+      <a href="#">Submit Group</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
 
-    <!-- Featured Groups Section -->
-    <section class="featured-groups">
-        <div class="container">
-            <div class="section-header">
-                <h2>Featured Groups</h2>
-                <p>Top rated and most active groups</p>
-            </div>
-            
-            <div class="groups-grid" id="featuredGroups">
-                <!-- Groups will be loaded dynamically -->
-            </div>
-            
-            <div class="view-all">
-                <a href="#" class="btn btn-outline">View All Groups</a>
-            </div>
-        </div>
-    </section>
+    <div class="mobile-toggle">☰</div>
+  </div>
+</header>
 
-    <!-- How It Works Section -->
-    <section class="how-it-works">
-        <div class="container">
-            <div class="section-header">
-                <h2>How It Works</h2>
-                <p>Get started in 3 simple steps</p>
-            </div>
-            
-            <div class="steps-grid">
-                <div class="step-card">
-                    <div class="step-number">1</div>
-                    <div class="step-icon">🔍</div>
-                    <h3>Browse</h3>
-                    <p>Explore our categorized listings to find groups that match your interests</p>
-                </div>
-                
-                <div class="step-card">
-                    <div class="step-number">2</div>
-                    <div class="step-icon">🔗</div>
-                    <h3>Join</h3>
-                    <p>Click on any group to get the join link and become a member</p>
-                </div>
-                
-                <div class="step-card">
-                    <div class="step-number">3</div>
-                    <div class="step-icon">📤</div>
-                    <h3>Submit</h3>
-                    <p>Have a group? Submit it for free and reach thousands of potential members</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="container hero-content">
+    <h1>Join Trusted Ludo & Gaming Groups</h1>
+    <p>Discover active WhatsApp & Telegram gaming communities. Safe, verified, and spam-free.</p>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Ready to Grow Your Community?</h2>
-                <p>Submit your group today and connect with thousands of active members looking for communities like yours.</p>
-                <a href="submit.html" class="btn btn-primary btn-large">Submit Your Group Free</a>
-            </div>
-        </div>
-    </section>
+    <div class="hero-buttons">
+      <a href="#" class="btn primary">Browse Groups</a>
+      <a href="#" class="btn secondary">Submit Your Group</a>
+    </div>
+  </div>
+</section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="index.html" class="logo">
-                        <span class="logo-icon">🎲</span>
-                        <span class="logo-text">Joker Ludo Group</span>
-                    </a>
-                    <p>Your ultimate destination for discovering and joining the best online communities.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#"><i class="fab fa-telegram"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="#categories">Categories</a></li>
-                        <li><a href="submit.html">Submit Group</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Categories</h4>
-                    <ul>
-                        <li><a href="ludo.html">Ludo Groups</a></li>
-                        <li><a href="gaming.html">Gaming Groups</a></li>
-                        <li><a href="earning.html">Earning Groups</a></li>
-                        <li><a href="study.html">Study Groups</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="terms.html">Terms of Service</a></li>
-                        <li><a href="rules.html">Community Rules</a></li>
-                        <li><a href="contact.html">Report Issue</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2024 Joker Ludo Group. All rights reserved.</p>
-                <p>Made with ❤️ for gaming communities</p>
-            </div>
-        </div>
-    </footer>
+<!-- ================= CATEGORIES ================= -->
+<section class="section">
+  <div class="container">
 
-    <script src="js/main.js"></script>
+    <h2 class="section-title">Browse Categories</h2>
+
+    <div class="grid-4">
+
+      <div class="card category">
+        <div class="icon">🎲</div>
+        <h3>Ludo Groups</h3>
+      </div>
+
+      <div class="card category">
+        <div class="icon">🎮</div>
+        <h3>Gaming Groups</h3>
+      </div>
+
+      <div class="card category">
+        <div class="icon">💰</div>
+        <h3>Earning Groups</h3>
+      </div>
+
+      <div class="card category">
+        <div class="icon">📚</div>
+        <h3>Study & Community</h3>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= LATEST GROUPS ================= -->
+<section class="section dark">
+  <div class="container">
+
+    <h2 class="section-title">Latest Groups</h2>
+
+    <div class="grid-3">
+
+      <div class="card group">
+        <h3>Pro Ludo Players</h3>
+        <p>Active players, daily matches.</p>
+        <a href="#" class="btn small">Join Group</a>
+      </div>
+
+      <div class="card group">
+        <h3>Gaming Hub India</h3>
+        <p>All multiplayer games discussion.</p>
+        <a href="#" class="btn small">Join Group</a>
+      </div>
+
+      <div class="card group">
+        <h3>Daily Earning Tricks</h3>
+        <p>Online earning tips and updates.</p>
+        <a href="#" class="btn small">Join Group</a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="cta">
+  <div class="container">
+    <h2>Have a Group to Share?</h2>
+    <p>Submit your WhatsApp or Telegram group and grow your community.</p>
+    <a href="#" class="btn primary">Submit Group Now</a>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="container footer-grid">
+
+    <div>
+      <h3>Joker Ludo Group</h3>
+      <p>Trusted platform to discover gaming communities.</p>
+    </div>
+
+    <div>
+      <h4>Quick Links</h4>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms & Rules</a>
+      <a href="#">Contact</a>
+    </div>
+
+    <div>
+      <h4>Categories</h4>
+      <a href="#">Ludo Groups</a>
+      <a href="#">Gaming Groups</a>
+      <a href="#">Earning Groups</a>
+    </div>
+
+  </div>
+
+  <div class="copyright">
+    © 2026 Joker Ludo Group. All rights reserved.
+  </div>
+</footer>
+
 </body>
 </html>
