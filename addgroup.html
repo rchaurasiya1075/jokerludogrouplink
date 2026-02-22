@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>List Your Group</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>List Your Group - Joker Ludo</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
@@ -10,26 +12,59 @@
 <header>
   <div class="container navbar">
     <div class="logo">🃏 Joker Ludo</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="ludo.html">Ludo Groups</a>
+      <a href="Whatsappludogrouplink.html">WhatsApp</a>
+    </div>
   </div>
 </header>
 
 <section class="categories">
-  <div class="container">
-    <h2>List Your Group</h2>
+  <div class="container" style="max-width:600px;">
 
-    <form style="max-width:500px;margin:auto;">
+    <h2 style="text-align:center;">List Your Group</h2>
+    <p style="text-align:center; margin-bottom:30px;">
+      Submit your group and grow your members.
+    </p>
 
-      <input type="text" placeholder="Group Name"
-      style="width:100%;padding:12px;margin-bottom:15px;border-radius:8px;border:none;">
+    <div class="card">
 
-      <input type="text" placeholder="Group Link"
-      style="width:100%;padding:12px;margin-bottom:15px;border-radius:8px;border:none;">
+      <form>
 
-      <button class="btn" style="width:100%;">Generate & List</button>
+        <input type="text" placeholder="Enter Group Name"
+        style="width:100%; padding:12px; margin-bottom:15px; border-radius:8px; border:none;">
 
-    </form>
+        <input type="text" placeholder="Enter Original Group Link (Telegram/WhatsApp)"
+        style="width:100%; padding:12px; margin-bottom:20px; border-radius:8px; border:none;">
+
+        <button type="button" class="btn" style="width:100%;">
+          Generate & Get Share Link
+        </button>
+
+      </form>
+
+    </div>
+
+    <!-- Share Instruction Box -->
+    <div class="card" style="margin-top:30px; background:#141414;">
+      <h3>How Listing Works?</h3>
+      <p style="font-size:14px; line-height:1.6;">
+        1️⃣ Submit your group details.<br><br>
+        2️⃣ You will receive a special Joker Ludo share link.<br><br>
+        3️⃣ Share that generated link.<br><br>
+        4️⃣ Only after real visitors click your link, your group will be listed publicly.
+      </p>
+    </div>
+
   </div>
 </section>
+
+<footer>
+  <div class="container">
+    <p>© 2026 Joker Ludo – All Rights Reserved</p>
+  </div>
+</footer>
 
 </body>
 </html>
