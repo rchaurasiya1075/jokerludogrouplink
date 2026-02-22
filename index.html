@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Joker Ludo Group</title>
 <link rel="stylesheet" href="style.css">
 </head>
@@ -10,42 +11,75 @@
 <header>
   <div class="container navbar">
     <div class="logo">
-      <a href="index.html" style="color:#ffd700;text-decoration:none;">
-        🃏 Joker Ludo
-      </a>
+      <a href="index.html">🃏 Joker Ludo Group</a>
+    </div>
+
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="ludo.html">Ludo</a>
+      <a href="whatsapp.html">WhatsApp</a>
+      <a href="addgroup.html">List Group</a>
+      <a href="contact.html">Contact</a>
     </div>
   </div>
 </header>
 
-<section>
+<!-- HERO -->
+<section class="hero">
   <div class="container">
+    <h1>India's #1 Joker Ludo Group Platform</h1>
+    <p>
+      Join the best Ludo, WhatsApp, Telegram, Earn Money and Gaming groups.
+      Share your group and grow your community easily.
+    </p>
+  </div>
+</section>
 
-    <h2 style="text-align:center;margin-bottom:40px;">
-      Select Group Category
-    </h2>
+<!-- ABOUT -->
+<section class="about">
+  <div class="container">
+    <h2>About Joker Ludo Group</h2>
+    <p>
+      Joker Ludo Group is a trusted platform where users can find and share
+      different types of groups like Ludo, Gaming, Study, Earning and Social Media groups.
+      Our goal is to connect people with genuine and active communities.
+    </p>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="categories">
+  <div class="container">
+    <h2 style="text-align:center;margin-bottom:30px;">Browse Categories</h2>
 
     <div class="grid">
 
-      <div class="card"><h3>Ludo Groups</h3><a href="ludo.html" class="btn">Open</a></div>
-      <div class="card"><h3>WhatsApp Groups</h3><a href="whatsapp.html" class="btn">Open</a></div>
-      <div class="card"><h3>Telegram Groups</h3><a href="telegram.html" class="btn">Open</a></div>
-      <div class="card"><h3>Earn Money Groups</h3><a href="earning.html" class="btn">Open</a></div>
-      <div class="card"><h3>Online Work Groups</h3><a href="onlinework.html" class="btn">Open</a></div>
-      <div class="card"><h3>Movie Groups</h3><a href="movie.html" class="btn">Open</a></div>
-      <div class="card"><h3>Viral Video Groups</h3><a href="viral.html" class="btn">Open</a></div>
-      <div class="card"><h3>PUBG Groups</h3><a href="pubg.html" class="btn">Open</a></div>
-      <div class="card"><h3>Free Fire Groups</h3><a href="freefire.html" class="btn">Open</a></div>
-      <div class="card"><h3>Facebook Groups</h3><a href="facebook.html" class="btn">Open</a></div>
-      <div class="card"><h3>YouTube Sub4Sub</h3><a href="youtube.html" class="btn">Open</a></div>
-      <div class="card"><h3>Instagram Follow4Follow</h3><a href="instagram.html" class="btn">Open</a></div>
-      <div class="card"><h3>Study Groups</h3><a href="study.html" class="btn">Open</a></div>
-      <div class="card"><h3>Course Groups</h3><a href="course.html" class="btn">Open</a></div>
-      <div class="card"><h3>Hindu Groups</h3><a href="hindu.html" class="btn">Open</a></div>
-      <div class="card"><h3>Girls Groups</h3><a href="girls.html" class="btn">Open</a></div>
+      <div class="card"><h3>Ludo Groups</h3><a href="ludo.html" class="btn">View</a></div>
+      <div class="card"><h3>WhatsApp Groups</h3><a href="whatsapp.html" class="btn">View</a></div>
+      <div class="card"><h3>Telegram Groups</h3><a href="telegram.html" class="btn">View</a></div>
+      <div class="card"><h3>Earn Money Groups</h3><a href="earning.html" class="btn">View</a></div>
+      <div class="card"><h3>Online Work Groups</h3><a href="onlinework.html" class="btn">View</a></div>
+      <div class="card"><h3>Movie Groups</h3><a href="movie.html" class="btn">View</a></div>
+      <div class="card"><h3>PUBG Groups</h3><a href="pubg.html" class="btn">View</a></div>
+      <div class="card"><h3>Free Fire Groups</h3><a href="freefire.html" class="btn">View</a></div>
 
     </div>
   </div>
 </section>
+
+<footer>
+  <div class="container">
+    <p>© 2026 Joker Ludo Group | All Rights Reserved</p>
+  </div>
+</footer>
+
+<script>
+function toggleMenu(){
+  document.getElementById("navLinks").classList.toggle("active");
+}
+</script>
 
 </body>
 </html>
