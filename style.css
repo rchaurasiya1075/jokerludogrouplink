@@ -324,3 +324,42 @@ z-index:1100;
 }
 
 }
+
+/* Mobile menu hidden by default */
+.menu {
+  display: flex;
+  gap: 20px;
+}
+
+/* Mobile view */
+@media (max-width: 768px) {
+
+  .menu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: #111;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  /* SHOW menu when active */
+  .menu.active {
+    display: flex;
+  }
+
+  .mobile-toggle {
+    display: block;
+    font-size: 26px;
+    cursor: pointer;
+  }
+}
+
+/* Desktop hide toggle */
+@media (min-width: 769px) {
+  .mobile-toggle {
+    display: none;
+  }
+}
