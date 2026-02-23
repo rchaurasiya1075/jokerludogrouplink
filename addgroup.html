@@ -1,76 +1,109 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>List Your Group - Joker Ludo</title>
-<link rel="stylesheet" href="style.css">
+<title>Add New Group</title>
+
+<style>
+body{
+font-family:Poppins, sans-serif;
+background:#0f172a;
+color:white;
+padding:20px;
+}
+
+.container{
+max-width:500px;
+margin:auto;
+background:#1e293b;
+padding:25px;
+border-radius:12px;
+}
+
+input, select{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:8px;
+}
+
+button{
+margin-top:15px;
+width:100%;
+padding:14px;
+border:none;
+border-radius:8px;
+background:#22c55e;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#16a34a;
+}
+</style>
 </head>
 
 <body>
 
-<header>
-  <div class="container navbar">
-    <div class="logo">🃏 Joker Ludo</div>
-  </div>
-</header>
+<div class="container">
+<h2>Add Your Group</h2>
 
-<section class="categories">
-  <div class="container" style="max-width:600px;">
+<input type="text" id="name" placeholder="Group Name">
 
-    <h2 style="text-align:center;">List Your Group</h2>
+<select id="category">
+<option value="Ludo">Ludo</option>
+<option value="Gaming">Gaming</option>
+<option value="Earning">Earning</option>
+<option value="Study">Study</option>
+</select>
 
-    <div class="card">
+<input type="text" id="link" placeholder="WhatsApp / Telegram Link">
 
-      <input type="text" id="groupName" placeholder="Enter Group Name"
-      style="width:100%; padding:12px; margin-bottom:15px; border-radius:8px; border:none;">
+<button onclick="addGroup()">Submit Group</button>
+</div>
 
-      <input type="text" id="groupLink" placeholder="Enter Original Group Link"
-      style="width:100%; padding:12px; margin-bottom:20px; border-radius:8px; border:none;">
 
-      <button onclick="generateLink()" class="btn" style="width:100%;">
-        Generate Share Link
-      </button>
+<script type="module">
 
-    </div>
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-    <!-- Result Box -->
-    <div id="resultBox" class="card" style="margin-top:30px; display:none;">
-      <h3>Your Share Link</h3>
-      <p id="generatedLink" style="word-break:break-all;"></p>
-      <button onclick="copyLink()" class="btn" style="width:100%; margin-top:10px;">
-        Copy Link
-      </button>
-    </div>
+const firebaseConfig = {
+apiKey: "AIzaSyAMhdxU4pDqby11Ymixup2aCoEY5eZ3e7M",
+authDomain: "jokerludogroup-a8c97.firebaseapp.com",
+projectId: "jokerludogroup-a8c97",
+storageBucket: "jokerludogroup-a8c97.appspot.com",
+messagingSenderId: "1083106195650",
+appId: "1:1083106195650:web:fae27e9bb0798e96f4235b"
+};
 
-  </div>
-</section>
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-<script>
+window.addGroup = async function(){
 
-function generateLink() {
+const name = document.getElementById("name").value;
+const category = document.getElementById("category").value;
+const link = document.getElementById("link").value;
 
-  const name = document.getElementById("groupName").value;
-  const link = document.getElementById("groupLink").value;
-
-  if(name === "" || link === "") {
-    alert("Please fill all fields");
-    return;
-  }
-
-  // simple unique ID generate
-  const uniqueId = Math.random().toString(36).substring(2,10);
-
-  const generatedURL = window.location.origin + "/join.html?id=" + uniqueId;
-
-  document.getElementById("generatedLink").innerText = generatedURL;
-  document.getElementById("resultBox").style.display = "block";
+if(!name || !link){
+alert("Please fill all fields");
+return;
 }
 
-function copyLink() {
-  const text = document.getElementById("generatedLink").innerText;
-  navigator.clipboard.writeText(text);
-  alert("Link Copied Successfully!");
+await addDoc(collection(db,"Groups"),{
+name:name,
+category:category,
+link:link,
+timestamp:serverTimestamp()
+});
+
+alert("Group Added Successfully ✅");
+location.href="index.html";
 }
 
 </script>
