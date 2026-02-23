@@ -17,15 +17,15 @@
   <div class="container nav">
     <div class="logo">🎲 Joker Ludo Group</div>
 
-   <nav class="menu" id="mobileMenu">
-  <a href="#">Home</a>
-  <a href="#">Categories</a>
-  <a href="#">Submit Group</a>
-  <a href="#">About</a>
-  <a href="#">Contact</a>
-</nav>
+    <nav class="menu" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="ludo.html">Categories</a>
+      <a href="addgroup.html">Submit Group</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
 
-<div class="mobile-toggle" id="menuToggle">☰</div>
+    <div class="mobile-toggle" id="menuToggle">☰</div>
   </div>
 </header>
 
@@ -36,8 +36,8 @@
     <p>Discover active WhatsApp & Telegram gaming communities. Safe, verified, and spam-free.</p>
 
     <div class="hero-buttons">
-      <a href="#" class="btn primary">Browse Groups</a>
-      <a href="#" class="btn secondary">Submit Your Group</a>
+      <a href="ludo.html" class="btn primary">Browse Groups</a>
+      <a href="addgroup.html" class="btn secondary">Submit Your Group</a>
     </div>
   </div>
 </section>
@@ -50,64 +50,40 @@
 
     <div class="grid-4">
 
-      <div class="card category">
+      <!-- Ludo WhatsApp Direct -->
+      <a href="https://chat.whatsapp.com/ClCV55QM0Ta6dHcA3Pei2I" target="_blank" class="card category">
         <div class="icon">🎲</div>
         <h3>Ludo Groups</h3>
-      </div>
+      </a>
 
-      <div class="card category">
+      <a href="gaming.html" class="card category">
         <div class="icon">🎮</div>
         <h3>Gaming Groups</h3>
-      </div>
+      </a>
 
-      <div class="card category">
+      <a href="earning.html" class="card category">
         <div class="icon">💰</div>
         <h3>Earning Groups</h3>
-      </div>
+      </a>
 
-      <div class="card category">
+      <a href="study.html" class="card category">
         <div class="icon">📚</div>
         <h3>Study & Community</h3>
-      </div>
+      </a>
 
     </div>
 
   </div>
 </section>
 
-<!-- ================= LATEST GROUPS ================= -->
+<!-- ================= LATEST GROUPS (Firebase Auto Load) ================= -->
 <section class="section dark">
   <div class="container">
 
-  <section class="latest-section">
-    <h2>Latest Ludo Groups</h2>
+    <h2 class="section-title">Latest Ludo Groups</h2>
 
+    <!-- Firebase will load groups here -->
     <div class="grid-3" id="latestGroups"></div>
-
-</section>
-
-
-    <div class="grid-3">
-
-      <div class="card group">
-        <h3>Pro Ludo Players</h3>
-        <p>Active players, daily matches.</p>
-        <a href="#" class="btn small">Join Group</a>
-      </div>
-
-      <div class="card group">
-        <h3>Gaming Hub India</h3>
-        <p>All multiplayer games discussion.</p>
-        <a href="#" class="btn small">Join Group</a>
-      </div>
-
-      <div class="card group">
-        <h3>Daily Earning Tricks</h3>
-        <p>Online earning tips and updates.</p>
-        <a href="#" class="btn small">Join Group</a>
-      </div>
-
-    </div>
 
   </div>
 </section>
@@ -117,7 +93,7 @@
   <div class="container">
     <h2>Have a Group to Share?</h2>
     <p>Submit your WhatsApp or Telegram group and grow your community.</p>
-    <a href="#" class="btn primary">Submit Group Now</a>
+    <a href="addgroup.html" class="btn primary">Submit Group Now</a>
   </div>
 </section>
 
@@ -132,16 +108,16 @@
 
     <div>
       <h4>Quick Links</h4>
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms & Rules</a>
-      <a href="#">Contact</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms & Rules</a>
+      <a href="contact.html">Contact</a>
     </div>
 
     <div>
       <h4>Categories</h4>
-      <a href="#">Ludo Groups</a>
-      <a href="#">Gaming Groups</a>
-      <a href="#">Earning Groups</a>
+      <a href="ludo.html">Ludo Groups</a>
+      <a href="gaming.html">Gaming Groups</a>
+      <a href="earning.html">Earning Groups</a>
     </div>
 
   </div>
@@ -152,7 +128,6 @@
 </footer>
 
 <script type="module" src="script.js"></script>
-
 
 </body>
 </html>
