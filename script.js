@@ -3,13 +3,13 @@
 ================================*/
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {
-getFirestore,
-collection,
-query,
-where,
-orderBy,
-limit,
-getDocs
+  getFirestore,
+  collection,
+  query,
+  where,
+  orderBy,
+  limit,
+  getDocs
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 /* ===============================
@@ -28,53 +28,93 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 
-// Mobile Menu Toggle
+/* ===============================
+   MOBILE MENU TOGGLE (SAFE)
+================================*/
 const menuToggle = document.getElementById("menuToggle");
 const mobileMenu = document.getElementById("mobileMenu");
 
-menuToggle.addEventListener("click", () => {
-  mobileMenu.classList.toggle("active");
-});
+if(menuToggle && mobileMenu){
+  menuToggle.addEventListener("click", () => {
+    mobileMenu.classList.toggle("active");
+  });
+}
 
 
 /* ===============================
-   LOAD GROUPS FROM FIRESTORE
+   LOAD GROUPS FUNCTION
 ================================*/
-async function loadGroups(){
+async function loadGroups(category = null){
 
-const container = document.getElementById("latestGroups");
-if(!container) return;
+  const latestContainer = document.getElementById("latestGroups");
+  const categoryContainer = document.getElementById("categoryGroups");
 
-container.innerHTML = "Loading groups...";
+  const container = latestContainer || categoryContainer;
+  if(!container) return;
 
-const q = query(
-collection(db, "Groups"),
-where("status", "==", "approved"),
-orderBy("timestamp", "desc"),
-limit(6)
-);
+  container.innerHTML = "Loading groups...";
 
-const snapshot = await getDocs(q);
+  try {
 
-container.innerHTML = "";
+    let q;
 
-if(snapshot.empty){
-container.innerHTML = "No groups available.";
-return;
+    if(category){
+      // CATEGORY PAGE QUERY
+      q = query(
+        collection(db, "Groups"),
+        where("status", "==", "approved"),
+        where("category", "==", category),
+        orderBy("timestamp", "desc")
+      );
+    } else {
+      // HOMEPAGE QUERY
+      q = query(
+        collection(db, "Groups"),
+        where("status", "==", "approved"),
+        orderBy("timestamp", "desc"),
+        limit(6)
+      );
+    }
+
+    const snapshot = await getDocs(q);
+
+    container.innerHTML = "";
+
+    if(snapshot.empty){
+      container.innerHTML = "No groups available.";
+      return;
+    }
+
+    snapshot.forEach(doc => {
+      const group = doc.data();
+
+      container.innerHTML += `
+      <div class="card group">
+        <h3>${group.name}</h3>
+        <p>${group.description || ""}</p>
+        <a href="${group.link}" target="_blank" class="btn small">Join Group</a>
+      </div>
+      `;
+    });
+
+  } catch(error){
+    console.error("Firestore Error:", error);
+    container.innerHTML = "Error loading groups.";
+  }
+
 }
 
-snapshot.forEach(doc => {
-const group = doc.data();
 
-container.innerHTML += `
-<div class="card group">
-<h3>${group.name}</h3>
-<p>${group.description || ""}</p>
-<a href="${group.link}" target="_blank" class="btn small">Join Group</a>
-</div>
-`;
-});
+/* ===============================
+   AUTO DETECT PAGE
+================================*/
 
+// Homepage
+if(document.getElementById("latestGroups")){
+  loadGroups();
 }
 
-loadGroups();
+// Category Page
+if(document.body.dataset.category){
+  loadGroups(document.body.dataset.category);
+}
