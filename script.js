@@ -29,10 +29,11 @@ const db = getFirestore(app);
 
 
 /* ===============================
-   MOBILE MENU TOGGLE (SAFE)
+   MOBILE MENU TOGGLE (NEW)
 ================================*/
-const menuToggle = document.getElementById("menuToggle");
-const mobileMenu = document.getElementById("mobileMenu");
+// .mobile-toggle क्लास को ढूंढें
+const menuToggle = document.querySelector(".mobile-toggle");
+const mobileMenu = document.querySelector(".menu");
 
 if(menuToggle && mobileMenu){
   menuToggle.addEventListener("click", () => {
