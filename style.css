@@ -364,7 +364,10 @@ z-index:1100;
   }
 }
 
-/* ================= FORM PAGE ================= */
+
+
+
+
 
 .form-container{
   max-width:500px;
@@ -372,17 +375,11 @@ z-index:1100;
   background:#1e293b;
   padding:30px;
   border-radius:16px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.3);
-  text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
 }
 
-.form-container h2{
-  margin-bottom:20px;
-  font-size:24px;
-  font-weight:600;
-}
+.form-container h2{ text-align:center; margin-bottom:20px; }
 
-/* Inputs */
 .form-container input,
 .form-container select{
   width:100%;
@@ -392,41 +389,15 @@ z-index:1100;
   border-radius:10px;
   background:#0f172a;
   color:white;
-  font-size:15px;
-  outline:none;
-  transition:0.3s;
 }
 
-.form-container input:focus,
-.form-container select:focus{
-  border:1px solid #22c55e;
-  box-shadow:0 0 0 2px rgba(34,197,94,0.2);
-}
-
-/* Button */
 .form-container button{
   margin-top:20px;
   width:100%;
   padding:14px;
   border:none;
   border-radius:10px;
-  background:linear-gradient(135deg,#22c55e,#16a34a);
+  background:#22c55e;
   color:white;
-  font-size:16px;
-  font-weight:500;
   cursor:pointer;
-  transition:0.3s;
-}
-
-.form-container button:hover{
-  transform:translateY(-2px);
-  box-shadow:0 6px 15px rgba(34,197,94,0.4);
-}
-
-/* Responsive */
-@media(max-width:600px){
-  .form-container{
-    margin:30px 15px;
-    padding:20px;
-  }
 }
