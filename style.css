@@ -285,3 +285,82 @@ font-size:14px;
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+
+/* ===============================
+    BLOG / ARTICLE CONTENT STYLE
+    (SEO ke liye zaroori hai)
+================================*/
+.article-content {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 40px;
+    border-radius: 20px;
+    margin-top: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.article-content h2 {
+    color: #22c55e;
+    margin: 30px 0 15px;
+    font-size: 28px;
+}
+
+.article-content p {
+    margin-bottom: 20px;
+    color: #cbd5e1;
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+/* ===============================
+    GROUP LINKS TABLE
+================================*/
+.group-table-container {
+    overflow-x: auto; /* Mobile par table scroll ho sake */
+    margin: 30px 0;
+}
+
+.group-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #1e293b;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.group-table th {
+    background: #334155;
+    color: #22c55e;
+    padding: 15px;
+    text-align: left;
+}
+
+.group-table td {
+    padding: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.group-table tr:hover {
+    background: rgba(34, 197, 94, 0.05);
+}
+
+/* WhatsApp Green Color for Links */
+.wa-link {
+    color: #22c55e;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.wa-link:hover {
+    text-decoration: underline;
+}
+
+/* Simple Animation for Cards */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+    animation: fadeInUp 0.5s ease forwards;
+}
